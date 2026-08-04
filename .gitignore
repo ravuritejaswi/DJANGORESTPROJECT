@@ -1,0 +1,73 @@
+#Create Development Workspace
+ Create a new folder for the project. 
+ Create a Python virtual environment. 
+ Activate the virtual environment. 
+ Install Django. 
+ Install Django REST Framework. 
+ Install PostgreSQL driver. 
+ Install python-dotenv. 
+
+
+
+Create Enterprise Django Project
+ Create a new Django project. 
+ Understand every generated file. 
+ Explain the purpose of: 
+  manage.py
+  settings.py
+  urls.py
+ Run the development server. 
+ Verify the Django welcome page. 
+
+
+Configure PostgreSQL Database
+ Install PostgreSQL. 
+ Create a new database. 
+ Create a database user. 
+ Grant permissions. 
+ Configure Django to connect to PostgreSQL. 
+ Run initial migrations. 
+ Verify all default tables are created. 
+
+
+Understand Django Project Architecture
+  Create the following application structure:
+   core
+   accounts
+   common
+ Learn why large projects are divided into apps.
+ Document the purpose of each app.
+
+
+Configure Environment Variables
+  Create a .env file.
+Move:
+ Secret Key 
+ Database Name 
+ Username 
+ Password 
+ Host 
+ Port 
+ Update settings to read values from .env.
+ Verify the application still runs.
+
+
+Configure Django REST Framework (1 Hour)
+ Install DRF. 
+ Add DRF to Installed Apps. 
+ Create first API endpoint. 
+ Return JSON response. 
+ Understand Request and Response objects. 
+ Test using browser 
+ 
+
+Create Custom User Model (1.5 Hours)
+  Research:
+  Why create Custom User before migrations? 
+  Implement:
+   Custom User model 
+   Email login 
+   UUID Primary Key 
+   Required fields 
+   Run migrations.
+  Verify database tables. 
