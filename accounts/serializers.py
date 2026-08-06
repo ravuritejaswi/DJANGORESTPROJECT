@@ -4,6 +4,7 @@ from .models import User
 from django.contrib.auth.password_validation import validate_password
 from rest_framework import serializers
 from rest_framework_simplejwt.tokens import RefreshToken
+from .models import Profile
 
 
 class RegisterSerializer(serializers.ModelSerializer):
@@ -41,7 +42,7 @@ class LoginSerializer(serializers.Serializer):
         email = attrs.get("email")
         password = attrs.get("password")
 
-        user = authenticate(email=email, password=password)
+        user = authenticate(username=email, password=password)
 
         if not user:
             raise serializers.ValidationError("Invalid email or password.")
@@ -77,4 +78,10 @@ class LogoutSerializer(serializers.Serializer):
     def save(self):
         token = RefreshToken(self.validated_data["refresh"])
         token.blacklist()
-        
+
+
+class ProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        fields = "__all__"  
+        read_only_fields = ["user"]

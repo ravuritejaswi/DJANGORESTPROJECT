@@ -6,11 +6,19 @@ from .serializers import RegisterSerializer, LoginSerializer
 from .serializers import ChangePasswordSerializer
 from rest_framework.permissions import IsAuthenticated
 from .serializers import LogoutSerializer
-
+from .models import Profile
+from .serializers import ProfileSerializer
+from django.shortcuts import get_object_or_404
+from rest_framework.parsers import MultiPartParser, FormParser
+from rest_framework import filters
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.generics import ListAPIView
+from drf_yasg.utils import swagger_auto_schema
 
 
 class RegisterAPIView(APIView):
 
+    @swagger_auto_schema(request_body=RegisterSerializer)
     def post(self, request):
         serializer = RegisterSerializer(data=request.data)
 
@@ -24,7 +32,7 @@ class RegisterAPIView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class LoginAPIView(APIView):
-
+    @swagger_auto_schema(request_body=LoginSerializer)
     def post(self, request):
         serializer = LoginSerializer(data=request.data)
 
@@ -60,6 +68,9 @@ class ProfileAPIView(APIView):
 
 class ChangePasswordAPIView(APIView):
     permission_classes = [IsAuthenticated]
+    @swagger_auto_schema(
+        request_body=ChangePasswordSerializer,
+        responses={200: "Password changed successfully"})
 
     def post(self, request):
         serializer = ChangePasswordSerializer(
@@ -82,8 +93,6 @@ class ChangePasswordAPIView(APIView):
             serializer.errors,
             status=status.HTTP_400_BAD_REQUEST
         )
-
-
 class LogoutAPIView(APIView):
     permission_classes = [IsAuthenticated]
 
@@ -96,6 +105,59 @@ class LogoutAPIView(APIView):
                 {"message": "Logged out successfully."},
                 status=status.HTTP_200_OK
             )
-
         return Response(serializer.errors,
                         status=status.HTTP_400_BAD_REQUEST)
+
+class ProfileCRUDAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+    parser_classes = [MultiPartParser, FormParser]
+    @swagger_auto_schema(request_body=ProfileSerializer)# Create Profile
+    def post(self, request):
+        serializer = ProfileSerializer(data=request.data)
+
+        if serializer.is_valid():
+            serializer.save(user=request.user)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    # View Profile
+    def get(self, request):
+        profile = get_object_or_404(Profile, user=request.user)
+        serializer = ProfileSerializer(profile)
+        return Response(serializer.data)
+    @swagger_auto_schema(request_body=ProfileSerializer)# Update Profile
+    def put(self, request):
+        profile = get_object_or_404(Profile, user=request.user)
+        serializer = ProfileSerializer(profile, data=request.data, partial=True)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    # Delete Profile
+    def delete(self, request):
+        profile = get_object_or_404(Profile, user=request.user)
+        profile.delete()
+        return Response(
+            {"message": "Profile deleted successfully."},
+            status=status.HTTP_204_NO_CONTENT
+        )
+class ProfileListAPIView(ListAPIView):
+    serializer_class = ProfileSerializer
+    permission_classes = [IsAuthenticated]
+
+    queryset = Profile.objects.all()
+
+    filter_backends = [
+        DjangoFilterBackend,
+        filters.SearchFilter,
+        filters.OrderingFilter,
+    ]
+
+    search_fields = ["city", "state", "country", "bio"]
+
+    ordering_fields = ["city", "state", "country"]
+
+    filterset_fields = ["city", "state", "country"]
