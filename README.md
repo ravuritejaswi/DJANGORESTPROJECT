@@ -136,3 +136,21 @@ Protected APIs require the following header:
 ```
 Authorization: Bearer <access_token>
 ```
+
+
+
+# Django REST API
+
+## Features
+- User Registration
+- Login with JWT
+- Logout
+- Change Password
+- Profile CRUD
+- Swagger Documentation
+
+## Technologies
+- Django
+- Django REST Framework
+- Simple JWT
+- DRF-YASG (Swagger)
