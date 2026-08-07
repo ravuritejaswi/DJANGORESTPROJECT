@@ -1,0 +1,195 @@
+Watching for file changes with StatReloader
+"GET /swagger/ HTTP/1.1" 200 2157
+"GET /swagger/?format=openapi HTTP/1.1" 200 9366
+"POST /accounts/login/ HTTP/1.1" 200 636
+"GET /accounts/profile-crud/ HTTP/1.1" 200 433
+C:\Users\Admin\Desktop\DjangoRESTProject\config\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /swagger/ HTTP/1.1" 200 2157
+"GET /swagger/?format=openapi HTTP/1.1" 200 9366
+Bad Request: /accounts/login/
+"POST /accounts/login/ HTTP/1.1" 400 51
+C:\Users\Admin\Desktop\DjangoRESTProject\accounts\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\accounts\views.py changed, reloading.
+Watching for file changes with StatReloader
+Bad Request: /accounts/login/
+"POST /accounts/login/ HTTP/1.1" 400 56
+C:\Users\Admin\Desktop\DjangoRESTProject\accounts\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\accounts\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /swagger/ HTTP/1.1" 200 2157
+"GET /static/drf-yasg/swagger-ui-dist/swagger-ui.css HTTP/1.1" 304 0
+"GET /static/drf-yasg/style.css HTTP/1.1" 304 0
+"GET /static/drf-yasg/swagger-ui-init.js HTTP/1.1" 304 0
+"GET /static/drf-yasg/swagger-ui-dist/swagger-ui-standalone-preset.js HTTP/1.1" 304 0
+"GET /static/drf-yasg/swagger-ui-dist/swagger-ui-bundle.js HTTP/1.1" 304 0
+"GET /static/drf-yasg/immutable.min.js HTTP/1.1" 304 0
+"GET /static/drf-yasg/insQ.min.js HTTP/1.1" 304 0
+"GET /swagger/?format=openapi HTTP/1.1" 200 9366
+"GET /static/drf-yasg/swagger-ui-dist/favicon-32x32.png HTTP/1.1" 304 0
+"GET /swagger/ HTTP/1.1" 200 2157
+"GET /swagger/?format=openapi HTTP/1.1" 200 9366
+"POST /accounts/login/ HTTP/1.1" 200 636
+Internal Server Error: /accounts/profile-crud/
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\views\generic\base.py", line 106, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\accounts\views.py", line 126, in get
+    profile = get_object_or_404(Profile.objects.select_releated("user"), user=request.user)
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Manager' object has no attribute 'select_releated'. Did you mean: 'select_related'?
+"GET /accounts/profile-crud/ HTTP/1.1" 500 20599
+C:\Users\Admin\Desktop\DjangoRESTProject\accounts\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /swagger/ HTTP/1.1" 200 2157
+"GET /swagger/?format=openapi HTTP/1.1" 200 9366
+"POST /accounts/login/ HTTP/1.1" 200 636
+"GET /accounts/profile-crud/ HTTP/1.1" 200 433
+"PUT /accounts/profile-crud/ HTTP/1.1" 200 433
+"DELETE /accounts/profile-crud/ HTTP/1.1" 204 43
+"POST /accounts/profile-restore/ HTTP/1.1" 200 43
+"POST /accounts/change-password/ HTTP/1.1" 200 44
+"POST /accounts/login/ HTTP/1.1" 200 636
+Bad Request: /accounts/logout/
+"POST /accounts/logout/ HTTP/1.1" 400 39
+C:\Users\Admin\Desktop\DjangoRESTProject\accounts\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /swagger/ HTTP/1.1" 200 2157
+"GET /swagger/?format=openapi HTTP/1.1" 200 9640
+Bad Request: /accounts/login/
+"POST /accounts/login/ HTTP/1.1" 400 56
+"POST /accounts/login/ HTTP/1.1" 200 636
+Unauthorized: /accounts/logout/
+"POST /accounts/logout/ HTTP/1.1" 401 119
+"POST /accounts/login/ HTTP/1.1" 200 636
+"POST /accounts/logout/ HTTP/1.1" 200 38
+"GET /accounts/profile-crud/ HTTP/1.1" 200 433
+Internal Server Error: /accounts/profile-crud/
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "accounts_profile_user_id_key"
+DETAIL:  Key (user_id)=(b74f8a3d-e4c1-48ac-9e4c-f6e5d6ecb3c0) already exists.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\views\generic\base.py", line 106, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\accounts\views.py", line 120, in post
+    serializer.save(user=request.user, created_by=request.user, updated_by=request.user)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\serializers.py", line 210, in save
+    self.instance = self.create(validated_data)
+                    ~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\serializers.py", line 1011, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\db\models\query.py", line 669, in create
+    obj.save(force_insert=True, using=self.db)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\db\models\base.py", line 874, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\db\models\base.py", line 966, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\db\models\base.py", line 1169, in _save_table
+    results = self._do_insert(
+        cls._base_manager, using, insert_fields, returning_fields, raw
+    )
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\db\models\base.py", line 1220, in _do_insert
+    return manager._insert(
+           ~~~~~~~~~~~~~~~^
+        [self],
+        ^^^^^^^
+    ...<3 lines>...
+        raw=raw,
+        ^^^^^^^^
+    )
+    ^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\db\models\query.py", line 1918, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1925, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\db\utils.py", line 94, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+django.db.utils.IntegrityError: duplicate key value violates unique constraint "accounts_profile_user_id_key"
+DETAIL:  Key (user_id)=(b74f8a3d-e4c1-48ac-9e4c-f6e5d6ecb3c0) already exists.
+
+"POST /accounts/profile-crud/ HTTP/1.1" 500 24998

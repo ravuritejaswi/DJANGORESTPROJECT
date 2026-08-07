@@ -14,6 +14,7 @@ from rest_framework import filters
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.generics import ListAPIView
 from drf_yasg.utils import swagger_auto_schema
+from .permissions import IsAdminRole, IsUserRole
 
 
 class RegisterAPIView(APIView):
@@ -52,7 +53,7 @@ class LoginAPIView(APIView):
             )
 
         return Response(
-            serializer.errors,
+            {"success": False, "message": "Invalid email or password."},
             status=status.HTTP_400_BAD_REQUEST
         )# Create your views here.
 
@@ -95,7 +96,7 @@ class ChangePasswordAPIView(APIView):
         )
 class LogoutAPIView(APIView):
     permission_classes = [IsAuthenticated]
-
+    @swagger_auto_schema(request_body=LogoutSerializer)
     def post(self, request):
         serializer = LogoutSerializer(data=request.data)
 
@@ -116,39 +117,40 @@ class ProfileCRUDAPIView(APIView):
         serializer = ProfileSerializer(data=request.data)
 
         if serializer.is_valid():
-            serializer.save(user=request.user)
+            serializer.save(user=request.user, created_by=request.user, updated_by=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     # View Profile
     def get(self, request):
-        profile = get_object_or_404(Profile, user=request.user)
+        profile = get_object_or_404(Profile.objects.select_related("user"), user=request.user)
         serializer = ProfileSerializer(profile)
         return Response(serializer.data)
     @swagger_auto_schema(request_body=ProfileSerializer)# Update Profile
     def put(self, request):
-        profile = get_object_or_404(Profile, user=request.user)
+        profile = get_object_or_404(Profile.objects.select_related("user"), user=request.user)
         serializer = ProfileSerializer(profile, data=request.data, partial=True)
 
         if serializer.is_valid():
-            serializer.save()
+            serializer.save(updated_by=request.user)
             return Response(serializer.data)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     # Delete Profile
     def delete(self, request):
-        profile = get_object_or_404(Profile, user=request.user)
-        profile.delete()
+        profile = get_object_or_404(Profile.objects.select_related("user"), user=request.user)
+        profile.is_deleted = True
+        profile.save()
         return Response(
             {"message": "Profile deleted successfully."},
             status=status.HTTP_204_NO_CONTENT
         )
 class ProfileListAPIView(ListAPIView):
     serializer_class = ProfileSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsAdminRole]
 
-    queryset = Profile.objects.all()
+    queryset = Profile.objects.filter(is_deleted=False)
 
     filter_backends = [
         DjangoFilterBackend,
@@ -161,3 +163,15 @@ class ProfileListAPIView(ListAPIView):
     ordering_fields = ["city", "state", "country"]
 
     filterset_fields = ["city", "state", "country"]
+
+class RestoreProfileAPIView(APIView):
+    def post(self, request):
+        profile = Profile.objects.select_related("user").get(user=request.user)
+
+        profile.is_deleted = False
+        profile.save()
+
+        return Response(
+            {"message": "Profile restored successfully"},
+            status=status.HTTP_200_OK
+        )

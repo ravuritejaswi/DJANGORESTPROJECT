@@ -136,3 +136,76 @@ Protected APIs require the following header:
 ```
 Authorization: Bearer <access_token>
 ```
+
+
+
+
+
+# Django REST API
+
+## Features
+- User Registration
+- Login with JWT
+- Logout
+- Change Password
+- Profile CRUD
+- Swagger Documentation
+
+## Technologies
+- Django
+- Django REST Framework
+- Simple JWT
+- DRF-YASG (Swagger)
+
+# Work Completed
+
+## Overview
+Completed the implementation, optimization, testing, and documentation of Django REST Framework APIs.
+
+## Features Implemented
+
+### Logging
+- Configured centralized logging.
+- Generated log files for API requests and responses.
+- Verified logging functionality.
+
+### Exception Handling
+- Created a custom exception handler.
+- Standardized API error responses.
+- Handled authentication and validation errors.
+
+### ORM Optimization
+- Optimized database queries using `select_related()`.
+- Improved API performance by reducing unnecessary database hits.
+- Tested optimized queries successfully.
+
+### API Testing
+Successfully tested the following APIs using Swagger:
+- Register User
+- Login
+- Change Password
+- Logout
+- Create Profile
+- View Profile
+- Update Profile
+- Delete Profile
+- Restore Profile
+- Profile Listing
+- Search, Filter, Ordering, and Pagination
+
+### Bug Fixes
+- Fixed authentication-related issues.
+- Fixed profile CRUD issues.
+- Resolved query optimization errors.
+- Improved custom error responses.
+
+## Documentation
+- Updated project documentation.
+- Verified API endpoints and responses.
+- Reviewed overall project structure.
+
+## Result
+- All implemented APIs are functioning correctly.
+- Logging and exception handling are working as expected.
+- ORM queries are optimized.
+- Project is ready for review and GitHub submission.
