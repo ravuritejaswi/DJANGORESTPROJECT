@@ -337,3 +337,169 @@ python manage.py migrate rides 0001
 The migration was restored using:
 python manage.py migrate rides
 Final migration status was verified successfully.
+
+
+**Implemented the Driver API with CRUD operations.
+#Work Completed
+- Created Driver Profile API.
+- Implemented Create Driver.
+- Implemented Get/List Drivers.
+- Implemented Get Driver by UUID.
+- Implemented Update Driver.
+- Implemented Delete Driver.
+- Tested Driver API using Postman.
+- Implemented authentication using JWT access tokens.
+#Testing
+- Driver creation tested successfully.
+- Driver retrieval tested successfully.
+- Driver update tested successfully.
+- Driver deletion tested successfully.
+- Invalid Driver UUID tested and returned
+
+Implemented Vehicle CRUD operations.
+#Work Completed
+- Created Vehicle API.
+- Implemented Create Vehicle.
+- Implemented List Vehicles.
+- Implemented Retrieve Vehicle by UUID.
+- Implemented Update Vehicle.
+- Implemented Delete Vehicle.
+- Added Driver and Vehicle Type relationships.
+- Tested Vehicle APIs using Postman.
+#Testing
+- POST Vehicle – `201 Created`
+- GET Vehicles – `200 OK`
+- GET Vehicle by UUID – `200 OK`
+- PATCH Vehicle – `200 OK`
+- DELETE Vehicle – tested with protected relationship handling.
+
+Implemented and tested validation for Vehicle API requests.
+#Validations Implemented
+- Vehicle registration number validation.
+- Vehicle type validation.
+- Driver ID validation.
+- Required field validation.
+- Duplicate vehicle registration validation.
+- Driver ownership validation.
+#Testing
+- Valid vehicle creation – 201 Created
+- Invalid Vehicle Type – 400 Bad Request
+- Invalid Driver ID – 400 Bad Request
+- Missing required fields – 400 Bad Request
+- Duplicate registration number – 400 Bad Request
+- Driver attempting to use another driver's
+
+Implemented and tested API access permissions.
+#Work Completed
+- Added authenticated-user permission handling.
+- Applied permissions to Vehicle List/Create API.
+- Applied permissions to Vehicle Detail/Update/Delete API.
+- Implemented driver ownership restriction.
+- Tested authenticated and unauthorized API access.
+#Testing
+- Authenticated user access – successful.
+- Driver managing own vehicle – successful.
+- Driver attempting to manage another driver's vehicle – denied.
+- Unauthenticated access – 401 Unauthorized.
+
+Implemented nested Vehicle information inside Driver API responses.
+#Work Completed
+- Created VehicleNestedSerializer.
+- Added Vehicle information to DriverProfileSerializer.
+- Used the vehicles relationship from DriverProfile.
+- Returned vehicle type and vehicle registration number in Driver API response.
+#Example Response
+```json
+{
+    "id": "...",
+    "user": "...",
+    "license_number": "...",
+    "is_available": true,
+    "rating": 5,
+    "vehicles": [
+        {
+            "vehicle_type": "Car",
+            "vehicle_number": "TS09AB1234"
+        }
+    ]
+}
+
+Implemented advanced querying for Vehicle API.
+Filtering
+Implemented filtering by:
+Vehicle type.
+Active/inactive status.
+Driver.
+Searching
+Implemented search using:
+Driver username.
+Driver license number.
+Vehicle registration number.
+Vehicle model.
+Pagination
+Implemented page-number pagination with:
+PAGE_SIZE = 2
+Tested multiple pages successfully.
+Ordering
+Implemented ordering by:
+Vehicle registration number.
+Vehicle model.
+Created date.
+Updated date.
+Testing
+Search – 200 OK
+Vehicle type filtering – successful.
+Active/inactive filtering – successful.
+Pagination – successful.
+Ascending ordering – successful.
+Descending ordering – successful.
+
+Implemented centralized API error handling.
+Work Completed
+Used custom exception handler.
+Configured custom exception handler in Django REST Framework settings.
+Standardized API error responses.
+Error Cases Tested
+Driver Not Found
+404 Not Found
+Vehicle Not Found
+404 Not Found
+Duplicate Vehicle Registration
+400 Bad Request
+
+API Testing
+Performed comprehensive API testing using Postman.
+Positive Test Cases
+Driver API requests.
+Vehicle API requests.
+Successful vehicle creation.
+Successful vehicle retrieval.
+Successful vehicle update.
+Successful authenticated access.
+Negative Test Cases
+Invalid Driver UUID.
+Invalid Vehicle UUID.
+Duplicate vehicle registration.
+Missing required fields.
+Blank model.
+Unauthorized requests.
+
+Authentication Testing
+Valid Bearer Token – successful.
+No authentication – 401 Unauthorized.
+Permission Testing
+Authenticated user access – successful.
+Driver ownership validation – successful.
+Unauthorized user access – denied.
+Validation Testing
+Required fields.
+Invalid Driver ID.
+Invalid Vehicle Type.
+Duplicate registration number.
+Blank model.
+Advanced API Testing
+Vehicle search.
+Vehicle type filtering.
+Active/inactive filtering.
+
+

@@ -249,3 +249,342 @@ Not Found: /favicon.ico
 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
 "GET /admin/rides/ride/?q=testuser%40gmail.com&ride_type__exact=NOW HTTP/1.1" 200 18977
 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+Watching for file changes with StatReloader
+Unauthorized: /api/drivers/
+"GET /api/drivers/ HTTP/1.1" 401 233
+Bad Request: /accounts/login/
+"POST /accounts/login/ HTTP/1.1" 400 56
+Bad Request: /accounts/login/
+"POST /accounts/login/ HTTP/1.1" 400 56
+Bad Request: /accounts/login/
+"POST /accounts/login/ HTTP/1.1" 400 56
+Bad Request: /accounts/register/
+"POST /accounts/register/ HTTP/1.1" 400 107
+Unsupported Media Type: /accounts/login/
+"POST /accounts/login/ HTTP/1.1" 415 123
+Unsupported Media Type: /accounts/login/
+"POST /accounts/login/ HTTP/1.1" 415 123
+"POST /accounts/login/ HTTP/1.1" 200 636
+"POST /accounts/login/ HTTP/1.1" 200 636
+"GET /api/drivers/ HTTP/1.1" 200 210
+Not Found: /api/drivers/3fc9a0ac-6057-4b9e-b98a-5f643a26e322/
+"GET /api/drivers/3fc9a0ac-6057-4b9e-b98a-5f643a26e322/ HTTP/1.1" 404 115
+Not Found: /api/drivers/3fc9a0ac-6057-4b9e-b98a-5f543a26e322/
+"GET /api/drivers/3fc9a0ac-6057-4b9e-b98a-5f543a26e322/ HTTP/1.1" 404 115
+Watching for file changes with StatReloader
+"POST /accounts/login/ HTTP/1.1" 200 636
+"GET /api/drivers/3fc9a0ac-6057-4b9c-b98a-5f543a26e322/ HTTP/1.1" 200 158
+"PATCH /api/drivers/3fc9a0ac-6057-4b9c-b98a-5f543a26e322/ HTTP/1.1" 200 159
+"POST /accounts/login/ HTTP/1.1" 200 636
+Watching for file changes with StatReloader
+"POST /accounts/login/ HTTP/1.1" 200 636
+"POST /api/drivers/ HTTP/1.1" 201 159
+"GET /api/drivers/ HTTP/1.1" 200 371
+Not Found: /api/drivers/3fc9a0ac-6057-4b9e-b98a-5f643a26e322/
+"GET /api/drivers/3fc9a0ac-6057-4b9e-b98a-5f643a26e322/ HTTP/1.1" 404 115
+Not Found: /api/drivers/3fc9a0ac-6057-4b9e-b98a-5f543a26e322/
+"GET /api/drivers/3fc9a0ac-6057-4b9e-b98a-5f543a26e322/ HTTP/1.1" 404 115
+"POST /accounts/login/ HTTP/1.1" 200 636
+Not Found: /api/drivers/3fc9a0ac-6057-4b9e-b98a-5f543a26e322/
+"GET /api/drivers/3fc9a0ac-6057-4b9e-b98a-5f543a26e322/ HTTP/1.1" 404 115
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\serializers.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\api\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\api\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"POST /accounts/login/ HTTP/1.1" 200 636
+Watching for file changes with StatReloader
+"POST /accounts/login/ HTTP/1.1" 200 636
+Bad Request: /api/vehicles/
+"POST /api/vehicles/ HTTP/1.1" 400 318
+Watching for file changes with StatReloader
+"POST /accounts/login/ HTTP/1.1" 200 636
+Bad Request: /api/vehicles/
+"POST /api/vehicles/ HTTP/1.1" 400 228
+Watching for file changes with StatReloader
+"POST /accounts/login/ HTTP/1.1" 200 636
+"POST /api/vehicles/ HTTP/1.1" 201 312
+"GET /api/vehicles/ HTTP/1.1" 200 677
+"GET /api/vehicles/3974e767-962b-40d4-a668-8cbdce8e3db7/ HTTP/1.1" 200 312
+"PATCH /api/vehicles/3974e767-962b-40d4-a668-8cbdce8e3db7/ HTTP/1.1" 200 312
+Internal Server Error: /api/vehicles/3974e767-962b-40d4-a668-8cbdce8e3db7/
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\views\generic\base.py", line 106, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\generics.py", line 295, in delete
+    return self.destroy(request, *args, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\mixins.py", line 91, in destroy
+    self.perform_destroy(instance)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\mixins.py", line 95, in perform_destroy
+    instance.delete()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\db\models\base.py", line 1299, in delete
+    collector.collect([self], keep_parents=keep_parents)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\db\models\deletion.py", line 354, in collect
+    raise ProtectedError(
+    ...<7 lines>...
+    )
+django.db.models.deletion.ProtectedError: ("Cannot delete some instances of model 'Vehicle' because they are referenced through protected foreign keys: 'Ride.vehicle'.", {<Ride: Ride f0bdd0a9-15a4-4145-b436-de94dc9462c9>})
+"DELETE /api/vehicles/3974e767-962b-40d4-a668-8cbdce8e3db7/ HTTP/1.1" 500 117178
+Internal Server Error: /api/vehicles/3974e767-962b-40d4-a668-8cbdce8e3db7/
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\views\generic\base.py", line 106, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\generics.py", line 295, in delete
+    return self.destroy(request, *args, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\mixins.py", line 91, in destroy
+    self.perform_destroy(instance)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\mixins.py", line 95, in perform_destroy
+    instance.delete()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\db\models\base.py", line 1299, in delete
+    collector.collect([self], keep_parents=keep_parents)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\db\models\deletion.py", line 354, in collect
+    raise ProtectedError(
+    ...<7 lines>...
+    )
+django.db.models.deletion.ProtectedError: ("Cannot delete some instances of model 'Vehicle' because they are referenced through protected foreign keys: 'Ride.vehicle'.", {<Ride: Ride f0bdd0a9-15a4-4145-b436-de94dc9462c9>})
+"DELETE /api/vehicles/3974e767-962b-40d4-a668-8cbdce8e3db7/ HTTP/1.1" 500 117186
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\serializers.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\serializers.py changed, reloading.
+Watching for file changes with StatReloader
+Bad Request: /api/vehicles/
+"POST /api/vehicles/ HTTP/1.1" 400 158
+Watching for file changes with StatReloader
+"POST /accounts/login/ HTTP/1.1" 200 636
+"POST /api/vehicles/ HTTP/1.1" 201 312
+Bad Request: /api/vehicles/
+"POST /api/vehicles/ HTTP/1.1" 400 132
+Bad Request: /api/vehicles/
+"POST /api/vehicles/ HTTP/1.1" 400 222
+Bad Request: /api/vehicles/
+"POST /api/vehicles/ HTTP/1.1" 400 239
+"POST /api/vehicles/ HTTP/1.1" 201 312
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\serializers.py changed, reloading.
+Watching for file changes with StatReloader
+Bad Request: /api/vehicles/
+"POST /api/vehicles/ HTTP/1.1" 400 132
+Bad Request: /api/vehicles/
+"POST /api/vehicles/ HTTP/1.1" 400 113
+C:\Users\Admin\Desktop\DjangoRESTProject\api\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\api\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\api\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\permissions.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\api\views.py changed, reloading.
+Watching for file changes with StatReloader
+Unauthorized: /api/vehicles/
+"POST /api/vehicles/ HTTP/1.1" 401 233
+"POST /accounts/login/ HTTP/1.1" 200 636
+Bad Request: /api/vehicles/
+"POST /api/vehicles/ HTTP/1.1" 400 113
+Watching for file changes with StatReloader
+"POST /accounts/login/ HTTP/1.1" 200 636
+Bad Request: /api/vehicles/
+"POST /api/vehicles/ HTTP/1.1" 400 113
+"POST /accounts/login/ HTTP/1.1" 200 640
+"POST /api/vehicles/ HTTP/1.1" 201 312
+Bad Request: /api/vehicles/
+"POST /api/vehicles/ HTTP/1.1" 400 112
+Bad Request: /api/vehicles/
+"POST /api/vehicles/ HTTP/1.1" 400 228
+Bad Request: /api/vehicles/
+"POST /api/vehicles/ HTTP/1.1" 400 222
+"POST /api/vehicles/ HTTP/1.1" 201 312
+Bad Request: /api/vehicles/
+"POST /api/vehicles/ HTTP/1.1" 400 132
+Bad Request: /api/vehicles/
+"POST /api/vehicles/ HTTP/1.1" 400 132
+Bad Request: /api/vehicles/
+"POST /api/vehicles/ HTTP/1.1" 400 132
+Bad Request: /api/vehicles/
+"POST /api/vehicles/ HTTP/1.1" 400 132
+Bad Request: /api/vehicles/
+"POST /api/vehicles/ HTTP/1.1" 400 132
+Bad Request: /api/vehicles/
+"POST /api/vehicles/ HTTP/1.1" 400 113
+Bad Request: /api/vehicles/
+"POST /api/vehicles/ HTTP/1.1" 400 132
+Bad Request: /api/vehicles/
+"POST /api/vehicles/ HTTP/1.1" 400 132
+"POST /api/vehicles/ HTTP/1.1" 201 312
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\serializers.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\serializers.py changed, reloading.
+Watching for file changes with StatReloader
+Unauthorized: /api/vehicles/
+"POST /api/vehicles/ HTTP/1.1" 401 233
+"POST /accounts/login/ HTTP/1.1" 200 640
+"GET /api/vehicles/ HTTP/1.1" 200 717
+"POST /accounts/login/ HTTP/1.1" 200 640
+"GET /api/drivers/ HTTP/1.1" 200 768
+Watching for file changes with StatReloader
+"POST /accounts/login/ HTTP/1.1" 200 640
+Unauthorized: /api/vehicles/
+"GET /api/vehicles/ HTTP/1.1" 401 168
+"GET /api/vehicles/ HTTP/1.1" 200 717
+"GET /api/vehicles/?is_active=true HTTP/1.1" 200 732
+"GET /api/vehicles/?vehicle_type=7a8efb0a-2a84-4223-98ee-9f44fc3f3017 HTTP/1.1" 200 767
+Internal Server Error: /api/vehicles/
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\views\generic\base.py", line 106, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\generics.py", line 243, in get
+    return self.list(request, *args, **kwargs)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\mixins.py", line 38, in list
+    queryset = self.filter_queryset(self.get_queryset())
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\generics.py", line 154, in filter_queryset
+    queryset = backend().filter_queryset(self.request, queryset, self)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\filters.py", line 157, in filter_queryset
+    queryset = queryset.filter(reduce(operator.and_, conditions))
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\db\models\query.py", line 1542, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\db\models\query.py", line 1560, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\db\models\query.py", line 1570, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\db\models\sql\query.py", line 1676, in add_q
+    clause, _ = self._add_q(q_object, can_reuse)
+                ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\db\models\sql\query.py", line 1708, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ~~~~~~~~~~~~~~~~~^
+        child,
+        ^^^^^^
+    ...<7 lines>...
+        update_join_types=update_join_types,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\db\models\sql\query.py", line 1533, in build_filter
+    return self._add_q(
+           ~~~~~~~~~~~^
+        filter_expr,
+        ^^^^^^^^^^^^
+    ...<7 lines>...
+        update_join_types=update_join_types,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\db\models\sql\query.py", line 1708, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ~~~~~~~~~~~~~~~~~^
+        child,
+        ^^^^^^
+    ...<7 lines>...
+        update_join_types=update_join_types,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\db\models\sql\query.py", line 1556, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+                                        ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\db\models\sql\query.py", line 1363, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+                                ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\db\models\sql\query.py", line 1842, in names_to_path
+    raise FieldError(
+    ...<2 lines>...
+    )
+django.core.exceptions.FieldError: Cannot resolve keyword 'driver_user_username' into field. Choices are: color, created_at, driver, driver_id, id, is_active, model, rides, updated_at, vehicle_number, vehicle_type, vehicle_type_id
+"GET /api/vehicles/?search=Swift HTTP/1.1" 500 167994
+C:\Users\Admin\Desktop\DjangoRESTProject\api\views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /api/vehicles/?search=Swift HTTP/1.1" 200 730
+"GET /api/vehicles/?ordering=created_at HTTP/1.1" 200 737
+"GET /api/vehicles/?ordering=-created_at HTTP/1.1" 200 738
+"GET /api/vehicles/?page=1 HTTP/1.1" 200 717
+"GET /api/vehicles/?page=2 HTTP/1.1" 200 750
+"GET /api/vehicles/?page=4 HTTP/1.1" 200 404
+Unauthorized: /api/drivers/00000000-0000-0000-0000-000000000000/
+"GET /api/drivers/00000000-0000-0000-0000-000000000000/ HTTP/1.1" 401 233
+"POST /accounts/login/ HTTP/1.1" 200 640
+Not Found: /api/drivers/00000000-0000-0000-0000-000000000000/
+"GET /api/drivers/00000000-0000-0000-0000-000000000000/ HTTP/1.1" 404 115
+Unauthorized: /api/vehicles/00000000-0000-0000-0000-000000000000/
+"GET /api/vehicles/00000000-0000-0000-0000-000000000000/ HTTP/1.1" 401 233
+Not Found: /api/vehicles/00000000-0000-0000-0000-000000000000/
+"GET /api/vehicles/00000000-0000-0000-0000-000000000000/ HTTP/1.1" 404 109
+Bad Request: /api/vehicles/
+"POST /api/vehicles/ HTTP/1.1" 400 132
+Unauthorized: /api/vehicles/
+"POST /api/vehicles/ HTTP/1.1" 401 119
+Bad Request: /api/vehicles/
+"POST /api/vehicles/ HTTP/1.1" 400 173
+Bad Request: /api/vehicles/
+"POST /api/vehicles/ HTTP/1.1" 400 103
+"POST /api/vehicles/ HTTP/1.1" 201 318
+Unauthorized: /api/vehicles/
+"POST /api/vehicles/ HTTP/1.1" 401 119
+"POST /api/vehicles/ HTTP/1.1" 201 315
+Bad Request: /api/vehicles/
+"POST /api/vehicles/ HTTP/1.1" 400 173
+Unauthorized: /api/vehicles/
+"POST /api/vehicles/ HTTP/1.1" 401 233
+"POST /accounts/login/ HTTP/1.1" 200 640
+Bad Request: /api/vehicles/
+"POST /api/vehicles/ HTTP/1.1" 400 132
