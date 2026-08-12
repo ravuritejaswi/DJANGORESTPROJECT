@@ -588,3 +588,195 @@ Unauthorized: /api/vehicles/
 "POST /accounts/login/ HTTP/1.1" 200 640
 Bad Request: /api/vehicles/
 "POST /api/vehicles/ HTTP/1.1" 400 132
+Watching for file changes with StatReloader
+"GET /api/drivers/ HTTP/1.1" 200 14454
+"GET /static/rest_framework/css/prettify.css HTTP/1.1" 200 817
+"GET /static/rest_framework/js/csrf.js HTTP/1.1" 200 1793
+"GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 200 121457
+"GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 200 3796
+"GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 200 39680
+"GET /static/rest_framework/js/default.js HTTP/1.1" 200 1268
+"GET /static/rest_framework/js/load-ajax-form.js HTTP/1.1" 200 59
+"GET /static/rest_framework/css/default.css HTTP/1.1" 200 1152
+"GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 200 13632
+"GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 200 3426
+"GET /static/rest_framework/img/grid.png HTTP/1.1" 200 1458
+"GET /static/rest_framework/fonts/glyphicons-halflings-regular.woff2 HTTP/1.1" 200 18028
+"GET /static/rest_framework/js/jquery-3.7.1.min.js HTTP/1.1" 200 87533
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3170
+Unauthorized: /api/drivers/
+"GET /api/drivers/ HTTP/1.1" 401 233
+"POST /accounts/login/ HTTP/1.1" 200 640
+"GET /api/drivers/ HTTP/1.1" 200 883
+"GET /api/drivers/ HTTP/1.1" 200 883
+"GET /api/drivers/3fc9a0ac-6057-4b9c-b98a-5f543a26e322/ HTTP/1.1" 200 278
+"GET /api/drivers/3fc9a0ac-6057-4b9c-b98a-5f543a26e322/ HTTP/1.1" 200 278
+"GET /api/rides/ HTTP/1.1" 200 605
+Watching for file changes with StatReloader
+"POST /accounts/login/ HTTP/1.1" 200 640
+"POST /api/rides/ HTTP/1.1" 201 553
+"PATCH /api/rides/8b9ce6ee-3c7f-408b-9ecb-72ef0fee4672/status/ HTTP/1.1" 200 553
+Bad Request: /api/rides/8b9ce6ee-3c7f-408b-9ecb-72ef0fee4672/status/
+"PATCH /api/rides/8b9ce6ee-3c7f-408b-9ecb-72ef0fee4672/status/ HTTP/1.1" 400 138
+Watching for file changes with StatReloader
+"POST /accounts/login/ HTTP/1.1" 200 640
+"PATCH /api/rides/8b9ce6ee-3c7f-408b-9ecb-72ef0fee4672/status/ HTTP/1.1" 200 553
+Watching for file changes with StatReloader
+"PATCH /api/rides/8b9ce6ee-3c7f-408b-9ecb-72ef0fee4672/status/ HTTP/1.1" 200 553
+Watching for file changes with StatReloader
+"PATCH /api/rides/8b9ce6ee-3c7f-408b-9ecb-72ef0fee4672/status/ HTTP/1.1" 200 553
+"GET /api/rides/ HTTP/1.1" 200 1159
+"GET /api/rides/8b9ce6ee-3c7f-408b-9ecb-72ef0fee4672/ HTTP/1.1" 200 553
+Watching for file changes with StatReloader
+"POST /accounts/login/ HTTP/1.1" 200 640
+"POST /api/rides/ HTTP/1.1" 201 483
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+Watching for file changes with StatReloader
+"POST /api/rides/ HTTP/1.1" 201 483
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\serializers.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"POST /accounts/login/ HTTP/1.1" 200 640
+"POST /api/rides/ HTTP/1.1" 201 553
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\serializers.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"POST /accounts/login/ HTTP/1.1" 200 640
+Bad Request: /api/rides/
+"POST /api/rides/ HTTP/1.1" 400 106
+Bad Request: /api/rides/
+"POST /api/rides/ HTTP/1.1" 400 126
+Bad Request: /api/rides/
+"POST /api/rides/ HTTP/1.1" 400 112
+Bad Request: /api/rides/
+"POST /api/rides/ HTTP/1.1" 400 110
+Bad Request: /api/rides/
+"POST /api/rides/ HTTP/1.1" 400 113
+Bad Request: /api/rides/
+"POST /api/rides/ HTTP/1.1" 400 106
+Unauthorized: /api/rides/fd4beef5-4df0-4384-a786-29c067634984/
+"GET /api/rides/fd4beef5-4df0-4384-a786-29c067634984/ HTTP/1.1" 401 119
+"POST /accounts/login/ HTTP/1.1" 200 640
+"GET /api/rides/fd4beef5-4df0-4384-a786-29c067634984/ HTTP/1.1" 200 553
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\serializers.py changed, reloading.
+Watching for file changes with StatReloader
+"PATCH /api/rides/fd4beef5-4df0-4384-a786-29c067634984/status/ HTTP/1.1" 200 553
+"PATCH /api/rides/fd4beef5-4df0-4384-a786-29c067634984/status/ HTTP/1.1" 200 553
+Bad Request: /api/rides/fd4beef5-4df0-4384-a786-29c067634984/status/
+"PATCH /api/rides/fd4beef5-4df0-4384-a786-29c067634984/status/ HTTP/1.1" 400 124
+Bad Request: /api/rides/fd4beef5-4df0-4384-a786-29c067634984/status/
+"PATCH /api/rides/fd4beef5-4df0-4384-a786-29c067634984/status/ HTTP/1.1" 400 122
+"PATCH /api/rides/fd4beef5-4df0-4384-a786-29c067634984/status/ HTTP/1.1" 200 553
+Unauthorized: /api/rides/fd4beef5-4df0-4384-a786-29c067634984/status/
+"PATCH /api/rides/fd4beef5-4df0-4384-a786-29c067634984/status/ HTTP/1.1" 401 233
+"POST /accounts/login/ HTTP/1.1" 200 640
+Unauthorized: /api/rides/fd4beef5-4df0-4384-a786-29c067634984/status/
+"PATCH /api/rides/fd4beef5-4df0-4384-a786-29c067634984/status/ HTTP/1.1" 401 237
+Unauthorized: /api/rides/fd4beef5-4df0-4384-a786-29c067634984/status/
+"PATCH /api/rides/fd4beef5-4df0-4384-a786-29c067634984/status/ HTTP/1.1" 401 237
+Bad Request: /api/rides/fd4beef5-4df0-4384-a786-29c067634984/status/
+"PATCH /api/rides/fd4beef5-4df0-4384-a786-29c067634984/status/ HTTP/1.1" 400 150
+Bad Request: /api/rides/fd4beef5-4df0-4384-a786-29c067634984/status/
+"PATCH /api/rides/fd4beef5-4df0-4384-a786-29c067634984/status/ HTTP/1.1" 400 151
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"POST /accounts/login/ HTTP/1.1" 200 640
+Bad Request: /api/rides/fd4beef5-4df0-4384-a786-29c067634984/accept/
+"POST /api/rides/fd4beef5-4df0-4384-a786-29c067634984/accept/ HTTP/1.1" 400 50
+Not Found: /api/rides/ee51c361-a752-4a6e-9ad3-b2bbb3bdd90c/accept/
+"POST /api/rides/ee51c361-a752-4a6e-9ad3-b2bbb3bdd90c/accept/ HTTP/1.1" 404 106
+Bad Request: /api/rides/fd4beef5-4df0-4384-a786-29c067634984/accept/
+"POST /api/rides/fd4beef5-4df0-4384-a786-29c067634984/accept/ HTTP/1.1" 400 50
+Method Not Allowed: /api/rides/fd4beef5-4df0-4384-a786-29c067634984/accept/
+"PATCH /api/rides/fd4beef5-4df0-4384-a786-29c067634984/accept/ HTTP/1.1" 405 103
+Bad Request: /api/rides/fd4beef5-4df0-4384-a786-29c067634984/status/
+"PATCH /api/rides/fd4beef5-4df0-4384-a786-29c067634984/status/ HTTP/1.1" 400 126
+Bad Request: /api/rides/fd4beef5-4df0-4384-a786-29c067634984/status/
+"PATCH /api/rides/fd4beef5-4df0-4384-a786-29c067634984/status/ HTTP/1.1" 400 126
+Unauthorized: /api/rides/
+"POST /api/rides/ HTTP/1.1" 401 233
+"POST /accounts/login/ HTTP/1.1" 200 640
+Bad Request: /api/rides/
+"POST /api/rides/ HTTP/1.1" 400 106
+Bad Request: /api/rides/
+"POST /api/rides/ HTTP/1.1" 400 106
+Bad Request: /api/rides/
+"POST /api/rides/ HTTP/1.1" 400 106
+"GET /api/rides/ HTTP/1.1" 200 1126
+"POST /api/rides/28037fb1-a2bc-48a8-afac-e7cf9087e2fa/accept/ HTTP/1.1" 200 517
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+Watching for file changes with StatReloader
+Unauthorized: /api/rides/28037fb1-a2bc-48a8-afac-e7cf9087e2fa/cancel/
+"POST /api/rides/28037fb1-a2bc-48a8-afac-e7cf9087e2fa/cancel/ HTTP/1.1" 401 233
+"POST /accounts/login/ HTTP/1.1" 200 640
+"POST /api/rides/28037fb1-a2bc-48a8-afac-e7cf9087e2fa/cancel/ HTTP/1.1" 200 517
+Bad Request: /api/rides/
+"POST /api/rides/ HTTP/1.1" 400 106
+Bad Request: /api/rides/28037fb1-a2bc-48a8-afac-e7cf9087e2fa/cancel/
+"POST /api/rides/28037fb1-a2bc-48a8-afac-e7cf9087e2fa/cancel/ HTTP/1.1" 400 60
+Bad Request: /api/rides/
+"POST /api/rides/ HTTP/1.1" 400 106
+"GET /api/rides/ HTTP/1.1" 200 1160
+Not Found: /api/rides/24d19e50-5a90-4208-b556-c5ad2c8f50ff/cancel/
+"POST /api/rides/24d19e50-5a90-4208-b556-c5ad2c8f50ff/cancel/ HTTP/1.1" 404 106
+Not Found: /api/rides/24d19e50-5a90-4208-b556-c5ad2c8f50ff/cancel/
+"POST /api/rides/24d19e50-5a90-4208-b556-c5ad2c8f50ff/cancel/ HTTP/1.1" 404 106
+Bad Request: /api/rides/fd4beef5-4df0-4384-a786-29c067634984/cancel/
+"POST /api/rides/fd4beef5-4df0-4384-a786-29c067634984/cancel/ HTTP/1.1" 400 60
+Bad Request: /api/rides/28037fb1-a2bc-48a8-afac-e7cf9087e2fa/cancel/
+"POST /api/rides/28037fb1-a2bc-48a8-afac-e7cf9087e2fa/cancel/ HTTP/1.1" 400 60
+Unauthorized: /api/rides/
+"POST /api/rides/ HTTP/1.1" 401 233
+"POST /accounts/login/ HTTP/1.1" 200 640
+Bad Request: /api/rides/
+"POST /api/rides/ HTTP/1.1" 400 106
+"GET /api/rides/ HTTP/1.1" 200 1160
+Bad Request: /api/rides/fd4beef5-4df0-4384-a786-29c067634984/cancel/
+"POST /api/rides/fd4beef5-4df0-4384-a786-29c067634984/cancel/ HTTP/1.1" 400 60
+Method Not Allowed: /api/rides/fd4beef5-4df0-4384-a786-29c067634984/cancel/
+"GET /api/rides/fd4beef5-4df0-4384-a786-29c067634984/cancel/ HTTP/1.1" 405 101
+"GET /api/rides/fd4beef5-4df0-4384-a786-29c067634984/ HTTP/1.1" 200 553
+Watching for file changes with StatReloader
+"POST /accounts/login/ HTTP/1.1" 200 640
+Not Found: /api/rides/94541b74-b7d7-4f49-9799-fa93d9baf1f/cancel/
+"POST /api/rides/94541b74-b7d7-4f49-9799-fa93d9baf1f/cancel/ HTTP/1.1" 404 84
+"POST /api/rides/94541b74-b7d7-4f49-9799-fa893d9baf1f/cancel/ HTTP/1.1" 200 483
+Bad Request: /api/rides/fd4beef5-4df0-4384-a786-29c067634984/cancel/
+"POST /api/rides/fd4beef5-4df0-4384-a786-29c067634984/cancel/ HTTP/1.1" 400 60
+Bad Request: /api/rides/fd4beef5-4df0-4384-a786-29c067634984/cancel/
+"POST /api/rides/fd4beef5-4df0-4384-a786-29c067634984/cancel/ HTTP/1.1" 400 60
+Bad Request: /api/rides/94541b74-b7d7-4f49-9799-fa893d9baf1f/cancel/
+"POST /api/rides/94541b74-b7d7-4f49-9799-fa893d9baf1f/cancel/ HTTP/1.1" 400 60
+"POST /api/rides/ HTTP/1.1" 201 553
+"GET /api/rides/ HTTP/1.1" 200 1196
+Bad Request: /api/rides/dc482bd8-fd78-4ecc-8583-88e3a7b52018/accept/
+"POST /api/rides/dc482bd8-fd78-4ecc-8583-88e3a7b52018/accept/ HTTP/1.1" 400 56
+Unauthorized: /api/rides/
+"POST /api/rides/ HTTP/1.1" 401 233
+"POST /accounts/login/ HTTP/1.1" 200 640
+Bad Request: /api/rides/
+"POST /api/rides/ HTTP/1.1" 400 106
+"GET /api/rides/ HTTP/1.1" 200 1196
+"POST /api/rides/dc482bd8-fd78-4ecc-8583-88e3a7b52018/cancel/ HTTP/1.1" 200 553
+"POST /api/rides/ HTTP/1.1" 201 519
+"POST /api/rides/25be83c0-c7b6-40b8-ad63-fce91348e588/accept/ HTTP/1.1" 200 553
+Not Found: /api/rides/25be83c0-c7b6-40b8-ad63-fce91348e588/start/
+"POST /api/rides/25be83c0-c7b6-40b8-ad63-fce91348e588/start/ HTTP/1.1" 404 9022
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+Watching for file changes with StatReloader
+"POST /api/rides/25be83c0-c7b6-40b8-ad63-fce91348e588/start/ HTTP/1.1" 200 553
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+Watching for file changes with StatReloader
+"POST /api/rides/25be83c0-c7b6-40b8-ad63-fce91348e588/complete/ HTTP/1.1" 200 553
+Bad Request: /api/rides/25be83c0-c7b6-40b8-ad63-fce91348e588/complete/
+"POST /api/rides/25be83c0-c7b6-40b8-ad63-fce91348e588/complete/ HTTP/1.1" 400 60

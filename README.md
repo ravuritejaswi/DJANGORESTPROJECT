@@ -503,3 +503,53 @@ Vehicle type filtering.
 Active/inactive filtering.
 
 
+**Ride Booking & Ride Lifecycle APIs
+
+Ride API Database/Model Setup
+Worked on DriverProfile, VehicleType, Vehicle, RideStatus, and Ride models.
+Verified model relationships, UUIDs, validations, indexes, and constraints.
+Ran Django system checks and resolved setup issues.
+
+Create Ride API
+Implemented and tested POST /api/rides/.
+Verified ride creation with passenger, driver, vehicle, pickup/drop locations, ride type, and fare.
+Confirmed successful response with 201 Created.
+
+Ride Request Validation
+Added and tested ride request validations.
+Validated pickup and drop locations.
+Prevented same pickup and drop locations.
+Validated ride type.
+Prevented users from creating conflicting active rides.
+Tested validation errors using Postman.
+
+Ride Details API
+Tested GET /api/rides/{id}/.
+Configured Bearer Token authentication.
+Verified passenger, driver, vehicle, status, location, fare, and timestamp details.
+
+Ride Status Management
+Implemented and tested ride status transitions.
+Verified:
+REQUESTED → ACCEPTED
+ACCEPTED → STARTED
+STARTED → COMPLETED
+Tested invalid transitions and confirmed they return appropriate errors.
+
+Driver Accept Ride
+Implemented the driver accept ride API.
+Tested POST /api/rides/{id}/accept/.
+Verified driver assignment and REQUESTED → ACCEPTED.
+Tested driver availability and ride availability validations.
+
+Cancel Ride
+Implemented and tested POST /api/rides/{id}/cancel/.
+Verified successful ride cancellation.
+Tested repeated/invalid cancellation and confirmed proper error handling.
+
+Complete Ride & End-to-End Testing
+Implemented and tested Start Ride and Complete Ride APIs.
+Tested the complete lifecycle:
+Create → Accept → Start → Complete
+Tested invalid completion after a ride was already completed.
+Verified expected 200, 201, and 400 responses using Postman.
