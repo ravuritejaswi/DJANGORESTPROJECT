@@ -780,3 +780,336 @@ Watching for file changes with StatReloader
 "POST /api/rides/25be83c0-c7b6-40b8-ad63-fce91348e588/complete/ HTTP/1.1" 200 553
 Bad Request: /api/rides/25be83c0-c7b6-40b8-ad63-fce91348e588/complete/
 "POST /api/rides/25be83c0-c7b6-40b8-ad63-fce91348e588/complete/ HTTP/1.1" 400 60
+Watching for file changes with StatReloader
+"POST /accounts/login/ HTTP/1.1" 200 640
+"GET /api/rides/25be83c0-c7b6-40b8-ad63-fce91348e588/fare/ HTTP/1.1" 200 75
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+Watching for file changes with StatReloader
+Bad Request: /api/rides/25be83c0-c7b6-40b8-ad63-fce91348e588/accept/
+"POST /api/rides/25be83c0-c7b6-40b8-ad63-fce91348e588/accept/ HTTP/1.1" 400 50
+Bad Request: /api/rides/25be83c0-c7b6-40b8-ad63-fce91348e588/accept/
+"POST /api/rides/25be83c0-c7b6-40b8-ad63-fce91348e588/accept/ HTTP/1.1" 400 50
+"POST /accounts/login/ HTTP/1.1" 200 640
+"POST /api/rides/ HTTP/1.1" 201 485
+"POST /api/rides/c01581e2-71c5-4015-afb7-4cfa9697d7e9/accept/ HTTP/1.1" 200 519
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+Watching for file changes with StatReloader
+Unauthorized: /api/rides/
+"POST /api/rides/ HTTP/1.1" 401 233
+"POST /accounts/login/ HTTP/1.1" 200 640
+Bad Request: /api/rides/
+"POST /api/rides/ HTTP/1.1" 400 106
+Unauthorized: /api/rides/c01581e2-71c5-4015-afb7-4cfa9697d7e9/cancel/
+"DELETE /api/rides/c01581e2-71c5-4015-afb7-4cfa9697d7e9/cancel/ HTTP/1.1" 401 233
+Method Not Allowed: /api/rides/c01581e2-71c5-4015-afb7-4cfa9697d7e9/cancel/
+"DELETE /api/rides/c01581e2-71c5-4015-afb7-4cfa9697d7e9/cancel/ HTTP/1.1" 405 104
+"POST /api/rides/c01581e2-71c5-4015-afb7-4cfa9697d7e9/cancel/ HTTP/1.1" 200 519
+"POST /api/rides/ HTTP/1.1" 201 485
+"POST /api/rides/9c3e61f6-3fb8-4893-be19-358d0b5c6753/accept/ HTTP/1.1" 200 519
+"POST /accounts/login/ HTTP/1.1" 200 640
+Bad Request: /api/rides/9c3e61f6-3fb8-4893-be19-358d0b5c6753/accept/
+"POST /api/rides/9c3e61f6-3fb8-4893-be19-358d0b5c6753/accept/ HTTP/1.1" 400 50
+Bad Request: /api/rides/40dc12f4-df05-4493-98bc-21dbb0ee0abd/accept/
+Bad Request: /api/rides/076147b0-d918-4d80-a8ff-06fca0db8e61/accept/
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\services\ride_service.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\services\ride_service.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\services\ride_service.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\services\ride_service.py changed, reloading.
+Watching for file changes with StatReloader
+Bad Request: /api/rides/e4865c2f-06eb-4f80-a217-18895a29bec5/accept/
+Bad Request: /api/rides/c2a282f6-5ffb-4a6b-b592-30b1ac0d476e/accept/
+Bad Request: /api/rides/0cffdd9b-c941-4e5c-abcb-da6a5b2e51ed/accept/
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\services\ride_service.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\services\ride_service.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\services\ride_service.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\services\ride_service.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /api/rides/fe9fe6ac-f7f9-4037-ba21-53373ff7db92/accept/
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py", line 50, in accept_ride
+    ride = accept_ride_service(
+        ride_id=pk,
+        user=request.user
+    )
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\contextlib.py", line 85, in inner
+    return func(*args, **kwds)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\rides\services\ride_service.py", line 31, in accept_ride
+    raise ValidationError(
+        "Ride is not available for acceptance."
+    )
+django.core.exceptions.ValidationError: ['Ride is not available for acceptance.']
+Internal Server Error: /api/rides/166ee9b6-f5f1-44aa-b6b2-4cb151c69468/accept/
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py", line 50, in accept_ride
+    ride = accept_ride_service(
+        ride_id=pk,
+        user=request.user
+    )
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\contextlib.py", line 85, in inner
+    return func(*args, **kwds)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\rides\services\ride_service.py", line 31, in accept_ride
+    raise ValidationError(
+        "Ride is not available for acceptance."
+    )
+django.core.exceptions.ValidationError: ['Ride is not available for acceptance.']
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\services\ride_service.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\services\ride_service.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\services\ride_service.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /api/rides/99d43cde-9641-48a7-8704-c4d1e7e4fd6a/accept/
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py", line 50, in accept_ride
+    ride = accept_ride_service(
+        ride_id=pk,
+        user=request.user
+    )
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\contextlib.py", line 85, in inner
+    return func(*args, **kwds)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\rides\services\ride_service.py", line 30, in accept_ride
+    raise ValidationError(
+        "Ride is not available for acceptance."
+    )
+django.core.exceptions.ValidationError: ['Ride is not available for acceptance.']
+Internal Server Error: /api/rides/86e915d7-c172-4cea-8262-11be1438158c/accept/
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py", line 50, in accept_ride
+    ride = accept_ride_service(
+        ride_id=pk,
+        user=request.user
+    )
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\contextlib.py", line 85, in inner
+    return func(*args, **kwds)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\rides\services\ride_service.py", line 30, in accept_ride
+    raise ValidationError(
+        "Ride is not available for acceptance."
+    )
+django.core.exceptions.ValidationError: ['Ride is not available for acceptance.']
+Internal Server Error: /api/rides/eb0527d1-2edd-49b7-b5ce-e59caee0b7c6/accept/
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py", line 50, in accept_ride
+    ride = accept_ride_service(
+        ride_id=pk,
+        user=request.user
+    )
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\contextlib.py", line 85, in inner
+    return func(*args, **kwds)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\rides\services\ride_service.py", line 30, in accept_ride
+    raise ValidationError(
+        "Ride is not available for acceptance."
+    )
+django.core.exceptions.ValidationError: ['Ride is not available for acceptance.']
+Internal Server Error: /api/rides/813f34e8-2318-4e53-808c-63dbbdfd3e8e/accept/
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py", line 50, in accept_ride
+    ride = accept_ride_service(
+        ride_id=pk,
+        user=request.user
+    )
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\contextlib.py", line 85, in inner
+    return func(*args, **kwds)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\rides\services\ride_service.py", line 30, in accept_ride
+    raise ValidationError(
+        "Ride is not available for acceptance."
+    )
+django.core.exceptions.ValidationError: ['Ride is not available for acceptance.']
+Internal Server Error: /api/rides/1637b748-6898-4c57-ae1d-622972c96988/accept/
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py", line 50, in accept_ride
+    ride = accept_ride_service(
+        ride_id=pk,
+        user=request.user
+    )
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\contextlib.py", line 85, in inner
+    return func(*args, **kwds)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\rides\services\ride_service.py", line 30, in accept_ride
+    raise ValidationError(
+        "Ride is not available for acceptance."
+    )
+django.core.exceptions.ValidationError: ['Ride is not available for acceptance.']
+Internal Server Error: /api/rides/a71dae05-a16f-47d8-80c5-ab4612041307/accept/
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py", line 50, in accept_ride
+    ride = accept_ride_service(
+        ride_id=pk,
+        user=request.user
+    )
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\contextlib.py", line 85, in inner
+    return func(*args, **kwds)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\rides\services\ride_service.py", line 30, in accept_ride
+    raise ValidationError(
+        "Ride is not available for acceptance."
+    )
+django.core.exceptions.ValidationError: ['Ride is not available for acceptance.']
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\services\ride_service.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\services\ride_service.py changed, reloading.
+Watching for file changes with StatReloader
+Bad Request: /api/rides/0b9cbb09-8aa6-4e6b-91e2-6c0f6aa3cb80/accept/
+Bad Request: /api/rides/2346dd79-2ca6-44bd-8daf-3280a2aa2c0d/accept/
+Bad Request: /api/rides/e802e30a-bb00-467c-813d-59f25e77eae1/accept/

@@ -553,3 +553,41 @@ Tested the complete lifecycle:
 Create → Accept → Start → Complete
 Tested invalid completion after a ride was already completed.
 Verified expected 200, 201, and 400 responses using Postman.
+
+
+1. Business Logic Layer
+Implemented the business logic layer by separating ride-related operations from the API views.
+Created service files under rides/services/.
+Implemented ride operations such as:
+Ride creation
+Ride acceptance
+Ride cancellation
+Driver assignment
+Ride status validation
+Added validations to ensure:
+Only registered drivers can accept rides.
+Drivers must be available.
+Only REQUESTED rides can be accepted.
+A ride cannot be assigned to multiple drivers.
+A driver cannot accept another active ride.
+
+2. Fare Calculation
+Implemented the fare calculation service in fare_service.py.
+Added logic to calculate the ride fare based on the required ride details.
+Used Decimal for monetary calculations to maintain accurate fare values.
+Added test coverage to verify that the calculated fare is correct.
+
+3. Transactions
+Used Django's transaction.atomic to make critical ride operations atomic.
+Applied transactions to the ride acceptance process.
+Used select_for_update() to lock the ride record while processing acceptance.
+This helps prevent two drivers from accepting the same ride at the same time.
+Ensured that if an error occurs during the operation, the database changes are rolled back.
+
+4. Testing
+Tested the business logic using Django TestCase.
+Verified ride creation, fare calculation, ride acceptance, cancellation, and validation scenarios.
+Final result:
+Found 6 test(s).
+Ran 6 tests
+OK
