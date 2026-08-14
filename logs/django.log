@@ -1113,3 +1113,550 @@ Watching for file changes with StatReloader
 Bad Request: /api/rides/0b9cbb09-8aa6-4e6b-91e2-6c0f6aa3cb80/accept/
 Bad Request: /api/rides/2346dd79-2ca6-44bd-8daf-3280a2aa2c0d/accept/
 Bad Request: /api/rides/e802e30a-bb00-467c-813d-59f25e77eae1/accept/
+Watching for file changes with StatReloader
+"POST /accounts/register/ HTTP/1.1" 201 42
+"POST /accounts/login/ HTTP/1.1" 200 638
+Method Not Allowed: /accounts/profile/
+"POST /accounts/profile/ HTTP/1.1" 405 102
+C:\Users\Admin\Desktop\DjangoRESTProject\accounts\views.py changed, reloading.
+Watching for file changes with StatReloader
+"POST /accounts/profile/ HTTP/1.1" 201 396
+Watching for file changes with StatReloader
+Internal Server Error: /accounts/profile/
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "accounts_profile_user_id_key"
+DETAIL:  Key (user_id)=(0504e645-d014-4d31-8c5b-399683217ed0) already exists.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\views\generic\base.py", line 106, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\accounts\views.py", line 77, in post
+    profile = serializer.save(user=request.user)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\serializers.py", line 210, in save
+    self.instance = self.create(validated_data)
+                    ~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\serializers.py", line 1011, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\db\models\query.py", line 669, in create
+    obj.save(force_insert=True, using=self.db)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\db\models\base.py", line 874, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\db\models\base.py", line 966, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\db\models\base.py", line 1169, in _save_table
+    results = self._do_insert(
+        cls._base_manager, using, insert_fields, returning_fields, raw
+    )
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\db\models\base.py", line 1220, in _do_insert
+    return manager._insert(
+           ~~~~~~~~~~~~~~~^
+        [self],
+        ^^^^^^^
+    ...<3 lines>...
+        raw=raw,
+        ^^^^^^^^
+    )
+    ^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\db\models\query.py", line 1918, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1925, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\db\utils.py", line 94, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+django.db.utils.IntegrityError: duplicate key value violates unique constraint "accounts_profile_user_id_key"
+DETAIL:  Key (user_id)=(0504e645-d014-4d31-8c5b-399683217ed0) already exists.
+
+"POST /accounts/profile/ HTTP/1.1" 500 206667
+"POST /accounts/login/ HTTP/1.1" 200 638
+"POST /api/drivers/ HTTP/1.1" 201 173
+Watching for file changes with StatReloader
+Unauthorized: /api/vehicles/
+"POST /api/vehicles/ HTTP/1.1" 401 119
+"POST /accounts/login/ HTTP/1.1" 200 638
+Bad Request: /api/vehicles/
+"POST /api/vehicles/ HTTP/1.1" 400 248
+Bad Request: /api/vehicles/
+"POST /api/vehicles/ HTTP/1.1" 400 152
+"POST /api/vehicles/ HTTP/1.1" 201 317
+"GET /api/vehicles/ HTTP/1.1" 200 726
+"GET /api/vehicles/2cd876c3-31c0-4e12-8a3f-58f4953cfa99/ HTTP/1.1" 200 317
+Internal Server Error: /api/vehicles/2cd876c3-31c0-4e12-8a3f-58f4953cfa99/
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\views\generic\base.py", line 106, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\generics.py", line 292, in patch
+    return self.partial_update(request, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\mixins.py", line 82, in partial_update
+    return self.update(request, *args, **kwargs)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\mixins.py", line 67, in update
+    serializer.is_valid(raise_exception=True)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\serializers.py", line 225, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+                           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\serializers.py", line 459, in run_validation
+    value = self.validate(value)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\rides\serializers.py", line 82, in validate
+    if driver.user != request.user:
+       ^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'user'
+"PATCH /api/vehicles/2cd876c3-31c0-4e12-8a3f-58f4953cfa99/ HTTP/1.1" 500 122499
+Internal Server Error: /api/vehicles/2cd876c3-31c0-4e12-8a3f-58f4953cfa99/
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\views\generic\base.py", line 106, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\generics.py", line 292, in patch
+    return self.partial_update(request, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\mixins.py", line 82, in partial_update
+    return self.update(request, *args, **kwargs)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\mixins.py", line 67, in update
+    serializer.is_valid(raise_exception=True)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\serializers.py", line 225, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+                           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\serializers.py", line 459, in run_validation
+    value = self.validate(value)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\rides\serializers.py", line 82, in validate
+    if driver.user != request.user:
+       ^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'user'
+"PATCH /api/vehicles/2cd876c3-31c0-4e12-8a3f-58f4953cfa99/ HTTP/1.1" 500 122499
+Watching for file changes with StatReloader
+"POST /accounts/login/ HTTP/1.1" 200 638
+Internal Server Error: /api/vehicles/2cd876c3-31c0-4e12-8a3f-58f4953cfa99/
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\views\generic\base.py", line 106, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\generics.py", line 292, in patch
+    return self.partial_update(request, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\mixins.py", line 82, in partial_update
+    return self.update(request, *args, **kwargs)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\mixins.py", line 67, in update
+    serializer.is_valid(raise_exception=True)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\serializers.py", line 225, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+                           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\serializers.py", line 459, in run_validation
+    value = self.validate(value)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\rides\serializers.py", line 82, in validate
+    if driver.user != request.user:
+       ^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'user'
+"PATCH /api/vehicles/2cd876c3-31c0-4e12-8a3f-58f4953cfa99/ HTTP/1.1" 500 122499
+Internal Server Error: /api/vehicles/2cd876c3-31c0-4e12-8a3f-58f4953cfa99/
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\views\generic\base.py", line 106, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\generics.py", line 292, in patch
+    return self.partial_update(request, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\mixins.py", line 82, in partial_update
+    return self.update(request, *args, **kwargs)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\mixins.py", line 67, in update
+    serializer.is_valid(raise_exception=True)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\serializers.py", line 225, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+                           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\serializers.py", line 459, in run_validation
+    value = self.validate(value)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\rides\serializers.py", line 82, in validate
+    if driver.user != request.user:
+       ^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'user'
+"PATCH /api/vehicles/2cd876c3-31c0-4e12-8a3f-58f4953cfa99/ HTTP/1.1" 500 122499
+Internal Server Error: /api/vehicles/2cd876c3-31c0-4e12-8a3f-58f4953cfa99/
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\views\generic\base.py", line 106, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\generics.py", line 292, in patch
+    return self.partial_update(request, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\mixins.py", line 82, in partial_update
+    return self.update(request, *args, **kwargs)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\mixins.py", line 67, in update
+    serializer.is_valid(raise_exception=True)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\serializers.py", line 225, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+                           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\serializers.py", line 459, in run_validation
+    value = self.validate(value)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\rides\serializers.py", line 82, in validate
+    if driver.user != request.user:
+       ^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'user'
+"PATCH /api/vehicles/2cd876c3-31c0-4e12-8a3f-58f4953cfa99/ HTTP/1.1" 500 122499
+Unauthorized: /api/vehicles/2cd876c3-31c0-4e12-8a3f-58f4953cfa99/
+"GET /api/vehicles/2cd876c3-31c0-4e12-8a3f-58f4953cfa99/ HTTP/1.1" 401 5634
+"GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 200 121457
+"GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 200 3426
+"GET /static/rest_framework/css/prettify.css HTTP/1.1" 200 817
+"GET /static/rest_framework/js/csrf.js HTTP/1.1" 200 1793
+"GET /static/rest_framework/css/default.css HTTP/1.1" 200 1152
+"GET /static/rest_framework/js/load-ajax-form.js HTTP/1.1" 200 59
+"GET /static/rest_framework/js/default.js HTTP/1.1" 200 1268
+"GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 200 39680
+"GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 200 13632
+"GET /static/rest_framework/img/grid.png HTTP/1.1" 200 1458
+"GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 200 3796
+"GET /static/rest_framework/js/jquery-3.7.1.min.js HTTP/1.1" 200 87533
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3170
+"POST /accounts/login/ HTTP/1.1" 200 638
+Internal Server Error: /api/vehicles/2cd876c3-31c0-4e12-8a3f-58f4953cfa99/
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\views\generic\base.py", line 106, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\generics.py", line 292, in patch
+    return self.partial_update(request, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\mixins.py", line 82, in partial_update
+    return self.update(request, *args, **kwargs)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\mixins.py", line 67, in update
+    serializer.is_valid(raise_exception=True)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\serializers.py", line 225, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+                           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\serializers.py", line 459, in run_validation
+    value = self.validate(value)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\rides\serializers.py", line 82, in validate
+    if driver.user != request.user:
+       ^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'user'
+"PATCH /api/vehicles/2cd876c3-31c0-4e12-8a3f-58f4953cfa99/ HTTP/1.1" 500 122499
+Internal Server Error: /api/vehicles/2cd876c3-31c0-4e12-8a3f-58f4953cfa99/
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\views\generic\base.py", line 106, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\generics.py", line 292, in patch
+    return self.partial_update(request, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\mixins.py", line 82, in partial_update
+    return self.update(request, *args, **kwargs)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\mixins.py", line 67, in update
+    serializer.is_valid(raise_exception=True)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\serializers.py", line 225, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+                           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\serializers.py", line 459, in run_validation
+    value = self.validate(value)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\rides\serializers.py", line 82, in validate
+    if driver.user != request.user:
+       ^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'user'
+"PATCH /api/vehicles/2cd876c3-31c0-4e12-8a3f-58f4953cfa99/ HTTP/1.1" 500 122492
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\serializers.py changed, reloading.
+Watching for file changes with StatReloader
+"PATCH /api/vehicles/2cd876c3-31c0-4e12-8a3f-58f4953cfa99/ HTTP/1.1" 200 316
+"GET /api/vehicles/2cd876c3-31c0-4e12-8a3f-58f4953cfa99/ HTTP/1.1" 200 316
+"DELETE /api/vehicles/2cd876c3-31c0-4e12-8a3f-58f4953cfa99/ HTTP/1.1" 204 0
+"POST /accounts/login/ HTTP/1.1" 200 638
+Bad Request: /api/rides/
+"POST /api/rides/ HTTP/1.1" 400 332
+"POST /api/rides/ HTTP/1.1" 201 485
+"POST /api/rides/2bc53ddd-d0e6-49b7-8fd2-354c44e68e02/accept/ HTTP/1.1" 200 519
+"POST /api/rides/2bc53ddd-d0e6-49b7-8fd2-354c44e68e02/start/ HTTP/1.1" 200 519
+"POST /api/rides/2bc53ddd-d0e6-49b7-8fd2-354c44e68e02/complete/ HTTP/1.1" 200 519
+Internal Server Error: /api/rides/2bc53ddd-d0e6-49b7-8fd2-354c44e68e02/fare/
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py", line 120, in fare
+    total = calculate_fare(
+            ^^^^^^^^^^^^^^
+NameError: name 'calculate_fare' is not defined
+"GET /api/rides/2bc53ddd-d0e6-49b7-8fd2-354c44e68e02/fare/ HTTP/1.1" 500 98377
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /api/rides/2bc53ddd-d0e6-49b7-8fd2-354c44e68e02/fare/ HTTP/1.1" 200 75
+"POST /api/rides/ HTTP/1.1" 201 485
+"POST /api/rides/7a7b42d0-b8af-42d3-b92d-872afd7908ad/cancel/ HTTP/1.1" 200 485
+"POST /accounts/login/ HTTP/1.1" 200 638
+"GET /api/vehicles/ HTTP/1.1" 200 726
+"GET /api/vehicles/668982e1-e293-4ad2-bf82-d4c5c4b6462b HTTP/1.1" 301 0
+Unauthorized: /api/vehicles/668982e1-e293-4ad2-bf82-d4c5c4b6462b/
+"GET /api/vehicles/668982e1-e293-4ad2-bf82-d4c5c4b6462b/ HTTP/1.1" 401 119
+"GET /api/vehicles/668982e1-e293-4ad2-bf82-d4c5c4b6462b HTTP/1.1" 301 0
+Unauthorized: /api/vehicles/668982e1-e293-4ad2-bf82-d4c5c4b6462b/
+"GET /api/vehicles/668982e1-e293-4ad2-bf82-d4c5c4b6462b/ HTTP/1.1" 401 233
+"GET /api/vehicles/668982e1-e293-4ad2-bf82-d4c5c4b6462b HTTP/1.1" 301 0
+Unauthorized: /api/vehicles/668982e1-e293-4ad2-bf82-d4c5c4b6462b/
+"GET /api/vehicles/668982e1-e293-4ad2-bf82-d4c5c4b6462b/ HTTP/1.1" 401 233
+"GET /api/vehicles/668982e1-e293-4ad2-bf82-d4c5c4b6462b HTTP/1.1" 301 0
+"GET /api/vehicles/668982e1-e293-4ad2-bf82-d4c5c4b6462b/ HTTP/1.1" 200 315
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\config\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\config\settings.py changed, reloading.
+Watching for file changes with StatReloader
+"POST /accounts/login/ HTTP/1.1" 200 638
+"GET /api/rides/ HTTP/1.1" 200 5353
+Watching for file changes with StatReloader
+Unauthorized: /api/rides/
+"POST /api/rides/ HTTP/1.1" 401 233
+"POST /accounts/login/ HTTP/1.1" 200 638
+"POST /api/rides/ HTTP/1.1" 201 485
+"POST /api/rides/c0a69fdc-344e-4a6d-95af-cc0474c9a9e4/cancel/ HTTP/1.1" 200 485
+Bad Request: /api/rides/c0a69fdc-344e-4a6d-95af-cc0474c9a9e4/cancel/
+"POST /api/rides/c0a69fdc-344e-4a6d-95af-cc0474c9a9e4/cancel/ HTTP/1.1" 400 112
+C:\Users\Admin\Desktop\DjangoRESTProject\core\responses.py changed, reloading.
+Watching for file changes with StatReloader
+Bad Request: /api/rides/c0a69fdc-344e-4a6d-95af-cc0474c9a9e4/cancel/
+"POST /api/rides/c0a69fdc-344e-4a6d-95af-cc0474c9a9e4/cancel/ HTTP/1.1" 400 112
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+Watching for file changes with StatReloader
+Unauthorized: /api/rides/c0a69fdc-344e-4a6d-95af-cc0474c9a9e4/cancel/
+"POST /api/rides/c0a69fdc-344e-4a6d-95af-cc0474c9a9e4/cancel/ HTTP/1.1" 401 233
+"POST /accounts/login/ HTTP/1.1" 200 638
+Bad Request: /api/rides/c0a69fdc-344e-4a6d-95af-cc0474c9a9e4/cancel/
+"POST /api/rides/c0a69fdc-344e-4a6d-95af-cc0474c9a9e4/cancel/ HTTP/1.1" 400 112
+C:\Users\Admin\Desktop\DjangoRESTProject\common\exception_handler.py changed, reloading.
+Watching for file changes with StatReloader
+"POST /accounts/login/ HTTP/1.1" 200 638
+Bad Request: /api/rides/c0a69fdc-344e-4a6d-95af-cc0474c9a9e4/cancel/
+"POST /api/rides/c0a69fdc-344e-4a6d-95af-cc0474c9a9e4/cancel/ HTTP/1.1" 400 88
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+Watching for file changes with StatReloader
+Bad Request: /api/rides/c0a69fdc-344e-4a6d-95af-cc0474c9a9e4/cancel/
+"POST /api/rides/c0a69fdc-344e-4a6d-95af-cc0474c9a9e4/cancel/ HTTP/1.1" 400 101
+Bad Request: /accounts/login/
+Bad Request: /accounts/register/
+Bad Request: /accounts/register/
+Bad Request: /accounts/login/
+Bad Request: /accounts/register/
+Bad Request: /accounts/register/
+Bad Request: /accounts/profile-crud/
+Unauthorized: /accounts/profile-crud/
+Bad Request: /api/drivers/
+Method Not Allowed: /api/drivers/e5223ef5-4a6e-4524-b11e-943606e76fc2/
+Bad Request: /api/rides/66d642b7-441c-46ab-96b9-ebf2b34beb0a/accept/
+Bad Request: /api/rides/5d4aa16e-ab8c-4f07-b166-46fe6b46606d/accept/
+Method Not Allowed: /api/drivers/885a2ce4-438a-49f2-b20e-1cf0251468cd/
+Method Not Allowed: /api/drivers/53fa6a8c-a586-4864-9364-251230560efe/
+Method Not Allowed: /api/drivers/5ed84452-1725-4465-a1c4-ad2090c6637c/
+Method Not Allowed: /api/drivers/fb32e58a-697f-4a74-9e29-785c9d631e37/
+Method Not Allowed: /api/drivers/017ce96e-fcec-46f4-acc9-8a1e65b6b885/
+Method Not Allowed: /api/drivers/ffc463c5-29e7-42fb-a272-e9891badcff2/
+Bad Request: /api/drivers/
+Bad Request: /api/rides/8fa9fd72-4d80-4156-9ba6-fbb142f17a6d/accept/
+Bad Request: /api/rides/808494d5-b6b1-4e1d-ac43-79cc3f1437e7/accept/
+Bad Request: /api/drivers/
+Bad Request: /api/rides/92853181-9030-4a29-b2b6-5b87a8783b4d/accept/
+Bad Request: /api/rides/02f68412-5e85-44a5-a49b-93f3ddde97a8/accept/
+Bad Request: /accounts/login/
+Bad Request: /accounts/register/
+Bad Request: /accounts/register/
+Bad Request: /accounts/profile-crud/
+Unauthorized: /accounts/profile-crud/
+Bad Request: /accounts/login/
+Bad Request: /accounts/register/
+Bad Request: /accounts/register/
+Bad Request: /accounts/profile-crud/
+Unauthorized: /accounts/profile-crud/
+Bad Request: /api/drivers/
+Bad Request: /api/rides/749ca54a-c90c-4779-9cc6-8a61d43ed1ef/accept/
+Bad Request: /api/rides/6921d96d-6e3b-4ce9-8b9c-7eb3354f61e9/accept/

@@ -78,7 +78,12 @@ class VehicleSerializer(serializers.ModelSerializer):
         request = self.context.get("request")
         driver = attrs.get("driver")
 
-        if request and request.user:
+    # For PATCH, driver may not be included in the request.
+    # Use the existing vehicle driver in that case.
+        if driver is None and self.instance is not None:
+            driver = self.instance.driver
+
+        if request and request.user.is_authenticated and driver:
             if driver.user != request.user:
                 raise serializers.ValidationError({
                     "driver": "You can only manage your own vehicle."

@@ -1,9 +1,12 @@
 from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
+from .services.fare_service import calculate_fare
 from rest_framework.permissions import IsAuthenticated
 from rides.services.ride_service import (accept_ride as accept_ride_service, cancel_ride as cancel_ride_service,)
 from .models import DriverProfile, Ride, RideStatus
+from rest_framework.exceptions import ValidationError
+from core.responses import error_response
 from .serializers import (
     DriverProfileSerializer,
     RideSerializer,
@@ -14,8 +17,20 @@ class DriverViewSet(viewsets.ModelViewSet):
     queryset = DriverProfile.objects.all().order_by("-created_at")
     serializer_class = DriverProfileSerializer
 
+    def destroy(self, request, *args, **kwargs):
+        driver = self.get_object()
+        driver.delete()
+
+        return Response(
+            status=status.HTTP_204_NO_CONTENT
+        )
+
 class RideViewSet(viewsets.ModelViewSet):
-    queryset = Ride.objects.all().order_by("-created_at")
+    queryset = (
+    Ride.objects
+    .select_related("user", "driver", "vehicle", "status")
+    .order_by("-created_at")
+    )
     serializer_class = RideSerializer
     permission_classes = [IsAuthenticated]
     def perform_create(self, serializer):
@@ -59,12 +74,20 @@ class RideViewSet(viewsets.ModelViewSet):
 
     @action(detail=True, methods=["post"], url_path="cancel")
     def cancel_ride(self, request, pk=None):
-        ride = cancel_ride_service(pk)
+        try:
+            ride = cancel_ride_service(pk)
 
-        return Response(
-            RideSerializer(ride).data,
-            status=status.HTTP_200_OK
-        )
+            return Response(
+                RideSerializer(ride).data,
+                status=status.HTTP_200_OK
+            )
+
+        except ValidationError:
+            return error_response(
+                "Ride cannot be cancelled",
+                "INVALID_RIDE_STATUS",
+                status.HTTP_400_BAD_REQUEST
+            )
 
     @action(detail=True, methods=["post"], url_path="start")
     def start_ride(self, request, pk=None):

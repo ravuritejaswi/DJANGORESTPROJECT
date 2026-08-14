@@ -1,5 +1,8 @@
 from decimal import Decimal
-
+from django.urls import reverse
+from rest_framework import status
+from accounts.models import User
+from .models import DriverProfile
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 from rest_framework.test import APIClient
@@ -304,4 +307,166 @@ class RideBusinessLogicTests(TestCase):
             self.cancelled_status
         )
 
-# Create your tests here.
+from django.test import TestCase
+from django.urls import reverse
+from rest_framework.test import APIClient
+from rest_framework import status
+
+from accounts.models import User
+from .models import DriverProfile
+
+
+class DriverTests(TestCase):
+
+    def setUp(self):
+        self.client = APIClient()
+
+        self.user = User.objects.create_user(
+            username="driveruser",
+            email="driver@example.com",
+            password="Test@12345"
+        )
+
+        self.driver_url = reverse("drivers-list")
+
+        self.driver_data = {
+            "user": str(self.user.id),
+            "license_number": "DL123456789",
+            "is_available": True
+        }
+
+    def test_create_driver(self):
+        response = self.client.post(
+            self.driver_url,
+            self.driver_data,
+            format="json"
+        )
+
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_201_CREATED
+        )
+
+        self.assertTrue(
+            DriverProfile.objects.filter(
+                license_number="DL123456789"
+            ).exists()
+        )
+
+    def test_list_drivers(self):
+        DriverProfile.objects.create(
+            user=self.user,
+            license_number="DL987654321",
+            is_available=True
+        )
+
+        response = self.client.get(self.driver_url)
+
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_200_OK
+        )
+
+        self.assertEqual(
+            response.data["count"],
+            1
+        )
+
+    def test_retrieve_driver(self):
+        driver = DriverProfile.objects.create(
+            user=self.user,
+            license_number="DL111111111",
+            is_available=True
+        )
+
+        url = reverse(
+            "drivers-detail",
+            kwargs={"pk": driver.id}
+        )
+
+        response = self.client.get(url)
+
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_200_OK
+        )
+
+        self.assertEqual(
+            response.data["license_number"],
+            "DL111111111"
+        )
+
+    def test_update_driver(self):
+        driver = DriverProfile.objects.create(
+            user=self.user,
+            license_number="DL222222222",
+            is_available=False
+        )
+
+        url = reverse(
+            "drivers-detail",
+            kwargs={"pk": driver.id}
+        )
+
+        response = self.client.patch(
+            url,
+            {
+                "is_available": True
+            },
+            format="json"
+        )
+
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_200_OK
+        )
+
+        driver.refresh_from_db()
+
+        self.assertTrue(
+            driver.is_available
+        )
+
+    def test_delete_driver(self):
+        driver = DriverProfile.objects.create(
+            user=self.user,
+            license_number="DL123456789",
+            is_available=True
+        )
+
+        url = reverse(
+            "drivers-detail",
+            kwargs={"pk": driver.id}
+        )
+        response = self.client.delete(url)
+        print("DELETE URL:", url)
+        print("DELETE STATUS:", response.status_code)
+        print("DELETE DATA:", response.data)
+        print("ALLOWED METHODS:", response.headers.get("Allow"))
+
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_204_NO_CONTENT
+        )
+
+        self.assertFalse(
+            DriverProfile.objects.filter(
+                id=driver.id
+            ).exists()
+        )
+
+    def test_create_driver_invalid_data(self):
+        response = self.client.post(
+            self.driver_url,
+            {
+                "user": str(self.user.id),
+                "license_number": "",
+                "is_available": True
+            },
+            format="json"
+        )
+
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_400_BAD_REQUEST
+        )

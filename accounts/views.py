@@ -66,6 +66,20 @@ class ProfileAPIView(APIView):
             "email": request.user.email,
             "username": request.user.username,
         })
+    def post(self, request):
+        serializer = ProfileSerializer(
+            data=request.data,
+            context={"request": request}
+        )
+
+        serializer.is_valid(raise_exception=True)
+
+        profile = serializer.save(user=request.user)
+
+        return Response(
+            ProfileSerializer(profile).data,
+            status=201
+        )
 
 class ChangePasswordAPIView(APIView):
     permission_classes = [IsAuthenticated]

@@ -1,5 +1,6 @@
 from rest_framework.views import exception_handler
 
+
 def custom_exception_handler(exc, context):
     response = exception_handler(exc, context)
 
@@ -7,7 +8,8 @@ def custom_exception_handler(exc, context):
         response.data = {
             "success": False,
             "message": "Something went wrong.",
-            "errors": response.data
+            "error_code": "API_ERROR",
+            "data": None,
         }
 
     return response

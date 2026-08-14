@@ -591,3 +591,14 @@ Final result:
 Found 6 test(s).
 Ran 6 tests
 OK
+
+
+Continued working on the Ride Booking Backend project using Django REST Framework.
+Worked on Task 6 – API Testing.
+Created and updated test cases using Django TestCase and REST Framework APIClient.
+Tested different API endpoints and verified their responses.
+Worked with test users, authentication, and required test data.
+Identified and fixed errors encountered while running test cases.
+Verified expected HTTP status codes and API responses.
+Ran the Django test suite to confirm the implemented functionality.
+Debugged failed test cases and made the required code corrections.
