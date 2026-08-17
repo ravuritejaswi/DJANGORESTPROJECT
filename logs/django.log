@@ -1660,3 +1660,341 @@ Unauthorized: /accounts/profile-crud/
 Bad Request: /api/drivers/
 Bad Request: /api/rides/749ca54a-c90c-4779-9cc6-8a61d43ed1ef/accept/
 Bad Request: /api/rides/6921d96d-6e3b-4ce9-8b9c-7eb3354f61e9/accept/
+Watching for file changes with StatReloader
+"POST /accounts/login/ HTTP/1.1" 200 640
+"POST /accounts/login/ HTTP/1.1" 200 638
+Not Found: /api/rides/active/
+"GET /api/rides/active/ HTTP/1.1" 404 88
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\config\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"POST /accounts/login/ HTTP/1.1" 200 638
+Not Found: /api/rides/active/
+"GET /api/rides/active/ HTTP/1.1" 404 88
+Not Found: /api/rides/active/
+"GET /api/rides/active/ HTTP/1.1" 404 88
+Watching for file changes with StatReloader
+"POST /accounts/login/ HTTP/1.1" 200 638
+Not Found: /api/rides/active/
+"GET /api/rides/active/ HTTP/1.1" 404 88
+"POST /accounts/login/ HTTP/1.1" 200 640
+Not Found: /api/rides/active/
+"GET /api/rides/active/ HTTP/1.1" 404 88
+Not Found: /api/rides/active/
+"GET /api/rides/active/ HTTP/1.1" 404 88
+Not Found: /api/rides/active/
+"GET /api/rides/active/ HTTP/1.1" 404 88
+Watching for file changes with StatReloader
+Not Found: /
+"GET / HTTP/1.1" 404 2972
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3023
+Unauthorized: /api/rides/active/
+"GET /api/rides/active/ HTTP/1.1" 401 5413
+"GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 304 0
+"GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 304 0
+"GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 304 0
+"GET /static/rest_framework/js/csrf.js HTTP/1.1" 304 0
+"GET /static/rest_framework/css/prettify.css HTTP/1.1" 304 0
+"GET /static/rest_framework/js/default.js HTTP/1.1" 304 0
+"GET /static/rest_framework/css/default.css HTTP/1.1" 304 0
+"GET /static/rest_framework/js/load-ajax-form.js HTTP/1.1" 304 0
+"GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 304 0
+"GET /static/rest_framework/js/jquery-3.7.1.min.js HTTP/1.1" 304 0
+"GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 304 0
+"GET /static/rest_framework/img/grid.png HTTP/1.1" 304 0
+Unauthorized: /api/rides/active/
+"GET /api/rides/active/ HTTP/1.1" 401 5413
+Unauthorized: /api/rides/active/
+"GET /api/rides/active/ HTTP/1.1" 401 5413
+Unauthorized: /api/rides/active/
+"GET /api/rides/active/ HTTP/1.1" 401 5413
+Unauthorized: /api/rides/active/
+"GET /api/rides/active/ HTTP/1.1" 401 5413
+Unauthorized: /api/rides/active/
+"GET /api/rides/active/ HTTP/1.1" 401 88
+Unauthorized: /api/rides/active/
+"GET /api/rides/active/ HTTP/1.1" 401 88
+Watching for file changes with StatReloader
+"POST /accounts/login/ HTTP/1.1" 200 640
+Not Found: /api/rides/active/
+"GET /api/rides/active/ HTTP/1.1" 404 88
+Not Found: /api/rides/active/
+"GET /api/rides/active/ HTTP/1.1" 404 88
+Not Found: /api/rides/active/
+"GET /api/rides/active/ HTTP/1.1" 404 88
+Not Found: /api/rides/active/
+"GET /api/rides/active/ HTTP/1.1" 404 88
+Watching for file changes with StatReloader
+"POST /accounts/login/ HTTP/1.1" 200 640
+Not Found: /api/rides/active/
+"GET /api/rides/active/ HTTP/1.1" 404 88
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"POST /accounts/login/ HTTP/1.1" 200 640
+Not Found: /api/rides/active/
+"GET /api/rides/active/ HTTP/1.1" 404 88
+Not Found: /api/rides/active/
+"GET /api/rides/active/ HTTP/1.1" 404 88
+Watching for file changes with StatReloader
+"POST /accounts/login/ HTTP/1.1" 200 640
+Not Found: /api/rides/active/
+"GET /api/rides/active/ HTTP/1.1" 404 88
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\config\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\config\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"POST /accounts/login/ HTTP/1.1" 200 640
+Not Found: /api/rides/active/
+"GET /api/rides/active/ HTTP/1.1" 404 88
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\urls.py changed, reloading.
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\urls.py changed, reloading.
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"POST /accounts/login/ HTTP/1.1" 200 640
+"GET /api/rides/active/ HTTP/1.1" 200 182
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\urls.py changed, reloading.
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\urls.py changed, reloading.
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"POST /accounts/login/ HTTP/1.1" 200 640
+"GET /api/rides/active/ HTTP/1.1" 200 182
+"GET /api/rides/completed/ HTTP/1.1" 200 504
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\urls.py changed, reloading.
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /api/rides/cancelled/ HTTP/1.1" 200 661
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\urls.py changed, reloading.
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Not Found: /api/rides/driver_history/
+"GET /api/rides/driver_history/ HTTP/1.1" 404 88
+"GET /api/rides/driver-history/ HTTP/1.1" 200 770
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\urls.py changed, reloading.
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /api/rides/daily-count/ HTTP/1.1" 200 73
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\urls.py changed, reloading.
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /api/rides/total-completed/ HTTP/1.1" 200 27
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\urls.py changed, reloading.
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /api/rides/total-fare/ HTTP/1.1" 200 20
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\urls.py changed, reloading.
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\urls.py changed, reloading.
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"POST /accounts/login/ HTTP/1.1" 200 640
+"GET /api/rides/aggregations/ HTTP/1.1" 200 100
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\urls.py changed, reloading.
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"POST /accounts/login/ HTTP/1.1" 200 640
+Not Found: /api/rides/slow-rides/
+"GET /api/rides/slow-rides/ HTTP/1.1" 404 88
+"GET /api/slow-rides/ HTTP/1.1" 200 1912
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /api/slow-rides/ HTTP/1.1" 200 1912
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /api/slow-rides/ HTTP/1.1" 200 1912
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\models.py changed, reloading.
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\models.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"POST /accounts/login/ HTTP/1.1" 200 640
+"GET /api/rides/filter/ HTTP/1.1" 200 6326
+"GET /api/rides/filter/?status=COMPLETED HTTP/1.1" 200 2757
+Internal Server Error: /api/rides/filter/
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\db\models\fields\__init__.py", line 2766, in to_python
+    return uuid.UUID(**{input_form: value})
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\uuid.py", line 181, in __init__
+    raise ValueError('badly formed hexadecimal UUID string')
+ValueError: badly formed hexadecimal UUID string
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\views\generic\base.py", line 106, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py", line 365, in get
+    rides = rides.filter(driver_id=driver_id)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\db\models\query.py", line 1542, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\db\models\query.py", line 1560, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\db\models\query.py", line 1570, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\db\models\sql\query.py", line 1676, in add_q
+    clause, _ = self._add_q(q_object, can_reuse)
+                ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\db\models\sql\query.py", line 1708, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ~~~~~~~~~~~~~~~~~^
+        child,
+        ^^^^^^
+    ...<7 lines>...
+        update_join_types=update_join_types,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\db\models\sql\query.py", line 1618, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\db\models\sql\query.py", line 1445, in build_lookup
+    lookup = lookup_class(lhs, rhs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\db\models\lookups.py", line 35, in __init__
+    self.rhs = self.get_prep_lookup()
+               ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\db\models\fields\related_lookups.py", line 113, in get_prep_lookup
+    self.rhs = target_field.get_prep_value(self.rhs)
+               ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\db\models\fields\__init__.py", line 2750, in get_prep_value
+    return self.to_python(value)
+           ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\db\models\fields\__init__.py", line 2768, in to_python
+    raise exceptions.ValidationError(
+    ...<3 lines>...
+    )
+django.core.exceptions.ValidationError: ['“DRIVER_UUID” is not a valid UUID.']
+"GET /api/rides/filter/?driver_id=DRIVER_UUID HTTP/1.1" 500 165296
+"GET /api/rides/filter/?min_fare=200 HTTP/1.1" 200 5324
+"GET /api/rides/filter/?max_fare=500 HTTP/1.1" 200 6326
+"GET /api/rides/filter/?start_date=2026-08-01 HTTP/1.1" 200 6326
+"GET /api/rides/filter/?status=COMPLETED&min_fare=200&max_fare=500 HTTP/1.1" 200 2757
+"GET /api/rides/filter/?ordering=fare HTTP/1.1" 200 6326
+"GET /api/rides/filter/?ordering=-fare HTTP/1.1" 200 6326
+"GET /api/rides/filter/?ordering=-created_at HTTP/1.1" 200 6326
+"GET /api/rides/filter/?ordering=created_at HTTP/1.1" 200 6326
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"POST /accounts/login/ HTTP/1.1" 200 640
+"GET /api/rides/large-dataset/ HTTP/1.1" 200 10205
+"GET /api/rides/large-dataset/?page=2 HTTP/1.1" 200 10249
+"GET /api/rides/large-dataset/?page_size=50 HTTP/1.1" 200 25368
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"POST /accounts/login/ HTTP/1.1" 200 640
+"GET /api/rides/filter/ HTTP/1.1" 200 2529108
+"GET /api/rides/large-dataset/ HTTP/1.1" 200 10205
+"GET /api/rides/aggregations/ HTTP/1.1" 200 117

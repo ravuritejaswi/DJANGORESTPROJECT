@@ -102,8 +102,14 @@ class Vehicle(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-    def __str__(self):
+    def _str_(self):
         return self.vehicle_number
+
+    class Meta:
+        indexes = [
+            models.Index(fields=["vehicle_type"]),
+        ]
+    
 class RideStatus(models.Model):
     id = models.UUIDField(
         primary_key=True,

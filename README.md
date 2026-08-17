@@ -601,4 +601,78 @@ Worked with test users, authentication, and required test data.
 Identified and fixed errors encountered while running test cases.
 Verified expected HTTP status codes and API responses.
 Ran the Django test suite to confirm the implemented functionality.
-Debugged failed test cases and made the required code corrections.
+Debugged failed test cases and made the required code corrections. 
+
+
+*****Advanced Django ORM & High-Performance Database APIs*****
+#Advanced Django ORM
+Worked with Django ORM and QuerySets for the ride management APIs.
+Implemented efficient database querying using Django ORM.
+Worked with filtering and related model relationships.
+
+# QuerySet Operations
+Implemented and tested QuerySet operations for ride data.
+Worked with related fields such as user, driver, vehicle, and ride status.
+Verified the API responses using Postman.
+
+#Aggregation
+Implemented database aggregation using:
+Count()
+Sum()
+Avg()
+Min()
+Max()
+Created aggregation API to calculate ride statistics such as total rides, completed rides, cancelled rides, average fare, and maximum fare.
+Tested the aggregation API successfully with 200 OK.
+
+#Optimize Relationships
+Created and tested a deliberately slow ride API.
+Measured the number of SQL queries.
+Optimized relationship queries using:
+select_related()
+prefetch_related()
+Compared SQL query performance before and after optimization.
+Successfully reduced unnecessary database queries.
+
+#Database Indexing
+Identified frequently searched fields such as:
+user_id
+driver_id
+status
+created_at
+vehicle_type
+Added an index for vehicle_type.
+Created and applied Django migrations successfully.
+Verified the index using PostgreSQL EXPLAIN.
+Confirmed that PostgreSQL uses the created index for the query.
+
+#Advanced Filtering
+Implemented and tested:
+Date filtering
+Status filtering
+Driver filtering
+Minimum and maximum fare filtering
+Multiple filters together
+Ordering
+Tested the filtering API through Postman and confirmed successful 200 OK responses.
+
+#Large Dataset Testing
+Generated 5,012 ride records for large-dataset testing.
+Tested API response performance with the large dataset.
+Implemented and tested pagination.
+Tested custom page_size values.
+Verified pagination links.
+Checked database query performance.
+Successfully received 200 OK responses.
+
+#Code Review & Optimization
+Reviewed Django ORM code across the ride APIs.
+Checked for:
+Duplicate queries
+Queries inside loops
+Unnecessary database calls
+Repeated calculations
+Optimized relationship queries using select_related().
+Reviewed aggregation and QuerySet implementations.
+Tested the optimized APIs through Postman.
+Confirmed successful 200 OK responses.
