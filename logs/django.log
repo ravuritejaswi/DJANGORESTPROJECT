@@ -1998,3 +1998,176 @@ Watching for file changes with StatReloader
 "GET /api/rides/filter/ HTTP/1.1" 200 2529108
 "GET /api/rides/large-dataset/ HTTP/1.1" 200 10205
 "GET /api/rides/aggregations/ HTTP/1.1" 200 117
+Watching for file changes with StatReloader
+"POST /accounts/login/ HTTP/1.1" 200 640
+"POST /api/drivers/location/ HTTP/1.1" 201 168
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"POST /accounts/login/ HTTP/1.1" 200 640
+"GET /api/drivers/nearby/?latitude=17.3850&longitude=78.4867&radius=5 HTTP/1.1" 200 170
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"POST /accounts/login/ HTTP/1.1" 200 640
+Internal Server Error: /api/drivers/nearby/
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\views\generic\base.py", line 106, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py", line 483, in get
+    distance = self.calculate_distance(
+        latitude,
+    ...<2 lines>...
+        float(driver.longitude)
+    )
+TypeError: NearbyDriverView.calculate_distance() missing 1 required positional argument: 'lon2'
+"GET /api/drivers/nearby/?latitude=17.3850&longitude=78.4867&radius=5 HTTP/1.1" 500 98637
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /api/drivers/nearby/
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\views\generic\base.py", line 106, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py", line 483, in get
+    distance = self.calculate_distance(
+        latitude,
+    ...<2 lines>...
+        float(driver.longitude)
+    )
+TypeError: NearbyDriverView.calculate_distance() missing 1 required positional argument: 'lon2'
+"GET /api/drivers/nearby/?latitude=17.3850&longitude=78.4867&radius=5 HTTP/1.1" 500 98637
+Internal Server Error: /api/drivers/nearby/
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\views\generic\base.py", line 106, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py", line 483, in get
+    distance = self.calculate_distance(
+        latitude,
+    ...<2 lines>...
+        float(driver.longitude)
+    )
+TypeError: NearbyDriverView.calculate_distance() missing 1 required positional argument: 'lon2'
+"GET /api/drivers/nearby/?latitude=17.3850&longitude=78.4867&radius=5 HTTP/1.1" 500 98637
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"POST /accounts/login/ HTTP/1.1" 200 640
+"GET /api/drivers/nearby/?latitude=17.3850&longitude=78.4867&radius=5 HTTP/1.1" 200 72
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\models.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"POST /accounts/login/ HTTP/1.1" 200 640
+"GET /api/drivers/nearby/?latitude=17.3850&longitude=78.4867&radius=5 HTTP/1.1" 200 72
+Watching for file changes with StatReloader
+"POST /accounts/login/ HTTP/1.1" 200 640
+"GET /api/drivers/nearby/?latitude=17.3850&longitude=78.4867&radius=5 HTTP/1.1" 200 72
+Watching for file changes with StatReloader
+"POST /accounts/login/ HTTP/1.1" 200 640
+"GET /api/drivers/nearby/?latitude=17.3850&longitude=78.4867&radius=5 HTTP/1.1" 200 72
+Watching for file changes with StatReloader
+"POST /accounts/login/ HTTP/1.1" 200 640
+"GET /api/drivers/nearby/?latitude=17.3850&longitude=78.4867&radius=5 HTTP/1.1" 200 2
+Watching for file changes with StatReloader
+"POST /accounts/login/ HTTP/1.1" 200 640
+"GET /api/drivers/nearby/?latitude=17.3850&longitude=78.4867&radius=5 HTTP/1.1" 200 2
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"POST /accounts/login/ HTTP/1.1" 200 640
+Bad Request: /api/drivers/nearby/
+"GET /api/drivers/nearby/?latitude=100&longitude=78.4867&radius=5 HTTP/1.1" 400 28
+Bad Request: /api/drivers/nearby/
+"GET /api/drivers/nearby/?latitude=17.3850&longitude=200&radius=5 HTTP/1.1" 400 29
+Bad Request: /api/drivers/nearby/
+"GET /api/drivers/nearby/?latitude=17.3850&longitude=78.4867&radius=-5 HTTP/1.1" 400 26
+Bad Request: /api/drivers/nearby/
+"GET /api/drivers/nearby/?radius=5 HTTP/1.1" 400 47
+Watching for file changes with StatReloader
+"POST /accounts/login/ HTTP/1.1" 200 640
+"GET /api/drivers/nearby/?latitude=17.3850&longitude=78.4867&radius=5 HTTP/1.1" 200 2
+Watching for file changes with StatReloader
+"POST /accounts/login/ HTTP/1.1" 200 640
+"GET /api/drivers/nearby/?latitude=17.3850&longitude=78.4867&radius=5 HTTP/1.1" 200 2
+Watching for file changes with StatReloader
+"POST /accounts/login/ HTTP/1.1" 200 640
+"GET /api/drivers/nearby/?latitude=17.3850&longitude=78.4867&radius=5 HTTP/1.1" 200 71921
+"GET /api/drivers/nearby/?latitude=17.3850&longitude=78.4867&radius=5 HTTP/1.1" 200 71921
+"GET /api/drivers/nearby/?latitude=17.3850&longitude=78.4867&radius=5 HTTP/1.1" 200 71921
+"GET /api/drivers/nearby/?latitude=17.3850&longitude=78.4867&radius=5 HTTP/1.1" 200 71921
+"GET /api/drivers/nearby/?latitude=17.3850&longitude=78.4867&radius=5 HTTP/1.1" 200 71921
+Watching for file changes with StatReloader
+"POST /accounts/login/ HTTP/1.1" 200 640
+"GET /api/drivers/nearby/?latitude=17.3850&longitude=78.4867&radius=5 HTTP/1.1" 200 71921
+"GET /api/drivers/nearby/?latitude=17.3850&longitude=78.4867&radius=5 HTTP/1.1" 200 71921
+"GET /api/drivers/nearby/?latitude=17.3850&longitude=78.4867&radius=5 HTTP/1.1" 200 71921
+"GET /api/drivers/nearby/?latitude=17.3850&longitude=78.4867&radius=5 HTTP/1.1" 200 71921
+"GET /api/drivers/nearby/?latitude=17.3850&longitude=78.4867&radius=5 HTTP/1.1" 200 71921
+C:\Users\Admin\Desktop\DjangoRESTProject\rides\views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /api/drivers/nearby/?latitude=17.3850&longitude=78.4867&radius=5 HTTP/1.1" 200 71921
+"GET /api/drivers/nearby/?latitude=17.3850&longitude=78.4867&radius=5 HTTP/1.1" 200 71921
+"GET /api/drivers/nearby/?latitude=17.3850&longitude=78.4867&radius=5 HTTP/1.1" 200 71921
+"GET /api/drivers/nearby/?latitude=17.3850&longitude=78.4867&radius=5 HTTP/1.1" 200 71921
+"GET /api/drivers/nearby/?latitude=17.3850&longitude=78.4867&radius=5 HTTP/1.1" 200 71921

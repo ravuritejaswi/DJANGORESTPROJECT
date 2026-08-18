@@ -36,6 +36,44 @@ class DriverProfile(models.Model):
 
     def __str__(self):
         return f"Driver - {self.user}"
+
+class DriverLocation(models.Model):
+    driver = models.OneToOneField(
+        "DriverProfile",
+        on_delete=models.CASCADE,
+        related_name="location"
+    )
+
+    latitude = models.DecimalField(
+        max_digits=9,
+        decimal_places=6
+    )
+
+    longitude = models.DecimalField(
+        max_digits=9,
+        decimal_places=6
+    )
+
+    last_updated = models.DateTimeField(
+        auto_now=True
+    )
+
+    is_available = models.BooleanField(
+        default=True
+    )
+    availability_status = models.CharField(
+            max_length=10,
+            choices=[
+                ("ONLINE", "Online"),
+                ("OFFLINE", "Offline"),
+                ("BUSY", "Busy"),
+            ],
+            default="ONLINE",
+    )
+
+    def __str__(self):
+        return f"{self.driver} - ({self.latitude}, {self.longitude})"
+    
 class VehicleType(models.Model):
     id = models.UUIDField(
         primary_key=True,

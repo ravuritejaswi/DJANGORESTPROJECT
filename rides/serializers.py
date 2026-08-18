@@ -1,6 +1,6 @@
 from django.http import request
 from rest_framework import serializers
-from .models import (DriverProfile, Vehicle, VehicleType, Ride, RideStatus)
+from .models import (DriverProfile, Vehicle, VehicleType, Ride, RideStatus, DriverLocation)
 
 class VehicleNestedSerializer(serializers.ModelSerializer):
     vehicle_type = serializers.CharField(source="vehicle_type.name", read_only=True)
@@ -217,3 +217,20 @@ class RideStatusUpdateSerializer(serializers.ModelSerializer):
             )
 
         return new_status
+
+class DriverLocationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DriverLocation
+        fields = [
+            "id",
+            "driver",
+            "latitude",
+            "longitude",
+            "last_updated",
+            "is_available",
+        ]
+        read_only_fields = [
+            "id",
+            "driver",
+            "last_updated",
+        ]

@@ -1,14 +1,20 @@
+from django.http import request
 from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
+
+from api.views import drivers
+
+from api.views import drivers
 from .services.fare_service import calculate_fare
 from rest_framework.permissions import IsAuthenticated
 from rides.services.ride_service import (accept_ride as accept_ride_service, cancel_ride as cancel_ride_service,)
-from .models import DriverProfile, Ride, RideStatus
+from .models import DriverProfile, Ride, RideStatus, DriverLocation
 from rest_framework.exceptions import ValidationError
 from django.db.models import Q
 from django.db.models import Count, Avg, Max, Sum
 from django.db import connection
+import math
 from django.db.models.functions import TruncDate
 from rest_framework.views import APIView
 from core.responses import error_response
@@ -17,6 +23,7 @@ from .serializers import (
     DriverProfileSerializer,
     RideSerializer,
     RideStatusUpdateSerializer,
+    DriverLocationSerializer,
 )
 
 class DriverViewSet(viewsets.ModelViewSet):
@@ -433,3 +440,125 @@ class LargeDatasetRideView(APIView):
         serializer = RideSerializer(page, many=True)
 
         return paginator.get_paginated_response(serializer.data)
+
+class DriverLocationView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        driver = request.user.driver_profile
+
+        location, created = DriverLocation.objects.update_or_create(
+            driver=driver,
+            defaults={
+                "latitude": request.data.get("latitude"),
+                "longitude": request.data.get("longitude"),
+            }
+        )
+
+        serializer = DriverLocationSerializer(location)
+
+        return Response(
+            serializer.data,
+            status=status.HTTP_201_CREATED if created else status.HTTP_200_OK
+        )
+
+class NearbyDriverView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        latitude = request.GET.get("latitude")
+        longitude = request.GET.get("longitude")
+        radius = request.GET.get("radius")
+
+    # Missing coordinates
+        if latitude is None or longitude is None:
+            return Response(
+                {"error": "latitude and longitude are required"},
+                status=400
+            )
+
+    # Missing radius
+        if radius is None:
+            return Response(
+                {"error": "radius is required"},
+                status=400
+            )
+
+    # Convert values safely
+        try:
+            latitude = float(latitude)
+            longitude = float(longitude)
+            radius = float(radius)
+        except (TypeError, ValueError):
+            return Response(
+                {"error": "latitude, longitude and radius must be valid numbers"},
+                status=400
+            )
+
+    # Validate latitude
+        if latitude < -90 or latitude > 90:
+            return Response(
+                {"error": "Invalid latitude"},
+                status=400
+            )
+
+    # Validate longitude
+        if longitude < -180 or longitude > 180:
+            return Response(
+                {"error": "Invalid longitude"},
+                status=400
+            )
+
+    # Validate radius
+        if radius <= 0:
+            return Response(
+                {"error": "Invalid radius"},
+                status=400
+            )
+
+    # Only active ONLINE drivers
+        drivers = DriverLocation.objects.filter(
+        availability_status="ONLINE",
+        is_available=True
+        ).values("driver_id", "latitude", "longitude")
+
+        nearby_drivers = []
+        for driver in drivers:
+            distance = self.calculate_distance(
+                latitude,
+                longitude,
+                float(driver["latitude"]),
+                float(driver["longitude"])
+            )
+            if distance <= radius:
+                nearby_drivers.append({
+                    "driver_id": str(driver["driver_id"]),
+                    "distance_km": round(distance, 2)
+                })
+        nearby_drivers.sort(key=lambda x: x["distance_km"])
+        return Response(nearby_drivers)
+
+    def calculate_distance(self, lat1, lon1, lat2, lon2):
+        R = 6371.0
+
+        lat1 = math.radians(lat1)
+        lon1 = math.radians(lon1)
+        lat2 = math.radians(lat2)
+        lon2 = math.radians(lon2)
+
+        delta_lat = lat2 - lat1
+        delta_lon = lon2 - lon1
+
+        a = (
+            math.sin(delta_lat / 2) ** 2
+            + math.cos(lat1)
+            * math.cos(lat2)
+            * math.sin(delta_lon / 2) ** 2
+        )
+
+        c = 2 * math.atan2(
+            math.sqrt(a),
+            math.sqrt(1 - a)
+        )
+
+        return R * c

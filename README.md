@@ -676,3 +676,82 @@ Optimized relationship queries using select_related().
 Reviewed aggregation and QuerySet implementations.
 Tested the optimized APIs through Postman.
 Confirmed successful 200 OK responses.
+
+***Location-Based Driver Discovery & Geospatial Backend***
+#Understand Location Data
+Studied latitude, longitude, coordinates, distance, and radius.
+Understood how latitude and longitude represent a driver's geographic location.
+Understood how distance and radius are used for nearby-driver searches.
+Learned why location data needs to be stored as numeric/geospatial values for distance calculations.
+
+#Driver Location Model
+Created the DriverLocation model.
+Added fields for:
+Driver
+Latitude
+Longitude
+Last updated
+Availability
+Added availability status support for ONLINE, OFFLINE, and BUSY.
+Created and applied Django migrations successfully.
+Verified the model using Django shell.
+Confirmed python manage.py check completed without issues.
+
+#Driver Location API
+Implemented the driver location update API:
+POST /api/drivers/location/
+Added latitude and longitude handling.
+Implemented creation/update of the driver's latest location.
+Tested the API successfully in Postman.
+Confirmed 201 Created for the initial location creation.
+
+#Nearby Driver API
+Implemented:
+GET /api/drivers/nearby/
+Added latitude, longitude, and radius parameters.
+Implemented nearby-driver distance calculation.
+Filtered drivers based on the requested radius.
+Tested the API successfully with 200 OK.
+
+#Distance Calculation
+Implemented the Haversine formula for geographic distance calculation.
+Returned:
+driver_id
+distance_km
+Sorted nearby drivers by distance.
+Tested the API successfully with 200 OK.
+Verified distance calculation and nearest-driver ordering.
+
+#Driver Availability
+Implemented driver availability states:
+ONLINE
+OFFLINE
+BUSY
+Updated nearby-driver filtering so that only ONLINE drivers are considered for new ride requests.
+Tested all three availability states successfully:
+ONLINE → driver returned
+OFFLINE → driver not returned
+BUSY → driver not returned
+
+#Location Validation
+Added validation for:
+Invalid latitude
+Invalid longitude
+Missing coordinates
+Invalid radius
+Inactive drivers
+Busy drivers
+Verified invalid inputs return 400 Bad Request.
+Verified inactive and busy drivers are excluded from nearby-driver results.
+Successfully tested all validation scenarios in Postman.
+
+#Performance Testing & Optimization
+Created 1,000 performance-test driver records and corresponding driver locations.
+Tested nearby-driver search with the large dataset.
+Recorded baseline API performance of approximately 2.19 seconds.
+Identified unnecessary database access while retrieving related driver IDs.
+Optimized the query/code to avoid unnecessary related-object access.
+Further optimized the QuerySet using .values() to retrieve only required fields.
+Re-tested the API after optimization.
+Improved response time to approximately 158 ms average in the subsequent tests.
+Verified the optimized API continued returning 200 OK.
