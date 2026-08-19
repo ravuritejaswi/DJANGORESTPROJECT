@@ -1,9 +1,11 @@
+from django.db.migrations import serializer
 from django.http import request
 from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-from api.views import drivers
+from asgiref.sync import async_to_sync
+from channels.layers import get_channel_layer
 
 from api.views import drivers
 from .services.fare_service import calculate_fare
@@ -25,6 +27,18 @@ from .serializers import (
     RideStatusUpdateSerializer,
     DriverLocationSerializer,
 )
+
+def broadcast_ride_status(ride):
+    channel_layer = get_channel_layer()
+
+    async_to_sync(channel_layer.group_send)(
+        f"ride_{ride.id}",
+        {
+            "type": "ride_status",
+            "ride_id": str(ride.id),
+            "status": ride.status.name,
+        }
+    )
 
 class DriverViewSet(viewsets.ModelViewSet):
     queryset = (
@@ -62,6 +76,9 @@ class RideViewSet(viewsets.ModelViewSet):
 
     @action(detail=True, methods=["patch"], url_path="status")
     def update_status(self, request, pk=None):
+        print("UPDATE STATUS CALLED")
+        print("REQUEST DATA:", request.data)
+        print("RIDE ID:", pk)
         ride = self.get_object()
 
         serializer = RideStatusUpdateSerializer(
@@ -69,14 +86,68 @@ class RideViewSet(viewsets.ModelViewSet):
             data=request.data,
             partial=True
         )
-
-        serializer.is_valid(raise_exception=True)
+        print("BEFORE SERIALIZER VALIDATION")
+        try:
+            serializer.is_valid(raise_exception=True)
+        except Exception as e:
+            print("SERIALIZER ERROR:", repr(e))
+            raise
+        print("SERIALIZER VALIDATED PASSED")
         serializer.save()
+        print("SERIALIZER SAVED PASSED")
+        ride.refresh_from_db()
+
+        broadcast_ride_status(ride)
 
         return Response(
             RideSerializer(ride).data,
             status=status.HTTP_200_OK
         )
+
+    @action(detail=True, methods=["patch"], url_path="location")
+    def update_location(self, request, pk=None):
+        ride = self.get_object()
+
+        if ride.driver is None:
+            return Response(
+                {"detail": "No driver assigned to this ride."},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        latitude = request.data.get("latitude")
+        longitude = request.data.get("longitude")
+
+        if latitude is None or longitude is None:
+            return Response(
+                {"detail": "latitude and longitude are required."},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        location, _ = DriverLocation.objects.update_or_create(
+            driver=ride.driver,
+            defaults={
+                "latitude": latitude,
+                "longitude": longitude,
+            }
+        )
+
+        channel_layer = get_channel_layer()
+
+        async_to_sync(channel_layer.group_send)(
+            f"ride_{ride.id}",
+            {
+                "type": "driver_location",
+                "ride_id": str(ride.id),
+                "latitude": str(location.latitude),
+                "longitude": str(location.longitude),
+            }
+        )
+
+        return Response(
+            DriverLocationSerializer(location).data,
+            status=status.HTTP_200_OK
+        )
+    
     @action(detail=True, methods=["post"], url_path="accept")
     def accept_ride(self, request, pk=None):
         ride = accept_ride_service(
@@ -121,7 +192,7 @@ class RideViewSet(viewsets.ModelViewSet):
 
         ride.status = started_status
         ride.save(update_fields=["status", "updated_at"])
-
+        broadcast_ride_status(ride)
         return Response(
             RideSerializer(ride).data,
             status=status.HTTP_200_OK
@@ -142,7 +213,7 @@ class RideViewSet(viewsets.ModelViewSet):
 
         ride.status = completed_status
         ride.save(update_fields=["status", "updated_at"])
-
+        broadcast_ride_status(ride)
         return Response(
             RideSerializer(ride).data,
             status=status.HTTP_200_OK

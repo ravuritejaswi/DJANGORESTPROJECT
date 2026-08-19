@@ -755,3 +755,51 @@ Further optimized the QuerySet using .values() to retrieve only required fields.
 Re-tested the API after optimization.
 Improved response time to approximately 158 ms average in the subsequent tests.
 Verified the optimized API continued returning 200 OK.
+
+
+#WebSocket Connection & Ride Status Broadcasting
+Verified the existing WebSocket configuration in consumers.py, routing.py, and asgi.py.
+Connected to the ride WebSocket using Postman.
+Tested ride status communication through the WebSocket.
+Verified STARTED and COMPLETED ride-status events.
+Verified the WebSocket receives the ride-status broadcast successfully.
+
+#Driver Location Tracking
+Verified the existing DriverLocation model and serializer.
+Tested the driver location update API using PATCH.
+Successfully updated driver latitude and longitude.
+Verified the API returned 200 OK.
+Connected to the ride WebSocket using Postman.
+Updated the driver's location while the WebSocket was connected.
+Successfully received the driver_location event through WebSocket.
+
+#WebSocket Authentication & Authorization
+Verified JWT authentication configuration.
+Tested WebSocket connection with a valid JWT token.
+Successfully connected an authenticated user.
+Tested WebSocket connection without a token.
+Verified that unauthenticated access was rejected with 403 Access Denied.
+Tested ride-level authorization.
+Verified that users without access to a ride are rejected.
+
+#Disconnect Handling
+Tested WebSocket connection and normal client disconnection.
+Verified the client disconnects successfully.
+Tested invalid/no-token WebSocket connections.
+Verified unauthorized connections are rejected.
+Updated the WebSocket disconnect handling to safely remove clients from the channel group.
+Fixed the room_group_name disconnect error.
+Verified valid authenticated WebSocket connections after the fix.
+
+#Multiple Client & Real-Time Event Testing
+
+Created separate authenticated WebSocket connections for:
+Passenger
+Driver
+Successfully connected both clients to the same ride.
+Tested ride-status updates using the Start Ride API.
+Verified STARTED status was broadcast through WebSocket.
+Tested Complete Ride API.
+Verified COMPLETED status was broadcast through WebSocket.
+Verified the ride status using GET API after the status changes.
+Confirmed the complete REST API → Channel Layer → WebSocket event flow.

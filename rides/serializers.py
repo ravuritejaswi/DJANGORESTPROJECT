@@ -199,8 +199,8 @@ class RideStatusUpdateSerializer(serializers.ModelSerializer):
         if not ride:
             return new_status
 
-        current_status = ride.status.name
-        next_status = new_status.name
+        current_status = ride.status.name.upper()
+        next_status = new_status.name.upper()
 
         allowed_transitions = {
             "REQUESTED": ["ACCEPTED"],
