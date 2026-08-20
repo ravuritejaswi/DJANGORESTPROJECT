@@ -9,7 +9,7 @@ def custom_exception_handler(exc, context):
             "success": False,
             "message": "Something went wrong.",
             "error_code": "API_ERROR",
-            "data": None,
+            "data": response.data,
         }
 
     return response

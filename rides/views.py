@@ -21,6 +21,10 @@ from django.db.models.functions import TruncDate
 from rest_framework.views import APIView
 from core.responses import error_response
 from rest_framework.pagination import PageNumberPagination
+from accounts.tasks import (
+    send_driver_assignment_notification,
+    send_ride_completion_notification,
+)
 from .serializers import (
     DriverProfileSerializer,
     RideSerializer,
@@ -154,6 +158,13 @@ class RideViewSet(viewsets.ModelViewSet):
             ride_id=pk,
             user=request.user
         )
+        if ride.user and ride.driver:
+            driver_name = ride.driver.user.get_full_name() or ride.driver.user.username
+
+            send_driver_assignment_notification.delay(
+                str(ride.user.id),
+                driver_name
+            )
 
         return Response(
             RideSerializer(ride).data,
@@ -204,7 +215,7 @@ class RideViewSet(viewsets.ModelViewSet):
 
         completed_status = RideStatus.objects.get(name="COMPLETED")
 
-        # Ride can be completed only after it is started
+    # Ride can be completed only after it is started
         if ride.status.name != "STARTED":
             return Response(
                 {"detail": "Ride cannot be completed in its current status."},
@@ -213,7 +224,15 @@ class RideViewSet(viewsets.ModelViewSet):
 
         ride.status = completed_status
         ride.save(update_fields=["status", "updated_at"])
+
+    # Send ride completion notification to passenger using Celery
+        if ride.user:
+            send_ride_completion_notification.delay(
+                str(ride.user.id)
+            )
+
         broadcast_ride_status(ride)
+
         return Response(
             RideSerializer(ride).data,
             status=status.HTTP_200_OK

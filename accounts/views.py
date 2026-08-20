@@ -6,8 +6,8 @@ from .serializers import RegisterSerializer, LoginSerializer
 from .serializers import ChangePasswordSerializer
 from rest_framework.permissions import IsAuthenticated
 from .serializers import LogoutSerializer
-from .models import Profile
-from .serializers import ProfileSerializer
+from .models import Profile, Notification
+from .serializers import ProfileSerializer, NotificationSerializer
 from django.shortcuts import get_object_or_404
 from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework import filters
@@ -15,6 +15,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.generics import ListAPIView
 from drf_yasg.utils import swagger_auto_schema
 from .permissions import IsAdminRole, IsUserRole
+from rest_framework.pagination import PageNumberPagination
 
 
 class RegisterAPIView(APIView):
@@ -187,5 +188,57 @@ class RestoreProfileAPIView(APIView):
 
         return Response(
             {"message": "Profile restored successfully"},
+            status=status.HTTP_200_OK
+        )
+
+class NotificationPagination(PageNumberPagination):
+    page_size = 10
+    page_size_query_param = "page_size"
+    max_page_size = 50
+
+class NotificationListAPIView(ListAPIView):
+    serializer_class = NotificationSerializer
+    permission_classes = [IsAuthenticated]
+    pagination_class = NotificationPagination
+
+    def get_queryset(self):
+        return Notification.objects.filter(
+            user=self.request.user
+        ).order_by("-created_at")
+
+class NotificationReadAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def patch(self, request, pk):
+        notification = get_object_or_404(
+            Notification,
+            pk=pk,
+            user=request.user
+        )
+
+        notification.is_read = True
+        notification.save(update_fields=["is_read"])
+
+        return Response(
+            {
+                "message": "Notification marked as read."
+            },
+            status=status.HTTP_200_OK
+        )
+
+class NotificationReadAllAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        updated_count = Notification.objects.filter(
+            user=request.user,
+            is_read=False
+        ).update(is_read=True)
+
+        return Response(
+            {
+                "message": "All notifications marked as read.",
+                "updated_count": updated_count
+            },
             status=status.HTTP_200_OK
         )

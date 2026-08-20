@@ -803,3 +803,107 @@ Tested Complete Ride API.
 Verified COMPLETED status was broadcast through WebSocket.
 Verified the ride status using GET API after the status changes.
 Confirmed the complete REST API → Channel Layer → WebSocket event flow.
+
+#Notification Module
+Implemented the basic notification functionality in the Django REST project.
+Created the notification model.
+Added fields required to store notification information.
+Connected notifications with users.
+Added notification-related functionality to the accounts application.
+Created and applied the required database migration.
+
+#Notification Data Handling
+Implemented the required handling of notification data.
+Added notification fields such as:
+Title
+Message
+Notification type
+Read/unread status
+Creation timestamp
+Configured the notification model properly.
+Added string representation for notifications.
+
+#Background Task Processing
+Implemented background processing using Celery.
+Configured Celery in the Django project.
+Created asynchronous Celery tasks.
+Used .delay() to send tasks to the background worker.
+Verified that tasks are picked up and executed by the Celery worker.
+
+#Redis Integration
+Configured Redis as the message broker for Celery.
+Connected Celery with Redis.
+Started Redis successfully.
+Started the Celery worker.
+Verified the connection between Django, Celery and Redis.
+The worker successfully showed a Redis connection such as:
+Connected to redis://127.0.0.1:6379
+
+#Celery Job Execution and Retry
+Implemented and tested background jobs with retry functionality.
+Created Celery tasks for notification-related operations.
+Tested successful task execution.
+Implemented retry behavior for failed jobs.
+Verified that a task can retry and eventually complete successfully.
+Example result verified:
+success: True
+attempt: 3
+message: Job completed successfully
+
+#Notification Tasks
+Implemented notification-related background tasks.
+The project contains tasks such as:
+send_ride_notification
+send_driver_assignment_notification
+send_reminder_notification
+send_ride_completion_notification
+These tasks allow notification operations to be processed asynchronously by Celery instead of blocking the main application.
+
+#Prevent Duplicate Notifications
+Implemented duplicate notification prevention.
+Implementation
+Added an event_id to the Notification model and created a unique constraint using:
+class Meta:
+    constraints = [
+        models.UniqueConstraint(
+            fields=["user", "event_id"],
+            name="unique_user_event_notification"
+        )
+    ]
+This ensures that the same user cannot receive multiple notifications for the same event.
+#Testing
+A notification was created with:
+event_id = test-event-001
+When another notification with the same user and event ID was attempted, Django/PostgreSQL correctly rejected it with:
+IntegrityError:
+duplicate key value violates unique constraint
+"unique_user_event_notification"
+This confirms that duplicate notifications are successfully prevented.
+
+#Testing
+Performed testing of the notification and background-job functionality.
+The following scenarios were tested:
+8.1 Successful Job
+Verified that a Celery task executes successfully and returns the expected result.
+Status: ✅ Passed
+8.2 Failed Job
+Created a test task that intentionally raises an exception:
+@shared_task
+def failed_test():
+    raise Exception("Test Failure")
+The Celery worker correctly captured the failure:
+Exception: Test Failure
+Retry
+Verified that failed tasks are retried and eventually succeed.
+Example:
+attempt: 3
+success: True
+Job completed successfully on attempt 3
+Status: ✅ Passed
+8.4 Duplicate Prevention
+Verified that creating the same notification for the same user and event is rejected by the database unique constraint.
+Notification Retrieval
+Verified that notifications can be retrieved for the user.
+Status: ✅ Passed
+8.6 Mark as Read
+Verified the notification read/unread functionality.
