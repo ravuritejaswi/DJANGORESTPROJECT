@@ -3,7 +3,7 @@ from django.http import request
 from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
-
+from .permissions import IsAdminOrDriver, IsRideOwnerOrDriver, IsOwnDriverProfile
 from asgiref.sync import async_to_sync
 from channels.layers import get_channel_layer
 
@@ -11,7 +11,7 @@ from api.views import drivers
 from .services.fare_service import calculate_fare
 from rest_framework.permissions import IsAuthenticated
 from rides.services.ride_service import (accept_ride as accept_ride_service, cancel_ride as cancel_ride_service,)
-from .models import DriverProfile, Ride, RideStatus, DriverLocation
+from .models import DriverProfile, Ride, RideStatus, DriverLocation, Vehicle
 from rest_framework.exceptions import ValidationError
 from django.db.models import Q
 from django.db.models import Count, Avg, Max, Sum
@@ -30,6 +30,7 @@ from .serializers import (
     RideSerializer,
     RideStatusUpdateSerializer,
     DriverLocationSerializer,
+    VehicleSerializer,
 )
 
 def broadcast_ride_status(ride):
@@ -51,6 +52,10 @@ class DriverViewSet(viewsets.ModelViewSet):
         .order_by("-created_at")
     )
     serializer_class = DriverProfileSerializer
+    permission_classes = [
+        IsAuthenticated,
+        IsOwnDriverProfile,
+    ]
 
     def destroy(self, request, *args, **kwargs):
         driver = self.get_object()
@@ -60,6 +65,16 @@ class DriverViewSet(viewsets.ModelViewSet):
             status=status.HTTP_204_NO_CONTENT
         )
 
+class VehicleViewSet(viewsets.ModelViewSet):
+    queryset = (
+        Vehicle.objects
+        .select_related("driver", "vehicle_type")
+        .order_by("-created_at")
+    )
+
+    serializer_class = VehicleSerializer
+    permission_classes = [IsAuthenticated]
+
 class RideViewSet(viewsets.ModelViewSet):
     queryset = (
     Ride.objects
@@ -67,7 +82,11 @@ class RideViewSet(viewsets.ModelViewSet):
     .order_by("-created_at")
     )
     serializer_class = RideSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [
+        IsAuthenticated,
+        IsRideOwnerOrDriver,
+    ]
+    
     def perform_create(self, serializer):
         requested_status = RideStatus.objects.get(name="REQUESTED")
 

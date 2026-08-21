@@ -2649,3 +2649,270 @@ Watching for file changes with StatReloader
 C:\Users\Admin\Desktop\DjangoRESTProject\accounts\models.py changed, reloading.
 Watching for file changes with StatReloader
 Watching for file changes with StatReloader
+Bad Request: /accounts/login/
+Bad Request: /accounts/register/
+Bad Request: /accounts/register/
+Bad Request: /accounts/profile-crud/
+Unauthorized: /accounts/profile-crud/
+Bad Request: /api/drivers/
+Bad Request: /api/rides/78757047-d011-447e-92e2-39a3de6e0381/accept/
+Bad Request: /api/rides/e66fbc1f-9880-4f1b-bc50-4e4adbacbcd0/accept/
+Bad Request: /accounts/login/
+Bad Request: /accounts/register/
+Bad Request: /accounts/register/
+Bad Request: /accounts/profile-crud/
+Unauthorized: /accounts/profile-crud/
+Bad Request: /api/drivers/
+Bad Request: /api/rides/4618c718-5445-43a2-a559-364b18b0ce47/accept/
+Bad Request: /api/rides/009049c9-76fd-4e9a-8ff0-25b65d46701f/accept/
+Bad Request: /api/drivers/
+Bad Request: /api/rides/e0075ba5-bfd2-4a5d-8b30-269dff76cce9/accept/
+Bad Request: /api/rides/c1a9f757-95c7-41aa-9a78-2c1ee778ffa0/accept/
+Not Found: /api/vehicles/
+Not Found: /api/vehicles/
+Not Found: /api/vehicles/ce4d6be9-1f5b-495d-9b2c-fe09222bd237/
+Not Found: /api/vehicles/
+Bad Request: /api/drivers/
+Bad Request: /api/rides/5fe34199-55a5-4eae-80ba-9aae53277b08/accept/
+Bad Request: /api/rides/2e33a55d-f4a4-4e3d-b980-2589dd0a38ba/accept/
+Unauthorized: /api/vehicles/
+Bad Request: /api/vehicles/c9dec552-c7af-4296-98e3-ed0e3ce8bab9/
+Bad Request: /api/vehicles/
+Bad Request: /accounts/login/
+Bad Request: /accounts/register/
+Bad Request: /accounts/register/
+Bad Request: /accounts/profile-crud/
+Unauthorized: /accounts/profile-crud/
+Bad Request: /api/drivers/
+Bad Request: /api/rides/7e794ee5-efe5-4715-a8a7-adf187961196/accept/
+Bad Request: /api/rides/f31ee9e9-0ab2-4c88-8e8d-fcba065048f6/accept/
+Unauthorized: /api/vehicles/
+Bad Request: /api/vehicles/7ee61ad5-fa0c-4691-923f-1355cb784a37/
+Bad Request: /api/vehicles/
+Unauthorized: /api/drivers/location/
+Bad Request: /api/drivers/
+Bad Request: /api/rides/c21b87a6-aa05-45cd-a6b2-f0901922c6a7/accept/
+Bad Request: /api/rides/50eb5d16-07bc-44bb-b9e9-4bfff3ced6a8/accept/
+Unauthorized: /api/vehicles/
+Bad Request: /api/vehicles/82619206-a940-48ac-90b4-059ab18388e9/
+Bad Request: /api/vehicles/
+Unauthorized: /api/drivers/location/
+Bad Request: /api/drivers/
+Bad Request: /api/rides/c5125332-1bd2-4fc4-9fdb-1cadcb684881/accept/
+Bad Request: /api/rides/c1a43802-1dbb-4084-9b21-e3ba73bb6681/accept/
+Unauthorized: /api/vehicles/
+Bad Request: /api/vehicles/b772612c-d9de-4abb-a751-fd3f9de0253c/
+Bad Request: /api/vehicles/
+Unauthorized: /api/drivers/location/
+Unauthorized: /api/drivers/
+Unauthorized: /api/drivers/
+Unauthorized: /api/drivers/22b7e8b5-2c3c-4484-8371-b1c636289190/
+Unauthorized: /api/drivers/
+Unauthorized: /api/drivers/72163794-e528-4bf5-ac1c-729b88cb711e/
+Unauthorized: /api/drivers/d7c1d685-9d39-4d81-880e-7a0939e582c6/
+Unauthorized: /api/drivers/
+Bad Request: /api/rides/a5c70f2f-301c-465a-bf0f-6086d567a158/accept/
+Bad Request: /api/rides/35cdf947-869b-4e41-ac2e-f6eb7e343ff4/accept/
+Unauthorized: /api/vehicles/
+Bad Request: /api/vehicles/1c9251f1-8f59-4f16-bd8b-046504824a55/
+Bad Request: /api/vehicles/
+Unauthorized: /api/drivers/location/
+Bad Request: /api/drivers/
+Bad Request: /api/rides/f55b6fba-5113-4a2c-a7ac-80123619aebe/accept/
+Bad Request: /api/rides/623192a6-21b2-47a7-8d04-69e106fa8f79/accept/
+Unauthorized: /api/vehicles/
+Bad Request: /api/vehicles/65f9842a-70e8-4987-bb93-65ba3bb5445f/
+Bad Request: /api/vehicles/
+Unauthorized: /api/drivers/location/
+Bad Request: /api/drivers/
+Unauthorized: /api/drivers/location/
+Bad Request: /api/rides/a1585427-69ba-42f7-93fb-0c369852c0ec/accept/
+Bad Request: /api/rides/8e093898-8824-401a-b3a6-b4e87bbaf575/accept/
+Unauthorized: /api/vehicles/
+Bad Request: /api/vehicles/372eb7c6-3a70-40e7-ad61-c8a4639d4fca/
+Bad Request: /api/vehicles/
+Unauthorized: /api/drivers/location/
+Bad Request: /api/drivers/
+Unauthorized: /api/drivers/location/
+Bad Request: /api/rides/0d23dc33-9229-4ee9-8af4-5c01518e2667/accept/
+Bad Request: /api/rides/9e52acbb-daa4-4e39-973c-8e0551e80f03/accept/
+Unauthorized: /api/vehicles/
+Bad Request: /api/vehicles/de310b96-45fb-48a5-bc90-0dee539acda2/
+Bad Request: /api/vehicles/
+Unauthorized: /api/drivers/location/
+Bad Request: /api/drivers/
+Unauthorized: /api/drivers/location/
+Bad Request: /api/rides/94879a45-3304-42e3-b930-4bc56f41baf9/accept/
+Bad Request: /api/rides/97b3788b-4d8b-4971-8e54-314f863e27d6/accept/
+Unauthorized: /api/vehicles/
+Bad Request: /api/vehicles/16bf2ae3-83aa-4ebe-8186-5a5cdb4e1df6/
+Bad Request: /api/vehicles/
+Bad Request: /accounts/login/
+Bad Request: /accounts/register/
+Bad Request: /accounts/register/
+Bad Request: /accounts/profile-crud/
+Unauthorized: /accounts/profile-crud/
+Unauthorized: /api/drivers/location/
+Bad Request: /api/drivers/
+Unauthorized: /api/drivers/location/
+Bad Request: /api/rides/6e8fbb7e-a48c-4550-8001-0b47e96e97b8/accept/
+Bad Request: /api/rides/0f1268bb-1de2-402c-ae95-3152febcbe14/accept/
+Unauthorized: /api/vehicles/
+Bad Request: /api/vehicles/25975012-ba4f-48bf-b31a-8907a661c024/
+Bad Request: /api/vehicles/
+Not Found: /api/rides/00000000-0000-0000-0000-000000000000/fare/
+Unauthorized: /api/rides/2807dac0-ebf3-4ac9-9af0-e00b559f348f/fare/
+Bad Request: /accounts/login/
+Bad Request: /accounts/register/
+Bad Request: /accounts/register/
+Bad Request: /accounts/profile-crud/
+Unauthorized: /accounts/profile-crud/
+Unauthorized: /api/drivers/location/
+Bad Request: /api/drivers/
+Not Found: /api/rides/00000000-0000-0000-0000-000000000000/fare/
+Unauthorized: /api/rides/936b05d0-1713-4b9e-a85b-143e23ce0f5a/fare/
+Unauthorized: /api/drivers/location/
+Bad Request: /api/rides/ac96e095-e580-4a17-98d3-7022077aeaa4/accept/
+Bad Request: /api/rides/ddce64ce-663c-4ad6-9363-906d549e16a4/accept/
+Unauthorized: /api/vehicles/
+Bad Request: /api/vehicles/88df0e5b-96fe-4e82-be11-f4f36a0c9607/
+Bad Request: /api/vehicles/
+Unauthorized: /api/rides/
+Unauthorized: /api/rides/
+Unauthorized: /api/drivers/
+Unauthorized: /api/drivers/
+Unauthorized: /api/rides/
+Unauthorized: /api/drivers/
+Unauthorized: /api/drivers/
+Unauthorized: /api/rides/
+Unauthorized: /api/drivers/
+Unauthorized: /api/drivers/
+Unauthorized: /api/rides/
+Unauthorized: /api/drivers/
+Unauthorized: /api/drivers/
+Unauthorized: /api/rides/
+Unauthorized: /api/drivers/
+Forbidden: /api/rides/83e47bfb-c810-4a59-94eb-bb7bcd1b8e26/
+Unauthorized: /api/drivers/
+Unauthorized: /api/rides/
+Unauthorized: /api/drivers/
+Forbidden: /api/rides/b00b86f3-d342-440a-bbbd-ffeab5c3d942/
+Forbidden: /api/drivers/f10c065c-6eeb-4370-8eaa-077ec0cb8030/
+Unauthorized: /api/drivers/
+Unauthorized: /api/rides/
+Unauthorized: /api/drivers/
+Forbidden: /api/rides/89ca85b8-a126-4635-99e3-6c43153956ef/
+Forbidden: /api/drivers/001d7f18-b23b-4697-b5bb-917c7c441fd6/
+Unauthorized: /api/drivers/
+Unauthorized: /api/rides/
+Unauthorized: /api/drivers/
+Forbidden: /api/rides/7d2fade5-6c99-4ee0-916e-40b537c23a34/
+Forbidden: /api/drivers/0f9cf224-44aa-48f6-95d7-3661b60a9906/
+Unauthorized: /api/drivers/
+Bad Request: /api/rides/
+Unauthorized: /api/rides/
+Unauthorized: /api/drivers/
+Forbidden: /api/rides/7c8735f2-781e-4e7e-8072-76a611924c7b/
+Forbidden: /api/drivers/248d674d-2f69-4359-bc11-613ae8ff6c67/
+Too Many Requests: /api/drivers/
+Too Many Requests: /api/drivers/
+Too Many Requests: /api/drivers/
+Too Many Requests: /api/drivers/
+Too Many Requests: /api/drivers/
+Unauthorized: /api/drivers/
+Bad Request: /api/rides/
+Unauthorized: /api/rides/
+Unauthorized: /api/drivers/
+Forbidden: /api/rides/91940123-cc1a-4662-9921-7956a181e96a/
+Bad Request: /accounts/login/
+Bad Request: /accounts/register/
+Bad Request: /accounts/register/
+Bad Request: /accounts/profile-crud/
+Unauthorized: /accounts/profile-crud/
+Unauthorized: /api/drivers/location/
+Unauthorized: /api/drivers/
+Unauthorized: /api/drivers/
+Unauthorized: /api/drivers/5d06ef6b-b4e0-497f-af52-4765ae4b7f0c/
+Unauthorized: /api/drivers/
+Unauthorized: /api/drivers/13049268-8397-45ba-b69f-0c71ecdf76c9/
+Unauthorized: /api/drivers/8dbbccfc-9fe0-4bd4-a8c9-0be7ee23a3a0/
+Not Found: /api/rides/00000000-0000-0000-0000-000000000000/fare/
+Unauthorized: /api/rides/61adecf1-ade4-43d6-9e5b-633627689274/fare/
+Unauthorized: /api/drivers/location/
+Bad Request: /api/rides/594fbb0b-f80b-4bd4-888c-da1bf61b1cc1/accept/
+Bad Request: /api/rides/88070da2-e277-4dad-a0d5-2abb479b92e0/accept/
+Forbidden: /api/drivers/3f109588-8b24-48c1-a2bb-b5043dbe3a2e/
+Too Many Requests: /api/drivers/
+Too Many Requests: /api/drivers/
+Too Many Requests: /api/drivers/
+Too Many Requests: /api/drivers/
+Too Many Requests: /api/drivers/
+Unauthorized: /api/drivers/
+Bad Request: /api/rides/
+Unauthorized: /api/rides/
+Unauthorized: /api/drivers/
+Forbidden: /api/rides/ee3a96b3-8b85-46e3-9406-86c8e76d7bed/
+Unauthorized: /api/vehicles/
+Bad Request: /api/vehicles/d8bec11d-6cfe-4c17-858e-1036178e3fc4/
+Bad Request: /api/vehicles/
+Unauthorized: /api/drivers/
+Unauthorized: /api/drivers/
+Unauthorized: /api/drivers/952def3e-6351-42c5-846e-c00ba9caacc6/
+Unauthorized: /api/drivers/
+Unauthorized: /api/drivers/5326f9f4-3b96-46d3-a380-14933d83aa56/
+Unauthorized: /api/drivers/e3331598-70d5-424f-b53b-1717e5a5afdb/
+Bad Request: /api/drivers/
+Too Many Requests: /api/drivers/
+Too Many Requests: /api/drivers/
+Too Many Requests: /api/drivers/
+Too Many Requests: /api/drivers/
+Too Many Requests: /api/drivers/
+Unauthorized: /api/drivers/
+Bad Request: /api/rides/
+Unauthorized: /api/rides/
+Forbidden: /api/rides/1a8901cf-9bd7-434b-bfcd-1e8371deb531/
+Unauthorized: /api/drivers/
+Unauthorized: /api/drivers/
+Unauthorized: /api/drivers/b8ed568c-90c6-462b-8a5e-5e4022cb0f61/
+Unauthorized: /api/drivers/
+Unauthorized: /api/drivers/9164fceb-5db3-4d69-aec6-ea4f5b04ece3/
+Unauthorized: /api/drivers/40b2cbe6-7c9b-4741-87d7-9aaee8a12fc5/
+Bad Request: /api/drivers/
+Bad Request: /api/drivers/
+Forbidden: /api/drivers/dbde50b2-6123-4de1-85c2-b2e6ae794ddb/
+Too Many Requests: /api/drivers/
+Too Many Requests: /api/drivers/
+Too Many Requests: /api/drivers/
+Too Many Requests: /api/drivers/
+Too Many Requests: /api/drivers/
+Unauthorized: /api/drivers/
+Bad Request: /api/rides/
+Unauthorized: /api/rides/
+Unauthorized: /api/drivers/
+Forbidden: /api/rides/3b1adf86-afd6-4dc3-9565-3b902447e9c5/
+Bad Request: /accounts/login/
+Bad Request: /accounts/register/
+Bad Request: /accounts/register/
+Bad Request: /accounts/profile-crud/
+Unauthorized: /accounts/profile-crud/
+Unauthorized: /api/drivers/location/
+Bad Request: /api/drivers/
+Not Found: /api/rides/00000000-0000-0000-0000-000000000000/fare/
+Unauthorized: /api/rides/ba2d7bee-91c6-437d-b0c4-7688c741884b/fare/
+Unauthorized: /api/drivers/location/
+Bad Request: /api/rides/f09f983d-ae1c-4647-8134-32d81dc7578c/accept/
+Bad Request: /api/rides/f4b1c7b7-3853-48a5-be6a-fc6147bb9c20/accept/
+Forbidden: /api/drivers/c02feb14-f374-4bbb-bdd8-da428191b959/
+Too Many Requests: /api/drivers/
+Too Many Requests: /api/drivers/
+Too Many Requests: /api/drivers/
+Too Many Requests: /api/drivers/
+Too Many Requests: /api/drivers/
+Unauthorized: /api/drivers/
+Bad Request: /api/rides/
+Unauthorized: /api/rides/
+Unauthorized: /api/drivers/
+Forbidden: /api/rides/28c80277-3c41-448f-9482-6cdbc238eb01/
+Unauthorized: /api/vehicles/
+Bad Request: /api/vehicles/bd9a9eab-08e5-4356-9d47-5399e42bd819/
+Bad Request: /api/vehicles/

@@ -7,6 +7,9 @@ from django.contrib.auth import get_user_model
 from rides.models import Ride
 from urllib.parse import parse_qs
 import json
+from channels.testing import WebsocketCommunicator
+from django.test import TransactionTestCase
+from rest_framework_simplejwt.tokens import RefreshToken
 
 
 class RideConsumer(AsyncWebsocketConsumer):

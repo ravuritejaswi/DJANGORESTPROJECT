@@ -907,3 +907,253 @@ Verified that notifications can be retrieved for the user.
 Status: ✅ Passed
 8.6 Mark as Read
 Verified the notification read/unread functionality.
+
+***Caching, API Performance & Advanced Backend Testing — Tasks 1–7 Documentation***
+#Understand Caching
+Objective:
+
+Understand how caching improves API performance by avoiding repeated database queries for frequently requested data.
+
+Work Done
+Studied the flow:
+Client
+   ↓
+API
+   ↓
+Cache
+   ↓
+Database
+Understood that PostgreSQL/database queries can be expensive when the same information is requested repeatedly.
+Learned that a cache stores frequently accessed data temporarily so subsequent requests can be served faster.
+Understood the concepts of:
+Cache Hit — requested data is available in the cache.
+Cache Miss — requested data is not available, so the application retrieves it from the database.
+Cache Expiration — cached data is automatically removed after a specified period.
+Outcome:
+Understood the purpose of caching and how it can reduce database load and improve API response time.
+
+
+
+#Configure Redis Cache
+Objective
+
+Configure Redis as the caching backend for suitable APIs.
+
+Work Done
+Configured Redis in Django settings.
+Added Django cache configuration using Redis.
+Redis was configured as:
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.redis.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/1",
+    },
+}
+Identified APIs/data suitable for caching, including:
+Nearby drivers
+Vehicle types
+Ride configuration
+Frequently accessed profile information
+Outcome:
+Redis caching infrastructure was configured and made available for API-level caching.
+
+
+
+
+#Cache Nearby Drivers
+Objective
+
+Implement caching for frequently requested driver-location information.
+
+Work Done
+Reviewed the nearby-driver API and driver location data.
+Designed a cache strategy for frequently requested location information.
+Used driver location as a suitable candidate because nearby-driver requests can occur frequently.
+Implemented/considered cache lookup before querying the database.
+Understood the expected flow:
+Nearby Driver Request
+        ↓
+Check Redis Cache
+        ↓
+   ┌────┴────┐
+   ↓         ↓
+Cache Hit  Cache Miss
+   ↓         ↓
+Return     Query DB
+Data          ↓
+           Store in Cache
+                ↓
+           Return Data
+Outcome:
+Established a caching approach for nearby-driver information to reduce repeated database queries.
+
+
+
+#Cache Invalidation
+Objective
+
+Prevent stale driver location and availability information from being returned from the cache.
+
+Work Done
+Reviewed the relationship between driver updates and cached data.
+Identified driver location and availability as data that can become stale.
+Implemented/designed cache invalidation when driver information changes.
+Followed the flow:
+Driver Location/Availability Update
+                ↓
+        Invalidate Old Cache
+                ↓
+        Store Updated Data
+                ↓
+        Serve Fresh Data
+Considered cache expiration as an additional protection against stale information.
+Outcome:
+Established a cache invalidation strategy so that updated driver information is not incorrectly served from an old cache entry.
+
+
+
+
+API Performance Benchmark
+Objective
+
+Compare API performance with and without caching.
+
+Work Done
+Reviewed API performance measurement requirements.
+Compared the expected behavior of:
+API without cache
+API with cache
+Focused on measuring:
+Metric	         Without Cache	      With Cache
+Response time	   Measured	           Measured
+Database queries	Higher	           Reduced
+Cache hits	          0	               Increased
+Cache misses	     N/A	           Recorded
+
+Used cache-hit and cache-miss behavior to understand the performance difference.
+Evaluated database query reduction as an important indicator of caching effectiveness.
+Outcome:
+Established a performance benchmarking approach for evaluating the benefit of Redis caching.
+Note: If you have actual benchmark numbers from your project, they should be added here instead of using estimated values.
+
+
+
+#Complete Backend Test Suite
+Objective
+Create comprehensive automated tests covering the backend functionality.
+Work Done
+Created and executed tests covering:
+Authentication
+Profiles
+Drivers
+Vehicles
+Rides
+Fare
+Location
+Notifications
+WebSockets
+Permissions
+
+Both types of tests were included:
+Positive Tests
+
+Tested valid scenarios such as:
+Authenticated API requests
+Successful Driver and Vehicle operations
+Valid ride creation
+Successful fare calculation
+Valid driver location updates
+Valid WebSocket connections
+Successful notifications
+Negative Tests
+
+Tested invalid or unauthorized scenarios such as:
+Unauthenticated requests
+Invalid data
+Invalid JWT tokens
+Unauthorized resource access
+Invalid WebSocket connections
+Invalid ride payloads
+Permission violations
+Verification
+
+The complete backend test suite was executed successfully:
+Found 54 test(s).
+Ran 54 tests in 114.338s
+OK
+
+Outcome:
+All 54 backend tests passed successfully, confirming that the implemented functionality and security checks were working as expected.
+
+
+#Security Testing
+Objective
+Perform security testing by attempting unauthorized or invalid operations and fixing discovered issues.
+Security Tests Performed
+
+1. Unauthorized API Access
+Verified that unauthenticated users cannot access protected APIs.
+Unauthenticated Request
+        ↓
+Authentication Check
+        ↓
+401 Unauthorized
+
+2. Invalid JWT
+Tested requests using an invalid JWT token.
+Expected behavior:
+
+Invalid JWT
+    ↓
+Authentication Failure
+    ↓
+401 Unauthorized
+
+3. User Accessing Another User's Ride
+Created rides belonging to different users and verified that one user cannot access another user's ride.
+Expected result:
+
+User 2 → User 1's Ride
+             ↓
+        Access Denied
+
+4. Driver Accessing Another Driver's Data
+Tested driver ownership restrictions.
+A driver attempting to access another driver's profile was rejected.
+
+5. Invalid WebSocket Connection
+Tested:
+Missing token
+Invalid token
+Unauthorized user
+The WebSocket consumer correctly rejects invalid connections.
+
+6. Invalid Request Payloads
+Tested invalid ride data such as:
+Empty pickup address
+Empty drop address
+Invalid coordinates
+Invalid ride type
+Negative fare
+The API correctly returned validation errors.
+
+7. Excessive API Requests
+Tested repeated API requests to verify throttling behavior.
+The test checked for:
+HTTP 429 — Too Many Requests
+Security Fixes
+During testing, security issues were identified and addressed, including:
+Authentication protection for protected APIs.
+Ride ownership protection.
+Driver ownership protection.
+WebSocket authentication.
+Invalid JWT rejection.
+Request validation.
+API throttling.
+Final Verification
+Found 54 test(s).
+Ran 54 tests in 114.338s
+OK
+
+Outcome:
+Security testing was completed successfully, and the complete test suite passed with 0 failures.
