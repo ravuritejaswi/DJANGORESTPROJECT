@@ -12,7 +12,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from .consumers import RideConsumer
 from config.asgi import application
 from asgiref.sync import sync_to_async
-from django.test import TestCase
+from django.db.models import Q, F, Count, Sum, Avg, Max, Min
 from accounts.models import Notification
 from accounts.tasks import (
     send_ride_notification,
@@ -1343,4 +1343,500 @@ class SecurityTests(TestCase):
         self.assertIn(
             status.HTTP_429_TOO_MANY_REQUESTS,
             responses
+        )
+
+class AdvancedQuerySetTests(TestCase):
+
+    def setUp(self):
+        self.user = User.objects.create_user(
+            username="queryuser",
+            email="queryuser@example.com",
+            password="Test@12345"
+        )
+
+        self.requested_status = RideStatus.objects.create(
+            name="REQUESTED"
+        )
+
+        self.completed_status = RideStatus.objects.create(
+            name="COMPLETED"
+        )
+
+        self.ride1 = Ride.objects.create(
+            user=self.user,
+            status=self.requested_status,
+            pickup_address="Hyderabad",
+            drop_address="Secunderabad",
+            pickup_latitude=Decimal("17.385044"),
+            pickup_longitude=Decimal("78.486671"),
+            drop_latitude=Decimal("17.439930"),
+            drop_longitude=Decimal("78.498274"),
+            ride_type="NOW",
+            fare=Decimal("200.00")
+        )
+
+        self.ride2 = Ride.objects.create(
+            user=self.user,
+            status=self.completed_status,
+            pickup_address="Madhapur",
+            drop_address="Gachibowli",
+            pickup_latitude=Decimal("17.448300"),
+            pickup_longitude=Decimal("78.391500"),
+            drop_latitude=Decimal("17.440100"),
+            drop_longitude=Decimal("78.348900"),
+            ride_type="NOW",
+            fare=Decimal("400.00")
+        )
+
+    # 1. filter()
+    def test_filter_queryset(self):
+        rides = Ride.objects.filter(
+            fare__gte=300
+        )
+
+        self.assertEqual(rides.count(), 1)
+        self.assertEqual(rides.first().fare, Decimal("400.00"))
+
+    # 2. exclude()
+    def test_exclude_queryset(self):
+        rides = Ride.objects.exclude(
+            status=self.completed_status
+        )
+
+        self.assertEqual(rides.count(), 1)
+        self.assertEqual(
+            rides.first().status,
+            self.requested_status
+        )
+
+    # 3. Q()
+    def test_q_queryset(self):
+        rides = Ride.objects.filter(
+            Q(fare__gte=300) |
+            Q(status=self.requested_status)
+        )
+
+        self.assertEqual(rides.count(), 2)
+
+    # 4. F()
+    def test_f_queryset(self):
+        rides = Ride.objects.annotate(
+            copied_fare=F("fare")
+        )
+
+        ride = rides.get(id=self.ride1.id)
+
+        self.assertEqual(
+            ride.copied_fare,
+            ride.fare
+        )
+
+    # 5. annotate()
+    def test_annotate_queryset(self):
+        rides = Ride.objects.annotate(
+            ride_count=Count("id")
+        )
+
+        ride = rides.get(id=self.ride1.id)
+
+        self.assertEqual(
+            ride.ride_count,
+            1
+        )
+
+    # 6. aggregate()
+    def test_aggregate_queryset(self):
+        result = Ride.objects.aggregate(
+            total_fare=Sum("fare")
+        )
+
+        self.assertEqual(
+            result["total_fare"],
+            Decimal("600.00")
+        )
+
+    # 7. values()
+    def test_values_queryset(self):
+        rides = Ride.objects.values(
+            "id",
+            "fare",
+            "ride_type"
+        )
+
+        self.assertEqual(rides.count(), 2)
+
+        first_ride = rides.first()
+
+        self.assertIn("id", first_ride)
+        self.assertIn("fare", first_ride)
+        self.assertIn("ride_type", first_ride)
+
+    # 8. values_list()
+    def test_values_list_queryset(self):
+        fares = Ride.objects.values_list(
+            "fare",
+            flat=True
+        )
+
+        self.assertEqual(
+            set(fares),
+            {
+                Decimal("200.00"),
+                Decimal("400.00")
+            }
+        )
+
+    # 9. exists()
+    def test_exists_queryset(self):
+        exists = Ride.objects.filter(
+            status=self.completed_status
+        ).exists()
+
+        self.assertTrue(exists)
+
+    # 10. distinct()
+    def test_distinct_queryset(self):
+        statuses = Ride.objects.values(
+            "status_id"
+        ).distinct()
+
+        self.assertEqual(
+            statuses.count(),
+            2
+        )
+
+class RideHistoryAPITests(TestCase):
+
+    def setUp(self):
+        self.client = APIClient()
+
+        # Main user
+        self.user = User.objects.create_user(
+            username="historyuser",
+            email="history@example.com",
+            password="Test@12345"
+        )
+
+        # Another user - used to verify privacy
+        self.other_user = User.objects.create_user(
+            username="otherhistoryuser",
+            email="otherhistory@example.com",
+            password="Test@12345"
+        )
+
+        # Driver user
+        self.driver_user = User.objects.create_user(
+            username="historydriver",
+            email="historydriver@example.com",
+            password="Test@12345"
+        )
+
+        self.driver = DriverProfile.objects.create(
+            user=self.driver_user,
+            license_number="HISTORY-LIC-001",
+            is_available=True
+        )
+
+        self.requested_status = RideStatus.objects.create(
+            name="REQUESTED"
+        )
+
+        self.completed_status = RideStatus.objects.create(
+            name="COMPLETED"
+        )
+
+        # Main user's requested ride
+        self.ride1 = Ride.objects.create(
+            user=self.user,
+            driver=self.driver,
+            status=self.requested_status,
+            pickup_address="Hyderabad",
+            drop_address="Secunderabad",
+            pickup_latitude=Decimal("17.385044"),
+            pickup_longitude=Decimal("78.486671"),
+            drop_latitude=Decimal("17.439930"),
+            drop_longitude=Decimal("78.498274"),
+            ride_type="NOW",
+            fare=Decimal("200.00")
+        )
+
+        # Main user's completed ride
+        self.ride2 = Ride.objects.create(
+            user=self.user,
+            driver=self.driver,
+            status=self.completed_status,
+            pickup_address="Madhapur",
+            drop_address="Gachibowli",
+            pickup_latitude=Decimal("17.448300"),
+            pickup_longitude=Decimal("78.391500"),
+            drop_latitude=Decimal("17.440100"),
+            drop_longitude=Decimal("78.348900"),
+            ride_type="NOW",
+            fare=Decimal("400.00")
+        )
+
+        # Another user's ride
+        self.other_ride = Ride.objects.create(
+            user=self.other_user,
+            status=self.completed_status,
+            pickup_address="Kukatpally",
+            drop_address="Ameerpet",
+            pickup_latitude=Decimal("17.494800"),
+            pickup_longitude=Decimal("78.399600"),
+            drop_latitude=Decimal("17.437500"),
+            drop_longitude=Decimal("78.448300"),
+            ride_type="NOW",
+            fare=Decimal("600.00")
+        )
+
+        self.url = "/api/rides/history/"
+
+        self.client.force_authenticate(
+            user=self.user
+        )
+
+    def test_ride_history_success(self):
+        response = self.client.get(self.url)
+
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_200_OK
+        )
+
+        self.assertEqual(
+            response.data["count"],
+            2
+        )
+
+    def test_history_filter_by_status(self):
+        response = self.client.get(
+            self.url,
+            {"status": "COMPLETED"}
+        )
+
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_200_OK
+        )
+
+        self.assertEqual(
+            response.data["count"],
+            1
+        )
+
+    def test_history_filter_by_driver(self):
+        response = self.client.get(
+            self.url,
+            {"driver": str(self.driver.id)}
+        )
+
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_200_OK
+        )
+
+        self.assertEqual(
+            response.data["count"],
+            2
+        )
+
+    def test_history_filter_by_min_fare(self):
+        response = self.client.get(
+            self.url,
+            {"min_fare": "300"}
+        )
+
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_200_OK
+        )
+
+        self.assertEqual(
+            response.data["count"],
+            1
+        )
+
+    def test_history_filter_by_max_fare(self):
+        response = self.client.get(
+            self.url,
+            {"max_fare": "300"}
+        )
+
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_200_OK
+        )
+
+        self.assertEqual(
+            response.data["count"],
+            1
+        )
+
+    def test_history_filter_by_date(self):
+        date_value = self.ride1.created_at.date().isoformat()
+
+        response = self.client.get(
+            self.url,
+            {"date": date_value}
+        )
+
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_200_OK
+        )
+
+        self.assertEqual(
+            response.data["count"],
+            2
+        )
+
+    def test_other_users_rides_not_returned(self):
+        response = self.client.get(self.url)
+
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_200_OK
+        )
+
+        returned_ids = [
+            str(ride["id"])
+            for ride in response.data["rides"]
+        ]
+
+        self.assertNotIn(
+            str(self.other_ride.id),
+            returned_ids
+        )
+
+    def test_history_without_authentication(self):
+        self.client.force_authenticate(
+            user=None
+        )
+
+        response = self.client.get(self.url)
+
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_401_UNAUTHORIZED
+        )
+
+class RideAggregationAPITests(TestCase):
+
+    def setUp(self):
+        self.client = APIClient()
+
+        self.user = User.objects.create_user(
+            username="aggregationuser",
+            email="aggregation@example.com",
+            password="Test@12345"
+        )
+
+        self.completed_status = RideStatus.objects.create(
+            name="COMPLETED"
+        )
+
+        self.cancelled_status = RideStatus.objects.create(
+            name="CANCELLED"
+        )
+
+        self.ride1 = Ride.objects.create(
+            user=self.user,
+            status=self.completed_status,
+            pickup_address="Hyderabad",
+            drop_address="Secunderabad",
+            pickup_latitude=Decimal("17.385044"),
+            pickup_longitude=Decimal("78.486671"),
+            drop_latitude=Decimal("17.439930"),
+            drop_longitude=Decimal("78.498274"),
+            ride_type="NOW",
+            fare=Decimal("200.00")
+        )
+
+        self.ride2 = Ride.objects.create(
+            user=self.user,
+            status=self.completed_status,
+            pickup_address="Madhapur",
+            drop_address="Gachibowli",
+            pickup_latitude=Decimal("17.448300"),
+            pickup_longitude=Decimal("78.391500"),
+            drop_latitude=Decimal("17.440100"),
+            drop_longitude=Decimal("78.348900"),
+            ride_type="NOW",
+            fare=Decimal("400.00")
+        )
+
+        self.ride3 = Ride.objects.create(
+            user=self.user,
+            status=self.cancelled_status,
+            pickup_address="Kukatpally",
+            drop_address="Ameerpet",
+            pickup_latitude=Decimal("17.494800"),
+            pickup_longitude=Decimal("78.399600"),
+            drop_latitude=Decimal("17.437500"),
+            drop_longitude=Decimal("78.448300"),
+            ride_type="NOW",
+            fare=Decimal("300.00")
+        )
+
+        self.client.force_authenticate(
+            user=self.user
+        )
+
+    def test_ride_aggregations(self):
+        response = self.client.get(
+            "/api/rides/aggregations/"
+        )
+
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_200_OK
+        )
+
+        self.assertEqual(
+            response.data["total_rides"],
+            3
+        )
+
+        self.assertEqual(
+            response.data["completed_rides"],
+            2
+        )
+
+        self.assertEqual(
+            response.data["cancelled_rides"],
+            1
+        )
+
+        self.assertEqual(
+            response.data["total_earnings"],
+            Decimal("900.00")
+        )
+
+        self.assertEqual(
+            response.data["average_fare"],
+            Decimal("300.00")
+        )
+
+        self.assertEqual(
+            response.data["maximum_fare"],
+            Decimal("400.00")
+        )
+
+        self.assertEqual(
+            response.data["minimum_fare"],
+            Decimal("200.00")
+        )
+
+    def test_ride_aggregations_without_authentication(self):
+        self.client.force_authenticate(
+            user=None
+        )
+
+        response = self.client.get(
+            "/api/rides/aggregations/"
+        )
+
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_401_UNAUTHORIZED
         )

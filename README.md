@@ -1157,3 +1157,159 @@ OK
 
 Outcome:
 Security testing was completed successfully, and the complete test suite passed with 0 failures.
+
+
+***Advanced Django ORM & Database Optimization***
+
+#Study Advanced QuerySets
+Studied and practiced advanced Django ORM QuerySet operations:
+filter() — retrieve records matching specific conditions.
+exclude() — exclude records matching a condition.
+Q() — build complex queries using AND, OR, and NOT conditions.
+F() — compare or update database fields directly.
+annotate() — add calculated values to each QuerySet object.
+aggregate() — perform calculations such as Sum, Avg, Max, Min, and Count.
+values() — retrieve selected fields as dictionaries.
+values_list() — retrieve selected fields as tuples or flat lists.
+exists() — efficiently check whether matching records exist.
+distinct() — remove duplicate query results.
+Created/practiced examples for the required QuerySet operations and applied them to the ride-management backend.
+
+#Create Ride History APIs
+Implemented and verified ride-history related APIs:
+GET /api/rides/history/
+GET /api/rides/active/
+GET /api/rides/completed/
+GET /api/rides/cancelled/
+The APIs retrieve rides based on the authenticated user and support ride-related filtering requirements.
+Additional ride APIs implemented/verified during the work included:
+GET /api/rides/driver-history/
+GET /api/rides/daily-count/
+GET /api/rides/aggregations/
+Used Django QuerySets to filter rides based on user, status, driver, date, and other ride information.
+
+#Implement Aggregation
+Implemented the Ride Aggregations API:
+GET /api/rides/aggregations/
+The API returns:
+Total rides
+Completed rides
+Cancelled rides
+Total earnings
+Average fare
+Maximum fare
+Minimum fare
+Used Django aggregation functions:
+Count()
+Sum()
+Avg()
+Max()
+Min()
+Conditional Q() expressions were used for completed and cancelled ride counts.
+The aggregation implementation was later refactored to calculate the required values efficiently through a single database aggregation query.
+
+#Find and Optimize N+1 Queries
+Created/tested a ride query scenario to identify unnecessary database queries when accessing related objects.
+The N+1 problem was addressed using:
+select_related()
+Related objects such as:
+User
+Driver
+Vehicle
+Ride Status
+are fetched efficiently with the main Ride query.
+The o
+This reduced unnecessary database access when processing related ride information.
+
+#Database Indexing
+Identified frequently searched and filtered Ride fields.
+Implemented useful composite indexes:
+models.Index(
+    fields=["user", "-created_at"],
+    name="ride_user_created_idx",
+)
+
+models.Index(
+    fields=["driver", "-created_at"],
+    name="ride_driver_created_idx",
+)
+
+models.Index(
+    fields=["status", "-created_at"],
+    name="ride_status_created_idx",
+)
+
+The Ride UUID primary key is already indexed because it is the primary key, so an unnecessary additional index was not created for it.
+Created and applied the database migration successfully.
+Performance comparison
+Using PostgreSQL EXPLAIN ANALYZE:
+Measurement	Before Indexing	After Indexing
+Query plan	             Sequential Scan	      Index Scan
+Execution time	            1.477 ms	            0.160 ms
+Index used	                 ❌ No	               ✅ Yes
+
+The tested query improved from 1.477 ms to 0.160 ms, demonstrating the benefit of indexing for the tested dataset/query.
+
+#Large Dataset
+Prepared the backend for large-dataset testing by generating several thousand Ride records.
+Tested the backend against a larger number of records for:
+Pagination
+Filtering
+Searching
+Sorting
+Aggregation
+The existing Django REST Framework pagination configuration was used to handle large result sets without returning all records at once.
+The aggregation API was also tested against the larger dataset.
+
+#Refactoring
+Reviewed the queries implemented during the day's work and removed unnecessary database calls.
+Refactoring performed
+Removed unnecessary separate count() queries when the result data was already being retrieved.
+Avoided duplicate database queries.
+Refactored ride aggregation calculations into a single aggregate() query.
+Retained select_related() optimizations to prevent N+1 queries.
+Kept bulk_create() for efficient large-dataset generation.
+Reviewed loops to ensure database queries were not unnecessarily executed inside them.
+Aggregation optimization
+Instead of performing separate queries for:
+Total rides
+Completed rides
+Cancelled rides
+Fare calculations
+the values were combined into one aggregation operation using:
+Count()
+Sum()
+Avg()
+Max()
+Min()
+Q()
+This reduced unnecessary database communication.
+Verification
+After refactoring:
+Ran 63 tests in 151.277s
+OK
+All existing tests continued to pass.
+
+#Testing & Git
+Performed final testing of the backend APIs through Postman, including:
+Authentication
+Ride APIs
+Ride history
+Active rides
+Completed rides
+Cancelled rides
+Driver APIs
+Vehicle APIs
+Location APIs
+Aggregation
+Pagination
+Filtering
+Searching
+Sorting
+Negative/unauthorized requests
+WebSocket authentication
+Security-related scenarios such as missing/invalid JWTs and invalid requests were also verified.
+The complete Django test suite was successfully executed:
+Ran 63 tests
+OK
+Reviewed the modified backend files and prepared the work for meaningful Git commits and repository push.

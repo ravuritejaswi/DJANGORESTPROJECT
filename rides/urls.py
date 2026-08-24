@@ -1,8 +1,13 @@
 from rest_framework.routers import DefaultRouter
 from django.urls import path
-from .views import AdvancedRideFilterView, CancelledRidesView, CompletedRidesView, DailyRideCountView, DriverLocationView, DriverRideHistoryView, DriverViewSet, LargeDatasetRideView, NearbyDriverView, RideAggregationsView, RideViewSet, SlowRideQueryView, TotalCompletedRidesView, TotalFareEarnedView, UserActiveRidesView, VehicleViewSet
+from .views import AdvancedRideFilterView, CancelledRidesView, CompletedRidesView, DailyRideCountView, DriverLocationView, DriverRideHistoryView, DriverViewSet, LargeDatasetRideView, NearbyDriverView, RideAggregationsView, RideViewSet, SlowRideQueryView, TotalCompletedRidesView, TotalFareEarnedView, UserActiveRidesView, VehicleViewSet, RideHistoryView
 
 urlpatterns = [
+    path(
+    "rides/history/",
+    RideHistoryView.as_view(),
+    name="ride-history",
+    ),
     path(
         "rides/active/",
         UserActiveRidesView.as_view(),

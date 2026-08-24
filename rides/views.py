@@ -14,7 +14,7 @@ from rides.services.ride_service import (accept_ride as accept_ride_service, can
 from .models import DriverProfile, Ride, RideStatus, DriverLocation, Vehicle
 from rest_framework.exceptions import ValidationError
 from django.db.models import Q
-from django.db.models import Count, Avg, Max, Sum
+from django.db.models import Count, Avg, Min, Max, Sum
 from django.db import connection
 import math
 from django.db.models.functions import TruncDate
@@ -292,17 +292,19 @@ class UserActiveRidesView(APIView):
             Q(status__name="STARTED")
         )
 
-        return Response({
-            "count": rides.count(),
-            "rides": list(
-                rides.values(
-                    "id",
-                    "pickup_address",
-                    "drop_address",
-                    "fare",
-                    "created_at"
-                )
+        ride_data = list(
+            rides.values(
+                "id",
+                "pickup_address",
+                "drop_address",
+                "fare",
+                "created_at"
             )
+        )
+
+        return Response({
+            "count": len(ride_data),
+            "rides": ride_data
         })
 
 class CompletedRidesView(APIView):
@@ -313,17 +315,19 @@ class CompletedRidesView(APIView):
             status__name="COMPLETED"
         )
 
-        return Response({
-            "count": rides.count(),
-            "rides": list(
-                rides.values(
-                    "id",
-                    "pickup_address",
-                    "drop_address",
-                    "fare",
-                    "created_at"
-                )
+        ride_data = list(
+            rides.values(
+                "id",
+                "pickup_address",
+                "drop_address",
+                "fare",
+                "created_at"
             )
+        )
+
+        return Response({
+            "count": len(ride_data),
+            "rides": ride_data
         })
 
 class CancelledRidesView(APIView):
@@ -334,17 +338,87 @@ class CancelledRidesView(APIView):
             status__name="CANCELLED"
         )
 
-        return Response({
-            "count": rides.count(),
-            "rides": list(
-                rides.values(
-                    "id",
-                    "pickup_address",
-                    "drop_address",
-                    "fare",
-                    "created_at"
-                )
+        ride_data = list(
+            rides.values(
+                "id",
+                "pickup_address",
+                "drop_address",
+                "fare",
+                "created_at"
             )
+        )
+
+        return Response({
+            "count": len(ride_data),
+            "rides": ride_data
+        })
+
+class RideHistoryView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        rides = (
+            Ride.objects
+            .filter(user=request.user)
+            .select_related(
+                "user",
+                "driver",
+                "vehicle",
+                "status",
+            )
+            .order_by("-created_at")
+        )
+
+        # Filter by date
+        date = request.query_params.get("date")
+
+        if date:
+            rides = rides.filter(
+                created_at__date=date
+            )
+
+        # Filter by status
+        status_name = request.query_params.get("status")
+
+        if status_name:
+            rides = rides.filter(
+                status__name__iexact=status_name
+            )
+
+        # Filter by driver
+        driver_id = request.query_params.get("driver")
+
+        if driver_id:
+            rides = rides.filter(
+                driver_id=driver_id
+            )
+
+        # Filter by minimum fare
+        min_fare = request.query_params.get("min_fare")
+
+        if min_fare:
+            rides = rides.filter(
+                fare__gte=min_fare
+            )
+
+        # Filter by maximum fare
+        max_fare = request.query_params.get("max_fare")
+
+        if max_fare:
+            rides = rides.filter(
+                fare__lte=max_fare
+            )
+
+        serializer = RideSerializer(
+            rides,
+            many=True
+        )
+
+        ride_data = serializer.data
+
+        return Response({
+            "count": len(ride_data),
+            "rides": ride_data
         })
 
 class DriverRideHistoryView(APIView):
@@ -354,18 +428,20 @@ class DriverRideHistoryView(APIView):
             driver__user=request.user
         ).order_by("-created_at")
 
-        return Response({
-            "count": rides.count(),
-            "rides": list(
-                rides.values(
-                    "id",
-                    "pickup_address",
-                    "drop_address",
-                    "fare",
-                    "status__name",
-                    "created_at"
-                )
+        ride_data = list(
+            rides.values(
+                "id",
+                "pickup_address",
+                "drop_address",
+                "fare",
+                "status__name",
+                "created_at"
             )
+        )
+
+        return Response({
+            "count": len(ride_data),
+            "rides": ride_data
         })
 
 class DailyRideCountView(APIView):
@@ -409,23 +485,42 @@ class TotalFareEarnedView(APIView):
         return Response(result)
 
 class RideAggregationsView(APIView):
+    permission_classes = [IsAuthenticated]
+
     def get(self, request):
-        result = Ride.objects.aggregate(
+        rides = Ride.objects.filter(
+            user=request.user
+        )
+
+        data = rides.aggregate(
             total_rides=Count("id"),
             completed_rides=Count(
                 "id",
-                filter=Q(status__name="COMPLETED")
+                filter=Q(
+                    status__name__iexact="COMPLETED"
+                )
             ),
             cancelled_rides=Count(
                 "id",
-                filter=Q(status__name="CANCELLED")
+                filter=Q(
+                    status__name__iexact="CANCELLED"
+                )
             ),
+            total_earnings=Sum("fare"),
             average_fare=Avg("fare"),
             maximum_fare=Max("fare"),
+            minimum_fare=Min("fare"),
         )
 
-        return Response(result)
-
+        return Response({
+            "total_rides": data["total_rides"],
+            "completed_rides": data["completed_rides"],
+            "cancelled_rides": data["cancelled_rides"],
+            "total_earnings": data["total_earnings"] or 0,
+            "average_fare": data["average_fare"] or 0,
+            "maximum_fare": data["maximum_fare"] or 0,
+            "minimum_fare": data["minimum_fare"] or 0,
+        })
 
 class SlowRideQueryView(APIView):
 

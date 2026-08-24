@@ -262,10 +262,18 @@ class Ride(models.Model):
         return f"Ride {self.id}"
     class Meta:
         indexes = [
-            models.Index(fields=["user"]),
-            models.Index(fields=["driver"]),
-            models.Index(fields=["status"]),
-            models.Index(fields=["created_at"]),
+            models.Index(
+                fields=["user", "-created_at"],
+                name="ride_user_created_idx",
+            ),
+            models.Index(
+                fields=["driver", "-created_at"],
+                name="ride_driver_created_idx",
+            ),
+            models.Index(
+                fields=["status", "-created_at"],
+                name="ride_status_created_idx",
+            ),
         ]
 
         constraints = [

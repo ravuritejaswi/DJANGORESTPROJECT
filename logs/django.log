@@ -2916,3 +2916,166 @@ Forbidden: /api/rides/28c80277-3c41-448f-9482-6cdbc238eb01/
 Unauthorized: /api/vehicles/
 Bad Request: /api/vehicles/bd9a9eab-08e5-4356-9d47-5399e42bd819/
 Bad Request: /api/vehicles/
+Bad Request: /accounts/login/
+Bad Request: /accounts/register/
+Bad Request: /accounts/register/
+Bad Request: /accounts/profile-crud/
+Unauthorized: /accounts/profile-crud/
+Unauthorized: /api/drivers/location/
+Bad Request: /api/drivers/
+Not Found: /api/rides/00000000-0000-0000-0000-000000000000/fare/
+Unauthorized: /api/rides/5d355455-3519-4dd8-ae24-8159a20d3bed/fare/
+Unauthorized: /api/drivers/location/
+Bad Request: /api/rides/7e592517-6904-4018-b26b-3d62439b3e86/accept/
+Bad Request: /api/rides/c48e7ab3-edbc-4330-9120-8408838e7d4b/accept/
+Forbidden: /api/drivers/68fd18d4-14eb-4b54-831a-30b74af0a0b2/
+Too Many Requests: /api/drivers/
+Too Many Requests: /api/drivers/
+Too Many Requests: /api/drivers/
+Too Many Requests: /api/drivers/
+Too Many Requests: /api/drivers/
+Unauthorized: /api/drivers/
+Bad Request: /api/rides/
+Unauthorized: /api/rides/
+Unauthorized: /api/drivers/
+Forbidden: /api/rides/90781873-ed23-40c7-9cba-75e5ccd056d0/
+Unauthorized: /api/vehicles/
+Bad Request: /api/vehicles/5af6bf42-7e21-4200-8fd9-ee3e650a9202/
+Bad Request: /api/vehicles/
+Unauthorized: /api/drivers/location/
+Bad Request: /api/drivers/
+Not Found: /api/rides/00000000-0000-0000-0000-000000000000/fare/
+Unauthorized: /api/rides/6b4ae62d-f0fd-484b-84e5-c0b0f63585f9/fare/
+Unauthorized: /api/drivers/location/
+Bad Request: /api/rides/7267a753-fd09-4093-90f5-75d523a50244/accept/
+Bad Request: /api/rides/bd0db71e-cc61-4648-96c9-35b40bce4fda/accept/
+Forbidden: /api/drivers/10d8b9aa-d469-4411-86e5-e1eef59c21f9/
+Too Many Requests: /api/drivers/
+Too Many Requests: /api/drivers/
+Too Many Requests: /api/drivers/
+Too Many Requests: /api/drivers/
+Too Many Requests: /api/drivers/
+Unauthorized: /api/drivers/
+Bad Request: /api/rides/
+Unauthorized: /api/rides/
+Unauthorized: /api/drivers/
+Forbidden: /api/rides/83c180ac-f244-4a41-a25d-650a1c329db4/
+Unauthorized: /api/vehicles/
+Bad Request: /api/vehicles/df444bf9-45b4-4445-abe8-b65ba08ba8a8/
+Bad Request: /api/vehicles/
+Unauthorized: /api/rides/history/
+Unauthorized: /api/drivers/location/
+Bad Request: /api/drivers/
+Not Found: /api/rides/00000000-0000-0000-0000-000000000000/fare/
+Unauthorized: /api/rides/9ff7d6c7-b2d1-455c-a037-5e8c0be7ac48/fare/
+Unauthorized: /api/drivers/location/
+Bad Request: /api/rides/c3814881-5d35-42b3-921d-722458d51258/accept/
+Bad Request: /api/rides/97a66688-52be-4604-8f35-3739266237cf/accept/
+Unauthorized: /api/rides/history/
+Forbidden: /api/drivers/a4ea57e3-cebe-4c3f-a4aa-49df52c10c02/
+Too Many Requests: /api/drivers/
+Too Many Requests: /api/drivers/
+Too Many Requests: /api/drivers/
+Too Many Requests: /api/drivers/
+Too Many Requests: /api/drivers/
+Unauthorized: /api/drivers/
+Bad Request: /api/rides/
+Unauthorized: /api/rides/
+Unauthorized: /api/drivers/
+Forbidden: /api/rides/af780f89-7c94-4011-b0b6-c54c3444bcbe/
+Unauthorized: /api/vehicles/
+Bad Request: /api/vehicles/4f2cc816-7a41-4edb-9fd0-66300f35103c/
+Bad Request: /api/vehicles/
+Unauthorized: /api/rides/aggregations/
+Unauthorized: /api/drivers/location/
+Bad Request: /api/drivers/
+Not Found: /api/rides/00000000-0000-0000-0000-000000000000/fare/
+Unauthorized: /api/rides/e626151a-5228-40cd-aed0-20ab97a74b0c/fare/
+Unauthorized: /api/drivers/location/
+Unauthorized: /api/rides/aggregations/
+Bad Request: /api/rides/abafaf3b-e2ba-41ee-9b91-4a5ebbbf9e9d/accept/
+Bad Request: /api/rides/f3e051c7-aa03-4326-a702-e1641f5cf432/accept/
+Unauthorized: /api/rides/history/
+Forbidden: /api/drivers/3f6a7538-dd43-408c-b55c-c426c18e71b6/
+Too Many Requests: /api/drivers/
+Too Many Requests: /api/drivers/
+Too Many Requests: /api/drivers/
+Too Many Requests: /api/drivers/
+Too Many Requests: /api/drivers/
+Unauthorized: /api/drivers/
+Bad Request: /api/rides/
+Unauthorized: /api/rides/
+Unauthorized: /api/drivers/
+Forbidden: /api/rides/c8155ccc-b523-49f3-b1b5-3c897015ee5f/
+Unauthorized: /api/vehicles/
+Bad Request: /api/vehicles/918127c6-511d-445c-b44d-4f18f5b56aa6/
+Bad Request: /api/vehicles/
+Unauthorized: /api/drivers/location/
+Bad Request: /api/drivers/
+Not Found: /api/rides/00000000-0000-0000-0000-000000000000/fare/
+Unauthorized: /api/rides/39ae2ae9-f1e2-45ac-b0b0-8171e2e87940/fare/
+Unauthorized: /api/drivers/location/
+Unauthorized: /api/rides/aggregations/
+Bad Request: /api/rides/7aee1f18-c480-4688-928f-eff98fb1bcb0/accept/
+Bad Request: /api/rides/5df328c8-1dfe-4095-967e-3a4d9bd2f4e6/accept/
+Unauthorized: /api/rides/history/
+Forbidden: /api/drivers/f4c9abd4-637c-42fa-8882-53a8fec68323/
+Too Many Requests: /api/drivers/
+Too Many Requests: /api/drivers/
+Too Many Requests: /api/drivers/
+Too Many Requests: /api/drivers/
+Too Many Requests: /api/drivers/
+Unauthorized: /api/drivers/
+Bad Request: /api/rides/
+Unauthorized: /api/rides/
+Unauthorized: /api/drivers/
+Forbidden: /api/rides/9aabd920-32dd-4d1f-a74b-0e5062578782/
+Unauthorized: /api/vehicles/
+Bad Request: /api/vehicles/a0e83835-a5e8-4c0a-a861-5fec6f8cb5a7/
+Bad Request: /api/vehicles/
+Unauthorized: /api/drivers/location/
+Bad Request: /api/drivers/
+Not Found: /api/rides/00000000-0000-0000-0000-000000000000/fare/
+Unauthorized: /api/rides/68549fa9-8fb8-45e3-9056-21c80b93c1d5/fare/
+Unauthorized: /api/drivers/location/
+Unauthorized: /api/rides/aggregations/
+Bad Request: /api/rides/2ff8f44c-4682-494b-beaf-e8bdff498575/accept/
+Bad Request: /api/rides/24621845-7f6d-4709-bd56-c67c82c0f81f/accept/
+Unauthorized: /api/rides/history/
+Forbidden: /api/drivers/ba3702ef-6655-42ec-ab18-dae86f5f0d62/
+Too Many Requests: /api/drivers/
+Too Many Requests: /api/drivers/
+Too Many Requests: /api/drivers/
+Too Many Requests: /api/drivers/
+Too Many Requests: /api/drivers/
+Unauthorized: /api/drivers/
+Bad Request: /api/rides/
+Unauthorized: /api/rides/
+Unauthorized: /api/drivers/
+Forbidden: /api/rides/1e50da74-0b62-49c9-97c1-2ff5bf270cda/
+Unauthorized: /api/vehicles/
+Bad Request: /api/vehicles/7a2f355a-8f4f-4b6c-afd4-70e33a1cc5f0/
+Bad Request: /api/vehicles/
+Unauthorized: /api/drivers/location/
+Bad Request: /api/drivers/
+Not Found: /api/rides/00000000-0000-0000-0000-000000000000/fare/
+Unauthorized: /api/rides/56d11f1b-2d01-494b-9f1b-657b55696abc/fare/
+Unauthorized: /api/drivers/location/
+Unauthorized: /api/rides/aggregations/
+Bad Request: /api/rides/9b669799-22d2-4942-b4f9-43bb20830cbc/accept/
+Bad Request: /api/rides/6ca360d5-ae27-40f3-b288-f86ef8c6c754/accept/
+Unauthorized: /api/rides/history/
+Forbidden: /api/drivers/1e48fdbe-b970-4372-a053-8bf21e9c2395/
+Too Many Requests: /api/drivers/
+Too Many Requests: /api/drivers/
+Too Many Requests: /api/drivers/
+Too Many Requests: /api/drivers/
+Too Many Requests: /api/drivers/
+Unauthorized: /api/drivers/
+Bad Request: /api/rides/
+Unauthorized: /api/rides/
+Unauthorized: /api/drivers/
+Forbidden: /api/rides/ddf06740-cd5e-4195-84ee-bea2b9540c58/
+Unauthorized: /api/vehicles/
+Bad Request: /api/vehicles/1a63c77a-2704-432a-9b6b-6458e659466d/
+Bad Request: /api/vehicles/
