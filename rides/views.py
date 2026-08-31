@@ -1,37 +1,36 @@
-from django.db.migrations import serializer
-from django.http import request
-from rest_framework import viewsets, status
-from rest_framework.decorators import action
-from rest_framework.response import Response
-from .permissions import IsAdminOrDriver, IsRideOwnerOrDriver, IsOwnDriverProfile
 from asgiref.sync import async_to_sync
 from channels.layers import get_channel_layer
-
-from api.views import drivers
-from .services.fare_service import calculate_fare
-from rest_framework.permissions import IsAuthenticated
-from rides.services.ride_service import (accept_ride as accept_ride_service, cancel_ride as cancel_ride_service,)
-from .models import DriverProfile, Ride, RideStatus, DriverLocation, Vehicle
-from rest_framework.exceptions import ValidationError
-from django.db.models import Q
-from django.db.models import Count, Avg, Min, Max, Sum
 from django.db import connection
-import math
+from django.db.models import Avg, Count, Max, Min, Q, Sum
 from django.db.models.functions import TruncDate
-from rest_framework.views import APIView
-from core.responses import error_response
+from rest_framework import status, viewsets
+from rest_framework.decorators import action
+from rest_framework.exceptions import ValidationError
 from rest_framework.pagination import PageNumberPagination
-from accounts.tasks import (
-    send_driver_assignment_notification,
-    send_ride_completion_notification,
-)
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+from core.responses import error_response, success_response
+from rides.services.driver_service import find_nearby_drivers, update_driver_location
+from rides.services.notification_service import notify_driver_assignment
+from rides.services.ride_service import accept_ride as accept_ride_service
+from rides.services.ride_service import cancel_ride as cancel_ride_service
+from rides.services.ride_service import complete_ride as complete_ride_service
+from rides.services.ride_service import create_ride as create_ride_service
+from rides.services.ride_service import start_ride as start_ride_service
+
+from .models import DriverLocation, DriverProfile, Ride, RideStatus, Vehicle
+from .permissions import IsAdminOrDriver, IsOwnDriverProfile, IsRideOwnerOrDriver
 from .serializers import (
+    DriverLocationSerializer,
     DriverProfileSerializer,
     RideSerializer,
     RideStatusUpdateSerializer,
-    DriverLocationSerializer,
     VehicleSerializer,
 )
+from .services.fare_service import get_ride_fare
+
 
 def broadcast_ride_status(ride):
     channel_layer = get_channel_layer()
@@ -42,15 +41,12 @@ def broadcast_ride_status(ride):
             "type": "ride_status",
             "ride_id": str(ride.id),
             "status": ride.status.name,
-        }
+        },
     )
 
+
 class DriverViewSet(viewsets.ModelViewSet):
-    queryset = (
-        DriverProfile.objects
-        .select_related("user")
-        .order_by("-created_at")
-    )
+    queryset = DriverProfile.objects.select_related("user").order_by("-created_at")
     serializer_class = DriverProfileSerializer
     permission_classes = [
         IsAuthenticated,
@@ -61,41 +57,35 @@ class DriverViewSet(viewsets.ModelViewSet):
         driver = self.get_object()
         driver.delete()
 
-        return Response(
-            status=status.HTTP_204_NO_CONTENT
-        )
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
 
 class VehicleViewSet(viewsets.ModelViewSet):
-    queryset = (
-        Vehicle.objects
-        .select_related("driver", "vehicle_type")
-        .order_by("-created_at")
+    queryset = Vehicle.objects.select_related("driver", "vehicle_type").order_by(
+        "-created_at"
     )
 
     serializer_class = VehicleSerializer
     permission_classes = [IsAuthenticated]
 
+
 class RideViewSet(viewsets.ModelViewSet):
-    queryset = (
-    Ride.objects
-    .select_related("user", "driver", "vehicle", "status")
-    .order_by("-created_at")
-    )
+    queryset = Ride.objects.select_related(
+        "user", "driver", "vehicle", "status"
+    ).order_by("-created_at")
     serializer_class = RideSerializer
     permission_classes = [
         IsAuthenticated,
         IsRideOwnerOrDriver,
     ]
-    
-    def perform_create(self, serializer):
-        requested_status = RideStatus.objects.get(name="REQUESTED")
 
-        serializer.save(
+    def perform_create(self, serializer):
+        ride = create_ride_service(
             user=self.request.user,
-            status=requested_status,
-            driver=serializer.validated_data.get("driver"),
-            vehicle=serializer.validated_data.get("vehicle"),
+            validated_data=serializer.validated_data,
         )
+
+        serializer.instance = ride
 
     @action(detail=True, methods=["patch"], url_path="status")
     def update_status(self, request, pk=None):
@@ -104,11 +94,7 @@ class RideViewSet(viewsets.ModelViewSet):
         print("RIDE ID:", pk)
         ride = self.get_object()
 
-        serializer = RideStatusUpdateSerializer(
-            ride,
-            data=request.data,
-            partial=True
-        )
+        serializer = RideStatusUpdateSerializer(ride, data=request.data, partial=True)
         print("BEFORE SERIALIZER VALIDATION")
         try:
             serializer.is_valid(raise_exception=True)
@@ -122,9 +108,10 @@ class RideViewSet(viewsets.ModelViewSet):
 
         broadcast_ride_status(ride)
 
-        return Response(
-            RideSerializer(ride).data,
-            status=status.HTTP_200_OK
+        return success_response(
+            message="Ride status updated successfully",
+            data=RideSerializer(ride).data,
+            status_code=status.HTTP_200_OK,
         )
 
     @action(detail=True, methods=["patch"], url_path="location")
@@ -134,25 +121,20 @@ class RideViewSet(viewsets.ModelViewSet):
         if ride.driver is None:
             return Response(
                 {"detail": "No driver assigned to this ride."},
-                status=status.HTTP_400_BAD_REQUEST
+                status=status.HTTP_400_BAD_REQUEST,
             )
 
-        latitude = request.data.get("latitude")
-        longitude = request.data.get("longitude")
+        try:
+            location, created = update_driver_location(
+                driver=ride.driver,
+                latitude=request.data.get("latitude"),
+                longitude=request.data.get("longitude"),
+            )
 
-        if latitude is None or longitude is None:
+        except ValidationError as exc:
             return Response(
-                {"detail": "latitude and longitude are required."},
-                status=status.HTTP_400_BAD_REQUEST
+                {"detail": str(exc.detail)}, status=status.HTTP_400_BAD_REQUEST
             )
-
-        location, _ = DriverLocation.objects.update_or_create(
-            driver=ride.driver,
-            defaults={
-                "latitude": latitude,
-                "longitude": longitude,
-            }
-        )
 
         channel_layer = get_channel_layer()
 
@@ -163,31 +145,29 @@ class RideViewSet(viewsets.ModelViewSet):
                 "ride_id": str(ride.id),
                 "latitude": str(location.latitude),
                 "longitude": str(location.longitude),
-            }
+            },
         )
 
-        return Response(
-            DriverLocationSerializer(location).data,
-            status=status.HTTP_200_OK
+        return success_response(
+            message=(
+                "Driver location created successfully"
+                if created
+                else "Driver location updated successfully"
+            ),
+            data=DriverLocationSerializer(location).data,
+            status_code=(status.HTTP_201_CREATED if created else status.HTTP_200_OK),
         )
-    
+
     @action(detail=True, methods=["post"], url_path="accept")
     def accept_ride(self, request, pk=None):
-        ride = accept_ride_service(
-            ride_id=pk,
-            user=request.user
-        )
-        if ride.user and ride.driver:
-            driver_name = ride.driver.user.get_full_name() or ride.driver.user.username
+        ride = accept_ride_service(ride_id=pk, user=request.user)
 
-            send_driver_assignment_notification.delay(
-                str(ride.user.id),
-                driver_name
-            )
+        notify_driver_assignment(ride)
 
-        return Response(
-            RideSerializer(ride).data,
-            status=status.HTTP_200_OK
+        return success_response(
+            message="Ride accepted successfully",
+            data=RideSerializer(ride).data,
+            status_code=status.HTTP_200_OK,
         )
 
     @action(detail=True, methods=["post"], url_path="cancel")
@@ -195,171 +175,118 @@ class RideViewSet(viewsets.ModelViewSet):
         try:
             ride = cancel_ride_service(pk)
 
-            return Response(
-                RideSerializer(ride).data,
-                status=status.HTTP_200_OK
+            return success_response(
+                message="Ride cancelled successfully",
+                data=RideSerializer(ride).data,
+                status_code=status.HTTP_200_OK,
             )
 
         except ValidationError:
             return error_response(
                 "Ride cannot be cancelled",
                 "INVALID_RIDE_STATUS",
-                status.HTTP_400_BAD_REQUEST
+                status.HTTP_400_BAD_REQUEST,
             )
 
     @action(detail=True, methods=["post"], url_path="start")
     def start_ride(self, request, pk=None):
-        ride = self.get_object()
+        try:
+            ride = start_ride_service(pk)
 
-        started_status = RideStatus.objects.get(name="STARTED")
-
-    # Ride can be started only after it is accepted
-        if ride.status.name != "ACCEPTED":
-            return Response(
-                {"detail": "Ride cannot be started in its current status."},
-                status=status.HTTP_400_BAD_REQUEST,
+        except ValidationError as exc:
+            return error_response(
+                message=str(exc.detail),
+                error_code="INVALID_RIDE_STATUS",
+                status_code=status.HTTP_400_BAD_REQUEST,
             )
 
-        ride.status = started_status
-        ride.save(update_fields=["status", "updated_at"])
         broadcast_ride_status(ride)
-        return Response(
-            RideSerializer(ride).data,
-            status=status.HTTP_200_OK
+
+        return success_response(
+            message="Ride started successfully",
+            data=RideSerializer(ride).data,
+            status_code=status.HTTP_200_OK,
         )
 
     @action(detail=True, methods=["post"], url_path="complete")
     def complete_ride(self, request, pk=None):
-        ride = self.get_object()
+        try:
+            ride = complete_ride_service(pk)
 
-        completed_status = RideStatus.objects.get(name="COMPLETED")
-
-    # Ride can be completed only after it is started
-        if ride.status.name != "STARTED":
-            return Response(
-                {"detail": "Ride cannot be completed in its current status."},
-                status=status.HTTP_400_BAD_REQUEST,
-            )
-
-        ride.status = completed_status
-        ride.save(update_fields=["status", "updated_at"])
-
-    # Send ride completion notification to passenger using Celery
-        if ride.user:
-            send_ride_completion_notification.delay(
-                str(ride.user.id)
+        except ValidationError as exc:
+            return error_response(
+                message=str(exc.detail),
+                error_code="INVALID_RIDE_STATUS",
+                status_code=status.HTTP_400_BAD_REQUEST,
             )
 
         broadcast_ride_status(ride)
 
-        return Response(
-            RideSerializer(ride).data,
-            status=status.HTTP_200_OK
+        return success_response(
+            message="Ride completed successfully",
+            data=RideSerializer(ride).data,
+            status_code=status.HTTP_200_OK,
         )
 
     @action(detail=True, methods=["get"], url_path="fare")
     def fare(self, request, pk=None):
-        ride = self.get_object()
+        self.get_object()
 
-        base_fare = 40
-        distance_fare = 80
-        time_fare = 20
-        surge = 10
+        fare_data = get_ride_fare()
 
-        total = calculate_fare(
-            base_fare,
-            distance_fare,
-            time_fare,
-            surge,
+        return success_response(
+            message="Fare calculated successfully",
+            data=fare_data,
+            status_code=status.HTTP_200_OK,
         )
 
-        return Response({
-            "base_fare": base_fare,
-            "distance_fare": distance_fare,
-            "time_fare": time_fare,
-            "surge": surge,
-            "total": total,
-        }, status=status.HTTP_200_OK)
 
 class UserActiveRidesView(APIView):
     def get(self, request):
-        rides = Ride.objects.filter(
-            user=request.user
-        ).filter(
-            Q(status__name="REQUESTED") |
-            Q(status__name="ACCEPTED") |
-            Q(status__name="DRIVER_ARRIVING") |
-            Q(status__name="STARTED")
+        rides = Ride.objects.filter(user=request.user).filter(
+            Q(status__name="REQUESTED")
+            | Q(status__name="ACCEPTED")
+            | Q(status__name="DRIVER_ARRIVING")
+            | Q(status__name="STARTED")
         )
 
         ride_data = list(
-            rides.values(
-                "id",
-                "pickup_address",
-                "drop_address",
-                "fare",
-                "created_at"
-            )
+            rides.values("id", "pickup_address", "drop_address", "fare", "created_at")
         )
 
-        return Response({
-            "count": len(ride_data),
-            "rides": ride_data
-        })
+        return Response({"count": len(ride_data), "rides": ride_data})
+
 
 class CompletedRidesView(APIView):
 
     def get(self, request):
-        rides = Ride.objects.filter(
-            user=request.user,
-            status__name="COMPLETED"
-        )
+        rides = Ride.objects.filter(user=request.user, status__name="COMPLETED")
 
         ride_data = list(
-            rides.values(
-                "id",
-                "pickup_address",
-                "drop_address",
-                "fare",
-                "created_at"
-            )
+            rides.values("id", "pickup_address", "drop_address", "fare", "created_at")
         )
 
-        return Response({
-            "count": len(ride_data),
-            "rides": ride_data
-        })
+        return Response({"count": len(ride_data), "rides": ride_data})
+
 
 class CancelledRidesView(APIView):
 
     def get(self, request):
-        rides = Ride.objects.filter(
-            user=request.user,
-            status__name="CANCELLED"
-        )
+        rides = Ride.objects.filter(user=request.user, status__name="CANCELLED")
 
         ride_data = list(
-            rides.values(
-                "id",
-                "pickup_address",
-                "drop_address",
-                "fare",
-                "created_at"
-            )
+            rides.values("id", "pickup_address", "drop_address", "fare", "created_at")
         )
 
-        return Response({
-            "count": len(ride_data),
-            "rides": ride_data
-        })
+        return Response({"count": len(ride_data), "rides": ride_data})
+
 
 class RideHistoryView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
         rides = (
-            Ride.objects
-            .filter(user=request.user)
+            Ride.objects.filter(user=request.user)
             .select_related(
                 "user",
                 "driver",
@@ -373,60 +300,43 @@ class RideHistoryView(APIView):
         date = request.query_params.get("date")
 
         if date:
-            rides = rides.filter(
-                created_at__date=date
-            )
+            rides = rides.filter(created_at__date=date)
 
         # Filter by status
         status_name = request.query_params.get("status")
 
         if status_name:
-            rides = rides.filter(
-                status__name__iexact=status_name
-            )
+            rides = rides.filter(status__name__iexact=status_name)
 
         # Filter by driver
         driver_id = request.query_params.get("driver")
 
         if driver_id:
-            rides = rides.filter(
-                driver_id=driver_id
-            )
+            rides = rides.filter(driver_id=driver_id)
 
         # Filter by minimum fare
         min_fare = request.query_params.get("min_fare")
 
         if min_fare:
-            rides = rides.filter(
-                fare__gte=min_fare
-            )
+            rides = rides.filter(fare__gte=min_fare)
 
         # Filter by maximum fare
         max_fare = request.query_params.get("max_fare")
 
         if max_fare:
-            rides = rides.filter(
-                fare__lte=max_fare
-            )
+            rides = rides.filter(fare__lte=max_fare)
 
-        serializer = RideSerializer(
-            rides,
-            many=True
-        )
+        serializer = RideSerializer(rides, many=True)
 
         ride_data = serializer.data
 
-        return Response({
-            "count": len(ride_data),
-            "rides": ride_data
-        })
+        return Response({"count": len(ride_data), "rides": ride_data})
+
 
 class DriverRideHistoryView(APIView):
 
     def get(self, request):
-        rides = Ride.objects.filter(
-            driver__user=request.user
-        ).order_by("-created_at")
+        rides = Ride.objects.filter(driver__user=request.user).order_by("-created_at")
 
         ride_data = list(
             rides.values(
@@ -435,21 +345,18 @@ class DriverRideHistoryView(APIView):
                 "drop_address",
                 "fare",
                 "status__name",
-                "created_at"
+                "created_at",
             )
         )
 
-        return Response({
-            "count": len(ride_data),
-            "rides": ride_data
-        })
+        return Response({"count": len(ride_data), "rides": ride_data})
+
 
 class DailyRideCountView(APIView):
 
     def get(self, request):
         data = (
-            Ride.objects
-            .filter(user=request.user)
+            Ride.objects.filter(user=request.user)
             .annotate(day=TruncDate("created_at"))
             .values("day")
             .annotate(ride_count=Count("id"))
@@ -458,69 +365,55 @@ class DailyRideCountView(APIView):
 
         return Response(data)
 
+
 class TotalCompletedRidesView(APIView):
 
     def get(self, request):
 
-        total = Ride.objects.filter(
-            user=request.user,
-            status__name="COMPLETED"
-        ).count()
+        total = Ride.objects.filter(user=request.user, status__name="COMPLETED").count()
 
-        return Response({
-            "total_completed_rides": total
-        })
+        return Response({"total_completed_rides": total})
+
 
 class TotalFareEarnedView(APIView):
 
     def get(self, request):
 
         result = Ride.objects.filter(
-            driver__user=request.user,
-            status__name="COMPLETED"
-        ).aggregate(
-            total_fare=Sum("fare")
-        )
+            driver__user=request.user, status__name="COMPLETED"
+        ).aggregate(total_fare=Sum("fare"))
 
         return Response(result)
+
 
 class RideAggregationsView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
-        rides = Ride.objects.filter(
-            user=request.user
-        )
+        rides = Ride.objects.filter(user=request.user)
 
         data = rides.aggregate(
             total_rides=Count("id"),
-            completed_rides=Count(
-                "id",
-                filter=Q(
-                    status__name__iexact="COMPLETED"
-                )
-            ),
-            cancelled_rides=Count(
-                "id",
-                filter=Q(
-                    status__name__iexact="CANCELLED"
-                )
-            ),
+            completed_rides=Count("id", filter=Q(status__name__iexact="COMPLETED")),
+            cancelled_rides=Count("id", filter=Q(status__name__iexact="CANCELLED")),
             total_earnings=Sum("fare"),
             average_fare=Avg("fare"),
             maximum_fare=Max("fare"),
             minimum_fare=Min("fare"),
         )
 
-        return Response({
-            "total_rides": data["total_rides"],
-            "completed_rides": data["completed_rides"],
-            "cancelled_rides": data["cancelled_rides"],
-            "total_earnings": data["total_earnings"] or 0,
-            "average_fare": data["average_fare"] or 0,
-            "maximum_fare": data["maximum_fare"] or 0,
-            "minimum_fare": data["minimum_fare"] or 0,
-        })
+        return Response(
+            {
+                "total_rides": data["total_rides"],
+                "completed_rides": data["completed_rides"],
+                "cancelled_rides": data["cancelled_rides"],
+                "total_earnings": data["total_earnings"] or 0,
+                "average_fare": data["average_fare"] or 0,
+                "maximum_fare": data["maximum_fare"] or 0,
+                "minimum_fare": data["minimum_fare"] or 0,
+            }
+        )
+
 
 class SlowRideQueryView(APIView):
 
@@ -528,40 +421,35 @@ class SlowRideQueryView(APIView):
 
         connection.queries_log.clear()
 
-        rides = Ride.objects.select_related(
-            "user",
-            "driver",
-            "vehicle",
-            "status"
-        )
+        rides = Ride.objects.select_related("user", "driver", "vehicle", "status")
 
         data = []
 
         for ride in rides:
-            data.append({
-                "id": str(ride.id),
-                "user": str(ride.user),
-                "driver": str(ride.driver) if ride.driver else None,
-                "vehicle": str(ride.vehicle) if ride.vehicle else None,
-                "status": str(ride.status),
-                "fare": float(ride.fare),
-            })
+            data.append(
+                {
+                    "id": str(ride.id),
+                    "user": str(ride.user),
+                    "driver": str(ride.driver) if ride.driver else None,
+                    "vehicle": str(ride.vehicle) if ride.vehicle else None,
+                    "status": str(ride.status),
+                    "fare": float(ride.fare),
+                }
+            )
 
-        return Response({
-            "rides": data,
-            "sql_queries": len(connection.queries),
-        })
+        return Response(
+            {
+                "rides": data,
+                "sql_queries": len(connection.queries),
+            }
+        )
+
 
 class AdvancedRideFilterView(APIView):
 
     def get(self, request):
 
-        rides = Ride.objects.select_related(
-            "user",
-            "driver",
-            "vehicle",
-            "status"
-        )
+        rides = Ride.objects.select_related("user", "driver", "vehicle", "status")
 
         # 1. Date filtering
         start_date = request.query_params.get("start_date")
@@ -612,10 +500,8 @@ class AdvancedRideFilterView(APIView):
 
         serializer = RideSerializer(rides, many=True)
 
-        return Response({
-            "count": rides.count(),
-            "rides": serializer.data
-        })
+        return Response({"count": rides.count(), "rides": serializer.data})
+
 
 class LargeDatasetPagination(PageNumberPagination):
     page_size = 20
@@ -627,15 +513,9 @@ class LargeDatasetRideView(APIView):
 
     def get(self, request):
 
-        rides = (
-            Ride.objects.select_related(
-                "user",
-                "driver",
-                "vehicle",
-                "status"
-            )
-            .order_by("-created_at")
-        )
+        rides = Ride.objects.select_related(
+            "user", "driver", "vehicle", "status"
+        ).order_by("-created_at")
 
         paginator = LargeDatasetPagination()
 
@@ -644,6 +524,7 @@ class LargeDatasetRideView(APIView):
         serializer = RideSerializer(page, many=True)
 
         return paginator.get_paginated_response(serializer.data)
+
 
 class DriverLocationView(APIView):
     permission_classes = [IsAuthenticated]
@@ -656,15 +537,16 @@ class DriverLocationView(APIView):
             defaults={
                 "latitude": request.data.get("latitude"),
                 "longitude": request.data.get("longitude"),
-            }
+            },
         )
 
         serializer = DriverLocationSerializer(location)
 
         return Response(
             serializer.data,
-            status=status.HTTP_201_CREATED if created else status.HTTP_200_OK
+            status=status.HTTP_201_CREATED if created else status.HTTP_200_OK,
         )
+
 
 class NearbyDriverView(APIView):
     permission_classes = [IsAuthenticated]
@@ -674,95 +556,54 @@ class NearbyDriverView(APIView):
         longitude = request.GET.get("longitude")
         radius = request.GET.get("radius")
 
-    # Missing coordinates
         if latitude is None or longitude is None:
             return Response(
                 {"error": "latitude and longitude are required"},
-                status=400
+                status=status.HTTP_400_BAD_REQUEST,
             )
 
-    # Missing radius
         if radius is None:
             return Response(
                 {"error": "radius is required"},
-                status=400
+                status=status.HTTP_400_BAD_REQUEST,
             )
 
-    # Convert values safely
         try:
             latitude = float(latitude)
             longitude = float(longitude)
             radius = float(radius)
+
         except (TypeError, ValueError):
             return Response(
-                {"error": "latitude, longitude and radius must be valid numbers"},
-                status=400
+                {"error": ("latitude, longitude and radius " "must be valid numbers")},
+                status=status.HTTP_400_BAD_REQUEST,
             )
 
-    # Validate latitude
         if latitude < -90 or latitude > 90:
             return Response(
                 {"error": "Invalid latitude"},
-                status=400
+                status=status.HTTP_400_BAD_REQUEST,
             )
 
-    # Validate longitude
         if longitude < -180 or longitude > 180:
             return Response(
                 {"error": "Invalid longitude"},
-                status=400
+                status=status.HTTP_400_BAD_REQUEST,
             )
 
-    # Validate radius
         if radius <= 0:
             return Response(
                 {"error": "Invalid radius"},
-                status=400
+                status=status.HTTP_400_BAD_REQUEST,
             )
 
-    # Only active ONLINE drivers
-        drivers = DriverLocation.objects.filter(
-        availability_status="ONLINE",
-        is_available=True
-        ).values("driver_id", "latitude", "longitude")
-
-        nearby_drivers = []
-        for driver in drivers:
-            distance = self.calculate_distance(
-                latitude,
-                longitude,
-                float(driver["latitude"]),
-                float(driver["longitude"])
-            )
-            if distance <= radius:
-                nearby_drivers.append({
-                    "driver_id": str(driver["driver_id"]),
-                    "distance_km": round(distance, 2)
-                })
-        nearby_drivers.sort(key=lambda x: x["distance_km"])
-        return Response(nearby_drivers)
-
-    def calculate_distance(self, lat1, lon1, lat2, lon2):
-        R = 6371.0
-
-        lat1 = math.radians(lat1)
-        lon1 = math.radians(lon1)
-        lat2 = math.radians(lat2)
-        lon2 = math.radians(lon2)
-
-        delta_lat = lat2 - lat1
-        delta_lon = lon2 - lon1
-
-        a = (
-            math.sin(delta_lat / 2) ** 2
-            + math.cos(lat1)
-            * math.cos(lat2)
-            * math.sin(delta_lon / 2) ** 2
+        nearby_drivers = find_nearby_drivers(
+            latitude=latitude,
+            longitude=longitude,
+            radius=radius,
         )
 
-        c = 2 * math.atan2(
-            math.sqrt(a),
-            math.sqrt(1 - a)
+        return Response(
+            nearby_drivers,
+            status=status.HTTP_200_OK,
         )
-
-        return R * c

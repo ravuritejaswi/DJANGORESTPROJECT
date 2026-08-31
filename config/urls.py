@@ -14,17 +14,19 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path,include
+
 from django.conf import settings
 from django.conf.urls.static import static
-from rest_framework import permissions
-from drf_yasg.views import get_schema_view
+from django.contrib import admin
+from django.urls import include, path
 from drf_yasg import openapi
+from drf_yasg.views import get_schema_view
+from rest_framework import permissions
+
 from accounts.views import (
     NotificationListAPIView,
-    NotificationReadAPIView,
     NotificationReadAllAPIView,
+    NotificationReadAPIView,
 )
 
 schema_view = get_schema_view(
@@ -38,17 +40,44 @@ schema_view = get_schema_view(
 )
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/', include("rides.urls")),
-    path("api/notifications/",NotificationListAPIView.as_view(),name="notifications"),
-    path("api/notifications/<int:pk>/read/",NotificationReadAPIView.as_view(),name="notification-read"),
-    path("api/notifications/read-all/",NotificationReadAllAPIView.as_view(),name="notification-read-all"),
-    path('accounts/', include('accounts.urls')),
-    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
-    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
-
+    path("admin/", admin.site.urls),
+    path("api/", include("rides.urls")),
+    path("api/v1/", include("rides.urls")),
+    path("api/notifications/", NotificationListAPIView.as_view(), name="notifications"),
+    path(
+        "api/notifications/<int:pk>/read/",
+        NotificationReadAPIView.as_view(),
+        name="notification-read",
+    ),
+    path(
+        "api/notifications/read-all/",
+        NotificationReadAllAPIView.as_view(),
+        name="notification-read-all",
+    ),
+    path(
+        "api/v1/notifications/",
+        NotificationListAPIView.as_view(),
+        name="v1-notifications",
+    ),
+    path(
+        "api/v1/notifications/<int:pk>/read/",
+        NotificationReadAPIView.as_view(),
+        name="v1-notification-read",
+    ),
+    path(
+        "api/v1/notifications/read-all/",
+        NotificationReadAllAPIView.as_view(),
+        name="v1-notification-read-all",
+    ),
+    path("accounts/", include("accounts.urls")),
+    path("api/v1/accounts/", include("accounts.urls")),
+    path(
+        "swagger/",
+        schema_view.with_ui("swagger", cache_timeout=0),
+        name="schema-swagger-ui",
+    ),
+    path("redoc/", schema_view.with_ui("redoc", cache_timeout=0), name="schema-redoc"),
 ]
 
-if settings.DEBUG: 
+if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-

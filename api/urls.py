@@ -17,4 +17,5 @@ urlpatterns = [
     })),
     path("vehicles/", VehicleListCreateView.as_view()),
     path("vehicles/<uuid:pk>/", VehicleDetailView.as_view()),
+    
 ]

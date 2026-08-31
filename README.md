@@ -1313,3 +1313,620 @@ The complete Django test suite was successfully executed:
 Ran 63 tests
 OK
 Reviewed the modified backend files and prepared the work for meaningful Git commits and repository push.
+
+
+#####Django Backend Architecture & Service Layer Refactoring
+# Django Backend Architecture Review
+
+## Objective
+
+Reviewed the existing Django backend to identify architectural issues before introducing a cleaner service-layer architecture.
+
+## Components Reviewed
+
+- Permissions
+- Celery Tasks
+- WebSocket Consumers
+- Models
+- Serializers
+- Views
+- URLs
+- Services
+- Utilities
+
+---
+
+## 1. Permissions
+
+### Observations
+
+- Permission classes are used for API authorization.
+- Permission logic should remain focused on access control.
+- Business logic should not be duplicated inside permission classes.
+
+### Problem Identified
+
+Some authorization-related logic can be centralized and reused more consistently.
+
+---
+
+## 2. Celery Tasks
+
+### Observations
+
+- Celery is used for background notification processing.
+- Notification database creation is currently performed directly inside Celery tasks.
+
+### Problem Identified
+
+Business logic inside tasks can become difficult to reuse.
+
+### Improvement
+
+Move reusable notification business operations into the service layer and keep Celery tasks focused on background execution.
+
+---
+
+## 3. WebSocket Consumers
+
+### Observations
+
+- RideConsumer handles WebSocket connection management.
+- JWT authentication and ride-access checks are performed by the consumer.
+- Database access is performed during ride-access validation.
+
+### Problem Identified
+
+The consumer contains both communication handling and business/access logic.
+
+### Improvement
+
+Move reusable ride-access/business operations into services while keeping the consumer focused on WebSocket communication.
+
+---
+
+## 4. Models
+
+### Observations
+
+- Models define database structure and relationships.
+- Ride contains database constraints and indexes.
+- Foreign-key relationships are defined appropriately.
+
+### Problem Identified
+
+Business workflows should be reviewed to ensure they are not tightly coupled to model implementation.
+
+### Improvement
+
+Keep models focused primarily on data representation, relationships, constraints, and model-level behavior.
+
+---
+
+## 5. Serializers
+
+### Observations
+
+- Serializers handle API serialization and validation.
+
+### Problem Identified
+
+Complex business workflows inside serializer create/update methods can make serializers difficult to maintain.
+
+### Improvement
+
+Keep validation in serializers and move complex business operations into services.
+
+---
+
+## 6. Views
+
+### Observations
+
+- Views handle API requests and responses.
+- Some views also contain database operations and business decisions.
+
+### Problems Identified
+
+- Views can become large.
+- Business logic can become tightly coupled to API endpoints.
+- Reusable business operations may be duplicated.
+- Testing business logic through API views becomes more difficult.
+
+### Improvement
+
+Keep views thin and move reusable business logic into services.
+
+---
+
+## 7. URLs
+
+### Observations
+
+- URLs map API endpoints to views and viewsets.
+- URL configuration is separated from business logic.
+
+### Problem Identified
+
+No major architectural issue identified in URL routing.
+
+### Improvement
+
+Maintain URL configuration as a routing layer only.
+
+---
+
+## 8. Services
+
+### Observations
+
+- A services package already exists.
+- Business logic is not yet consistently centralized in the service layer.
+
+### Problem Identified
+
+Some business logic remains in views, Celery tasks, and WebSocket consumers.
+
+### Improvement
+
+Use services as the central layer for reusable business operations.
+
+---
+
+## 9. Utilities
+
+### Observations
+
+- Utility/helper functionality should remain reusable and independent of API views.
+
+### Problems Identified
+
+- Repeated helper logic can lead to duplication.
+- Generic utilities and business-specific logic should remain separated.
+
+### Improvement
+
+Centralize generic reusable helper functions in utility modules.
+
+---
+
+# Overall Architectural Problems Identified
+1. Business logic is distributed across views, Celery tasks, and WebSocket consumers.
+2. Views can contain both HTTP handling and business logic.
+3. Some database operations are directly coupled to communication layers.
+4. Service-layer usage is not yet consistent.
+5. Reusable business operations should be centralized.
+6. Authorization, validation, and business logic should have clearly separated responsibilities.
+# Proposed Architecture
+
+Request:
+
+    URL
+      ↓
+    View
+      ↓
+    Serializer / Validation
+      ↓
+    Service Layer
+      ↓
+    Model / Database
+
+Background processing:
+
+    Celery Task
+      ↓
+    Service Layer
+      ↓
+    Database
+
+Real-time processing:
+
+    WebSocket Consumer
+      ↓
+    Service Layer
+      ↓
+    Database
+
+# Conclusion
+The existing backend is functional and has working authentication, REST APIs, Celery tasks, WebSockets, database optimization, and tests. The main architectural improvement required is to separate reusable business logic from API views and other communication layers by consistently introducing and using a service layer.
+
+
+# Django Backend Layer Responsibilities
+## Objective
+Identify the responsibility of each architectural layer and define how requests should flow through the backend.
+## Architecture
+
+Request
+   ↓
+Serializer
+   ↓
+View
+   ↓
+Service
+   ↓
+Django ORM
+   ↓
+Database
+
+## 1. Request / URL Layer
+Responsibilities:
+- Route incoming requests.
+- Map URLs to views.
+- Pass URL parameters and query parameters.
+Should not contain business logic or database operations.
+
+## 2. Serializer Layer
+Responsibilities:
+- Validate incoming request data.
+- Serialize model data.
+- Deserialize request data.
+- Handle field-level and object-level validation.
+Should not contain complex business workflows.
+
+## 3. View Layer
+Responsibilities:
+- Handle HTTP requests and responses.
+- Apply authentication and permissions.
+- Invoke serializers.
+- Call service-layer operations.
+- Return appropriate HTTP responses.
+Views should remain thin and should not contain complex business logic.
+
+## 4. Service Layer
+Responsibilities:
+- Contain reusable business logic.
+- Handle ride-related business operations.
+- Coordinate multiple database operations.
+- Provide reusable operations for REST APIs, Celery tasks, and WebSocket consumers.
+Examples:
+- Ride creation
+- Ride cancellation
+- Driver assignment
+- Ride completion
+- Fare/business calculations
+- Notification workflows
+
+## 5. Repository / ORM Layer
+The project currently uses Django ORM for database access.
+Responsibilities:
+- Query database records.
+- Create, update, and delete records.
+- Perform filtering and aggregation.
+- Handle relationships.
+- Apply query optimizations such as select_related and prefetch_related.
+
+A separate repository abstraction is not currently required unless introduced by the project architecture.
+
+## 6. Database Layer
+The project uses PostgreSQL.
+Responsibilities:
+- Persist application data.
+- Maintain relationships.
+- Enforce database constraints.
+- Maintain indexes.
+- Execute database queries.
+- Maintain data integrity.
+
+## Existing Backend Mapping
+| Component | Responsibility |
+|---|---|
+| urls.py | URL routing |
+| serializers.py | Serialization and validation |
+| views.py | HTTP/API handling |
+| permissions.py | Authorization |
+| services/ | Business logic |
+| Celery tasks | Background execution |
+| consumers.py | WebSocket communication |
+| models.py | Data models and database structure |
+| Django ORM | Database access |
+| PostgreSQL | Data persistence |
+
+## Target Responsibility Separation
+REST API:
+
+Request
+  ↓
+URL
+  ↓
+View
+  ↓
+Serializer
+  ↓
+Service
+  ↓
+Django ORM
+  ↓
+PostgreSQL
+
+Background task:
+
+Celery
+  ↓
+Service
+  ↓
+Django ORM
+  ↓
+PostgreSQL
+
+WebSocket:
+
+WebSocket Consumer
+  ↓
+Service
+  ↓
+Django ORM
+  ↓
+PostgreSQL
+
+## Main Architectural Principle
+Each layer should have a clear responsibility.
+Views should handle HTTP concerns.
+Serializers should handle validation and serialization.
+Services should handle business logic.
+Django ORM should handle database access.
+Models should represent application data and database constraints.
+Celery tasks should handle background execution.
+WebSocket consumers should handle real-time communication.
+Permissions should handle authorization.
+
+
+###Identify Responsibilities
+Objective:
+Understand and separate the responsibilities of each layer in the backend API architecture.
+
+API flow
+Request
+   ↓
+Serializer
+   ↓
+View
+   ↓
+Service
+   ↓
+Repository / ORM
+   ↓
+Database
+Work completed
+
+Reviewed the responsibilities of the major backend layers:
+Request — receives HTTP request data from the client.
+Serializer — validates and transforms request/response data.
+View — handles HTTP requests, permissions, calls services, and returns responses.
+Service — contains business logic and application operations.
+Repository/ORM — performs database queries using Django ORM.
+Database — stores persistent application data.
+The separation helps prevent views from becoming too large and keeps business logic reusable and maintainable.
+
+Result
+The backend architecture was reviewed with a clear separation between API handling, business logic, and database operations.
+
+###Refactor Large Views
+
+Objective:
+Identify views containing excessive business logic and move that logic into service functions.
+Areas identified
+The following types of logic were reviewed:
+Database operations
+Business calculations
+Validation
+Conditional business rules
+Notification processing
+Driver location processing
+Nearby-driver calculations
+Refactoring completed
+Ride operations were moved into ride_service.py, including:
+create_ride()
+accept_ride()
+cancel_ride()
+start_ride()
+complete_ride()
+
+Driver-related processing was moved into driver_service.py, including:
+update_driver_location()
+find_nearby_drivers()
+calculate_distance()
+Fare processing was separated into fare_service.py.
+Notification processing was separated into notification_service.py.
+
+Result
+The API views became thinner and mainly handle:
+
+Request
+   ↓
+Validation / permissions
+   ↓
+Service call
+   ↓
+Response
+
+This improved maintainability and separation of concerns.
+
+###Create Service Modules
+
+Objective:
+Organize business logic into focused service modules.
+
+Service structure
+rides/
+└── services/
+    ├── user_service.py
+    ├── driver_service.py
+    ├── ride_service.py
+    ├── fare_service.py
+    └── notification_service.py
+Responsibilities
+Service	Responsibility
+user_service.py	User-related business operations
+driver_service.py	Driver availability, location and nearby-driver operations
+ride_service.py	Ride creation and ride lifecycle operations
+fare_service.py	Fare calculation
+notification_service.py	Notification-related business operations
+Result
+
+Business logic was separated from API views into focused service modules.
+
+The service layer provides a cleaner architecture and makes business operations easier to reuse and test.
+
+###Create Reusable Utilities
+
+Objective:
+Identify repeated functionality and move it into reusable utility modules.
+Utility structure
+rides/
+└── utils/
+    ├── validators.py
+    ├── exceptions.py
+    ├── helpers.py
+    └── constants.py
+Work completed
+validators.py
+Common coordinate validation was centralized.
+Latitude validation
+Longitude validation
+Required coordinate validation
+Numeric validation
+helpers.py
+Common driver information processing was centralized, including retrieving a driver's display name.
+constants.py
+Frequently used ride-status values were organized as constants:
+REQUESTED
+ACCEPTED
+DRIVER_ARRIVING
+STARTED
+COMPLETED
+CANCELLED
+exceptions.py
+A reusable service-level exception structure was introduced.
+
+Result
+Repeated functionality was centralized, reducing duplicate code and making future maintenance easier.
+
+###Standardize API Responses
+
+Objective:
+Provide a consistent response format across APIs.
+The existing response utility was used:
+core/responses.py
+Success response
+The standardized structure is:
+
+{
+    "success": true,
+    "message": "Ride created successfully",
+    "error_code": null,
+    "data": {}
+}
+Error response
+The standardized error structure is:
+{
+    "success": false,
+    "message": "Ride cannot be cancelled",
+    "error_code": "INVALID_RIDE_STATUS",
+    "data": null
+}
+Work completed
+The response helpers:
+
+success_response()
+error_response()
+were used for major ride-related API responses.
+Affected operations included:
+
+Ride acceptance
+Ride cancellation
+Ride start
+Ride completion
+Fare calculation
+Driver location update
+Ride status update
+Existing tests were also updated where necessary to validate the new response structure.
+Result
+
+API responses now follow a consistent success/error contract.
+
+###Refactor URLs & Applications
+
+Objective:
+Review application boundaries, organize URLs, and introduce API versioning.
+Application responsibilities
+The backend responsibilities were organized around:
+
+accounts
+    ↓
+Authentication / account functionality
+
+rides
+    ↓
+Rides / drivers / vehicles / location / fare
+
+core
+    ↓
+Shared response utilities
+API versioning
+
+The existing API routes were preserved for backward compatibility.
+A versioned API structure was added:
+/api/v1/
+This provides routes such as:
+/api/v1/rides/
+/api/v1/rides/history/
+/api/v1/rides/active/
+/api/v1/rides/completed/
+
+/api/v1/drivers/
+/api/v1/drivers/nearby/
+
+/api/v1/vehicles/
+
+/api/v1/accounts/
+
+/api/v1/notifications/
+
+The original /api/ routes were retained so existing clients and tests would not be unnecessarily broken.
+
+Result
+
+The project now has a clearer URL structure and an API-versioning approach that can support future versions such as:
+
+/api/v2/
+
+without immediately removing the existing API.
+
+###Code Review & Git
+
+Objective:
+Perform final code-quality checks after the refactoring.
+
+Formatter
+Black was installed and used to format the relevant project files.
+Black
+Version: 26.5.1
+Import cleanup
+isort was installed and used to organize imports in the files involved in the refactoring.
+isort
+Version: 9.0.1
+Unused imports identified during linting were reviewed and removed where appropriate.
+
+Linter
+Flake8 was installed and used to identify:
+Unused imports
+Incorrect spacing
+Long lines
+Missing blank lines
+Trailing whitespace
+Missing newline characters
+Import placement issues
+The identified issues were reviewed as part of the code-quality cleanup.
+Django validation
+The project was checked using:
+python manage.py check
+Result:
+
+System check identified no issues (0 silenced).
+Testing
+
+The complete test suite was executed after the refactoring.
+Final result:
+Ran 74 tests
+OK
+This confirmed that the refactoring and code-quality changes did not break the existing tested functionality.

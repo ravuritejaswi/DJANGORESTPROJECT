@@ -979,27 +979,27 @@ class FareTests(TestCase):
         )
 
         self.assertEqual(
-            response.data["base_fare"],
+            response.data["data"]["base_fare"],
             40
         )
 
         self.assertEqual(
-            response.data["distance_fare"],
+            response.data["data"]["distance_fare"],
             80
         )
 
         self.assertEqual(
-            response.data["time_fare"],
+            response.data["data"]["time_fare"],
             20
         )
 
         self.assertEqual(
-            response.data["surge"],
+            response.data["data"]["surge"],
             10
         )
 
         self.assertEqual(
-            response.data["total"],
+            response.data["data"]["total"],
             150
         )
 
