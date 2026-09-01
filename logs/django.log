@@ -5645,3 +5645,248 @@ Forbidden: /api/rides/1ee3cc97-3e61-4d85-a846-d8f419fa0556/
 Unauthorized: /api/vehicles/
 Bad Request: /api/vehicles/aa4a646f-16e9-4c43-820e-ca606452d161/
 Bad Request: /api/vehicles/
+Watching for file changes with StatReloader
+[mHTTP POST /accounts/login/ 200 [5.68, 127.0.0.1:63911][0m
+[mHTTP POST /accounts/login/ 200 [1.77, 127.0.0.1:63911][0m
+[mHTTP POST /accounts/login/ 200 [1.82, 127.0.0.1:64401][0m
+[mHTTP POST /api/rides/ 201 [0.26, 127.0.0.1:64413][0m
+[mHTTP POST /accounts/login/ 200 [1.64, 127.0.0.1:64437][0m
+[mHTTP POST /accounts/login/ 200 [1.85, 127.0.0.1:64437][0m
+Forbidden: /api/rides/15c2ac67-1564-40e8-a7a3-701dc75bc642/
+[31;1mHTTP GET /api/rides/15c2ac67-1564-40e8-a7a3-701dc75bc642/ 403 [0.15, 127.0.0.1:64437][0m
+[mHTTP POST /accounts/login/ 200 [1.65, 127.0.0.1:64961][0m
+[mHTTP GET /api/rides/15c2ac67-1564-40e8-a7a3-701dc75bc642/ 200 [0.12, 127.0.0.1:64961][0m
+[mHTTP POST /accounts/login/ 200 [1.87, 127.0.0.1:64961][0m
+[mHTTP POST /accounts/login/ 200 [1.80, 127.0.0.1:64961][0m
+Bad Request: /api/rides/
+[31;1mHTTP POST /api/rides/ 400 [0.10, 127.0.0.1:64961][0m
+Bad Request: /api/rides/
+[31;1mHTTP POST /api/rides/ 400 [0.14, 127.0.0.1:64961][0m
+[mHTTP POST /accounts/login/ 200 [1.68, 127.0.0.1:64961][0m
+[mHTTP POST /api/rides/ 201 [0.11, 127.0.0.1:64961][0m
+[mHTTP DELETE /api/rides/15c2ac67-1564-40e8-a7a3-701dc75bc642/ 204 [0.12, 127.0.0.1:65000][0m
+Forbidden: /api/rides/21686643-5f52-4bdd-ba61-e607563c898c/
+[31;1mHTTP DELETE /api/rides/21686643-5f52-4bdd-ba61-e607563c898c/ 403 [0.20, 127.0.0.1:65012][0m
+[mHTTP GET /admin/ 200 [2.78, 127.0.0.1:65103][0m
+[mHTTP GET /static/admin/css/nav_sidebar.css 200 [0.37, 127.0.0.1:65107][0m
+[mHTTP GET /static/admin/css/dark_mode.css 200 [0.46, 127.0.0.1:65104][0m
+[mHTTP GET /static/admin/js/theme.js 200 [0.46, 127.0.0.1:65106][0m
+[mHTTP GET /static/admin/css/base.css 200 [0.59, 127.0.0.1:65103][0m
+[mHTTP GET /static/admin/css/dashboard.css 200 [0.59, 127.0.0.1:65109][0m
+[mHTTP GET /static/admin/js/nav_sidebar.js 200 [0.06, 127.0.0.1:65103][0m
+[mHTTP GET /static/admin/css/responsive.css 200 [0.69, 127.0.0.1:65108][0m
+[mHTTP GET /static/admin/img/icon-addlink.svg 200 [0.03, 127.0.0.1:65108][0m
+[mHTTP GET /static/admin/img/icon-changelink.svg 200 [0.03, 127.0.0.1:65103][0m
+Not Found: /favicon.ico
+[33mHTTP GET /favicon.ico 404 [0.07, 127.0.0.1:65103][0m
+[mHTTP GET /admin/rides/driverprofile/ 200 [0.47, 127.0.0.1:65103][0m
+[mHTTP GET /static/admin/js/core.js 200 [0.08, 127.0.0.1:65109][0m
+[mHTTP GET /static/admin/js/actions.js 200 [0.08, 127.0.0.1:65104][0m
+[mHTTP GET /static/admin/js/urlify.js 200 [0.08, 127.0.0.1:65107][0m
+[mHTTP GET /static/admin/js/jquery.init.js 200 [0.09, 127.0.0.1:65108][0m
+[mHTTP GET /static/admin/js/admin/RelatedObjectLookups.js 200 [0.09, 127.0.0.1:65106][0m
+[36mHTTP GET /static/admin/css/changelists.css 304 [0.02, 127.0.0.1:65109][0m
+[36mHTTP GET /static/admin/img/search.svg 304 [0.01, 127.0.0.1:65106][0m
+[36mHTTP GET /static/admin/img/icon-yes.svg 304 [0.02, 127.0.0.1:65109][0m
+[mHTTP GET /static/admin/js/prepopulate.js 200 [0.07, 127.0.0.1:65104][0m
+[mHTTP GET /static/admin/js/vendor/jquery/jquery.js 200 [0.18, 127.0.0.1:65103][0m
+[mHTTP GET /admin/jsi18n/ 200 [0.17, 127.0.0.1:65107][0m
+[mHTTP GET /static/admin/js/filters.js 200 [0.03, 127.0.0.1:65107][0m
+[mHTTP GET /static/admin/js/vendor/xregexp/xregexp.js 200 [0.21, 127.0.0.1:65108][0m
+[mHTTP GET /static/admin/img/icon-viewlink.svg 200 [0.03, 127.0.0.1:65107][0m
+[mHTTP GET /static/admin/img/sorting-icons.svg 200 [0.03, 127.0.0.1:65103][0m
+[mHTTP GET /static/admin/img/tooltag-add.svg 200 [0.03, 127.0.0.1:65108][0m
+[mHTTP GET /admin/rides/driverprofile/9b72fa46-2028-4669-a018-b9e70f211509/change/ 200 [0.36, 127.0.0.1:65134][0m
+[36mHTTP GET /static/admin/css/forms.css 304 [0.01, 127.0.0.1:65135][0m
+[36mHTTP GET /static/admin/js/prepopulate_init.js 304 [0.01, 127.0.0.1:65137][0m
+[mHTTP GET /static/admin/css/widgets.css 200 [0.03, 127.0.0.1:65137][0m
+[36mHTTP GET /static/admin/js/change_form.js 304 [0.00, 127.0.0.1:65137][0m
+[mHTTP GET /admin/jsi18n/ 200 [0.11, 127.0.0.1:65134][0m
+[mHTTP GET /admin/accounts/user/ba15fa13-b170-47e2-ac15-f507b3552b7f/change/?_to_field=id&_popup=1 200 [0.28, 127.0.0.1:65151][0m
+[36mHTTP GET /static/admin/js/calendar.js 304 [0.01, 127.0.0.1:65155][0m
+[36mHTTP GET /static/admin/js/admin/DateTimeShortcuts.js 304 [0.01, 127.0.0.1:65156][0m
+[mHTTP GET /static/admin/js/SelectBox.js 200 [0.07, 127.0.0.1:65151][0m
+[mHTTP GET /static/admin/js/SelectFilter2.js 200 [0.07, 127.0.0.1:65154][0m
+[mHTTP GET /admin/jsi18n/ 200 [0.13, 127.0.0.1:65152][0m
+[36mHTTP GET /static/admin/img/icon-calendar.svg 304 [0.04, 127.0.0.1:65151][0m
+[36mHTTP GET /static/admin/img/icon-clock.svg 304 [0.04, 127.0.0.1:65154][0m
+[mHTTP GET /static/admin/img/selector-icons.svg 200 [0.05, 127.0.0.1:65152][0m
+[mHTTP GET /admin/accounts/user/ba15fa13-b170-47e2-ac15-f507b3552b7f/password/ 200 [0.20, 127.0.0.1:65152][0m
+[mHTTP GET /static/admin/css/unusable_password_field.css 200 [0.03, 127.0.0.1:65152][0m
+[32mHTTP POST /admin/accounts/user/ba15fa13-b170-47e2-ac15-f507b3552b7f/password/ 302 [1.49, 127.0.0.1:65152][0m
+[mHTTP GET /admin/accounts/user/ba15fa13-b170-47e2-ac15-f507b3552b7f/change/ 200 [0.12, 127.0.0.1:65152][0m
+[mHTTP GET /admin/jsi18n/ 200 [0.08, 127.0.0.1:65152][0m
+[mHTTP POST /accounts/login/ 200 [1.68, 127.0.0.1:65184][0m
+[mHTTP POST /accounts/login/ 200 [1.61, 127.0.0.1:65184][0m
+[mHTTP POST /accounts/login/ 200 [1.63, 127.0.0.1:65184][0m
+[mHTTP POST /api/rides/ 201 [0.12, 127.0.0.1:65184][0m
+Forbidden: /api/rides/5a8a62f9-01d7-4f43-b046-6d40f08aba90/
+[31;1mHTTP GET /api/rides/5a8a62f9-01d7-4f43-b046-6d40f08aba90/ 403 [0.14, 127.0.0.1:65213][0m
+[mHTTP GET /admin/accounts/profile/ 200 [0.11, 127.0.0.1:65231][0m
+[mHTTP GET /admin/jsi18n/ 200 [0.19, 127.0.0.1:65231][0m
+[mHTTP GET /admin/accounts/user/ 200 [0.16, 127.0.0.1:65231][0m
+[mHTTP GET /static/admin/img/icon-no.svg 200 [0.03, 127.0.0.1:65232][0m
+[mHTTP GET /admin/jsi18n/ 200 [0.20, 127.0.0.1:65231][0m
+[mHTTP GET /admin/accounts/profile/ 200 [0.10, 127.0.0.1:65231][0m
+[mHTTP GET /admin/jsi18n/ 200 [0.08, 127.0.0.1:65231][0m
+[mHTTP POST /accounts/login/ 200 [1.68, 127.0.0.1:65292][0m
+Bad Request: /api/rides/
+[31;1mHTTP POST /api/rides/ 400 [0.20, 127.0.0.1:65292][0m
+[mHTTP POST /accounts/login/ 200 [1.73, 127.0.0.1:65292][0m
+Bad Request: /api/rides/
+[31;1mHTTP POST /api/rides/ 400 [0.08, 127.0.0.1:65292][0m
+Bad Request: /api/rides/
+[31;1mHTTP POST /api/rides/ 400 [0.09, 127.0.0.1:65292][0m
+[mHTTP POST /accounts/login/ 200 [1.84, 127.0.0.1:65341][0m
+[mHTTP GET /api/rides/active/ 200 [0.09, 127.0.0.1:65341][0m
+Method Not Allowed: /api/rides/5a8a62f9-01d7-4f43-b046-6d40f08aba90/cancel/
+[31;1mHTTP GET /api/rides/5a8a62f9-01d7-4f43-b046-6d40f08aba90/cancel/ 405 [0.07, 127.0.0.1:65350][0m
+[mHTTP POST /api/rides/5a8a62f9-01d7-4f43-b046-6d40f08aba90/cancel/ 200 [0.20, 127.0.0.1:65355][0m
+[mHTTP POST /accounts/login/ 200 [2.05, 127.0.0.1:65373][0m
+[mHTTP GET /api/rides/active/ 200 [0.19, 127.0.0.1:65373][0m
+[mHTTP POST /accounts/login/ 200 [1.68, 127.0.0.1:65443][0m
+[mHTTP POST /api/rides/1ec1fe9b-5547-4524-8dd3-aed78129a1b7/cancel/ 200 [0.10, 127.0.0.1:65443][0m
+Bad Request: /api/rides/
+[31;1mHTTP POST /api/rides/ 400 [0.07, 127.0.0.1:65443][0m
+[mHTTP GET /api/rides/ 200 [0.13, 127.0.0.1:65443][0m
+Bad Request: /api/rides/5a8a62f9-01d7-4f43-b046-6d40f08aba90/cancel/
+[31;1mHTTP POST /api/rides/5a8a62f9-01d7-4f43-b046-6d40f08aba90/cancel/ 400 [0.10, 127.0.0.1:65469][0m
+Internal Server Error: /api/rides/5a8a62f9-01d7-4f43-b046-6d40f08aba90/cancel
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\asgiref\sync.py", line 577, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\core\handlers\exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\utils\deprecation.py", line 327, in __acall__
+    response = await sync_to_async(
+               ^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )(request, response)
+    ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\asgiref\sync.py", line 526, in __call__
+    ret = await asyncio.shield(exec_coro)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\concurrent\futures\thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\asgiref\sync.py", line 581, in thread_handler
+    return func(*args, **kwargs)
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\asgiref\sync.py", line 508, in func
+    return context.run(run_child)
+           ~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\asgiref\sync.py", line 506, in run_child
+    return child()
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\middleware\common.py", line 109, in process_response
+    self.get_full_path_with_slash(request)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\Admin\Desktop\DjangoRESTProject\venv\Lib\site-packages\django\middleware\common.py", line 87, in get_full_path_with_slash
+    raise RuntimeError(
+    ...<9 lines>...
+    )
+RuntimeError: You called this URL via POST, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining POST data. Change your form to point to 127.0.0.1:8000/api/rides/5a8a62f9-01d7-4f43-b046-6d40f08aba90/cancel/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+[35;1mHTTP POST /api/rides/5a8a62f9-01d7-4f43-b046-6d40f08aba90/cancel 500 [0.18, 127.0.0.1:65469][0m
+Bad Request: /api/rides/5a8a62f9-01d7-4f43-b046-6d40f08aba90/cancel/
+[31;1mHTTP POST /api/rides/5a8a62f9-01d7-4f43-b046-6d40f08aba90/cancel/ 400 [0.08, 127.0.0.1:65469][0m
+Method Not Allowed: /api/rides/active/
+[31;1mHTTP POST /api/rides/active/ 405 [0.09, 127.0.0.1:65469][0m
+[mHTTP GET /api/rides/active/ 200 [0.09, 127.0.0.1:65469][0m
+[mHTTP POST /accounts/login/ 200 [1.83, 127.0.0.1:65513][0m
+[mHTTP POST /api/rides/ 201 [0.21, 127.0.0.1:65513][0m
+[mHTTP POST /accounts/login/ 200 [1.65, 127.0.0.1:65527][0m
+Method Not Allowed: /api/rides/active/
+[31;1mHTTP POST /api/rides/active/ 405 [0.08, 127.0.0.1:65527][0m
+[mHTTP POST /api/rides/ 201 [0.09, 127.0.0.1:65527][0m
+Bad Request: /api/rides/
+[31;1mHTTP POST /api/rides/ 400 [0.07, 127.0.0.1:65527][0m
+Bad Request: /api/rides/
+[31;1mHTTP POST /api/rides/ 400 [0.09, 127.0.0.1:65527][0m
+Bad Request: /api/rides/
+[31;1mHTTP POST /api/rides/ 400 [0.09, 127.0.0.1:65527][0m
+[mHTTP GET /api/rides/active/ 200 [0.09, 127.0.0.1:65527][0m
+[mHTTP POST /api/rides/93595481-6614-4bff-ba21-67254c0c23e2/cancel/ 200 [0.09, 127.0.0.1:65527][0m
+[mHTTP POST /api/rides/ 201 [0.09, 127.0.0.1:65527][0m
+Not Found: /api/rides/44d61cea-dad4-4c61-8bc5-5b390b01ec8/
+[33mHTTP GET /api/rides/44d61cea-dad4-4c61-8bc5-5b390b01ec8/ 404 [0.17, 127.0.0.1:49191][0m
+[mHTTP GET /api/rides/44d61cea-dad4-4c61-8bc5-5b390b01ec82/ 200 [0.10, 127.0.0.1:49191][0m
+Not Found: /api/rides/abc/
+[33mHTTP GET /api/rides/abc/ 404 [0.08, 127.0.0.1:49201][0m
+[mHTTP GET /api/rides/active/ 200 [0.16, 127.0.0.1:49201][0m
+[mHTTP GET /api/rides/active/ 200 [0.20, 127.0.0.1:49217][0m
+[mHTTP GET /api/rides/active/ 200 [0.16, 127.0.0.1:49217][0m
+[mHTTP GET /api/rides/active/ 200 [0.15, 127.0.0.1:49217][0m
+[mHTTP GET /api/rides/active/ 200 [0.19, 127.0.0.1:49217][0m
+[mHTTP GET /api/rides/ 200 [0.12, 127.0.0.1:49217][0m
+[mHTTP GET /api/rides/ 200 [0.11, 127.0.0.1:49217][0m
+[mHTTP GET /api/rides/ 200 [0.11, 127.0.0.1:49217][0m
+Bad Request: /api/v1/accounts/login/
+Bad Request: /api/v1/accounts/register/
+Bad Request: /api/v1/accounts/register/
+Bad Request: /api/v1/accounts/profile-crud/
+Unauthorized: /api/v1/accounts/profile-crud/
+Unauthorized: /api/v1/drivers/location/
+Bad Request: /api/v1/drivers/
+Not Found: /api/v1/rides/00000000-0000-0000-0000-000000000000/fare/
+Unauthorized: /api/v1/rides/c3a34fa2-72f4-426f-93c2-debd115eacd4/fare/
+Unauthorized: /api/v1/drivers/location/
+Unauthorized: /api/rides/aggregations/
+Bad Request: /api/rides/3ebd2fe0-eb85-49d7-b449-663c3474e98f/accept/
+Bad Request: /api/rides/5d5f98c7-1fb4-4757-a171-80ac39aaf306/accept/
+Unauthorized: /api/rides/history/
+Forbidden: /api/drivers/4766f234-9a5a-4667-a239-b02ac6e50829/
+Too Many Requests: /api/drivers/
+Too Many Requests: /api/drivers/
+Too Many Requests: /api/drivers/
+Too Many Requests: /api/drivers/
+Too Many Requests: /api/drivers/
+Unauthorized: /api/drivers/
+Bad Request: /api/rides/
+Unauthorized: /api/rides/
+Unauthorized: /api/drivers/
+Forbidden: /api/rides/2b8abb51-363c-4eeb-aae3-43bd594f667c/
+Unauthorized: /api/vehicles/
+Bad Request: /api/vehicles/244f451c-c397-4d87-be55-c2ecfb09fc3b/
+Bad Request: /api/vehicles/
+Watching for file changes with StatReloader
+[mHTTP POST /accounts/login/ 200 [2.18, 127.0.0.1:49814][0m
+[mHTTP POST /accounts/login/ 200 [1.61, 127.0.0.1:49814][0m
+[mHTTP POST /accounts/login/ 200 [1.70, 127.0.0.1:49814][0m
+[mHTTP POST /accounts/login/ 200 [1.63, 127.0.0.1:49814][0m
+[mHTTP POST /accounts/login/ 200 [1.57, 127.0.0.1:49814][0m
+Too Many Requests: /accounts/login/
+[31;1mHTTP POST /accounts/login/ 429 [0.01, 127.0.0.1:49814][0m
+Bad Request: /accounts/register/
+[31;1mHTTP POST /accounts/register/ 400 [0.21, 127.0.0.1:49814][0m
+C:\Users\Admin\Desktop\DjangoRESTProject\config\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\config\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Admin\Desktop\DjangoRESTProject\config\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Bad Request: /api/v1/accounts/login/
+Bad Request: /api/v1/accounts/register/
+Bad Request: /api/v1/accounts/register/
+Bad Request: /api/v1/accounts/profile-crud/
+Unauthorized: /api/v1/accounts/profile-crud/
+Unauthorized: /api/v1/drivers/location/
+Bad Request: /api/v1/drivers/
+Not Found: /api/v1/rides/00000000-0000-0000-0000-000000000000/fare/
+Unauthorized: /api/v1/rides/716c5d09-1e7c-4bd6-9d08-21215bcdde9b/fare/
+Unauthorized: /api/v1/drivers/location/
+Unauthorized: /api/rides/aggregations/
+Bad Request: /api/rides/c5e36ed7-43f4-4976-96ee-886fc4ce2f79/accept/
+Bad Request: /api/rides/668ae9a6-b999-4231-8d77-993d32d174e8/accept/
+Unauthorized: /api/rides/history/
+Forbidden: /api/drivers/c9f75460-d371-497b-8ee1-390084ad7cf4/
+Too Many Requests: /api/drivers/
+Too Many Requests: /api/drivers/
+Too Many Requests: /api/drivers/
+Too Many Requests: /api/drivers/
+Too Many Requests: /api/drivers/
+Unauthorized: /api/drivers/
+Bad Request: /api/rides/
+Unauthorized: /api/rides/
+Unauthorized: /api/drivers/
+Forbidden: /api/rides/8fb91378-eef4-4d64-8d20-5fdde218f944/
+Unauthorized: /api/vehicles/
+Bad Request: /api/vehicles/0c3102a4-9536-478e-93d3-daa75053eada/
+Bad Request: /api/vehicles/

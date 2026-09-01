@@ -4,7 +4,6 @@ from rest_framework.response import Response
 from rest_framework import status
 from .serializers import RegisterSerializer, LoginSerializer
 from .serializers import ChangePasswordSerializer
-from rest_framework.permissions import IsAuthenticated
 from .serializers import LogoutSerializer
 from .models import Profile, Notification
 from .serializers import ProfileSerializer, NotificationSerializer
@@ -13,12 +12,14 @@ from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework import filters
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.generics import ListAPIView
+from core.throttles import LoginThrottle, RegistrationThrottle
 from drf_yasg.utils import swagger_auto_schema
-from .permissions import IsAdminRole, IsUserRole
+from .permissions import IsAdminRole
 from rest_framework.pagination import PageNumberPagination
 
 
 class RegisterAPIView(APIView):
+    throttle_classes = [RegistrationThrottle]
 
     @swagger_auto_schema(request_body=RegisterSerializer)
     def post(self, request):
@@ -34,6 +35,8 @@ class RegisterAPIView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class LoginAPIView(APIView):
+    throttle_classes = [LoginThrottle]
+
     @swagger_auto_schema(request_body=LoginSerializer)
     def post(self, request):
         serializer = LoginSerializer(data=request.data)

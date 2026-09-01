@@ -1930,3 +1930,253 @@ Final result:
 Ran 74 tests
 OK
 This confirmed that the refactoring and code-quality changes did not break the existing tested functionality.
+
+
+****Advanced API Security & OWASP-Based Security Testing****
+1. Introduction
+Objective
+The objective of this security audit was to identify and test common API security vulnerabilities in the Django REST Framework backend.
+
+The following areas were reviewed:
+Authentication and authorization
+IDOR / Broken Access Control
+Permission enforcement
+Input validation
+Rate limiting
+Django security configuration
+JWT security
+Sensitive configuration protection
+
+2. Security Findings
+Finding 1 — IDOR / Broken Object-Level Authorization
+Issue
+Tested whether one authenticated user could access another user's ride by changing the ride ID.
+Severity
+High
+Affected API
+GET /api/rides/{ride_id}/
+Test
+A user attempted to access a ride belonging to another user by changing the UUID in the URL.
+Example:
+User A → /api/rides/<User-A-ride-ID>/
+Then:
+User A → /api/rides/<User-B-ride-ID>/
+Risk
+If object-level authorization were missing, a user could access another user's ride information by guessing or obtaining the ride ID.
+This could expose sensitive ride information.
+Fix
+The API uses object-level permission enforcement through the ride permission configuration:
+permission_classes = [
+    IsAuthenticated,
+    IsRideOwnerOrDriver,
+]
+Testing Result
+PASS
+Unauthorized access was rejected with:
+403 Forbidden
+
+3. Permission Testing
+Finding 2 — API Permission Enforcement
+Issue
+Verified access permissions for different user roles.
+Severity
+High
+Affected APIs
+/api/rides/
+/api/drivers/
+/api/vehicles/
+Roles Tested
+Admin
+Driver
+Passenger/User
+Unauthenticated User
+Risk
+Incorrect permissions could allow users to create, update, delete, or view resources they should not access.
+Fix
+DRF authentication and custom permission classes are used.
+Examples:
+IsAuthenticated
+IsRideOwnerOrDriver
+IsOwnDriverProfile
+IsAdminRole
+Testing Result
+Permission behavior was tested using authenticated users and unauthorized requests.
+Unauthorized operations returned:
+403 Forbidden
+while permitted operations returned successful responses such as:
+200 OK
+201 Created
+Result: PASS
+
+4. Input Validation
+Finding 3 — Malicious and Unexpected Input
+Issue
+Tested APIs with invalid and unexpected input.
+Severity
+Medium
+Affected API
+POST /api/rides/
+GET /api/rides/{ride_id}/
+Inputs Tested
+Empty strings
+Invalid IDs
+Invalid numbers
+Invalid coordinates
+Unexpected values
+Invalid JSON fields
+Invalid resource IDs
+Examples Tested
+Empty pickup address:
+
+{
+    "pickup_address": ""
+}
+
+Result:
+400 Bad Request
+Invalid UUID:
+GET /api/rides/abc/
+Result:
+404 Not Found
+Risk
+Insufficient input validation could result in invalid database records, application errors, or unexpected application behavior.
+Fix
+Input validation is handled through Django REST Framework serializers and model validation.
+Testing Result
+Invalid input was rejected safely.
+Examples:
+400 Bad Request
+404 Not Found
+Valid ride creation returned:
+201 Created
+Result: PASS
+
+5. Rate Limiting
+Finding 4 — API Rate Limiting
+Issue
+Tested whether sensitive endpoints reject excessive requests.
+Severity
+High
+Affected APIs
+Sensitive APIs include:
+Login
+Registration
+Password Reset
+OTP
+Ride Creation
+Configuration
+The project uses DRF throttling:
+
+"DEFAULT_THROTTLE_CLASSES": [
+    "rest_framework.throttling.AnonRateThrottle",
+    "rest_framework.throttling.UserRateThrottle",
+]
+
+Sensitive endpoint rates were configured, including:
+login          → 5/minute
+registration   → 5/minute
+password_reset → 5/minute
+otp            → 5/minute
+ride_creation  → 10/minute
+Risk
+Without rate limiting, attackers could perform:
+Brute-force login attempts
+OTP abuse
+Password-reset abuse
+Excessive ride creation requests
+Testing Result
+Repeated login requests produced:
+429 Too Many Requests
+with a response indicating that the request had been throttled.
+Result: PASS
+
+6. Django Security Configuration
+Finding 5 — Secure Django Configuration
+Issue
+Reviewed Django security-related configuration.
+Severity
+High
+Areas Reviewed
+DEBUG
+SECRET_KEY
+ALLOWED_HOSTS
+CSRF
+Secure cookies
+Session settings
+Security headers
+HTTPS configuration
+Environment variables
+Fix
+Sensitive configuration is loaded from .env.
+Example:
+SECRET_KEY = os.getenv("SECRET_KEY")
+DEBUG = os.getenv("DEBUG", "True").lower() == "true"
+Production-oriented security settings were also configured.
+The .env file was added to .gitignore and removed from Git tracking.
+Testing Result
+Django system check passed:
+System check identified no issues (0 silenced).
+The existing test suite also passed:
+Ran 74 tests
+OK
+Result: PASS
+
+7. JWT Security
+Finding 6 — JWT Authentication Security
+Issue
+Reviewed JWT authentication and token lifecycle behavior.
+Severity
+High
+Affected APIs
+Authenticated APIs such as:
+/api/rides/
+/api/drivers/
+/api/vehicles/
+Security Checks
+The following were tested:
+Access-token expiration
+Refresh-token behavior
+Invalid-token rejection
+Expired-token rejection
+Token blacklisting
+Configuration
+The project uses:
+"rest_framework_simplejwt.authentication.JWTAuthentication"
+Access-token lifetime:
+30 minutes
+Refresh-token lifetime:
+1 day
+The JWT blacklist application is enabled:
+"rest_framework_simplejwt.token_blacklist"
+Risk
+Weak JWT handling could allow unauthorized users to access protected resources using forged, expired, or invalid tokens.
+Testing Result
+Invalid and expired tokens were rejected.
+Refresh-token behavior and token invalidation were verified.
+Result: PASS
+
+8. Authentication and Authorization
+Finding 7 — Authentication Enforcement
+Issue
+Verified that protected APIs require authentication.
+Severity
+High
+Affected APIs
+Protected endpoints throughout the backend, including:
+/api/rides/
+/api/drivers/
+/api/vehicles/
+Risk
+If authentication were missing, unauthenticated users could access protected resources.
+Fix
+DRF JWT authentication is configured globally:
+"DEFAULT_AUTHENTICATION_CLASSES": (
+    "rest_framework_simplejwt.authentication.JWTAuthentication",
+),
+
+Individual APIs also use:
+permission_classes = [IsAuthenticated]
+where appropriate.
+Testing Result
+Unauthenticated access to protected resources was rejected.
+Result: PASS
