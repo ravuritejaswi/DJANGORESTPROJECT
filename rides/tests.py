@@ -1,10 +1,14 @@
 from decimal import Decimal
+import uuid
+from urllib import response
 from django.urls import reverse
 from rest_framework import status
 from accounts.models import User
+from rides.views import broadcast_ride_status
 from .models import DriverProfile
 from django.contrib.auth import get_user_model
-from django.test import TestCase
+from django.core.exceptions import ValidationError
+from django.test import TestCase, client
 from rest_framework.test import APIClient
 from channels.testing import WebsocketCommunicator
 from django.test import TransactionTestCase
@@ -12,6 +16,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from .consumers import RideConsumer
 from config.asgi import application
 from asgiref.sync import sync_to_async
+from django.db import IntegrityError, transaction, connection
 from django.db.models import Q, F, Count, Sum, Avg, Max, Min
 from accounts.models import Notification
 from accounts.tasks import (
@@ -19,6 +24,7 @@ from accounts.tasks import (
     send_driver_assignment_notification,
     send_ride_completion_notification,
     send_reminder_notification,
+    retry_test_job,
 )
 from .models import (
     DriverProfile,
@@ -46,6 +52,13 @@ class RideBusinessLogicTests(TestCase):
 
         self.accepted_status = RideStatus.objects.create(
             name="ACCEPTED"
+        )
+        self.started_status = RideStatus.objects.create(
+            name="STARTED"
+        )
+
+        self.completed_status = RideStatus.objects.create(
+            name="COMPLETED"
         )
 
         self.cancelled_status = RideStatus.objects.create(
@@ -187,6 +200,48 @@ class RideBusinessLogicTests(TestCase):
             self.accepted_status
         )
 
+    def test_unavailable_driver_cannot_accept_ride(self):
+        ride = Ride.objects.create(
+            user=self.rider,
+            status=self.requested_status,
+            pickup_address="Hyderabad",
+            drop_address="Secunderabad",
+            pickup_latitude=Decimal("17.385044"),
+            pickup_longitude=Decimal("78.486671"),
+            drop_latitude=Decimal("17.439930"),
+            drop_longitude=Decimal("78.498274"),
+            ride_type="NOW",
+            fare=Decimal("200.00")
+        )
+
+    # Make Driver A unavailable
+        self.driver_a.is_available = False
+        self.driver_a.save()
+
+        self.client.force_authenticate(
+            user=self.driver_user_a
+        )
+
+        response = self.client.post(
+            f"/api/rides/{ride.id}/accept/"
+        )
+
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_400_BAD_REQUEST
+        )
+
+        ride.refresh_from_db()
+
+        self.assertIsNone(
+            ride.driver
+        )
+
+        self.assertEqual(
+            ride.status,
+            self.requested_status
+        )
+
     # ---------------------------------------------------------
     # TEST 4 - DRIVER B CANNOT ACCEPT SAME RIDE
     # ---------------------------------------------------------
@@ -321,6 +376,259 @@ class RideBusinessLogicTests(TestCase):
             self.cancelled_status
         )
 
+    # ---------------------------------------------------------
+# TEST 7 - START RIDE
+# ---------------------------------------------------------
+
+    def test_ride_start(self):
+        ride = Ride.objects.create(
+            user=self.rider,
+            driver=self.driver_a,
+            status=self.accepted_status,
+            pickup_address="Hyderabad",
+            drop_address="Secunderabad",
+            pickup_latitude=Decimal("17.385044"),
+            pickup_longitude=Decimal("78.486671"),
+            drop_latitude=Decimal("17.439930"),
+            drop_longitude=Decimal("78.498274"),
+            ride_type="NOW",
+            fare=Decimal("200.00")
+        )
+
+        self.client.force_authenticate(
+            user=self.driver_user_a
+        )
+
+        response = self.client.post(
+            f"/api/rides/{ride.id}/start/"
+        )
+
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_200_OK
+        )
+
+        ride.refresh_from_db()
+
+        self.assertEqual(
+            ride.status,
+            self.started_status
+        )
+
+    # ---------------------------------------------------------
+# TEST 8 - COMPLETE RIDE
+# ---------------------------------------------------------
+
+    def test_ride_completion(self):
+        ride = Ride.objects.create(
+            user=self.rider,
+            driver=self.driver_a,
+            status=self.started_status,
+            pickup_address="Hyderabad",
+            drop_address="Secunderabad",
+            pickup_latitude=Decimal("17.385044"),
+            pickup_longitude=Decimal("78.486671"),
+            drop_latitude=Decimal("17.439930"),
+            drop_longitude=Decimal("78.498274"),
+            ride_type="NOW",
+            fare=Decimal("200.00")
+        )
+
+        self.client.force_authenticate(
+            user=self.driver_user_a
+        )
+
+        response = self.client.post(
+            f"/api/rides/{ride.id}/complete/"
+        )
+
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_200_OK
+        )
+
+        ride.refresh_from_db()
+
+        self.assertEqual(
+            ride.status,
+            self.completed_status
+        )
+
+    # ---------------------------------------------------------
+# TEST 9 - INVALID STATUS TRANSITION
+# ---------------------------------------------------------
+
+    def test_cannot_complete_accepted_ride(self):
+        ride = Ride.objects.create(
+            user=self.rider,
+            driver=self.driver_a,
+            status=self.accepted_status,
+            pickup_address="Hyderabad",
+            drop_address="Secunderabad",
+            pickup_latitude=Decimal("17.385044"),
+            pickup_longitude=Decimal("78.486671"),
+            drop_latitude=Decimal("17.439930"),
+            drop_longitude=Decimal("78.498274"),
+            ride_type="NOW",
+            fare=Decimal("200.00")
+        )
+
+        self.client.force_authenticate(
+            user=self.driver_user_a
+        )
+
+        response = self.client.post(
+            f"/api/rides/{ride.id}/complete/"
+        )
+
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_400_BAD_REQUEST
+        )
+
+        ride.refresh_from_db()
+
+        self.assertEqual(
+            ride.status,
+            self.accepted_status
+        )
+
+    def test_negative_fare_is_rejected(self):
+        ride = Ride(
+            user=self.rider,
+            status=self.requested_status,
+            pickup_address="Hyderabad",
+            drop_address="Secunderabad",
+            pickup_latitude=Decimal("17.385044"),
+            pickup_longitude=Decimal("78.486671"),
+            drop_latitude=Decimal("17.439930"),
+            drop_longitude=Decimal("78.498274"),
+            ride_type="NOW",
+            fare=Decimal("-100.00")
+        )
+
+        with self.assertRaises(ValidationError):
+            ride.full_clean()
+
+    def test_completed_ride_cannot_be_cancelled(self):
+        ride = Ride.objects.create(
+            user=self.rider,
+            status=self.completed_status,
+            driver=self.driver_a,
+            pickup_address="Hyderabad",
+            drop_address="Secunderabad",
+            pickup_latitude=Decimal("17.385044"),
+            pickup_longitude=Decimal("78.486671"),
+            drop_latitude=Decimal("17.439930"),
+            drop_longitude=Decimal("78.498274"),
+            ride_type="NOW",
+            fare=Decimal("200.00")
+        )
+
+        self.client.force_authenticate(
+            user=self.rider
+        )
+
+        response = self.client.post(
+            f"/api/rides/{ride.id}/cancel/"
+        )
+
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_400_BAD_REQUEST
+        )
+
+        ride.refresh_from_db()
+
+        self.assertEqual(
+            ride.status,
+            self.completed_status
+        )
+
+class DatabaseModelTests(TestCase):
+
+    def setUp(self):
+        self.rider = User.objects.create_user(
+            username="db_rider",
+            email="db_rider@example.com",
+            password="Test@12345"
+        )
+
+        self.requested_status = RideStatus.objects.create(
+            name="REQUESTED"
+        )
+
+    def test_model_constraint_negative_fare(self):
+        with self.assertRaises(IntegrityError):
+            with transaction.atomic():
+                Ride.objects.create(
+                    user=self.rider,
+                    status=self.requested_status,
+                    pickup_address="Hyderabad",
+                    drop_address="Secunderabad",
+                    pickup_latitude=Decimal("17.385044"),
+                    pickup_longitude=Decimal("78.486671"),
+                    drop_latitude=Decimal("17.439930"),
+                    drop_longitude=Decimal("78.498274"),
+                    ride_type="NOW",
+                    fare=Decimal("-100.00")
+                )
+
+    def test_unique_email_field(self):
+        with self.assertRaises(IntegrityError):
+            with transaction.atomic():
+                User.objects.create_user(
+                    username="another_user",
+                    email="db_rider@example.com",
+                    password="Test@12345"
+                )
+
+    def test_foreign_key_constraint(self):
+        with self.assertRaises(IntegrityError):
+            with transaction.atomic():
+                Ride.objects.create(
+                    user_id=uuid.uuid4(),
+                    status=self.requested_status,
+                    pickup_address="Hyderabad",
+                    drop_address="Secunderabad",
+                    pickup_latitude=Decimal("17.385044"),
+                    pickup_longitude=Decimal("78.486671"),
+                    drop_latitude=Decimal("17.439930"),
+                    drop_longitude=Decimal("78.498274"),
+                    ride_type="NOW",
+                    fare=Decimal("200.00")
+                )
+
+                connection.check_constraints()
+
+    def test_required_field_user(self):
+        with self.assertRaises(IntegrityError):
+            with transaction.atomic():
+                Ride.objects.create(
+                    user=None,
+                    status=self.requested_status,
+                    pickup_address="Hyderabad",
+                    drop_address="Secunderabad",
+                    pickup_latitude=Decimal("17.385044"),
+                    pickup_longitude=Decimal("78.486671"),
+                    drop_latitude=Decimal("17.439930"),
+                    drop_longitude=Decimal("78.498274"),
+                    ride_type="NOW",
+                    fare=Decimal("200.00")
+                )
+
+    def test_invalid_one_to_one_relationship(self):
+        DriverProfile.objects.create(
+            user=self.rider,
+            license_number="DB-LIC-001"
+        )
+
+        with self.assertRaises(IntegrityError):
+            with transaction.atomic():
+                DriverProfile.objects.create(
+                    user=self.rider,
+                    license_number="DB-LIC-002"
+                )
 from django.test import TestCase
 from django.urls import reverse
 from rest_framework.test import APIClient
@@ -732,6 +1040,77 @@ class DriverLocationTests(TestCase):
             str(location.longitude),
             "78.500000"
         )
+    def test_nearby_driver_selection(self):
+        nearby_driver = DriverLocation.objects.create(
+            driver=self.driver,
+            latitude=Decimal("17.385100"),
+            longitude=Decimal("78.486700"),
+            availability_status="ONLINE",
+            is_available=True
+        )
+        self.client.force_authenticate(
+        user=self.user
+        )
+
+        response = self.client.get(
+            "/api/drivers/nearby/",
+            {
+                "latitude": "17.385044",
+                "longitude": "78.486671",
+                "radius": "5"
+            }
+        )
+
+        self.assertEqual(
+        response.status_code,
+        status.HTTP_200_OK
+        )
+
+        driver_ids = [
+            item["driver_id"]
+            for item in response.data
+        ]
+
+        self.assertIn(
+            str(self.driver.id),
+            driver_ids
+        )
+
+    def test_far_driver_not_selected(self):
+        DriverLocation.objects.create(
+            driver=self.driver,
+            latitude=Decimal("18.000000"),
+            longitude=Decimal("79.000000"),
+            availability_status="ONLINE",
+            is_available=True
+        )
+        self.client.force_authenticate(
+            user=self.user
+        )
+
+        response = self.client.get(
+            "/api/drivers/nearby/",
+            {
+                "latitude": "17.385044",
+                "longitude": "78.486671",
+                "radius": "5"
+            }
+        )
+
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_200_OK
+        )
+
+        driver_ids = [
+            item["driver_id"]
+            for item in response.data
+        ]
+
+        self.assertNotIn(
+            str(self.driver.id),
+            driver_ids
+        )
 
     def test_driver_location_without_authentication(self):
         self.client.force_authenticate(
@@ -934,6 +1313,72 @@ class RideWebSocketTests(TransactionTestCase):
         self.assertTrue(connected)
 
         await communicator.disconnect()
+
+    async def test_ride_status_event(self):
+        access_token = await self.get_access_token(self.user)
+
+        communicator = WebsocketCommunicator(
+            application,
+            f"/ws/rides/{self.ride.id}/?token={access_token}"
+        )
+
+        connected, _ = await communicator.connect()
+        self.assertTrue(connected)
+
+        await sync_to_async(broadcast_ride_status)(
+            self.ride
+        )
+
+        response = await communicator.receive_json_from()
+
+        self.assertEqual(
+            response["ride_id"],
+            str(self.ride.id)
+        )
+        self.assertEqual(
+            response["status"],
+            self.ride.status.name
+        )
+
+        await communicator.disconnect()
+    @sync_to_async
+    def update_driver_location(self):
+        client = APIClient()
+        client.force_authenticate(user=self.driver_user)
+
+        return client.patch(
+            f"/api/rides/{self.ride.id}/location/",
+            {
+                "latitude": "17.400000",
+                "longitude": "78.500000",
+            },
+            format="json",
+        )
+    async def test_driver_location_event(self):
+        access_token = await self.get_access_token(self.driver_user)
+
+        communicator = WebsocketCommunicator(
+            application,
+            f"/ws/rides/{self.ride.id}/?token={access_token}"
+        )
+
+        connected, _ = await communicator.connect()
+
+        self.assertTrue(connected)
+
+        response = await self.update_driver_location()
+
+        self.assertEqual(response.status_code, 201)
+
+        event = await communicator.receive_json_from()
+        self.assertEqual(event["type"], "driver_location")
+        self.assertEqual(event["ride_id"], str(self.ride.id))
+        self.assertEqual(event["latitude"], "17.4")
+        self.assertEqual(event["longitude"], "78.5")
+
+        await communicator.disconnect()
+
+    
 
 class FareTests(TestCase):
 
@@ -1156,6 +1601,17 @@ class NotificationTests(TestCase):
                 title="Test",
                 message="Test notification"
             ).exists()
+        )
+
+    def test_celery_task_retry(self):
+        result = retry_test_job.apply()
+
+        self.assertTrue(result.successful())
+        self.assertEqual(result.result["success"], True)
+        self.assertEqual(result.result["attempt"], 3)
+        self.assertEqual(
+            result.result["message"],
+            "Job completed successfully on attempt 3"
         )
 
 class SecurityTests(TestCase):
