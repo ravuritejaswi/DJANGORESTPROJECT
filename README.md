@@ -2393,3 +2393,280 @@ Final Outcome
 
 The backend now has an automated test suite covering authentication, authorization, ride lifecycle, business rules, database integrity, real-time WebSocket events, Celery background tasks, and retry behavior.
 Final result: 98/98 tests passed, 0 failed, 0 skipped, with 86% overall code coverage.
+
+
+
+
+*****API Performance, Caching & Scalability Engineering
+
+#Identify Critical APIs
+
+Objective
+Identified the APIs that are most important for the mobile ride-booking application.
+Critical APIs identified
+1. Login
+2. Driver Location
+3. Nearby Drivers
+4. Create Ride
+5. Ride Details
+6. Ride History
+7. Notifications
+Work Completed
+Reviewed these APIs based on their importance to the application's core ride-booking workflow.
+Result
+Critical APIs were identified for further performance monitoring and optimization.
+
+
+#Establish Performance Baseline
+
+Objective
+Established an initial performance baseline before optimization.
+Tool Used
+Django Silk
+Django Silk was configured to monitor API performance.
+Metrics measured
+Response time
+Database query count
+Database query time
+API request frequency
+CPU and memory monitoring using psutil
+APIs tested
+
+Examples included:
+POST /accounts/login/
+GET /api/rides/active/
+GET /api/drivers/nearby/
+PATCH /api/rides/<ride_id>/location/
+POST /api/rides/<ride_id>/accept/
+Example observed results
+
+The Silk dashboard showed API-level measurements such as:
+Nearby Drivers
+Response Time: ~130 ms
+Database Queries: 2
+Database Time: ~13 ms
+The exact values varied between requests during testing.
+Result
+A performance baseline was established to compare API behavior before and after optimization.
+
+
+#Optimize Database Queries
+
+Objective
+Reviewed APIs for unnecessary database queries and optimized database access where appropriate.
+Areas reviewed
+N+1 query problems
+Repeated queries
+Missing indexes
+Large responses
+Related-object queries
+Optimizations applied
+
+Used Django ORM techniques where appropriate:
+select_related()
+prefetch_related()
+values()
+indexes
+Existing database optimizations
+
+Ride indexes were configured for commonly queried fields such as:
+user + created_at
+driver + created_at
+status + created_at
+
+Vehicle type queries were also supported by an index on:
+vehicle_type
+Field selection
+Several list/history APIs use .values() to retrieve only the required fields instead of unnecessarily returning the complete model data.
+
+Result
+Database access was reviewed and optimized to reduce unnecessary queries and response data.
+
+
+#Implement Redis Caching
+
+Objective
+Implemented Redis caching for frequently accessed, relatively static data.
+Cached data
+The primary caching example was:
+Vehicle Types
+Cache configuration
+Django's cache backend was configured to use Redis:
+redis://127.0.0.1:6379/1
+The application uses a separate Redis database for caching, while Celery continues using Redis database 0.
+Cache behavior
+The Vehicle Type API:
+GET /api/vehicle-types/
+checks the cache before querying the database.
+
+Conceptually:
+Request
+   ↓
+Check Redis Cache
+   ↓
+Data exists?
+ ┌───────┴───────┐
+Yes             No
+ ↓               ↓
+Return Cache   Query DB
+                 ↓
+              Save Cache
+                 ↓
+              Return Data
+Result
+Redis caching was successfully tested and the cached data could be retrieved using Django's cache framework.
+
+
+#Cache Invalidation
+
+Objective
+Ensured cached data is removed when the underlying data changes so that stale data is not served.
+Cache invalidation flow
+VehicleType Updated
+        ↓
+post_save Signal
+        ↓
+Delete "vehicle_types" Cache
+        ↓
+Next API Request
+        ↓
+Fetch Fresh Data
+        ↓
+Store New Cache
+Implementation
+
+A Django signal was configured through:
+rides/apps.py
+using:
+
+def ready(self):
+    from . import signals
+
+The signal handles cache invalidation for VehicleType changes.
+
+Testing
+
+A stale-cache scenario was tested:
+
+Cache = OLD DATA
+        ↓
+VehicleType updated
+        ↓
+Cache invalidated
+        ↓
+cache.get("vehicle_types")
+        ↓
+None
+Result
+Cache invalidation was implemented and tested to prevent stale Vehicle Type data.
+
+
+#Pagination & Response Optimization
+
+Objective
+Optimized APIs that can return large amounts of data.
+Pagination
+The project already uses DRF pagination:
+
+"DEFAULT_PAGINATION_CLASS":
+"rest_framework.pagination.PageNumberPagination"
+
+"PAGE_SIZE": 10
+
+A dedicated large-dataset pagination configuration was also implemented:
+Default page size: 20
+Maximum page size: 100
+Example
+GET /api/rides/large-dataset/
+
+Custom page size can be requested using:
+?page_size=5
+The maximum page size prevents clients from requesting an unnecessarily large response.
+Field selection
+Large/list APIs were reviewed to return only the fields required by the client.
+Examples include:
+id
+pickup_address
+drop_address
+fare
+created_at
+Lightweight responses
+
+A lightweight ride serializer was introduced for large/list responses to avoid returning unnecessary Ride fields.
+
+Result
+Pagination, field selection, lightweight responses, and maximum page-size protection were implemented/reviewed to improve API scalability.
+
+
+#Load Testing
+
+Objective
+Simulated multiple users accessing the backend simultaneously and measured backend performance under load.
+Tool Used
+Locust
+API tested
+GET /api/rides/large-dataset/
+Test configuration
+Initial load test:
+Number of users: 10
+Ramp-up rate: 2 users/second
+Host: http://127.0.0.1:8000
+Metrics monitored
+Requests/second
+Average response time
+Failure rate
+Database load
+Important test observation
+
+The first Locust run produced:
+100% failures
+The Locust failure details showed:
+ConnectionRefusedError(10061)
+This was identified as a connectivity issue because the Django development server was not running/reachable at the time of that test.
+The failed run was therefore not treated as the valid performance result.
+Load-testing process
+After ensuring the Django server was running:
+
+Django Backend
+      ↑
+      │
+   Locust
+      │
+ ┌────┼────┐
+User User User
+ 1    2    3 ...
+
+Locust was used to generate concurrent API requests and observe the backend's behavior.
+Result
+Load-testing infrastructure was successfully configured, and Locust was used to measure backend request performance.
+
+
+#Performance Report
+
+Before vs After Optimization
+Area	                 Before Optimization	                                 After Optimization
+Database queries	     Reviewed for unnecessary/repeated queries    select_related(), prefetch_related(), values() and indexes applied where appropriate
+API responses	     Some APIs could return unnecessary fields  	  Field selection/lightweight responses introduced
+Large datasets	         Risk of large responses	                     Pagination implemented
+Page size	         No uncontrolled large page requests	Maximum page size of 100 for large-dataset API
+Frequently accessed data  Database access on repeated requests	     Redis caching implemented
+Stale cached data	  Potential stale data	                   Cache invalidation through signals
+Performance monitoring	 Limited visibility                       	Django Silk configured
+Load testing	           Manual testing              	Locust configured for concurrent users
+Database monitoring     Basic observation    	Query count/time and PostgreSQL activity monitored
+
+Performance Improvements
+The main performance engineering improvements completed were:
+Performance monitoring using Django Silk.
+Database query optimization using appropriate ORM techniques.
+Database indexing for frequently queried Ride fields.
+Redis caching for Vehicle Type data.
+Automatic cache invalidation when Vehicle Type data changes.
+Pagination for large datasets.
+Field selection and lightweight API responses.
+Maximum page-size protection.
+Load testing using Locust.
+Response time, query count, failure rate and database activity monitoring.
+
+Conclusion
+The Django REST backend was reviewed from a performance and scalability perspective. Critical APIs were identified, baseline performance was measured using Django Silk, database queries were optimized, Redis caching and cache invalidation were implemented, and large responses were controlled using pagination and lightweight serializers. Finally, Locust was configured to simulate multiple concurrent users and evaluate backend behavior under load.

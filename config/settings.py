@@ -52,9 +52,11 @@ INSTALLED_APPS = [
     'drf_yasg',
     'rides',
     'channels',
+    "silk",
 ]
 
 MIDDLEWARE = [
+    "silk.middleware.SilkyMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',

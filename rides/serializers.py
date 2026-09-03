@@ -234,3 +234,14 @@ class DriverLocationSerializer(serializers.ModelSerializer):
             "driver",
             "last_updated",
         ]
+
+class VehicleTypeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = VehicleType
+        fields = [
+            "id",
+            "name",
+            "description",
+            "is_active",
+        ]
+        read_only_fields = ["id", "is_active"]
