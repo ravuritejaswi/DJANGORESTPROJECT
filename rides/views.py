@@ -1,4 +1,5 @@
-
+from drf_yasg import openapi
+from drf_yasg.utils import swagger_auto_schema
 from asgiref.sync import async_to_sync
 from channels.layers import get_channel_layer
 from django.db import connection
@@ -93,6 +94,19 @@ class RideViewSet(viewsets.ModelViewSet):
 
         serializer.instance = ride
 
+    @swagger_auto_schema(
+        operation_summary="Update ride status",
+        operation_description="Updates the status of an existing ride.",
+        request_body=RideStatusUpdateSerializer,
+        responses={
+            200: "Ride status updated successfully",
+            400: "Invalid ride status or request data",
+            401: "Authentication required",
+            404: "Ride not found",
+        },
+    )
+    
+
     @action(detail=True, methods=["patch"], url_path="status")
     def update_status(self, request, pk=None):
         print("UPDATE STATUS CALLED")
@@ -123,6 +137,21 @@ class RideViewSet(viewsets.ModelViewSet):
             data=RideSerializer(ride).data,
             status_code=status.HTTP_200_OK,
         )
+    @swagger_auto_schema(
+        operation_summary="Update driver location",
+        operation_description=(
+            "Updates the driver's latitude and longitude "
+            "for the selected ride."
+        ),
+        request_body=DriverLocationSerializer,
+        responses={
+            200: "Driver location updated successfully",
+            201: "Driver location created successfully",
+            400: "Invalid location or no driver assigned",
+            401: "Authentication required",
+            404: "Ride not found",
+        },
+    )
 
     @action(detail=True, methods=["patch"], url_path="location")
     def update_location(self, request, pk=None):
@@ -172,6 +201,20 @@ class RideViewSet(viewsets.ModelViewSet):
                 else status.HTTP_200_OK
             ),
         )
+
+    @swagger_auto_schema(
+        operation_summary="Accept a ride",
+        operation_description=(
+            "Allows an available driver to accept a requested ride."
+        ),
+        responses={
+            200: "Ride accepted successfully",
+            400: "Ride cannot be accepted",
+            401: "Authentication required",
+            403: "Driver is not authorized or available",
+            404: "Ride not found",
+        },
+    )
     
     @action(detail=True, methods=["post"], url_path="accept")
     def accept_ride(self, request, pk=None):
@@ -187,6 +230,18 @@ class RideViewSet(viewsets.ModelViewSet):
             data=RideSerializer(ride).data,
             status_code=status.HTTP_200_OK,
         )
+    @swagger_auto_schema(
+        operation_summary="Cancel a ride",
+        operation_description=(
+            "Cancels an existing ride that is not already completed or cancelled."
+        ),
+        responses={
+            200: "Ride cancelled successfully",
+            400: "Ride cannot be cancelled",
+            401: "Authentication required",
+            404: "Ride not found",
+        },
+    )
 
     @action(detail=True, methods=["post"], url_path="cancel")
     def cancel_ride(self, request, pk=None):
@@ -205,6 +260,17 @@ class RideViewSet(viewsets.ModelViewSet):
                 "INVALID_RIDE_STATUS",
                 status.HTTP_400_BAD_REQUEST,
             )
+
+    @swagger_auto_schema(
+        operation_summary="Start a ride",
+        operation_description="Starts a ride that has been accepted by a driver.",
+        responses={
+            200: "Ride started successfully",
+            400: "Ride cannot be started",
+            401: "Authentication required",
+            404: "Ride not found",
+        },
+    )
 
     @action(detail=True, methods=["post"], url_path="start")
     def start_ride(self, request, pk=None):
@@ -225,6 +291,16 @@ class RideViewSet(viewsets.ModelViewSet):
             data=RideSerializer(ride).data,
             status_code=status.HTTP_200_OK,
         )
+    @swagger_auto_schema(
+        operation_summary="Complete a ride",
+        operation_description="Completes a ride that is currently in progress.",
+        responses={
+            200: "Ride completed successfully",
+            400: "Ride cannot be completed",
+            401: "Authentication required",
+            404: "Ride not found",
+        },
+    )
 
     @action(detail=True, methods=["post"], url_path="complete")
     def complete_ride(self, request, pk=None):
@@ -245,6 +321,15 @@ class RideViewSet(viewsets.ModelViewSet):
             data=RideSerializer(ride).data,
             status_code=status.HTTP_200_OK,
         )
+    @swagger_auto_schema(
+        operation_summary="Calculate ride fare",
+        operation_description="Returns the fare information for a ride.",
+        responses={
+            200: "Fare calculated successfully",
+            401: "Authentication required",
+            404: "Ride not found",
+        },
+    )
 
     @action(detail=True, methods=["get"], url_path="fare")
     def fare(self, request, pk=None):
@@ -259,6 +344,14 @@ class RideViewSet(viewsets.ModelViewSet):
         )
 
 class UserActiveRidesView(APIView):
+    @swagger_auto_schema(
+        operation_summary="Get active rides",
+        operation_description="Returns active rides belonging to the authenticated user.",
+        responses={
+            200: "Active rides retrieved successfully",
+            401: "Authentication required",
+        },
+    )
     def get(self, request):
         rides = Ride.objects.filter(
             user=request.user
@@ -285,6 +378,14 @@ class UserActiveRidesView(APIView):
         })
 
 class CompletedRidesView(APIView):
+    @swagger_auto_schema(
+        operation_summary="Get completed rides",
+        operation_description="Returns completed rides belonging to the authenticated user.",
+        responses={
+            200: "Completed rides retrieved successfully",
+            401: "Authentication required",
+        },
+    )
 
     def get(self, request):
         rides = Ride.objects.filter(
@@ -308,6 +409,14 @@ class CompletedRidesView(APIView):
         })
 
 class CancelledRidesView(APIView):
+    @swagger_auto_schema(
+        operation_summary="Get cancelled rides",
+        operation_description="Returns cancelled rides belonging to the authenticated user.",
+        responses={
+            200: "Cancelled rides retrieved successfully",
+            401: "Authentication required",
+        },
+    )
 
     def get(self, request):
         rides = Ride.objects.filter(
@@ -332,6 +441,49 @@ class CancelledRidesView(APIView):
 
 class RideHistoryView(APIView):
     permission_classes = [IsAuthenticated]
+    @swagger_auto_schema(
+        operation_summary="Get ride history",
+        operation_description=(
+            "Returns the authenticated user's ride history. "
+            "Supports filtering by date, status, driver and fare range."
+        ),
+        manual_parameters=[
+            openapi.Parameter(
+                "date",
+                openapi.IN_QUERY,
+                description="Filter rides by date (YYYY-MM-DD)",
+                type=openapi.TYPE_STRING,
+            ),
+            openapi.Parameter(
+                "status",
+                openapi.IN_QUERY,
+                description="Filter rides by ride status",
+                type=openapi.TYPE_STRING,
+            ),
+            openapi.Parameter(
+                "driver",
+                openapi.IN_QUERY,
+                description="Filter rides by driver ID",
+                type=openapi.TYPE_STRING,
+            ),
+            openapi.Parameter(
+                "min_fare",
+                openapi.IN_QUERY,
+                description="Minimum fare",
+                type=openapi.TYPE_NUMBER,
+            ),
+            openapi.Parameter(
+                "max_fare",
+                openapi.IN_QUERY,
+                description="Maximum fare",
+                type=openapi.TYPE_NUMBER,
+            ),
+        ],
+        responses={
+            200: "Ride history retrieved successfully",
+            401: "Authentication required",
+        },
+    )
 
     def get(self, request):
         rides = (
@@ -399,6 +551,14 @@ class RideHistoryView(APIView):
         })
 
 class DriverRideHistoryView(APIView):
+    @swagger_auto_schema(
+        operation_summary="Get driver ride history",
+        operation_description="Returns rides assigned to the authenticated driver.",
+        responses={
+            200: "Driver ride history retrieved successfully",
+            401: "Authentication required",
+        },
+    )
 
     def get(self, request):
         rides = Ride.objects.filter(
@@ -422,6 +582,14 @@ class DriverRideHistoryView(APIView):
         })
 
 class DailyRideCountView(APIView):
+    @swagger_auto_schema(
+        operation_summary="Get daily ride count",
+        operation_description="Returns the number of rides created by the user for each day.",
+        responses={
+            200: "Daily ride count retrieved successfully",
+            401: "Authentication required",
+        },
+    )
 
     def get(self, request):
         data = (
@@ -436,6 +604,14 @@ class DailyRideCountView(APIView):
         return Response(data)
 
 class TotalCompletedRidesView(APIView):
+    @swagger_auto_schema(
+        operation_summary="Get total completed rides",
+        operation_description="Returns the total number of completed rides for the authenticated user.",
+        responses={
+            200: "Total completed rides retrieved successfully",
+            401: "Authentication required",
+        },
+    )
 
     def get(self, request):
 
@@ -449,6 +625,14 @@ class TotalCompletedRidesView(APIView):
         })
 
 class TotalFareEarnedView(APIView):
+    @swagger_auto_schema(
+        operation_summary="Get total fare earned",
+        operation_description="Returns the total fare earned by the authenticated driver from completed rides.",
+        responses={
+            200: "Total fare retrieved successfully",
+            401: "Authentication required",
+        },
+    )
 
     def get(self, request):
 
@@ -463,6 +647,17 @@ class TotalFareEarnedView(APIView):
 
 class RideAggregationsView(APIView):
     permission_classes = [IsAuthenticated]
+    @swagger_auto_schema(
+        operation_summary="Get ride aggregations",
+        operation_description=(
+            "Returns ride statistics including total rides, "
+            "completed rides, cancelled rides and fare statistics."
+        ),
+        responses={
+            200: "Ride aggregations retrieved successfully",
+            401: "Authentication required",
+        },
+    )
 
     def get(self, request):
         rides = Ride.objects.filter(
@@ -530,6 +725,61 @@ class SlowRideQueryView(APIView):
         })
 
 class AdvancedRideFilterView(APIView):
+    @swagger_auto_schema(
+        operation_summary="Filter rides",
+        operation_description=(
+            "Filters rides using date range, status, driver, "
+            "fare range and ordering."
+        ),
+        manual_parameters=[
+            openapi.Parameter(
+                "start_date",
+                openapi.IN_QUERY,
+                description="Start date (YYYY-MM-DD)",
+                type=openapi.TYPE_STRING,
+            ),
+            openapi.Parameter(
+                "end_date",
+                openapi.IN_QUERY,
+                description="End date (YYYY-MM-DD)",
+                type=openapi.TYPE_STRING,
+            ),
+            openapi.Parameter(
+                "status",
+                openapi.IN_QUERY,
+                description="Ride status",
+                type=openapi.TYPE_STRING,
+            ),
+            openapi.Parameter(
+                "driver_id",
+                openapi.IN_QUERY,
+                description="Driver ID",
+                type=openapi.TYPE_STRING,
+            ),
+            openapi.Parameter(
+                "min_fare",
+                openapi.IN_QUERY,
+                description="Minimum fare",
+                type=openapi.TYPE_NUMBER,
+            ),
+            openapi.Parameter(
+                "max_fare",
+                openapi.IN_QUERY,
+                description="Maximum fare",
+                type=openapi.TYPE_NUMBER,
+            ),
+            openapi.Parameter(
+                "ordering",
+                openapi.IN_QUERY,
+                description="Ordering: created_at, -created_at, fare or -fare",
+                type=openapi.TYPE_STRING,
+            ),
+        ],
+        responses={
+            200: "Filtered rides retrieved successfully",
+            401: "Authentication required",
+        },
+    )
 
     def get(self, request):
 
@@ -601,6 +851,30 @@ class LargeDatasetPagination(PageNumberPagination):
 
 
 class LargeDatasetRideView(APIView):
+    @swagger_auto_schema(
+        operation_summary="Get paginated rides",
+        operation_description=(
+            "Returns rides using pagination optimized for large datasets."
+        ),
+        manual_parameters=[
+            openapi.Parameter(
+                "page",
+                openapi.IN_QUERY,
+                description="Page number",
+                type=openapi.TYPE_INTEGER,
+            ),
+            openapi.Parameter(
+                "page_size",
+                openapi.IN_QUERY,
+                description="Number of rides per page. Maximum 100.",
+                type=openapi.TYPE_INTEGER,
+            ),
+        ],
+        responses={
+            200: "Paginated rides retrieved successfully",
+            401: "Authentication required",
+        },
+    )
 
     def get(self, request):
 
@@ -624,6 +898,16 @@ class LargeDatasetRideView(APIView):
 
 class DriverLocationView(APIView):
     permission_classes = [IsAuthenticated]
+    @swagger_auto_schema(
+        operation_summary="Update driver location",
+        operation_description="Creates or updates the authenticated driver's current location.",
+        request_body=DriverLocationSerializer,
+        responses={
+            200: "Driver location updated successfully",
+            201: "Driver location created successfully",
+            401: "Authentication required",
+        },
+    )
 
     def post(self, request):
         driver = request.user.driver_profile
@@ -645,6 +929,41 @@ class DriverLocationView(APIView):
 
 class NearbyDriverView(APIView):
     permission_classes = [IsAuthenticated]
+    @swagger_auto_schema(
+        operation_summary="Find nearby drivers",
+        operation_description=(
+            "Returns available drivers near the specified "
+            "latitude and longitude within the requested radius."
+        ),
+        manual_parameters=[
+            openapi.Parameter(
+                "latitude",
+                openapi.IN_QUERY,
+                description="Latitude between -90 and 90",
+                type=openapi.TYPE_NUMBER,
+                required=True,
+            ),
+            openapi.Parameter(
+                "longitude",
+                openapi.IN_QUERY,
+                description="Longitude between -180 and 180",
+                type=openapi.TYPE_NUMBER,
+                required=True,
+            ),
+            openapi.Parameter(
+                "radius",
+                openapi.IN_QUERY,
+                description="Search radius",
+                type=openapi.TYPE_NUMBER,
+                required=True,
+            ),
+        ],
+        responses={
+            200: "Nearby drivers retrieved successfully",
+            400: "Invalid latitude, longitude or radius",
+            401: "Authentication required",
+        },
+    )
 
     def get(self, request):
         latitude = request.GET.get("latitude")
@@ -710,6 +1029,14 @@ class NearbyDriverView(APIView):
 
 class VehicleTypeListView(APIView):
     permission_classes = [IsAuthenticated]
+    @swagger_auto_schema(
+        operation_summary="List active vehicle types",
+        operation_description="Returns all active vehicle types.",
+        responses={
+            200: VehicleTypeSerializer(many=True),
+            401: "Authentication required",
+        },
+    )
 
     def get(self, request):
         cache_key = "vehicle_types"

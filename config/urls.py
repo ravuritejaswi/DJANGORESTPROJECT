@@ -31,9 +31,14 @@ from accounts.views import (
 
 schema_view = get_schema_view(
     openapi.Info(
-        title="Your API",
+        title="Ride Booking API",
         default_version="v1",
-        description="Your API description",
+        description=(
+            "API documentation for the Ride Booking Backend. "
+            "This API provides user authentication, profiles, "
+            "driver management, vehicle management, ride booking, "
+            "ride status management, notifications, and driver location services."
+        ),
     ),
     public=True,
     permission_classes=(permissions.AllowAny,),

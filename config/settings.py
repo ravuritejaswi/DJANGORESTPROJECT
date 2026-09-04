@@ -200,11 +200,22 @@ LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
 
+    "formatters": {
+        "verbose": {
+            "format": (
+                "{asctime} {levelname} {name} "
+                "{message}"
+            ),
+            "style": "{",
+        },
+    },
+
     "handlers": {
         "file": {
             "level": "INFO",
             "class": "logging.FileHandler",
             "filename": os.path.join(BASE_DIR, "logs", "django.log"),
+            "formatter": "verbose",
         },
     },
 
@@ -212,7 +223,31 @@ LOGGING = {
         "django": {
             "handlers": ["file"],
             "level": "INFO",
-            "propagate": True,
+            "propagate": False,
+        },
+
+        "accounts": {
+            "handlers": ["file"],
+            "level": "INFO",
+            "propagate": False,
+        },
+
+        "rides": {
+            "handlers": ["file"],
+            "level": "INFO",
+            "propagate": False,
+        },
+
+        "accounts.tasks": {
+            "handlers": ["file"],
+            "level": "INFO",
+            "propagate": False,
+        },
+
+        "rides.consumers": {
+            "handlers": ["file"],
+            "level": "INFO",
+            "propagate": False,
         },
     },
 }
