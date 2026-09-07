@@ -1,8 +1,35 @@
-from django.http import request
+
 from rest_framework import serializers
 from .models import (DriverProfile, Vehicle, VehicleType, Ride, RideStatus, DriverLocation)
+class DynamicFieldsModelSerializer(serializers.ModelSerializer):
+    """
+    Allows optional field selection using:
+    ?fields=field1,field2
+    """
 
-class VehicleNestedSerializer(serializers.ModelSerializer):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        request = self.context.get("request")
+
+        if not request:
+            return
+
+        fields_param = request.query_params.get("fields")
+
+        if not fields_param:
+            return
+
+        allowed_fields = {
+            field.strip()
+            for field in fields_param.split(",")
+            if field.strip()
+        }
+
+        for field_name in list(self.fields):
+            if field_name not in allowed_fields:
+                self.fields.pop(field_name)
+class VehicleNestedSerializer(DynamicFieldsModelSerializer):
     vehicle_type = serializers.CharField(source="vehicle_type.name", read_only=True)
 
     class Meta:
@@ -11,6 +38,7 @@ class VehicleNestedSerializer(serializers.ModelSerializer):
             "vehicle_type",
             "vehicle_number",
         ]
+
 class DriverProfileSerializer(serializers.ModelSerializer):
     vehicles = VehicleNestedSerializer(many=True, read_only=True)
     class Meta:
@@ -27,7 +55,7 @@ class DriverProfileSerializer(serializers.ModelSerializer):
 
 
 
-class VehicleSerializer(serializers.ModelSerializer):
+class VehicleSerializer(DynamicFieldsModelSerializer):
 
     class Meta:
         model = Vehicle
@@ -91,7 +119,7 @@ class VehicleSerializer(serializers.ModelSerializer):
 
         return attrs
 
-class RideSerializer(serializers.ModelSerializer):
+class RideSerializer(DynamicFieldsModelSerializer):
     class Meta:
         model = Ride
         fields = [
@@ -218,7 +246,7 @@ class RideStatusUpdateSerializer(serializers.ModelSerializer):
 
         return new_status
 
-class DriverLocationSerializer(serializers.ModelSerializer):
+class DriverLocationSerializer(DynamicFieldsModelSerializer):
     class Meta:
         model = DriverLocation
         fields = [
@@ -235,7 +263,7 @@ class DriverLocationSerializer(serializers.ModelSerializer):
             "last_updated",
         ]
 
-class VehicleTypeSerializer(serializers.ModelSerializer):
+class VehicleTypeSerializer(DynamicFieldsModelSerializer):
     class Meta:
         model = VehicleType
         fields = [

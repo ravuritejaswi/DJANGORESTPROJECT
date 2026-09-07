@@ -11,7 +11,9 @@ from rest_framework.exceptions import ValidationError
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from rest_framework.generics import GenericAPIView
 from rest_framework.views import APIView
+from rest_framework.generics import ListAPIView
 from django.core.cache import cache
 from core.responses import error_response, success_response
 from rides.services.driver_service import (find_nearby_drivers,
@@ -603,7 +605,7 @@ class DailyRideCountView(APIView):
 
         return Response(data)
 
-class TotalCompletedRidesView(APIView):
+class TotalCompletedRidesView(GenericAPIView):
     @swagger_auto_schema(
         operation_summary="Get total completed rides",
         operation_description="Returns the total number of completed rides for the authenticated user.",
@@ -850,7 +852,7 @@ class LargeDatasetPagination(PageNumberPagination):
     max_page_size = 100
 
 
-class LargeDatasetRideView(APIView):
+class LargeDatasetRideView(ListAPIView):
     @swagger_auto_schema(
         operation_summary="Get paginated rides",
         operation_description=(
