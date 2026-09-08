@@ -10760,3 +10760,532 @@ django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'testserver'. Y
 2026-09-07 12:33:06,199 WARNING django.request Unauthorized: /api/vehicles/
 2026-09-07 12:33:09,136 WARNING django.request Bad Request: /api/vehicles/84938b0b-9009-4607-ad16-c7f4c1abe832/
 2026-09-07 12:33:11,969 WARNING django.request Bad Request: /api/vehicles/
+2026-09-08 09:43:52,802 WARNING django.request Unauthorized: /api/v1/accounts/profile/
+2026-09-08 09:43:57,220 INFO accounts.views User login successful
+2026-09-08 09:44:02,559 WARNING accounts.views User login failed: invalid credentials
+2026-09-08 09:44:02,574 WARNING django.request Bad Request: /api/v1/accounts/login/
+2026-09-08 09:44:04,937 WARNING django.request Unauthorized: /api/v1/accounts/token/refresh/
+2026-09-08 09:44:15,659 WARNING accounts.views User registration failed
+2026-09-08 09:44:15,677 WARNING django.request Bad Request: /api/v1/accounts/register/
+2026-09-08 09:44:17,093 WARNING accounts.views User registration failed
+2026-09-08 09:44:17,106 WARNING django.request Bad Request: /api/v1/accounts/register/
+2026-09-08 09:44:20,734 INFO accounts.views User registration successful
+2026-09-08 09:44:29,877 WARNING django.request Unauthorized: /api/v1/accounts/profiles/
+2026-09-08 09:44:34,121 WARNING django.request Forbidden: /api/v1/accounts/profiles/
+2026-09-08 09:44:38,599 WARNING django.request Forbidden: /api/v1/accounts/profiles/
+2026-09-08 09:44:42,802 WARNING django.request Bad Request: /api/v1/accounts/profile-crud/
+2026-09-08 09:44:47,216 WARNING django.request Unauthorized: /api/v1/accounts/profile-crud/
+2026-09-08 09:45:14,368 WARNING django.request Unauthorized: /api/v1/drivers/location/
+2026-09-08 09:45:21,740 WARNING django.request Bad Request: /api/v1/drivers/
+2026-09-08 09:45:30,600 WARNING django.request Not Found: /api/v1/rides/00000000-0000-0000-0000-000000000000/fare/
+2026-09-08 09:45:32,118 WARNING django.request Unauthorized: /api/v1/rides/d080dd80-5f3d-4342-bfba-53b45948a328/fare/
+2026-09-08 09:45:49,778 WARNING django.request Unauthorized: /api/v1/drivers/location/
+2026-09-08 09:45:53,119 WARNING django.request Unauthorized: /api/rides/aggregations/
+2026-09-08 09:45:57,452 WARNING rides.services.ride_service Ride acceptance failed: ride is not in requested status | ride_id=5451cb4d-3a53-4bcb-8614-bf3b9f62d754
+2026-09-08 09:45:57,502 WARNING django.request Bad Request: /api/rides/5451cb4d-3a53-4bcb-8614-bf3b9f62d754/accept/
+2026-09-08 09:46:01,869 WARNING rides.services.ride_service Ride completion failed: invalid current status | ride_id=95b2e638-b7b3-4b86-af83-e7459eac9302
+2026-09-08 09:46:01,892 WARNING django.request Bad Request: /api/rides/95b2e638-b7b3-4b86-af83-e7459eac9302/complete/
+2026-09-08 09:46:06,271 WARNING rides.services.ride_service Ride cancellation failed: invalid current status | ride_id=a8dc5321-908a-423b-8134-6d3f9a99d0d0 status=COMPLETED
+2026-09-08 09:46:06,304 WARNING django.request Bad Request: /api/rides/a8dc5321-908a-423b-8134-6d3f9a99d0d0/cancel/
+2026-09-08 09:46:23,508 INFO rides.services.ride_service Ride cancelled successfully | ride_id=877bb252-396e-4753-be4d-6627ebc083d1
+2026-09-08 09:46:27,781 INFO rides.services.ride_service Ride completed successfully | ride_id=cabd3d7e-060b-4d12-88b8-cc9b24d25de7
+2026-09-08 09:46:36,452 INFO rides.services.ride_service Ride started successfully | ride_id=632d9e56-d2ec-4e46-97e7-d96be29f1faa
+2026-09-08 09:46:41,058 WARNING rides.services.ride_service Ride acceptance failed: ride is not in requested status | ride_id=ea8bb8a5-c4ee-447c-9d37-e23284a799a8
+2026-09-08 09:46:41,098 WARNING django.request Bad Request: /api/rides/ea8bb8a5-c4ee-447c-9d37-e23284a799a8/accept/
+2026-09-08 09:46:45,276 WARNING rides.services.ride_service Ride acceptance failed: driver is not available | ride_id=5ff58cc9-7a86-47f4-b5db-240fbd3df3ee, driver_id=611534ad-ebcf-447f-8bd0-77b2dc8c6398
+2026-09-08 09:46:45,303 WARNING django.request Bad Request: /api/rides/5ff58cc9-7a86-47f4-b5db-240fbd3df3ee/accept/
+2026-09-08 09:47:11,293 WARNING django.request Unauthorized: /api/rides/history/
+2026-09-08 09:47:22,653 WARNING django.request Forbidden: /api/drivers/20f98226-2957-46cc-a044-30d520494b29/
+2026-09-08 09:47:24,727 WARNING django.request Too Many Requests: /api/drivers/
+2026-09-08 09:47:24,742 WARNING django.request Too Many Requests: /api/drivers/
+2026-09-08 09:47:24,757 WARNING django.request Too Many Requests: /api/drivers/
+2026-09-08 09:47:24,771 WARNING django.request Too Many Requests: /api/drivers/
+2026-09-08 09:47:24,784 WARNING django.request Too Many Requests: /api/drivers/
+2026-09-08 09:47:24,804 WARNING django.request Unauthorized: /api/drivers/
+2026-09-08 09:47:26,254 WARNING django.request Bad Request: /api/rides/
+2026-09-08 09:47:26,283 WARNING django.request Unauthorized: /api/rides/
+2026-09-08 09:47:26,298 WARNING django.request Unauthorized: /api/drivers/
+2026-09-08 09:47:29,227 WARNING django.request Forbidden: /api/rides/8ed142e7-512a-42f6-b214-daa26ee38466/
+2026-09-08 09:47:35,157 WARNING django.request Unauthorized: /api/vehicles/
+2026-09-08 09:47:39,376 WARNING django.request Bad Request: /api/vehicles/10afebd5-a00e-4baf-ba77-c11d520f62e4/
+2026-09-08 09:47:42,272 WARNING django.request Bad Request: /api/vehicles/
+2026-09-08 10:45:36,874 WARNING django.request Unauthorized: /api/v1/accounts/profile/
+2026-09-08 10:45:41,253 INFO accounts.views User login successful
+2026-09-08 10:45:47,465 WARNING accounts.views User login failed: invalid credentials
+2026-09-08 10:45:47,478 WARNING django.request Bad Request: /api/v1/accounts/login/
+2026-09-08 10:45:48,945 WARNING django.request Unauthorized: /api/v1/accounts/token/refresh/
+2026-09-08 10:45:58,995 WARNING accounts.views User registration failed
+2026-09-08 10:45:59,011 WARNING django.request Bad Request: /api/v1/accounts/register/
+2026-09-08 10:46:00,422 WARNING accounts.views User registration failed
+2026-09-08 10:46:00,435 WARNING django.request Bad Request: /api/v1/accounts/register/
+2026-09-08 10:46:03,207 INFO accounts.views User registration successful
+2026-09-08 10:46:11,672 WARNING django.request Unauthorized: /api/v1/accounts/profiles/
+2026-09-08 10:46:15,830 WARNING django.request Forbidden: /api/v1/accounts/profiles/
+2026-09-08 10:46:19,982 WARNING django.request Forbidden: /api/v1/accounts/profiles/
+2026-09-08 10:46:22,977 WARNING django.request Bad Request: /api/v1/accounts/profile-crud/
+2026-09-08 10:46:27,244 WARNING django.request Unauthorized: /api/v1/accounts/profile-crud/
+2026-09-08 10:46:53,898 WARNING django.request Unauthorized: /api/v1/drivers/location/
+2026-09-08 10:46:59,583 WARNING django.request Forbidden: /api/v1/drivers/
+2026-09-08 10:47:00,991 WARNING django.request Forbidden: /api/v1/drivers/
+2026-09-08 10:47:02,398 WARNING django.request Forbidden: /api/v1/drivers/9fd35434-46dc-450c-83bb-2eb3341989d2/
+2026-09-08 10:47:03,786 WARNING django.request Forbidden: /api/v1/drivers/
+2026-09-08 10:47:05,529 WARNING django.request Forbidden: /api/v1/drivers/105acb87-cf46-43f7-9231-67a799c2cb92/
+2026-09-08 10:47:06,990 WARNING django.request Forbidden: /api/v1/drivers/a72ed2b2-de9f-44f7-b5f9-203b9228b6c1/
+2026-09-08 10:47:10,275 WARNING django.request Not Found: /api/v1/rides/00000000-0000-0000-0000-000000000000/fare/
+2026-09-08 10:47:11,690 WARNING django.request Unauthorized: /api/v1/rides/b13cbf8d-8cad-4fc7-a342-38178aba69ec/fare/
+2026-09-08 10:47:22,947 WARNING django.request Forbidden: /api/v1/drivers/
+2026-09-08 10:47:25,737 WARNING django.request Forbidden: /api/v1/drivers/
+2026-09-08 10:47:28,531 WARNING django.request Unauthorized: /api/v1/drivers/location/
+2026-09-08 10:47:31,429 WARNING django.request Unauthorized: /api/rides/aggregations/
+2026-09-08 10:47:35,673 WARNING rides.services.ride_service Ride acceptance failed: ride is not in requested status | ride_id=05e88c94-8ab7-4302-ac2c-ce696edb71da
+2026-09-08 10:47:35,719 WARNING django.request Bad Request: /api/rides/05e88c94-8ab7-4302-ac2c-ce696edb71da/accept/
+2026-09-08 10:47:39,903 WARNING rides.services.ride_service Ride completion failed: invalid current status | ride_id=f38ca90f-61fc-4709-8a7b-2758d51c488d
+2026-09-08 10:47:39,930 WARNING django.request Bad Request: /api/rides/f38ca90f-61fc-4709-8a7b-2758d51c488d/complete/
+2026-09-08 10:47:44,083 WARNING rides.services.ride_service Ride cancellation failed: invalid current status | ride_id=8b417106-62b4-4685-a166-bd5193d34348 status=COMPLETED
+2026-09-08 10:47:44,102 WARNING django.request Bad Request: /api/rides/8b417106-62b4-4685-a166-bd5193d34348/cancel/
+2026-09-08 10:48:01,029 INFO rides.services.ride_service Ride cancelled successfully | ride_id=47732806-3444-4379-8314-fc59d1d83ebc
+2026-09-08 10:48:05,216 INFO rides.services.ride_service Ride completed successfully | ride_id=e0967930-d8f0-4a03-9f50-0e0df45abb76
+2026-09-08 10:48:13,523 INFO rides.services.ride_service Ride started successfully | ride_id=9aa534c3-334a-4dcb-889d-0e9f6e8e0530
+2026-09-08 10:48:17,800 WARNING rides.services.ride_service Ride acceptance failed: ride is not in requested status | ride_id=3837336d-bebb-4e39-8042-ec6598fc42ce
+2026-09-08 10:48:17,832 WARNING django.request Bad Request: /api/rides/3837336d-bebb-4e39-8042-ec6598fc42ce/accept/
+2026-09-08 10:48:21,997 WARNING rides.services.ride_service Ride acceptance failed: driver is not available | ride_id=48cf7e47-b6f7-4388-8e84-41c369f37a7f, driver_id=90c661f3-f6e7-4962-b982-bef4fa753ce5
+2026-09-08 10:48:22,027 WARNING django.request Bad Request: /api/rides/48cf7e47-b6f7-4388-8e84-41c369f37a7f/accept/
+2026-09-08 10:48:47,134 WARNING django.request Unauthorized: /api/rides/history/
+2026-09-08 10:48:58,417 WARNING django.request Forbidden: /api/drivers/a37f674f-2e9c-45db-9a5c-8e2b3356686c/
+2026-09-08 10:48:59,974 WARNING django.request Forbidden: /api/drivers/
+2026-09-08 10:48:59,990 WARNING django.request Forbidden: /api/drivers/
+2026-09-08 10:49:00,001 WARNING django.request Forbidden: /api/drivers/
+2026-09-08 10:49:00,013 WARNING django.request Forbidden: /api/drivers/
+2026-09-08 10:49:00,031 WARNING django.request Forbidden: /api/drivers/
+2026-09-08 10:49:00,045 WARNING django.request Forbidden: /api/drivers/
+2026-09-08 10:49:00,062 WARNING django.request Forbidden: /api/drivers/
+2026-09-08 10:49:00,075 WARNING django.request Forbidden: /api/drivers/
+2026-09-08 10:49:00,090 WARNING django.request Forbidden: /api/drivers/
+2026-09-08 10:49:00,146 WARNING django.request Forbidden: /api/drivers/
+2026-09-08 10:49:00,201 WARNING django.request Forbidden: /api/drivers/
+2026-09-08 10:49:00,217 WARNING django.request Forbidden: /api/drivers/
+2026-09-08 10:49:00,235 WARNING django.request Forbidden: /api/drivers/
+2026-09-08 10:49:00,267 WARNING django.request Forbidden: /api/drivers/
+2026-09-08 10:49:00,280 WARNING django.request Forbidden: /api/drivers/
+2026-09-08 10:49:00,293 WARNING django.request Forbidden: /api/drivers/
+2026-09-08 10:49:00,305 WARNING django.request Forbidden: /api/drivers/
+2026-09-08 10:49:00,318 WARNING django.request Forbidden: /api/drivers/
+2026-09-08 10:49:00,333 WARNING django.request Forbidden: /api/drivers/
+2026-09-08 10:49:00,346 WARNING django.request Forbidden: /api/drivers/
+2026-09-08 10:49:00,358 WARNING django.request Forbidden: /api/drivers/
+2026-09-08 10:49:00,369 WARNING django.request Forbidden: /api/drivers/
+2026-09-08 10:49:00,381 WARNING django.request Forbidden: /api/drivers/
+2026-09-08 10:49:00,393 WARNING django.request Forbidden: /api/drivers/
+2026-09-08 10:49:00,403 WARNING django.request Forbidden: /api/drivers/
+2026-09-08 10:49:00,414 WARNING django.request Forbidden: /api/drivers/
+2026-09-08 10:49:00,427 WARNING django.request Forbidden: /api/drivers/
+2026-09-08 10:49:00,439 WARNING django.request Forbidden: /api/drivers/
+2026-09-08 10:49:00,449 WARNING django.request Forbidden: /api/drivers/
+2026-09-08 10:49:00,460 WARNING django.request Forbidden: /api/drivers/
+2026-09-08 10:49:00,475 WARNING django.request Forbidden: /api/drivers/
+2026-09-08 10:49:00,487 WARNING django.request Forbidden: /api/drivers/
+2026-09-08 10:49:00,498 WARNING django.request Forbidden: /api/drivers/
+2026-09-08 10:49:00,510 WARNING django.request Forbidden: /api/drivers/
+2026-09-08 10:49:00,520 WARNING django.request Forbidden: /api/drivers/
+2026-09-08 10:49:00,535 WARNING django.request Unauthorized: /api/drivers/
+2026-09-08 10:49:01,944 WARNING django.request Bad Request: /api/rides/
+2026-09-08 10:49:01,964 WARNING django.request Unauthorized: /api/rides/
+2026-09-08 10:49:01,980 WARNING django.request Unauthorized: /api/drivers/
+2026-09-08 10:49:04,784 WARNING django.request Forbidden: /api/rides/fbf73142-707d-4eb7-b0e4-3539f9903fc4/
+2026-09-08 10:49:10,669 WARNING django.request Unauthorized: /api/vehicles/
+2026-09-08 10:49:13,539 WARNING django.request Bad Request: /api/vehicles/5a6321ad-e9f1-43b8-ac00-d2031183c31f/
+2026-09-08 10:49:16,444 WARNING django.request Bad Request: /api/vehicles/
+2026-09-08 11:00:57,106 WARNING django.request Unauthorized: /api/v1/accounts/profile/
+2026-09-08 11:01:01,402 INFO accounts.views User login successful
+2026-09-08 11:01:05,492 WARNING accounts.views User login failed: invalid credentials
+2026-09-08 11:01:05,506 WARNING django.request Bad Request: /api/v1/accounts/login/
+2026-09-08 11:01:07,007 WARNING django.request Unauthorized: /api/v1/accounts/token/refresh/
+2026-09-08 11:01:17,183 WARNING accounts.views User registration failed
+2026-09-08 11:01:17,201 WARNING django.request Bad Request: /api/v1/accounts/register/
+2026-09-08 11:01:18,725 WARNING accounts.views User registration failed
+2026-09-08 11:01:18,749 WARNING django.request Bad Request: /api/v1/accounts/register/
+2026-09-08 11:01:21,648 INFO accounts.views User registration successful
+2026-09-08 11:01:30,034 WARNING django.request Unauthorized: /api/v1/accounts/profiles/
+2026-09-08 11:01:34,136 WARNING django.request Forbidden: /api/v1/accounts/profiles/
+2026-09-08 11:01:38,226 WARNING django.request Forbidden: /api/v1/accounts/profiles/
+2026-09-08 11:01:41,268 WARNING django.request Bad Request: /api/v1/accounts/profile-crud/
+2026-09-08 11:01:45,488 WARNING django.request Unauthorized: /api/v1/accounts/profile-crud/
+2026-09-08 11:02:11,885 WARNING django.request Unauthorized: /api/v1/drivers/location/
+2026-09-08 11:02:19,060 WARNING django.request Bad Request: /api/v1/drivers/
+2026-09-08 11:02:27,634 WARNING django.request Not Found: /api/v1/rides/00000000-0000-0000-0000-000000000000/fare/
+2026-09-08 11:02:29,022 WARNING django.request Unauthorized: /api/v1/rides/a3b1211b-45e5-49f1-bd00-fc236d726e93/fare/
+2026-09-08 11:02:45,847 WARNING django.request Unauthorized: /api/v1/drivers/location/
+2026-09-08 11:02:48,753 WARNING django.request Unauthorized: /api/rides/aggregations/
+2026-09-08 11:02:52,944 WARNING rides.services.ride_service Ride acceptance failed: ride is not in requested status | ride_id=5e05c4f3-efaf-45cd-95d7-ae01e82f17b1
+2026-09-08 11:02:52,986 WARNING django.request Bad Request: /api/rides/5e05c4f3-efaf-45cd-95d7-ae01e82f17b1/accept/
+2026-09-08 11:02:57,134 WARNING rides.services.ride_service Ride completion failed: invalid current status | ride_id=3808f1d7-eb83-4710-a40a-73834db01925
+2026-09-08 11:02:57,159 WARNING django.request Bad Request: /api/rides/3808f1d7-eb83-4710-a40a-73834db01925/complete/
+2026-09-08 11:03:01,356 WARNING rides.services.ride_service Ride cancellation failed: invalid current status | ride_id=740d9c60-58c6-4e52-b5c4-a58f7143e0c9 status=COMPLETED
+2026-09-08 11:03:01,376 WARNING django.request Bad Request: /api/rides/740d9c60-58c6-4e52-b5c4-a58f7143e0c9/cancel/
+2026-09-08 11:03:19,931 INFO rides.services.ride_service Ride cancelled successfully | ride_id=56fb100e-da0c-48ba-8991-94714816f18f
+2026-09-08 11:03:24,076 INFO rides.services.ride_service Ride completed successfully | ride_id=91cbf6c7-69b5-462a-9ae7-8ee9d9db1dcd
+2026-09-08 11:03:32,718 INFO rides.services.ride_service Ride started successfully | ride_id=ff45d320-14a0-45d6-b1d5-79ed97ce11ce
+2026-09-08 11:03:37,054 WARNING rides.services.ride_service Ride acceptance failed: ride is not in requested status | ride_id=20de4ced-3e11-430b-9c59-81dd695d82fb
+2026-09-08 11:03:37,089 WARNING django.request Bad Request: /api/rides/20de4ced-3e11-430b-9c59-81dd695d82fb/accept/
+2026-09-08 11:03:41,227 WARNING rides.services.ride_service Ride acceptance failed: driver is not available | ride_id=86f90734-f7f5-4351-afb5-30973633cf21, driver_id=ea30c9c5-03d7-42cf-a013-cab0a9cc8c50
+2026-09-08 11:03:41,251 WARNING django.request Bad Request: /api/rides/86f90734-f7f5-4351-afb5-30973633cf21/accept/
+2026-09-08 11:04:06,242 WARNING django.request Unauthorized: /api/rides/history/
+2026-09-08 11:04:17,248 WARNING django.request Forbidden: /api/drivers/654adc17-877e-4c08-afce-c27e300b2000/
+2026-09-08 11:04:19,250 WARNING django.request Too Many Requests: /api/drivers/
+2026-09-08 11:04:19,264 WARNING django.request Too Many Requests: /api/drivers/
+2026-09-08 11:04:19,276 WARNING django.request Too Many Requests: /api/drivers/
+2026-09-08 11:04:19,290 WARNING django.request Too Many Requests: /api/drivers/
+2026-09-08 11:04:19,301 WARNING django.request Too Many Requests: /api/drivers/
+2026-09-08 11:04:19,318 WARNING django.request Unauthorized: /api/drivers/
+2026-09-08 11:04:20,721 WARNING django.request Bad Request: /api/rides/
+2026-09-08 11:04:20,741 WARNING django.request Unauthorized: /api/rides/
+2026-09-08 11:04:20,755 WARNING django.request Unauthorized: /api/drivers/
+2026-09-08 11:04:23,558 WARNING django.request Forbidden: /api/rides/fc14a45f-2401-4c8a-8ffd-6a44c7b6922c/
+2026-09-08 11:04:29,190 WARNING django.request Unauthorized: /api/vehicles/
+2026-09-08 11:04:32,020 WARNING django.request Bad Request: /api/vehicles/6287c5b7-6644-4576-b40c-8f096ed41820/
+2026-09-08 11:04:34,846 WARNING django.request Bad Request: /api/vehicles/
+2026-09-08 11:30:19,052 WARNING django.request Unauthorized: /api/v1/accounts/profile/
+2026-09-08 11:30:23,387 INFO accounts.views User login successful
+2026-09-08 11:30:27,469 WARNING accounts.views User login failed: invalid credentials
+2026-09-08 11:30:27,485 WARNING django.request Bad Request: /api/v1/accounts/login/
+2026-09-08 11:30:28,915 WARNING django.request Unauthorized: /api/v1/accounts/token/refresh/
+2026-09-08 11:30:38,535 WARNING accounts.views User registration failed
+2026-09-08 11:30:38,551 WARNING django.request Bad Request: /api/v1/accounts/register/
+2026-09-08 11:30:39,946 WARNING accounts.views User registration failed
+2026-09-08 11:30:39,959 WARNING django.request Bad Request: /api/v1/accounts/register/
+2026-09-08 11:30:42,680 INFO accounts.views User registration successful
+2026-09-08 11:30:51,192 WARNING django.request Unauthorized: /api/v1/accounts/profiles/
+2026-09-08 11:30:55,311 WARNING django.request Forbidden: /api/v1/accounts/profiles/
+2026-09-08 11:30:59,451 WARNING django.request Forbidden: /api/v1/accounts/profiles/
+2026-09-08 11:31:02,331 WARNING django.request Bad Request: /api/v1/accounts/profile-crud/
+2026-09-08 11:31:06,474 WARNING django.request Unauthorized: /api/v1/accounts/profile-crud/
+2026-09-08 11:31:33,106 WARNING django.request Unauthorized: /api/v1/drivers/location/
+2026-09-08 11:31:40,144 WARNING django.request Bad Request: /api/v1/drivers/
+2026-09-08 11:31:48,682 WARNING django.request Not Found: /api/v1/rides/00000000-0000-0000-0000-000000000000/fare/
+2026-09-08 11:31:50,272 WARNING django.request Unauthorized: /api/v1/rides/524da28e-bde2-43b7-bd7d-f767ea42f694/fare/
+2026-09-08 11:32:07,435 WARNING django.request Unauthorized: /api/v1/drivers/location/
+2026-09-08 11:32:10,398 WARNING django.request Unauthorized: /api/rides/aggregations/
+2026-09-08 11:32:14,583 WARNING rides.services.ride_service Ride acceptance failed: ride is not in requested status | ride_id=9b9dfe38-6e2c-4788-a1b6-f0cb2bd5438b
+2026-09-08 11:32:14,626 WARNING django.request Bad Request: /api/rides/9b9dfe38-6e2c-4788-a1b6-f0cb2bd5438b/accept/
+2026-09-08 11:32:18,743 WARNING rides.services.ride_service Ride completion failed: invalid current status | ride_id=2f36b41a-cbc2-4539-95bf-155010a20c8f
+2026-09-08 11:32:18,767 WARNING django.request Bad Request: /api/rides/2f36b41a-cbc2-4539-95bf-155010a20c8f/complete/
+2026-09-08 11:32:22,880 WARNING rides.services.ride_service Ride cancellation failed: invalid current status | ride_id=ef426d61-b409-427e-9c3d-1dc3bd3f595f status=COMPLETED
+2026-09-08 11:32:22,904 WARNING django.request Bad Request: /api/rides/ef426d61-b409-427e-9c3d-1dc3bd3f595f/cancel/
+2026-09-08 11:32:39,413 INFO rides.services.ride_service Ride cancelled successfully | ride_id=55b9bdeb-d593-4d1d-a3ac-00fd0fa58c7e
+2026-09-08 11:32:43,527 INFO rides.services.ride_service Ride completed successfully | ride_id=ce3295ca-5891-4944-9d4f-526749b2ce1c
+2026-09-08 11:32:51,810 INFO rides.services.ride_service Ride started successfully | ride_id=6f6a65ad-c165-452a-a70e-40cb31abb5dc
+2026-09-08 11:32:56,025 WARNING rides.services.ride_service Ride acceptance failed: ride is not in requested status | ride_id=a299d315-c2bb-4a59-a302-66c54e97c537
+2026-09-08 11:32:56,061 WARNING django.request Bad Request: /api/rides/a299d315-c2bb-4a59-a302-66c54e97c537/accept/
+2026-09-08 11:33:00,208 WARNING rides.services.ride_service Ride acceptance failed: driver is not available | ride_id=2f1fbd2f-6cb5-4792-aaa2-4ba472958594, driver_id=322056ac-c40c-427b-9139-5d15d2b14680
+2026-09-08 11:33:00,242 WARNING django.request Bad Request: /api/rides/2f1fbd2f-6cb5-4792-aaa2-4ba472958594/accept/
+2026-09-08 11:33:25,562 WARNING django.request Unauthorized: /api/rides/history/
+2026-09-08 11:33:36,590 WARNING django.request Forbidden: /api/drivers/3604bd9e-e7c3-4362-905b-eea64b3037e9/
+2026-09-08 11:33:38,552 WARNING django.request Too Many Requests: /api/drivers/
+2026-09-08 11:33:38,567 WARNING django.request Too Many Requests: /api/drivers/
+2026-09-08 11:33:38,577 WARNING django.request Too Many Requests: /api/drivers/
+2026-09-08 11:33:38,590 WARNING django.request Too Many Requests: /api/drivers/
+2026-09-08 11:33:38,603 WARNING django.request Too Many Requests: /api/drivers/
+2026-09-08 11:33:38,621 WARNING django.request Unauthorized: /api/drivers/
+2026-09-08 11:33:40,037 WARNING django.request Bad Request: /api/rides/
+2026-09-08 11:33:40,062 WARNING django.request Unauthorized: /api/rides/
+2026-09-08 11:33:40,113 WARNING django.request Unauthorized: /api/drivers/
+2026-09-08 11:33:46,364 WARNING django.request Forbidden: /api/rides/1ff08601-bc58-4e0a-b00a-e945deb6303c/
+2026-09-08 11:33:52,558 WARNING django.request Unauthorized: /api/vehicles/
+2026-09-08 11:33:55,342 WARNING django.request Forbidden: /api/vehicles/bed0ffb8-ec0e-4c72-8de1-8b8690baa607/
+2026-09-08 11:33:58,129 WARNING django.request Bad Request: /api/vehicles/
+2026-09-08 11:39:08,435 WARNING django.request Forbidden: /api/vehicles/c69affc2-11d2-43dd-8f6e-ab218b744771/
+2026-09-08 11:39:37,273 WARNING django.request Unauthorized: /api/v1/accounts/profile/
+2026-09-08 11:39:41,632 INFO accounts.views User login successful
+2026-09-08 11:39:45,724 WARNING accounts.views User login failed: invalid credentials
+2026-09-08 11:39:45,738 WARNING django.request Bad Request: /api/v1/accounts/login/
+2026-09-08 11:39:47,186 WARNING django.request Unauthorized: /api/v1/accounts/token/refresh/
+2026-09-08 11:39:56,755 WARNING accounts.views User registration failed
+2026-09-08 11:39:56,771 WARNING django.request Bad Request: /api/v1/accounts/register/
+2026-09-08 11:39:58,146 WARNING accounts.views User registration failed
+2026-09-08 11:39:58,158 WARNING django.request Bad Request: /api/v1/accounts/register/
+2026-09-08 11:40:00,964 INFO accounts.views User registration successful
+2026-09-08 11:40:09,320 WARNING django.request Unauthorized: /api/v1/accounts/profiles/
+2026-09-08 11:40:13,405 WARNING django.request Forbidden: /api/v1/accounts/profiles/
+2026-09-08 11:40:17,490 WARNING django.request Forbidden: /api/v1/accounts/profiles/
+2026-09-08 11:40:20,334 WARNING django.request Bad Request: /api/v1/accounts/profile-crud/
+2026-09-08 11:40:24,518 WARNING django.request Unauthorized: /api/v1/accounts/profile-crud/
+2026-09-08 11:40:51,373 WARNING django.request Unauthorized: /api/v1/drivers/location/
+2026-09-08 11:40:58,434 WARNING django.request Bad Request: /api/v1/drivers/
+2026-09-08 11:41:06,949 WARNING django.request Not Found: /api/v1/rides/00000000-0000-0000-0000-000000000000/fare/
+2026-09-08 11:41:08,339 WARNING django.request Unauthorized: /api/v1/rides/a2197045-7cbb-4092-b304-019673c52a58/fare/
+2026-09-08 11:41:25,123 WARNING django.request Unauthorized: /api/v1/drivers/location/
+2026-09-08 11:41:28,181 WARNING django.request Unauthorized: /api/rides/aggregations/
+2026-09-08 11:41:32,400 WARNING rides.services.ride_service Ride acceptance failed: ride is not in requested status | ride_id=9d3e601a-590e-4a5c-93bd-770c77134a0d
+2026-09-08 11:41:32,442 WARNING django.request Bad Request: /api/rides/9d3e601a-590e-4a5c-93bd-770c77134a0d/accept/
+2026-09-08 11:41:36,566 WARNING rides.services.ride_service Ride completion failed: invalid current status | ride_id=8e4d85dc-465b-44af-8ce5-dbebfd89560b
+2026-09-08 11:41:36,592 WARNING django.request Bad Request: /api/rides/8e4d85dc-465b-44af-8ce5-dbebfd89560b/complete/
+2026-09-08 11:41:40,726 WARNING rides.services.ride_service Ride cancellation failed: invalid current status | ride_id=e278111d-388a-4b59-8cf2-014e68d516d7 status=COMPLETED
+2026-09-08 11:41:40,746 WARNING django.request Bad Request: /api/rides/e278111d-388a-4b59-8cf2-014e68d516d7/cancel/
+2026-09-08 11:41:57,321 INFO rides.services.ride_service Ride cancelled successfully | ride_id=4b74f5c0-1fee-41f7-b726-56bb36460b6a
+2026-09-08 11:42:01,522 INFO rides.services.ride_service Ride completed successfully | ride_id=d7f75dca-59e6-4a76-af97-49942767d8b2
+2026-09-08 11:42:10,872 INFO rides.services.ride_service Ride started successfully | ride_id=958bd162-83a4-46a4-b7f1-84ca2c48dbe8
+2026-09-08 11:42:15,564 WARNING rides.services.ride_service Ride acceptance failed: ride is not in requested status | ride_id=dbd9892a-d926-4c3f-90a1-faf7a5583902
+2026-09-08 11:42:15,613 WARNING django.request Bad Request: /api/rides/dbd9892a-d926-4c3f-90a1-faf7a5583902/accept/
+2026-09-08 11:42:20,036 WARNING rides.services.ride_service Ride acceptance failed: driver is not available | ride_id=b083e7c3-2893-4836-83b8-11df93b079b0, driver_id=5acc0736-3fdf-4015-a091-7a16551c4d22
+2026-09-08 11:42:20,058 WARNING django.request Bad Request: /api/rides/b083e7c3-2893-4836-83b8-11df93b079b0/accept/
+2026-09-08 11:42:45,663 WARNING django.request Unauthorized: /api/rides/history/
+2026-09-08 11:42:57,866 WARNING django.request Forbidden: /api/drivers/68e4814a-70ac-4f62-9afc-d6a38810443d/
+2026-09-08 11:42:59,852 WARNING django.request Too Many Requests: /api/drivers/
+2026-09-08 11:42:59,866 WARNING django.request Too Many Requests: /api/drivers/
+2026-09-08 11:42:59,876 WARNING django.request Too Many Requests: /api/drivers/
+2026-09-08 11:42:59,892 WARNING django.request Too Many Requests: /api/drivers/
+2026-09-08 11:42:59,905 WARNING django.request Too Many Requests: /api/drivers/
+2026-09-08 11:42:59,922 WARNING django.request Unauthorized: /api/drivers/
+2026-09-08 11:43:01,329 WARNING django.request Bad Request: /api/rides/
+2026-09-08 11:43:01,348 WARNING django.request Unauthorized: /api/rides/
+2026-09-08 11:43:01,360 WARNING django.request Unauthorized: /api/drivers/
+2026-09-08 11:43:04,128 WARNING django.request Forbidden: /api/rides/c9fa157a-aa5b-40c4-a4f2-70168ead64cd/
+2026-09-08 11:43:09,972 WARNING django.request Unauthorized: /api/vehicles/
+2026-09-08 11:43:12,753 WARNING django.request Forbidden: /api/vehicles/1c8ed978-2296-432f-851d-09e98ebcb9c0/
+2026-09-08 11:43:15,590 WARNING django.request Bad Request: /api/vehicles/
+2026-09-08 11:57:37,935 WARNING django.request Unauthorized: /api/v1/drivers/location/
+2026-09-08 11:58:58,356 WARNING django.request Unauthorized: /api/v1/accounts/profile/
+2026-09-08 11:59:02,742 INFO accounts.views User login successful
+2026-09-08 11:59:06,815 WARNING accounts.views User login failed: invalid credentials
+2026-09-08 11:59:06,827 WARNING django.request Bad Request: /api/v1/accounts/login/
+2026-09-08 11:59:08,260 WARNING django.request Unauthorized: /api/v1/accounts/token/refresh/
+2026-09-08 11:59:17,996 WARNING accounts.views User registration failed
+2026-09-08 11:59:18,013 WARNING django.request Bad Request: /api/v1/accounts/register/
+2026-09-08 11:59:19,367 WARNING accounts.views User registration failed
+2026-09-08 11:59:19,379 WARNING django.request Bad Request: /api/v1/accounts/register/
+2026-09-08 11:59:22,177 INFO accounts.views User registration successful
+2026-09-08 11:59:30,496 WARNING django.request Unauthorized: /api/v1/accounts/profiles/
+2026-09-08 11:59:34,574 WARNING django.request Forbidden: /api/v1/accounts/profiles/
+2026-09-08 11:59:38,671 WARNING django.request Forbidden: /api/v1/accounts/profiles/
+2026-09-08 11:59:41,512 WARNING django.request Bad Request: /api/v1/accounts/profile-crud/
+2026-09-08 11:59:45,639 WARNING django.request Unauthorized: /api/v1/accounts/profile-crud/
+2026-09-08 12:00:12,521 WARNING django.request Unauthorized: /api/v1/drivers/location/
+2026-09-08 12:00:19,627 WARNING django.request Bad Request: /api/v1/drivers/
+2026-09-08 12:00:28,055 WARNING django.request Not Found: /api/v1/rides/00000000-0000-0000-0000-000000000000/fare/
+2026-09-08 12:00:29,531 WARNING django.request Unauthorized: /api/v1/rides/15dd2289-3625-4d92-90ca-3fdfd472b5eb/fare/
+2026-09-08 12:00:46,542 WARNING django.request Unauthorized: /api/v1/drivers/location/
+2026-09-08 12:00:49,435 WARNING django.request Unauthorized: /api/rides/aggregations/
+2026-09-08 12:00:53,723 WARNING rides.services.ride_service Ride acceptance failed: ride is not in requested status | ride_id=679e5ca9-e422-414f-9938-e4afd14d4ff6
+2026-09-08 12:00:53,769 WARNING django.request Bad Request: /api/rides/679e5ca9-e422-414f-9938-e4afd14d4ff6/accept/
+2026-09-08 12:00:57,856 WARNING rides.services.ride_service Ride completion failed: invalid current status | ride_id=2ea95cb1-7320-43f5-93db-741539f4d058
+2026-09-08 12:00:57,881 WARNING django.request Bad Request: /api/rides/2ea95cb1-7320-43f5-93db-741539f4d058/complete/
+2026-09-08 12:01:02,311 WARNING rides.services.ride_service Ride cancellation failed: invalid current status | ride_id=c9fcd32a-33b3-4de2-b07d-1cd5ae3fe806 status=COMPLETED
+2026-09-08 12:01:02,331 WARNING django.request Bad Request: /api/rides/c9fcd32a-33b3-4de2-b07d-1cd5ae3fe806/cancel/
+2026-09-08 12:01:18,841 INFO rides.services.ride_service Ride cancelled successfully | ride_id=d0b392b8-1c80-4f95-a81f-eeb7d7041e8d
+2026-09-08 12:01:23,087 INFO rides.services.ride_service Ride completed successfully | ride_id=ce23e581-97f5-4e3c-8d4a-b42a1517428e
+2026-09-08 12:01:31,361 INFO rides.services.ride_service Ride started successfully | ride_id=f0b169cd-c633-4550-bb3a-370a51712f24
+2026-09-08 12:01:35,590 WARNING rides.services.ride_service Ride acceptance failed: ride is not in requested status | ride_id=08c1018a-7931-4e11-8adf-08696168e1ac
+2026-09-08 12:01:35,634 WARNING django.request Bad Request: /api/rides/08c1018a-7931-4e11-8adf-08696168e1ac/accept/
+2026-09-08 12:01:39,757 WARNING rides.services.ride_service Ride acceptance failed: driver is not available | ride_id=6b0b67c3-7d89-498f-be12-7376c1b3ddb6, driver_id=f781d3de-a165-4b2e-af89-342454c9f214
+2026-09-08 12:01:39,778 WARNING django.request Bad Request: /api/rides/6b0b67c3-7d89-498f-be12-7376c1b3ddb6/accept/
+2026-09-08 12:02:04,575 WARNING django.request Unauthorized: /api/rides/history/
+2026-09-08 12:02:15,608 WARNING django.request Forbidden: /api/drivers/290d1cb3-e32b-4471-b340-dc381d853e49/
+2026-09-08 12:02:17,588 WARNING django.request Too Many Requests: /api/drivers/
+2026-09-08 12:02:17,603 WARNING django.request Too Many Requests: /api/drivers/
+2026-09-08 12:02:17,615 WARNING django.request Too Many Requests: /api/drivers/
+2026-09-08 12:02:17,629 WARNING django.request Too Many Requests: /api/drivers/
+2026-09-08 12:02:17,671 WARNING django.request Too Many Requests: /api/drivers/
+2026-09-08 12:02:17,724 WARNING django.request Unauthorized: /api/drivers/
+2026-09-08 12:02:19,111 WARNING django.request Bad Request: /api/rides/
+2026-09-08 12:02:19,131 WARNING django.request Unauthorized: /api/rides/
+2026-09-08 12:02:19,148 WARNING django.request Unauthorized: /api/drivers/
+2026-09-08 12:02:21,933 WARNING django.request Forbidden: /api/rides/9f034300-6190-40a8-b53b-afda4d19fdff/
+2026-09-08 12:02:27,646 WARNING django.request Unauthorized: /api/vehicles/
+2026-09-08 12:02:30,388 WARNING django.request Forbidden: /api/vehicles/f2aad4e9-b90e-48d5-bd5a-f61167a9f482/
+2026-09-08 12:02:33,145 WARNING django.request Bad Request: /api/vehicles/
+2026-09-08 12:27:06,261 WARNING django.request Unauthorized: /api/v1/accounts/profile/
+2026-09-08 12:27:10,538 INFO accounts.views User login successful
+2026-09-08 12:27:14,681 WARNING accounts.views User login failed: invalid credentials
+2026-09-08 12:27:14,694 WARNING django.request Bad Request: /api/v1/accounts/login/
+2026-09-08 12:27:16,127 WARNING django.request Unauthorized: /api/v1/accounts/token/refresh/
+2026-09-08 12:27:25,818 WARNING accounts.views User registration failed
+2026-09-08 12:27:25,840 WARNING django.request Bad Request: /api/v1/accounts/register/
+2026-09-08 12:27:27,245 WARNING accounts.views User registration failed
+2026-09-08 12:27:27,257 WARNING django.request Bad Request: /api/v1/accounts/register/
+2026-09-08 12:27:30,011 INFO accounts.views User registration successful
+2026-09-08 12:27:38,686 WARNING django.request Unauthorized: /api/v1/accounts/profiles/
+2026-09-08 12:27:42,814 WARNING django.request Forbidden: /api/v1/accounts/profiles/
+2026-09-08 12:27:46,893 WARNING django.request Forbidden: /api/v1/accounts/profiles/
+2026-09-08 12:27:49,737 WARNING django.request Bad Request: /api/v1/accounts/profile-crud/
+2026-09-08 12:27:53,917 WARNING django.request Unauthorized: /api/v1/accounts/profile-crud/
+2026-09-08 12:28:20,555 WARNING django.request Unauthorized: /api/v1/drivers/location/
+2026-09-08 12:28:27,592 WARNING django.request Bad Request: /api/v1/drivers/
+2026-09-08 12:28:36,679 WARNING django.request Not Found: /api/v1/rides/00000000-0000-0000-0000-000000000000/fare/
+2026-09-08 12:28:39,080 WARNING django.request Unauthorized: /api/v1/rides/cf1461a1-d8a0-49a3-af33-ea8637177a70/fare/
+2026-09-08 12:28:57,937 WARNING django.request Unauthorized: /api/v1/drivers/location/
+2026-09-08 12:29:01,050 WARNING django.request Unauthorized: /api/rides/aggregations/
+2026-09-08 12:29:05,401 WARNING rides.services.ride_service Ride acceptance failed: ride is not in requested status | ride_id=25a92492-ff0d-41eb-aa8f-a8a0a3908eb7
+2026-09-08 12:29:05,444 WARNING django.request Bad Request: /api/rides/25a92492-ff0d-41eb-aa8f-a8a0a3908eb7/accept/
+2026-09-08 12:29:09,639 WARNING rides.services.ride_service Ride completion failed: invalid current status | ride_id=1191f7b1-f623-40db-8cf9-aa35cc3e380b
+2026-09-08 12:29:09,679 WARNING django.request Bad Request: /api/rides/1191f7b1-f623-40db-8cf9-aa35cc3e380b/complete/
+2026-09-08 12:29:13,903 WARNING rides.services.ride_service Ride cancellation failed: invalid current status | ride_id=657e5de7-14eb-49c8-a0be-6933b74604db status=COMPLETED
+2026-09-08 12:29:13,922 WARNING django.request Bad Request: /api/rides/657e5de7-14eb-49c8-a0be-6933b74604db/cancel/
+2026-09-08 12:29:30,527 INFO rides.services.ride_service Ride cancelled successfully | ride_id=3e39fabe-2ff5-45c5-a184-e66c621f37bf
+2026-09-08 12:29:34,736 INFO rides.services.ride_service Ride completed successfully | ride_id=43c8401b-7b39-49d2-9780-843ee711e528
+2026-09-08 12:29:43,074 INFO rides.services.ride_service Ride started successfully | ride_id=a94fcebe-622c-4e17-bb99-13462e593592
+2026-09-08 12:29:47,359 WARNING rides.services.ride_service Ride acceptance failed: ride is not in requested status | ride_id=b4ed8caf-bd85-40cf-a7db-7a3ce6e9e353
+2026-09-08 12:29:47,392 WARNING django.request Bad Request: /api/rides/b4ed8caf-bd85-40cf-a7db-7a3ce6e9e353/accept/
+2026-09-08 12:29:51,581 WARNING rides.services.ride_service Ride acceptance failed: driver is not available | ride_id=9405d8c7-f906-4707-bcb7-b58929a75e21, driver_id=95a94bd2-82bd-4171-86de-b5049f78a072
+2026-09-08 12:29:51,609 WARNING django.request Bad Request: /api/rides/9405d8c7-f906-4707-bcb7-b58929a75e21/accept/
+2026-09-08 12:30:17,434 WARNING django.request Unauthorized: /api/rides/history/
+2026-09-08 12:30:28,780 WARNING django.request Forbidden: /api/drivers/b853a7a3-5d4e-4f67-9e9b-f2e7b6022806/
+2026-09-08 12:30:30,977 WARNING django.request Too Many Requests: /api/drivers/
+2026-09-08 12:30:30,993 WARNING django.request Too Many Requests: /api/drivers/
+2026-09-08 12:30:31,008 WARNING django.request Too Many Requests: /api/drivers/
+2026-09-08 12:30:31,020 WARNING django.request Too Many Requests: /api/drivers/
+2026-09-08 12:30:31,033 WARNING django.request Too Many Requests: /api/drivers/
+2026-09-08 12:30:31,051 WARNING django.request Unauthorized: /api/drivers/
+2026-09-08 12:30:32,584 WARNING django.request Bad Request: /api/rides/
+2026-09-08 12:30:32,613 WARNING django.request Unauthorized: /api/rides/
+2026-09-08 12:30:32,634 WARNING django.request Unauthorized: /api/drivers/
+2026-09-08 12:30:36,889 WARNING django.request Forbidden: /api/rides/ed91c978-20d6-4b5d-a5bb-98e6dec3f2cf/
+2026-09-08 12:30:43,074 WARNING django.request Unauthorized: /api/vehicles/
+2026-09-08 12:30:45,901 WARNING django.request Forbidden: /api/vehicles/01e7441e-45b7-4998-8426-942cde440c55/
+2026-09-08 12:30:48,843 WARNING django.request Bad Request: /api/vehicles/
+2026-09-08 12:39:17,421 WARNING django.request Unauthorized: /api/v1/accounts/profile/
+2026-09-08 12:39:21,769 INFO accounts.views User login successful
+2026-09-08 12:39:25,845 WARNING accounts.views User login failed: invalid credentials
+2026-09-08 12:39:25,861 WARNING django.request Bad Request: /api/v1/accounts/login/
+2026-09-08 12:39:27,295 WARNING django.request Unauthorized: /api/v1/accounts/token/refresh/
+2026-09-08 12:39:36,978 WARNING accounts.views User registration failed
+2026-09-08 12:39:36,993 WARNING django.request Bad Request: /api/v1/accounts/register/
+2026-09-08 12:39:38,358 WARNING accounts.views User registration failed
+2026-09-08 12:39:38,372 WARNING django.request Bad Request: /api/v1/accounts/register/
+2026-09-08 12:39:41,123 INFO accounts.views User registration successful
+2026-09-08 12:39:49,910 WARNING django.request Unauthorized: /api/v1/accounts/profiles/
+2026-09-08 12:39:54,046 WARNING django.request Forbidden: /api/v1/accounts/profiles/
+2026-09-08 12:39:58,279 WARNING django.request Forbidden: /api/v1/accounts/profiles/
+2026-09-08 12:40:01,307 WARNING django.request Bad Request: /api/v1/accounts/profile-crud/
+2026-09-08 12:40:05,458 WARNING django.request Unauthorized: /api/v1/accounts/profile-crud/
+2026-09-08 12:40:32,118 WARNING django.request Unauthorized: /api/v1/drivers/location/
+2026-09-08 12:40:39,423 WARNING django.request Bad Request: /api/v1/drivers/
+2026-09-08 12:40:47,930 WARNING django.request Not Found: /api/v1/rides/00000000-0000-0000-0000-000000000000/fare/
+2026-09-08 12:40:49,431 WARNING django.request Unauthorized: /api/v1/rides/abf7cef0-88bb-43c7-b3b9-7ca3fc04bff9/fare/
+2026-09-08 12:41:06,518 WARNING django.request Unauthorized: /api/v1/drivers/location/
+2026-09-08 12:41:09,434 WARNING django.request Unauthorized: /api/rides/aggregations/
+2026-09-08 12:41:13,641 WARNING rides.services.ride_service Ride acceptance failed: ride is not in requested status | ride_id=f556346a-abf8-4355-b81e-eed615f98d61
+2026-09-08 12:41:13,687 WARNING django.request Bad Request: /api/rides/f556346a-abf8-4355-b81e-eed615f98d61/accept/
+2026-09-08 12:41:17,800 WARNING rides.services.ride_service Ride completion failed: invalid current status | ride_id=219f61b8-099d-49b4-80db-d74039b7733f
+2026-09-08 12:41:17,824 WARNING django.request Bad Request: /api/rides/219f61b8-099d-49b4-80db-d74039b7733f/complete/
+2026-09-08 12:41:21,954 WARNING rides.services.ride_service Ride cancellation failed: invalid current status | ride_id=4793c1c2-28be-4d2e-8fea-465d156934fd status=COMPLETED
+2026-09-08 12:41:21,975 WARNING django.request Bad Request: /api/rides/4793c1c2-28be-4d2e-8fea-465d156934fd/cancel/
+2026-09-08 12:41:38,732 INFO rides.services.ride_service Ride cancelled successfully | ride_id=dd58f593-76bb-4d2f-802d-cd112af0dcc2
+2026-09-08 12:41:43,006 INFO rides.services.ride_service Ride completed successfully | ride_id=390faa33-4abb-498d-ac74-a59bc799b65b
+2026-09-08 12:41:51,287 INFO rides.services.ride_service Ride started successfully | ride_id=80ea1cef-0dab-400f-8c18-06cf3eb6b81d
+2026-09-08 12:41:55,730 WARNING rides.services.ride_service Ride acceptance failed: ride is not in requested status | ride_id=daef074d-3afc-4046-ae1c-0f59592ecf1c
+2026-09-08 12:41:55,767 WARNING django.request Bad Request: /api/rides/daef074d-3afc-4046-ae1c-0f59592ecf1c/accept/
+2026-09-08 12:42:00,097 WARNING rides.services.ride_service Ride acceptance failed: driver is not available | ride_id=4f5e60d6-9ac6-4858-8637-b2726cb47453, driver_id=e1f2ce67-5d2d-4ac1-9c78-816d120f6c97
+2026-09-08 12:42:00,127 WARNING django.request Bad Request: /api/rides/4f5e60d6-9ac6-4858-8637-b2726cb47453/accept/
+2026-09-08 12:42:27,154 WARNING django.request Unauthorized: /api/rides/history/
+2026-09-08 12:42:38,621 WARNING django.request Forbidden: /api/drivers/9789c055-02c1-43a4-b43d-72a04d7f8d83/
+2026-09-08 12:42:40,754 WARNING django.request Too Many Requests: /api/drivers/
+2026-09-08 12:42:40,767 WARNING django.request Too Many Requests: /api/drivers/
+2026-09-08 12:42:40,781 WARNING django.request Too Many Requests: /api/drivers/
+2026-09-08 12:42:40,796 WARNING django.request Too Many Requests: /api/drivers/
+2026-09-08 12:42:40,809 WARNING django.request Too Many Requests: /api/drivers/
+2026-09-08 12:42:40,825 WARNING django.request Unauthorized: /api/drivers/
+2026-09-08 12:42:42,293 WARNING django.request Bad Request: /api/rides/
+2026-09-08 12:42:42,316 WARNING django.request Unauthorized: /api/rides/
+2026-09-08 12:42:42,331 WARNING django.request Unauthorized: /api/drivers/
+2026-09-08 12:42:45,263 WARNING django.request Forbidden: /api/rides/d4e28ebc-e54f-4e0c-9c24-751a1c426a22/
+2026-09-08 12:42:51,456 WARNING django.request Unauthorized: /api/vehicles/
+2026-09-08 12:42:54,309 WARNING django.request Forbidden: /api/vehicles/6299bf46-a48f-4039-8e00-03a6ba84222c/
+2026-09-08 12:42:57,197 WARNING django.request Bad Request: /api/vehicles/
+2026-09-08 12:50:23,433 WARNING django.request Unauthorized: /api/v1/accounts/profile/
+2026-09-08 12:50:27,840 INFO accounts.views User login successful
+2026-09-08 12:50:32,058 WARNING accounts.views User login failed: invalid credentials
+2026-09-08 12:50:32,071 WARNING django.request Bad Request: /api/v1/accounts/login/
+2026-09-08 12:50:33,573 WARNING django.request Unauthorized: /api/v1/accounts/token/refresh/
+2026-09-08 12:50:43,562 WARNING accounts.views User registration failed
+2026-09-08 12:50:43,578 WARNING django.request Bad Request: /api/v1/accounts/register/
+2026-09-08 12:50:44,983 WARNING accounts.views User registration failed
+2026-09-08 12:50:45,001 WARNING django.request Bad Request: /api/v1/accounts/register/
+2026-09-08 12:50:47,822 INFO accounts.views User registration successful
+2026-09-08 12:50:56,375 WARNING django.request Unauthorized: /api/v1/accounts/profiles/
+2026-09-08 12:51:00,617 WARNING django.request Forbidden: /api/v1/accounts/profiles/
+2026-09-08 12:51:04,833 WARNING django.request Forbidden: /api/v1/accounts/profiles/
+2026-09-08 12:51:07,792 WARNING django.request Bad Request: /api/v1/accounts/profile-crud/
+2026-09-08 12:51:12,119 WARNING django.request Unauthorized: /api/v1/accounts/profile-crud/
+2026-09-08 12:51:39,738 WARNING django.request Unauthorized: /api/v1/drivers/location/
+2026-09-08 12:51:47,161 WARNING django.request Bad Request: /api/v1/drivers/
+2026-09-08 12:51:55,946 WARNING django.request Not Found: /api/v1/rides/00000000-0000-0000-0000-000000000000/fare/
+2026-09-08 12:51:57,356 WARNING django.request Unauthorized: /api/v1/rides/a4b3766b-dab8-4dfc-b60e-3239b25efc48/fare/
+2026-09-08 12:52:14,479 WARNING django.request Unauthorized: /api/v1/drivers/location/
+2026-09-08 12:52:17,745 WARNING django.request Unauthorized: /api/rides/aggregations/
+2026-09-08 12:52:22,156 WARNING rides.services.ride_service Ride acceptance failed: ride is not in requested status | ride_id=46510fdb-d723-4cce-a403-78e5618c1e26
+2026-09-08 12:52:22,199 WARNING django.request Bad Request: /api/rides/46510fdb-d723-4cce-a403-78e5618c1e26/accept/
+2026-09-08 12:52:26,483 WARNING rides.services.ride_service Ride completion failed: invalid current status | ride_id=95460dca-c574-4554-8bbe-645f77ae683b
+2026-09-08 12:52:26,509 WARNING django.request Bad Request: /api/rides/95460dca-c574-4554-8bbe-645f77ae683b/complete/
+2026-09-08 12:52:30,765 WARNING rides.services.ride_service Ride cancellation failed: invalid current status | ride_id=4a754f84-cd0b-41b9-a356-43db825bb638 status=COMPLETED
+2026-09-08 12:52:30,789 WARNING django.request Bad Request: /api/rides/4a754f84-cd0b-41b9-a356-43db825bb638/cancel/
+2026-09-08 12:52:47,872 INFO rides.services.ride_service Ride cancelled successfully | ride_id=1f669827-a3db-4392-acf2-3007b6ec47ef
+2026-09-08 12:52:52,174 INFO rides.services.ride_service Ride completed successfully | ride_id=2d77e066-7893-401f-9d63-4365c87ff135
+2026-09-08 12:53:00,987 INFO rides.services.ride_service Ride started successfully | ride_id=db96431d-3241-42f3-8c8c-74de32157e38
+2026-09-08 12:53:05,378 WARNING rides.services.ride_service Ride acceptance failed: ride is not in requested status | ride_id=a90e96b6-079f-4751-874c-14a258b77172
+2026-09-08 12:53:05,414 WARNING django.request Bad Request: /api/rides/a90e96b6-079f-4751-874c-14a258b77172/accept/
+2026-09-08 12:53:09,863 WARNING rides.services.ride_service Ride acceptance failed: driver is not available | ride_id=fca24751-5fe0-488e-9bbb-a377135fbc43, driver_id=c2addd94-bac6-4cb9-aae0-e73a97596d5e
+2026-09-08 12:53:09,886 WARNING django.request Bad Request: /api/rides/fca24751-5fe0-488e-9bbb-a377135fbc43/accept/
+2026-09-08 12:53:35,665 WARNING django.request Unauthorized: /api/rides/history/
+2026-09-08 12:53:46,978 WARNING django.request Forbidden: /api/drivers/030371f1-678a-404c-a9fa-820d41fc536b/
+2026-09-08 12:53:49,050 WARNING django.request Too Many Requests: /api/drivers/
+2026-09-08 12:53:49,065 WARNING django.request Too Many Requests: /api/drivers/
+2026-09-08 12:53:49,081 WARNING django.request Too Many Requests: /api/drivers/
+2026-09-08 12:53:49,095 WARNING django.request Too Many Requests: /api/drivers/
+2026-09-08 12:53:49,112 WARNING django.request Too Many Requests: /api/drivers/
+2026-09-08 12:53:49,129 WARNING django.request Unauthorized: /api/drivers/
+2026-09-08 12:53:50,568 WARNING django.request Bad Request: /api/rides/
+2026-09-08 12:53:50,592 WARNING django.request Unauthorized: /api/rides/
+2026-09-08 12:53:50,605 WARNING django.request Unauthorized: /api/drivers/
+2026-09-08 12:53:53,451 WARNING django.request Forbidden: /api/rides/c5e64140-250d-48d1-8860-adc3bdba211f/
+2026-09-08 12:53:59,243 WARNING django.request Unauthorized: /api/vehicles/
+2026-09-08 12:54:02,076 WARNING django.request Forbidden: /api/vehicles/f856b4de-55dc-492e-848b-3fdc411e7449/
+2026-09-08 12:54:05,090 WARNING django.request Bad Request: /api/vehicles/
+2026-09-08 13:20:19,239 WARNING django.request Unauthorized: /api/v1/accounts/profile/
+2026-09-08 13:20:23,740 INFO accounts.views User login successful
+2026-09-08 13:20:28,277 WARNING accounts.views User login failed: invalid credentials
+2026-09-08 13:20:28,293 WARNING django.request Bad Request: /api/v1/accounts/login/
+2026-09-08 13:20:29,838 WARNING django.request Unauthorized: /api/v1/accounts/token/refresh/
+2026-09-08 13:20:40,139 WARNING accounts.views User registration failed
+2026-09-08 13:20:40,161 WARNING django.request Bad Request: /api/v1/accounts/register/
+2026-09-08 13:20:41,619 WARNING accounts.views User registration failed
+2026-09-08 13:20:41,632 WARNING django.request Bad Request: /api/v1/accounts/register/
+2026-09-08 13:20:44,481 INFO accounts.views User registration successful
+2026-09-08 13:20:53,181 WARNING django.request Unauthorized: /api/v1/accounts/profiles/
+2026-09-08 13:20:58,032 WARNING django.request Forbidden: /api/v1/accounts/profiles/
+2026-09-08 13:21:05,034 WARNING django.request Forbidden: /api/v1/accounts/profiles/
+2026-09-08 13:21:11,128 WARNING django.request Bad Request: /api/v1/accounts/profile-crud/
+2026-09-08 13:21:20,656 WARNING django.request Unauthorized: /api/v1/accounts/profile-crud/
+2026-09-08 13:22:14,446 WARNING django.request Unauthorized: /api/v1/drivers/location/
+2026-09-08 13:22:22,188 WARNING django.request Bad Request: /api/v1/drivers/
+2026-09-08 13:22:31,111 WARNING django.request Not Found: /api/v1/rides/00000000-0000-0000-0000-000000000000/fare/
+2026-09-08 13:22:32,587 WARNING django.request Unauthorized: /api/v1/rides/b2599f05-52a1-4efe-afcf-7124b68d2599/fare/
+2026-09-08 13:22:50,419 WARNING django.request Unauthorized: /api/v1/drivers/location/
+2026-09-08 13:22:56,351 WARNING django.request Unauthorized: /api/rides/aggregations/
+2026-09-08 13:23:06,030 WARNING rides.services.ride_service Ride acceptance failed: ride is not in requested status | ride_id=e517f4ba-44e6-4b0e-9742-94f00cbd27a8
+2026-09-08 13:23:06,122 WARNING django.request Bad Request: /api/rides/e517f4ba-44e6-4b0e-9742-94f00cbd27a8/accept/
+2026-09-08 13:23:15,456 WARNING rides.services.ride_service Ride completion failed: invalid current status | ride_id=df74027b-5856-4512-ac16-b90b4d92d786
+2026-09-08 13:23:15,506 WARNING django.request Bad Request: /api/rides/df74027b-5856-4512-ac16-b90b4d92d786/complete/
+2026-09-08 13:23:24,814 WARNING rides.services.ride_service Ride cancellation failed: invalid current status | ride_id=b8ec5653-aa94-4b73-a436-2514dad3a034 status=COMPLETED
+2026-09-08 13:23:24,854 WARNING django.request Bad Request: /api/rides/b8ec5653-aa94-4b73-a436-2514dad3a034/cancel/
+2026-09-08 13:24:00,922 INFO rides.services.ride_service Ride cancelled successfully | ride_id=37360db8-c344-4f1a-a0aa-182c98d80b3f
+2026-09-08 13:24:09,631 INFO rides.services.ride_service Ride completed successfully | ride_id=0e444a92-5dc0-4425-9065-ba6c03757810
+2026-09-08 13:24:28,918 INFO rides.services.ride_service Ride started successfully | ride_id=ec5fd1e4-c6c8-4926-85a3-a062d271e2e1
+2026-09-08 13:24:38,465 WARNING rides.services.ride_service Ride acceptance failed: ride is not in requested status | ride_id=a54b64e9-8660-4084-aacc-0ed363d4a951
+2026-09-08 13:24:38,534 WARNING django.request Bad Request: /api/rides/a54b64e9-8660-4084-aacc-0ed363d4a951/accept/
+2026-09-08 13:24:47,785 WARNING rides.services.ride_service Ride acceptance failed: driver is not available | ride_id=ba9d78e5-55eb-45fa-b5ad-be98ea2c4d6f, driver_id=efdf01a7-fed2-438f-b321-e2a29cd82ad3
+2026-09-08 13:24:47,840 WARNING django.request Bad Request: /api/rides/ba9d78e5-55eb-45fa-b5ad-be98ea2c4d6f/accept/
+2026-09-08 13:25:41,961 WARNING django.request Unauthorized: /api/rides/history/
+2026-09-08 13:26:06,364 WARNING django.request Forbidden: /api/drivers/ee841edd-8fc0-4736-aa16-8db0ac7daeba/
+2026-09-08 13:26:11,341 WARNING django.request Too Many Requests: /api/drivers/
+2026-09-08 13:26:11,363 WARNING django.request Too Many Requests: /api/drivers/
+2026-09-08 13:26:11,387 WARNING django.request Too Many Requests: /api/drivers/
+2026-09-08 13:26:11,406 WARNING django.request Too Many Requests: /api/drivers/
+2026-09-08 13:26:11,426 WARNING django.request Too Many Requests: /api/drivers/
+2026-09-08 13:26:11,459 WARNING django.request Unauthorized: /api/drivers/
+2026-09-08 13:26:14,622 WARNING django.request Bad Request: /api/rides/
+2026-09-08 13:26:14,666 WARNING django.request Unauthorized: /api/rides/
+2026-09-08 13:26:14,691 WARNING django.request Unauthorized: /api/drivers/
+2026-09-08 13:26:20,959 WARNING django.request Forbidden: /api/rides/9296740b-265a-4f9b-8f3c-98c91bf7fa17/
+2026-09-08 13:26:33,799 WARNING django.request Unauthorized: /api/vehicles/
+2026-09-08 13:26:39,880 WARNING django.request Forbidden: /api/vehicles/130a9d56-9067-4f08-87ca-b1655a784f11/
+2026-09-08 13:26:45,889 WARNING django.request Bad Request: /api/vehicles/

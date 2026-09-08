@@ -24,10 +24,16 @@ from rides.services.ride_service import cancel_ride as cancel_ride_service
 from rides.services.ride_service import complete_ride as complete_ride_service
 from rides.services.ride_service import create_ride as create_ride_service
 from rides.services.ride_service import start_ride as start_ride_service
-
+from core.throttles import RideCreationThrottle
 from .models import DriverLocation, DriverProfile, Ride, Vehicle, VehicleType
 from .permissions import (IsOwnDriverProfile,
-                          IsRideOwnerOrDriver)
+                          IsRideOwnerOrDriver,
+                          IsAdmin,
+                          IsAdminOrDriver,
+                          IsAdminOrPassenger,
+                          IsVehicleOwnerOrAdmin,
+                          IsDriver,
+                          IsVehicleOwnerOrAdmin,)
 from .serializers import (DriverLocationSerializer, DriverProfileSerializer,
                           RideSerializer, RideStatusUpdateSerializer,
                           VehicleSerializer, VehicleTypeSerializer)
@@ -74,7 +80,8 @@ class VehicleViewSet(viewsets.ModelViewSet):
     )
 
     serializer_class = VehicleSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated,
+                          IsVehicleOwnerOrAdmin]
 
 class RideViewSet(viewsets.ModelViewSet):
     queryset = (
@@ -87,6 +94,27 @@ class RideViewSet(viewsets.ModelViewSet):
         IsAuthenticated,
         IsRideOwnerOrDriver,
     ]
+    def get_throttles(self):
+        if self.action == "create":
+            return [RideCreationThrottle()]
+        return super().get_throttles()
+    def get_permissions(self):
+        if self.action == "create":
+            permission_classes = [
+                IsAuthenticated,
+                IsAdminOrPassenger,
+            ]
+
+        elif self.action in ["accept_ride", "complete_ride"]:
+            permission_classes = [
+                IsAuthenticated,
+                IsAdminOrDriver,
+            ]
+
+        else:
+            permission_classes = self.permission_classes
+
+        return [permission() for permission in permission_classes]
     
     def perform_create(self, serializer):
         ride = create_ride_service(
@@ -899,7 +927,8 @@ class LargeDatasetRideView(ListAPIView):
         return paginator.get_paginated_response(serializer.data)
 
 class DriverLocationView(APIView):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated,
+                          IsAdminOrDriver]
     @swagger_auto_schema(
         operation_summary="Update driver location",
         operation_description="Creates or updates the authenticated driver's current location.",

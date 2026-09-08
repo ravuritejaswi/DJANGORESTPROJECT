@@ -2929,3 +2929,541 @@ The complete automated test suite has been verified with:
 98/98 tests passing
 
 Swagger/OpenAPI documentation has also been successfully demonstrated.
+
+
+
+# API Architecture, Versioning & Advanced DRF
+
+## Overview
+
+This module focuses on improving the Django REST Framework API architecture by reviewing existing APIs, implementing API versioning, improving serializers, using appropriate DRF views and ViewSets, implementing custom ride actions, documenting APIs with Swagger/OpenAPI, and performing final testing.
+
+---
+
+##Review Existing APIs
+
+### Objective
+
+Review the existing APIs and identify their organization, dependencies, duplication, and refactoring opportunities.
+
+### API Modules
+
+#### Accounts
+- User registration
+- User login
+- Token refresh
+- User profile
+- Profile CRUD
+- Change password
+- Logout
+- Profile restore
+
+#### Rides
+- Ride creation
+- Ride history
+- Active rides
+- Completed rides
+- Cancelled rides
+- Driver ride history
+- Daily ride count
+- Ride aggregations
+- Ride filtering
+- Large dataset/paginated rides
+
+#### Drivers
+- Driver CRUD
+- Driver location
+- Nearby driver search
+
+#### Vehicles
+- Vehicle CRUD
+- Vehicle type listing
+
+#### Notifications
+- List notifications
+- Mark notification as read
+- Mark all notifications as read
+
+### Tightly Coupled APIs
+
+The following relationships were identified:
+
+- Ride ↔ Driver
+- Ride ↔ Vehicle
+- Driver ↔ Driver Location
+- Ride ↔ Notification
+- Ride ↔ WebSocket communication
+
+### Refactoring Candidates
+
+Potential areas for refactoring were identified:
+
+- Profile-related APIs
+- Ride reporting/aggregation APIs
+- Old and versioned API routes
+- Notification API routes
+- APIs containing repeated or tightly coupled logic
+
+Existing working functionality was preserved while reviewing these areas.
+
+---
+
+## Implement API Versioning
+
+Objective
+Introduce API versioning to provide a stable API contract for mobile and other clients.
+
+### Version 1 APIs
+
+The project uses the following versioned structure:
+
+```text
+/api/v1/accounts/
+/api/v1/drivers/
+/api/v1/vehicles/
+/api/v1/rides/
+/api/v1/notifications/
+
+##Create Version 1 API Structure
+Objective
+
+Organize existing APIs under the v1 API namespace.
+
+Versioned Structure
+/api/v1/accounts/
+/api/v1/drivers/
+/api/v1/vehicles/
+/api/v1/rides/
+/api/v1/notifications/
+Verification
+
+The following were verified:
+
+Authentication continues to work.
+Existing API functionality is preserved.
+Versioned URLs resolve correctly.
+Driver, vehicle and ride ViewSet routes are available under v1.
+Notification endpoints are available under v1.
+Existing non-versioned routes were preserved where required for compatibility.
+
+##Advanced Serializer Design
+Objective
+
+Improve serializer design using Django REST Framework serializer features.
+
+Implemented Features
+1. Nested Serializers
+
+VehicleNestedSerializer is used to represent vehicle information inside the driver profile response.
+
+Example:
+
+DriverProfile
+    └── vehicles
+          ├── vehicle_type
+          └── vehicle_number
+2. Read-Only Fields
+
+Server-managed fields are protected using read_only_fields.
+
+Examples include:
+
+id
+created_at
+updated_at
+status
+rating
+3. Write-Only Fields
+
+Sensitive request fields such as passwords are configured as write-only so they are accepted during input but are not returned in API responses.
+
+4. Serializer Validation
+
+The serializers contain field-level and object-level validation for:
+
+Email uniqueness
+Password validation
+Vehicle registration number
+Driver ownership
+Vehicle type
+Ride locations
+Ride type
+Scheduled ride requirements
+Active ride restrictions
+Ride status transitions
+5. Custom Serializer Methods
+
+Existing serializer create() and save() implementations were reviewed and retained where required for business behavior.
+
+6. Dynamic Fields
+
+A reusable serializer was introduced:
+
+DynamicFieldsModelSerializer
+
+It supports optional field selection using:
+
+?fields=field1,field2
+
+Dynamic fields were applied to suitable serializers including:
+
+VehicleSerializer
+RideSerializer
+DriverLocationSerializer
+VehicleTypeSerializer
+
+Existing validation and API behavior were preserved.
+
+
+##Generic Views & ViewSets
+Objective
+
+Understand and use the appropriate Django REST Framework view abstraction.
+
+DRF Approaches
+Approach	               Purpose
+APIView	              Used for APIs requiring custom request/response logic
+GenericAPIView	      Provides generic DRF functionality while allowing custom HTTP methods
+ListAPIView	          Used for read-only list endpoints
+ListCreateAPIView	  Used when an endpoint needs GET list and POST create
+RetrieveUpdateDestroyAPIView	Used for GET, PUT, PATCH and DELETE on a single resource
+ViewSet	Groups        related API actions
+ModelViewSet	      Provides standard model CRUD operations 
+
+Implemented Refactoring
+ListAPIView
+LargeDatasetRideView was refactored to use:
+
+ListAPIView
+
+because it provides a list of rides with pagination.
+
+GenericAPIView
+
+TotalCompletedRidesView was refactored to use:
+
+GenericAPIView
+
+while preserving its existing custom GET behavior.
+
+ModelViewSet
+
+Existing ViewSets were retained:
+
+DriverViewSet
+VehicleViewSet
+RideViewSet
+
+These provide standard CRUD operations through the router.
+
+Existing APIs were not unnecessarily duplicated or rewritten.
+
+##Custom Actions
+Objective
+
+Implement ride-specific actions using Django REST Framework ViewSet custom actions.
+
+Ride Actions
+
+The following actions are available:
+
+POST /api/v1/rides/{id}/accept/
+POST /api/v1/rides/{id}/cancel/
+POST /api/v1/rides/{id}/start/
+POST /api/v1/rides/{id}/complete/
+Implementation
+
+The actions are implemented using DRF's:
+
+@action(detail=True, methods=["post"])
+State Validation
+
+Ride state validation is performed before modifying the ride.
+
+Examples:
+
+REQUESTED → ACCEPTED
+ACCEPTED  → STARTED
+STARTED   → COMPLETED
+
+Invalid transitions are rejected with validation errors.
+
+The ride service layer is responsible for validating the current state and performing the state change.
+
+This prevents invalid ride lifecycle transitions.
+
+##API Documentation
+Objective
+
+Document all versioned APIs using Swagger/OpenAPI.
+
+Swagger
+
+The project uses:
+
+drf-yasg
+
+Swagger UI is available through:
+
+/swagger/
+
+ReDoc is available through:
+
+/redoc/
+Documentation Includes
+
+The API documentation covers:
+
+Request information
+Response information
+Authentication requirements
+Error responses
+HTTP status codes
+Request serializers
+API descriptions
+Custom ride actions
+JWT Authentication
+
+The project uses JWT authentication through:
+
+rest_framework_simplejwt.authentication.JWTAuthentication
+
+Swagger is configured with a Bearer authorization scheme.
+
+Authenticated API requests can use:
+
+Authorization: Bearer <access_token>
+Versioned API Documentation
+
+The following API groups are documented:
+
+/api/v1/accounts/
+/api/v1/drivers/
+/api/v1/vehicles/
+/api/v1/rides/
+/api/v1/notifications/
+
+
+
+
+****Advanced Authentication, Authorization & Security****
+
+Objective
+Strengthened the Django REST mobile backend by reviewing authentication, implementing authorization controls, protecting sensitive APIs, configuring API throttling, securing sensitive data, performing security testing, and documenting the security audit.
+
+##Authentication Flow Review
+
+Reviewed the complete JWT authentication flow:
+
+Registration
+      ↓
+Login
+      ↓
+Access Token
+      ↓
+API Request
+      ↓
+Access Token Expiration
+      ↓
+Refresh Token
+      ↓
+New Access Token
+Implementation
+Reviewed user registration and login flow.
+JWT authentication is used for protected APIs.
+Access token lifetime: 30 minutes.
+Refresh token lifetime: 1 day.
+Invalid/expired access tokens are rejected.
+Refresh tokens can be used to obtain a new access token while valid.
+Logout uses refresh-token blacklisting.
+Result
+Authentication flow was reviewed and verified successfully.
+
+
+##Role & Permission Matrix
+
+Reviewed and implemented role-based access according to the required matrix.
+
+API /Operation          Admin	Driver	Passenger
+View Profile	          ✓ 	 ✓	       ✓
+Update Own Profile	      ✓    	 ✓	       ✓
+Manage Drivers	          ✓	     ✗	       ✗
+Create Ride	              ✓	     ✗	       ✓
+Accept Ride            	  ✓*	 ✓	       ✗
+Complete Ride	          ✓*	 ✓	       ✗
+
+* The permission layer allows administrative access where applicable; ride business logic still requires a valid driver profile for driver-specific operations.
+
+Implementation
+Reviewed existing DRF permission classes.
+Preserved driver profile ownership restrictions.
+Protected driver-specific operations.
+Verified role boundaries without disturbing existing functionality.
+Result
+Role and permission controls were reviewed and strengthened successfully.
+
+
+##Object-Level Permissions
+
+Implemented and reviewed object-level authorization to ensure users cannot access resources belonging to other users.
+
+Security Rules
+User A → User A Ride       ✓
+User A → User B Ride       ✗
+
+Driver A → Driver A Vehicle ✓
+Driver A → Driver B Vehicle ✗
+Implementation
+IsRideOwnerOrDriver protects ride objects.
+Driver profile ownership is enforced.
+Added IsVehicleOwnerOrAdmin for vehicle ownership.
+Admin users can manage vehicles.
+Drivers can manage only their own vehicles.
+Result
+Object-level authorization was implemented and tested successfully.
+
+
+##Secure Sensitive APIs
+
+Reviewed and strengthened security controls for sensitive endpoints.
+
+Protected Operations
+Login
+Registration
+Password change
+Ride creation
+Driver location
+Admin/driver-protected APIs
+Implementation
+JWT authentication applied to protected APIs.
+IsAuthenticated used where authentication is required.
+IsAdminOrDriver applied to Driver Location API.
+Vehicle ownership permissions added.
+Login and registration throttling enabled.
+Ride creation throttling enabled.
+Result
+Sensitive API access controls were reviewed and strengthened successfully.
+
+
+##API Throttling
+Configured different rate limits for anonymous, authenticated, and sensitive operations.
+
+Current Limits
+Operation	                     Limit
+Anonymous requests	            10/minute
+Authenticated users	            30/minute
+Login	                        5/minute
+Registration	                5/minute
+Password Reset	                5/minute
+OTP	                            5/minute
+Ride Creation	                10/minute
+Implementation
+Login throttling implemented using LoginThrottle.
+Registration throttling implemented using RegistrationThrottle.
+Ride creation throttling implemented using RideCreationThrottle.
+Password reset throttle class is available.
+Excessive requests are protected through DRF throttling.
+Result
+API throttling was configured and tested successfully.
+
+
+##Secure Data Handling
+
+Reviewed sensitive data handling throughout the backend.
+
+Passwords
+Django password hashing is used.
+Password validation is enabled.
+Passwords are not intentionally returned in API responses or logs.
+JWT Secrets
+JWT secret is loaded through the environment.
+The insecure/short secret was replaced with a stronger generated secret.
+.env is used for secret configuration.
+Database Credentials
+
+PostgreSQL credentials are loaded from environment variables:
+DB_NAME
+DB_USER
+DB_PASSWORD
+DB_HOST
+DB_PORT
+API Keys
+Sensitive API/service credentials should be maintained through environment variables.
+Sensitive credentials should not be returned through API responses.
+Logs
+Reviewed application logging.
+Authentication failures use generic messages.
+Passwords and JWT values are not intentionally logged.
+Error Responses
+Custom DRF exception handling is configured.
+API responses avoid intentionally exposing sensitive internal information.
+
+Result
+Sensitive data handling was reviewed and security improvements were applied.
+
+
+##Security Testing
+
+Performed/reviewed negative security testing for the required security scenarios.
+
+Security Test	Result
+Invalid JWT	✓ PASS
+Expired JWT	✓ PASS
+Missing JWT	✓ PASS
+IDOR — User accessing another user's ride	✓ PASS
+Unauthorized role/access	✓ PASS
+Malformed/invalid payload validation	✓ PASS
+Excessive requests	✓ PASS
+
+Additional security testing included:
+Unauthorized API access
+Driver accessing another driver's data
+Invalid WebSocket authentication
+Vehicle object-level authorization
+Driver Location authorization
+
+Result
+Security boundaries were tested and the identified authorization/throttling improvements were implemented.
+
+
+##Security Report
+
+Created:
+SECURITY_AUDIT.md
+
+The report documents:
+Issue
+Severity
+Affected API
+Root Cause
+Fix
+Test Result
+Security Audit Coverage
+
+The report covers:
+JWT secret security
+Password security
+Database credential protection
+API key protection
+Logging security
+Error response security
+Invalid JWT
+Expired JWT
+Missing JWT
+IDOR protection
+Driver authorization
+Driver Location authorization
+Vehicle object-level authorization
+Excessive request protection
+Final Test Result
+
+After implementing the security changes, the complete backend test suite was executed.
+
+Ran 98 tests in 257.468s
+OK
+Destroying test database for alias 'default'...
+Final Status
+
+98/98 tests passed successfully. ✅
+
+
