@@ -1,6 +1,7 @@
 import os
 
 from celery import Celery
+import core.celery_monitor
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
 

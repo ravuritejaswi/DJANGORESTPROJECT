@@ -13,7 +13,7 @@ from datetime import timedelta
 from pathlib import Path
 import os
 from dotenv import load_dotenv
-
+from celery.schedules import crontab
 load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -249,6 +249,11 @@ LOGGING = {
             "level": "INFO",
             "propagate": False,
         },
+        "celery.monitor": {
+            "handlers": ["file"],
+            "level": "INFO",
+            "propagate": False,
+        },
     },
 }
 
@@ -267,6 +272,24 @@ CELERY_ACCEPT_CONTENT = ["json"]
 CELERY_TASK_SERIALIZER = "json"
 
 CELERY_RESULT_SERIALIZER = "json"
+
+CELERY_BEAT_SCHEDULE = {
+    "remove-expired-records-daily": {
+        "task": "accounts.tasks.clean_expired_data",
+        "schedule": crontab(hour=1, minute=0),
+        "args": (30,),
+    },
+
+    "generate-daily-ride-summary": {
+        "task": "accounts.tasks.generate_ride_report",
+        "schedule": crontab(hour=2, minute=0),
+    },
+
+    "clean-old-temporary-data-daily": {
+        "task": "accounts.tasks.clean_old_temporary_data",
+        "schedule": crontab(hour=3, minute=0),
+    },
+}
 
 
 # Security settings

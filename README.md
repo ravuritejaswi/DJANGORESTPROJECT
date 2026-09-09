@@ -3467,3 +3467,233 @@ Final Status
 98/98 tests passed successfully. ✅
 
 
+
+
+****Asynchronous Architecture & Reliable Background Processing****
+
+Objective
+
+Built reliable asynchronous workflows using Celery and Redis for background operations that should not block mobile API requests.
+
+## Identify Background Operations
+
+Identified the following operations as suitable for asynchronous execution:
+
+Ride Notifications — Notifications can be processed in the background so ride APIs can return quickly without waiting for notification processing.
+Email — Email delivery may involve external services and can take time, so it should not block API requests.
+Reports — Report generation may require multiple database queries and data aggregation, making background execution more suitable.
+Cleanup — Expired or unnecessary data can be removed independently without affecting normal API operations.
+Data Processing — Large or time-consuming data-processing operations can run through background workers.
+Scheduled Jobs — Periodic operations can execute automatically in the background without requiring a user request.
+
+Result
+Background operations were identified and their asynchronous execution requirements were reviewed.
+
+
+## Create Celery Tasks
+
+Implemented Celery tasks for the required background operations:
+
+Send notification
+Generate ride report
+Clean expired data
+Process background records
+Implemented Tasks
+send_ride_notification
+send_driver_assignment_notification
+send_ride_completion_notification
+send_reminder_notification
+generate_ride_report
+clean_expired_data
+process_background_records
+
+The existing retry and failure-testing tasks were also retained:
+retry_test_job
+failed_test
+
+Result
+Required Celery background tasks were implemented successfully.
+
+
+## Task Queues
+
+Separated Celery tasks into logical queues:
+notifications
+reports
+maintenance
+Queue Assignment
+Queue	Background Operations
+notifications	Ride and driver notification tasks
+reports	Ride report generation
+maintenance	Expired-data cleanup and background record processing
+
+Dedicated Celery workers were configured to process the logical queues.
+
+Architecture
+                    Redis Broker
+                         │
+          ┌──────────────┼──────────────┐
+          ↓              ↓              ↓
+   notifications      reports      maintenance
+       worker          worker          worker
+          ↓              ↓              ↓
+   Notifications      Reports       Maintenance
+
+Result
+Logical queues and dedicated workers were configured successfully.
+
+
+## Retry & Failure Handling
+
+Implemented and tested Celery retry and failure handling.
+The retry task follows:
+
+Task
+ ↓
+Failure
+ ↓
+Retry
+ ↓
+Failure
+ ↓
+Retry
+ ↓
+Success
+Retry Configuration
+Maximum retries: 2
+Total possible attempts: 3
+Retry delay: 2 seconds
+
+The retry_test_job intentionally fails during the first two attempts and succeeds on the third attempt.
+A separate failed_test task was also retained to simulate a final task failure.
+
+Result
+Retry and failure-handling behavior was successfully implemented and tested.
+
+
+## Idempotency
+
+Reviewed the possibility of background tasks executing more than once due to retries, worker interruptions, or repeated task delivery.
+
+Implemented idempotent notification handling using:
+Stable event_id values for the same ride event.
+get_or_create() when creating notifications.
+A database-level unique constraint on:
+user + event_id
+Idempotent Workflow
+Same Event
+    ↓
+Task Execution #1
+    ↓
+Notification Created
+    ↓
+Task Execution #2
+    ↓
+Same event_id detected
+    ↓
+Existing Notification Used
+    ↓
+No Duplicate Created
+
+Result
+Notification processing was designed to prevent duplicate notifications when the same business event is processed repeatedly.
+
+
+##Scheduled Tasks
+
+Configured scheduled background jobs using Celery Beat for:
+Removing expired records
+Generating daily ride summaries
+Cleaning old temporary data
+Scheduled Operations
+Celery Beat
+     │
+     ├── Remove expired records
+     │        ↓
+     │   clean_expired_data
+     │
+     ├── Daily ride summary
+     │        ↓
+     │   generate_ride_report
+     │
+     └── Temporary data cleanup
+              ↓
+       clean_old_temporary_data
+
+The scheduled jobs use the appropriate maintenance and reports queues.
+
+Result
+Scheduled background processing was configured successfully.
+
+
+## Monitor Task Execution
+
+Implemented task execution monitoring using Celery signals.
+
+The monitoring tracks:
+Successful tasks
+Failed tasks
+Retry count
+Execution time
+Monitoring Flow
+Task Starts
+    ↓
+Start Time Recorded
+    ↓
+Task Executes
+    ↓
+Success / Failure / Retry
+    ↓
+Execution Details Logged
+
+Worker logs were reviewed to verify task execution and retry behavior.
+
+Sensitive task arguments such as passwords, tokens, and credentials are not intentionally included in monitoring logs.
+
+Result
+Celery task execution and worker activity can be monitored through application and worker logs.
+
+
+## Integration Testing
+
+Verified the complete asynchronous workflow:
+
+API
+ ↓
+Celery Task
+ ↓
+Redis
+ ↓
+Celery Worker
+ ↓
+Database / Notification
+Integration Verification
+
+Verified that:
+The Django API triggers asynchronous operations.
+Celery receives the background task.
+Redis acts as the message broker.
+The appropriate Celery worker receives the task.
+The task executes successfully.
+Database/notification records are created or updated as required.
+
+The logical queues were also verified:
+
+API
+ │
+ └── Celery
+       │
+       ↓
+     Redis
+       │
+   ┌───┼────────┐
+   ↓   ↓        ↓
+  Notification Reports Maintenance
+   ↓   ↓        ↓
+ Workers execute assigned tasks
+       │
+       ↓
+ Database / Notification
+
+Result
+The end-to-end asynchronous architecture was tested and verified.
