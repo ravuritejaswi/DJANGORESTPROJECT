@@ -62,6 +62,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    "common.middleware.StructuredLoggingMiddleware",
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -218,8 +219,52 @@ LOGGING = {
             "formatter": "verbose",
         },
     },
+    
 
     "loggers": {
+        # Application
+        "app": {
+            "handlers": ["file"],
+            "level": "INFO",
+            "propagate": False,
+        },
+        # Authentication
+        "authentication": {
+            "handlers": ["file"],
+            "level": "INFO",
+            "propagate": False,
+        },
+        # API
+        "api": {
+            "handlers": ["file"],
+            "level": "INFO",
+            "propagate": False,
+        },
+        # Database
+        "django.db.backends": {
+            "handlers": ["file"],
+            "level": "WARNING",
+            "propagate": False,
+        },
+         # Celery
+        "celery": {
+            "handlers": ["file"],
+            "level": "INFO",
+            "propagate": False,
+        },
+        # WebSocket
+        "websocket": {
+            "handlers": ["file"],
+            "level": "INFO",
+            "propagate": False,
+        },
+         # Security
+        "security": {
+            "handlers": ["file"],
+            "level": "INFO",
+            "propagate": False,
+        },
+
         "django": {
             "handlers": ["file"],
             "level": "INFO",

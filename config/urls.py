@@ -22,6 +22,11 @@ from django.urls import include, path
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 from rest_framework import permissions
+from common.health import (
+    HealthCheckView,
+    DatabaseHealthCheckView,
+    RedisHealthCheckView,
+)
 
 from accounts.views import (
     NotificationListAPIView,
@@ -49,6 +54,23 @@ urlpatterns = [
     path("api/", include("rides.urls")),
     path("api/v1/", include("rides.urls")),
     path("api/notifications/", NotificationListAPIView.as_view(), name="notifications"),
+    path(
+    "api/health/",
+    HealthCheckView.as_view(),
+    name="health",
+    ),
+
+    path(
+    "api/health/database/",
+    DatabaseHealthCheckView.as_view(),
+    name="health-database",
+    ),
+
+    path(
+    "api/health/redis/",
+    RedisHealthCheckView.as_view(),
+    name="health-redis",
+    ),
     path(
         "api/notifications/<int:pk>/read/",
         NotificationReadAPIView.as_view(),
