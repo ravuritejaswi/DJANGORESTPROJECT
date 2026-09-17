@@ -14,11 +14,25 @@ from pathlib import Path
 import os
 from dotenv import load_dotenv
 from celery.schedules import crontab
-load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Select environment configuration
+ENVIRONMENT = os.getenv("DJANGO_ENV", "development")
+
+ENV_FILE_MAP = {
+    "development": BASE_DIR / ".env.development",
+    "testing": BASE_DIR / ".env.testing",
+    "production": BASE_DIR / ".env.production",
+}
+
+env_file = ENV_FILE_MAP.get(ENVIRONMENT)
+
+if env_file and env_file.exists():
+    load_dotenv(env_file)
+else:
+    load_dotenv(BASE_DIR / ".env")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
@@ -27,11 +41,22 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv("DEBUG", "True").lower() == "true"
-
-ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
+DEBUG = os.getenv("DEBUG", "False").lower() == "true"
 
 
+ALLOWED_HOSTS = [
+    host.strip()
+    for host in os.getenv(
+        "ALLOWED_HOSTS",
+        "127.0.0.1,localhost"
+    ).split(",")
+    if host.strip()
+]
+CSRF_TRUSTED_ORIGINS = [
+    origin.strip()
+    for origin in os.getenv("CSRF_TRUSTED_ORIGINS", "").split(",")
+    if origin.strip()
+]
 # Application definition
 
 INSTALLED_APPS = [
@@ -97,14 +122,17 @@ DATABASES = {
         'NAME': os.getenv('DB_NAME'),
         'USER': os.getenv('DB_USER'),
         'PASSWORD': os.getenv('DB_PASSWORD'),
-        'HOST': os.getenv('DB_HOST'),
-        'PORT': os.getenv('DB_PORT'),
+        "HOST": os.getenv("DB_HOST", "127.0.0.1"),
+        "PORT": os.getenv("DB_PORT", "5432"),
     }
 }
+REDIS_HOST = os.getenv("REDIS_HOST", "127.0.0.1")
+REDIS_PORT = os.getenv("REDIS_PORT", "6379")
+
 CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.redis.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379/1",
+        "LOCATION": f"redis://{REDIS_HOST}:{REDIS_PORT}/1",
     }
 }
 
@@ -141,10 +169,12 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
+STATIC_URL = "static/"
+STATIC_ROOT = BASE_DIR / os.getenv("STATIC_ROOT", "staticfiles")
 
-STATIC_URL = 'static/'
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / os.getenv("MEDIA_ROOT", "media")
+
 AUTH_USER_MODEL = "accounts.User"
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
@@ -179,8 +209,12 @@ REST_FRAMEWORK = {
 
 
 SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
-    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+    "ACCESS_TOKEN_LIFETIME": timedelta(
+        minutes=int(os.getenv("JWT_ACCESS_MINUTES", "30"))
+    ),
+    "REFRESH_TOKEN_LIFETIME": timedelta(
+        days=int(os.getenv("JWT_REFRESH_DAYS", "1"))
+    ),
 }
 SWAGGER_SETTINGS = {
     "SECURITY_DEFINITIONS": {
@@ -308,9 +342,9 @@ CHANNEL_LAYERS = {
     },
 }
 
-CELERY_BROKER_URL = "redis://127.0.0.1:6379/0"
+CELERY_BROKER_URL = f"redis://{REDIS_HOST}:{REDIS_PORT}/0"
 
-CELERY_RESULT_BACKEND = "redis://127.0.0.1:6379/0"
+CELERY_RESULT_BACKEND = f"redis://{REDIS_HOST}:{REDIS_PORT}/0"
 
 CELERY_ACCEPT_CONTENT = ["json"]
 
@@ -335,7 +369,17 @@ CELERY_BEAT_SCHEDULE = {
         "schedule": crontab(hour=3, minute=0),
     },
 }
+# Email configuration
+EMAIL_BACKEND = os.getenv(
+    "EMAIL_BACKEND",
+    "django.core.mail.backends.console.EmailBackend"
+)
 
+EMAIL_HOST = os.getenv("EMAIL_HOST", "")
+EMAIL_PORT = int(os.getenv("EMAIL_PORT", "587"))
+EMAIL_USE_TLS = os.getenv("EMAIL_USE_TLS", "True").lower() == "true"
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER", "")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD", "")
 
 # Security settings
 
@@ -350,3 +394,20 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_REFERRER_POLICY = "same-origin"
 
 SECURE_SSL_REDIRECT = not DEBUG
+SECURE_HSTS_SECONDS = int(
+    os.getenv("SECURE_HSTS_SECONDS", "0")
+)
+
+SECURE_HSTS_INCLUDE_SUBDOMAINS = os.getenv(
+    "SECURE_HSTS_INCLUDE_SUBDOMAINS",
+    "False"
+).lower() == "true"
+
+SECURE_HSTS_PRELOAD = os.getenv(
+    "SECURE_HSTS_PRELOAD",
+    "False"
+).lower() == "true"
+SECURE_PROXY_SSL_HEADER = (
+    "HTTP_X_FORWARDED_PROTO",
+    "https",
+)
