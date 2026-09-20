@@ -12,6 +12,8 @@ ENV DJANGO_SETTINGS_MODULE=config.settings
 
 # Working directory
 WORKDIR /app
+# Create folder for Django log files
+RUN mkdir -p /app/logs
 
 # Install system dependencies
 RUN apt-get update \

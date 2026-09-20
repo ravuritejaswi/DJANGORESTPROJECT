@@ -1,11 +1,19 @@
+# Environment files
 .env
-.env.*
-!.env.example
+.env.development
+.env.testing
+.env.production
 
-venv/
-.venv/
-
+# Python
 __pycache__/
-*.pyc
+*.py[cod]
+venv/
 
+# Django
+db.sqlite3
+media/
+staticfiles/
+
+# Logs
+logs/
 *.log
