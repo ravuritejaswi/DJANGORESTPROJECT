@@ -81,8 +81,9 @@ INSTALLED_APPS = [
     'django_filters',
     'drf_yasg',
     'rides',
+    'services',
     'channels',
-    "silk",
+    'silk',
 ]
 
 MIDDLEWARE = [

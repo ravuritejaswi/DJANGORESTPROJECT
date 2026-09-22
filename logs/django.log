@@ -20348,3 +20348,552 @@ ModuleNotFoundError: No module named 'redis'
 2026-09-20 16:04:27,707 INFO django.channels.server [mHTTP POST /admin/login/?next=/admin/ 200 [0.80, 127.0.0.1:55624][0m
 2026-09-20 16:05:26,580 INFO api API Request | request_id=93bb1eb4-b647-49e5-ac88-05a41f2b7edb | correlation_id=93bb1eb4-b647-49e5-ac88-05a41f2b7edb | user_id=anonymous | method=POST | endpoint=/admin/login/ | status_code=200 | execution_time=0.724s
 2026-09-20 16:05:26,608 INFO django.channels.server [mHTTP POST /admin/login/?next=/admin/ 200 [0.81, 127.0.0.1:55624][0m
+2026-09-22 11:14:47,491 INFO api API Request | request_id=3fbb5c24-6600-4d02-8ba6-adcf57fb863b | correlation_id=3fbb5c24-6600-4d02-8ba6-adcf57fb863b | user_id=anonymous | method=GET | endpoint=/api/v1/accounts/profile/ | status_code=401 | execution_time=0.012s
+2026-09-22 11:14:47,862 WARNING django.request Unauthorized: /api/v1/accounts/profile/
+2026-09-22 11:14:50,404 INFO accounts.views User login successful
+2026-09-22 11:14:50,404 INFO api API Request | request_id=2efffbf9-ea18-45dc-8712-26978fb23943 | correlation_id=2efffbf9-ea18-45dc-8712-26978fb23943 | user_id=anonymous | method=POST | endpoint=/api/v1/accounts/login/ | status_code=200 | execution_time=1.141s
+2026-09-22 11:14:50,404 WARNING api Slow API | request_id=2efffbf9-ea18-45dc-8712-26978fb23943 | correlation_id=2efffbf9-ea18-45dc-8712-26978fb23943 | user_id=anonymous | method=POST | endpoint=/api/v1/accounts/login/ | status_code=200 | execution_time=1.141s
+2026-09-22 11:14:52,669 WARNING accounts.views User login failed: invalid credentials
+2026-09-22 11:14:52,669 INFO api API Request | request_id=d9fa19f7-ddd0-450f-a391-88abd9bb3512 | correlation_id=d9fa19f7-ddd0-450f-a391-88abd9bb3512 | user_id=anonymous | method=POST | endpoint=/api/v1/accounts/login/ | status_code=400 | execution_time=0.701s
+2026-09-22 11:14:52,680 WARNING django.request Bad Request: /api/v1/accounts/login/
+2026-09-22 11:14:53,425 INFO api API Request | request_id=6e421e0c-1a95-4b00-b1d6-6c3d8263e5f7 | correlation_id=6e421e0c-1a95-4b00-b1d6-6c3d8263e5f7 | user_id=cb38b38d-e4e2-4c5d-85b3-b27d20b40e59 | method=POST | endpoint=/api/v1/accounts/logout/ | status_code=200 | execution_time=0.038s
+2026-09-22 11:14:53,478 INFO api API Request | request_id=3b13b0ec-cc3d-4b0a-9795-51917e63a05d | correlation_id=3b13b0ec-cc3d-4b0a-9795-51917e63a05d | user_id=cb38b38d-e4e2-4c5d-85b3-b27d20b40e59 | method=POST | endpoint=/api/v1/accounts/token/refresh/ | status_code=401 | execution_time=0.030s
+2026-09-22 11:14:53,489 WARNING django.request Unauthorized: /api/v1/accounts/token/refresh/
+2026-09-22 11:14:55,661 INFO api API Request | request_id=29467495-d170-4f7f-b8ae-e1b80e128db0 | correlation_id=29467495-d170-4f7f-b8ae-e1b80e128db0 | user_id=54c58ecd-1ef7-401d-bfff-f494c389e87d | method=POST | endpoint=/api/v1/accounts/change-password/ | status_code=200 | execution_time=1.463s
+2026-09-22 11:14:55,661 WARNING api Slow API | request_id=29467495-d170-4f7f-b8ae-e1b80e128db0 | correlation_id=29467495-d170-4f7f-b8ae-e1b80e128db0 | user_id=54c58ecd-1ef7-401d-bfff-f494c389e87d | method=POST | endpoint=/api/v1/accounts/change-password/ | status_code=200 | execution_time=1.463s
+2026-09-22 11:14:57,205 INFO api API Request | request_id=62991ae5-63be-466b-8048-9c3f2304e45f | correlation_id=62991ae5-63be-466b-8048-9c3f2304e45f | user_id=anonymous | method=POST | endpoint=/api/v1/accounts/token/refresh/ | status_code=200 | execution_time=0.011s
+2026-09-22 11:14:58,661 WARNING accounts.views User registration failed
+2026-09-22 11:14:58,662 INFO api API Request | request_id=55bd3306-4c1a-47b5-a00c-2654cf30c6e4 | correlation_id=55bd3306-4c1a-47b5-a00c-2654cf30c6e4 | user_id=anonymous | method=POST | endpoint=/api/v1/accounts/register/ | status_code=400 | execution_time=0.030s
+2026-09-22 11:14:58,677 WARNING django.request Bad Request: /api/v1/accounts/register/
+2026-09-22 11:14:59,390 WARNING accounts.views User registration failed
+2026-09-22 11:14:59,390 INFO api API Request | request_id=09809a49-92e4-4429-9625-2aee54507f38 | correlation_id=09809a49-92e4-4429-9625-2aee54507f38 | user_id=anonymous | method=POST | endpoint=/api/v1/accounts/register/ | status_code=400 | execution_time=0.007s
+2026-09-22 11:14:59,403 WARNING django.request Bad Request: /api/v1/accounts/register/
+2026-09-22 11:15:00,820 INFO accounts.views User registration successful
+2026-09-22 11:15:00,821 INFO api API Request | request_id=a4ed4547-d83e-4d9d-b577-542b59010a3a | correlation_id=a4ed4547-d83e-4d9d-b577-542b59010a3a | user_id=anonymous | method=POST | endpoint=/api/v1/accounts/register/ | status_code=201 | execution_time=0.710s
+2026-09-22 11:15:03,071 INFO api API Request | request_id=4ff7390e-10da-41ad-b72a-fca0f67c27b5 | correlation_id=4ff7390e-10da-41ad-b72a-fca0f67c27b5 | user_id=9c142305-4716-4054-9f6e-ed76d451bf70 | method=GET | endpoint=/api/v1/accounts/profiles/ | status_code=200 | execution_time=0.046s
+2026-09-22 11:15:05,214 INFO api API Request | request_id=2b239d2f-0ea2-4d1d-938e-d33174e8593d | correlation_id=2b239d2f-0ea2-4d1d-938e-d33174e8593d | user_id=anonymous | method=GET | endpoint=/api/v1/accounts/profiles/ | status_code=401 | execution_time=0.001s
+2026-09-22 11:15:05,224 WARNING django.request Unauthorized: /api/v1/accounts/profiles/
+2026-09-22 11:15:07,326 INFO api API Request | request_id=1bf8cf11-8452-4e85-9e53-2accc8d2bca4 | correlation_id=1bf8cf11-8452-4e85-9e53-2accc8d2bca4 | user_id=169eb303-c1dc-4330-8673-e19fabb3ac46 | method=GET | endpoint=/api/v1/accounts/profiles/ | status_code=403 | execution_time=0.005s
+2026-09-22 11:15:07,337 WARNING django.request Forbidden: /api/v1/accounts/profiles/
+2026-09-22 11:15:09,445 INFO api API Request | request_id=e9152118-7cc7-4e61-8fd3-79a344405c15 | correlation_id=e9152118-7cc7-4e61-8fd3-79a344405c15 | user_id=bacb7530-d243-47b0-8bd0-a8849a997dc6 | method=GET | endpoint=/api/v1/accounts/profiles/ | status_code=403 | execution_time=0.005s
+2026-09-22 11:15:09,456 WARNING django.request Forbidden: /api/v1/accounts/profiles/
+2026-09-22 11:15:10,248 INFO api API Request | request_id=704b5918-d1d7-489c-809c-62206d1ebedb | correlation_id=704b5918-d1d7-489c-809c-62206d1ebedb | user_id=0c4c1eee-5ce4-41df-b32c-63983c0f1ca6 | method=POST | endpoint=/api/v1/accounts/profile-crud/ | status_code=201 | execution_time=0.033s
+2026-09-22 11:15:10,981 INFO api API Request | request_id=f9c5eb3b-ce45-4349-90dd-d08ec37cd6f6 | correlation_id=f9c5eb3b-ce45-4349-90dd-d08ec37cd6f6 | user_id=5ee82d1a-1e44-461d-a1c7-b770d0045b45 | method=POST | endpoint=/api/v1/accounts/profile-crud/ | status_code=400 | execution_time=0.004s
+2026-09-22 11:15:10,993 WARNING django.request Bad Request: /api/v1/accounts/profile-crud/
+2026-09-22 11:15:11,725 INFO api API Request | request_id=bed1914e-6048-4a98-b54a-ad25f1d1b03c | correlation_id=bed1914e-6048-4a98-b54a-ad25f1d1b03c | user_id=19bb9f3e-c913-4d0d-bdd4-8bdfe338ccc9 | method=DELETE | endpoint=/api/v1/accounts/profile-crud/ | status_code=204 | execution_time=0.025s
+2026-09-22 11:15:12,455 INFO api API Request | request_id=8f8f5e87-df8f-4fa0-99ac-023d578d076c | correlation_id=8f8f5e87-df8f-4fa0-99ac-023d578d076c | user_id=7cc15dc9-751b-4c63-a403-c50355a1ba70 | method=GET | endpoint=/api/v1/accounts/profile-crud/ | status_code=200 | execution_time=0.008s
+2026-09-22 11:15:13,236 INFO api API Request | request_id=e9dacc0e-8adf-4339-b7b3-918f814360ef | correlation_id=e9dacc0e-8adf-4339-b7b3-918f814360ef | user_id=anonymous | method=GET | endpoint=/api/v1/accounts/profile-crud/ | status_code=401 | execution_time=0.001s
+2026-09-22 11:15:13,245 WARNING django.request Unauthorized: /api/v1/accounts/profile-crud/
+2026-09-22 11:15:14,080 INFO api API Request | request_id=99620767-75d6-4f1c-b678-93ad5658aa5a | correlation_id=99620767-75d6-4f1c-b678-93ad5658aa5a | user_id=99100874-4572-4847-946b-91cb06a2ba1a | method=PUT | endpoint=/api/v1/accounts/profile-crud/ | status_code=200 | execution_time=0.013s
+2026-09-22 11:15:26,308 INFO api API Request | request_id=09f111f7-0f3c-4a69-8a8d-45cb675434fd | correlation_id=09f111f7-0f3c-4a69-8a8d-45cb675434fd | user_id=72c71b3e-15db-4031-8519-7629fbbcb7c7 | method=POST | endpoint=/api/v1/drivers/location/ | status_code=201 | execution_time=0.017s
+2026-09-22 11:15:27,061 INFO api API Request | request_id=8f8bf168-dd3c-45a3-b9c2-00f17b29e653 | correlation_id=8f8bf168-dd3c-45a3-b9c2-00f17b29e653 | user_id=anonymous | method=POST | endpoint=/api/v1/drivers/location/ | status_code=401 | execution_time=0.001s
+2026-09-22 11:15:27,068 WARNING django.request Unauthorized: /api/v1/drivers/location/
+2026-09-22 11:15:27,778 INFO api API Request | request_id=9780352a-99ef-40ba-8394-ec74c1ce834b | correlation_id=9780352a-99ef-40ba-8394-ec74c1ce834b | user_id=15b7e499-d952-4e1d-8db6-a6abdf528d29 | method=GET | endpoint=/api/drivers/nearby/ | status_code=200 | execution_time=0.006s
+2026-09-22 11:15:28,498 INFO api API Request | request_id=a1856146-695a-4600-b1a5-469ddb02d0b9 | correlation_id=a1856146-695a-4600-b1a5-469ddb02d0b9 | user_id=eb34ae0b-4db0-40a4-88dc-ca4072988a2d | method=GET | endpoint=/api/drivers/nearby/ | status_code=200 | execution_time=0.005s
+2026-09-22 11:15:29,225 INFO api API Request | request_id=2def9c51-564b-46ca-8518-4531813a90ab | correlation_id=2def9c51-564b-46ca-8518-4531813a90ab | user_id=9d519515-f315-4bbd-8a7b-a8d3e68c2f07 | method=POST | endpoint=/api/v1/drivers/location/ | status_code=200 | execution_time=0.015s
+2026-09-22 11:15:30,058 INFO api API Request | request_id=8ce194d7-b51e-482e-bd46-cdcc9b5c8a10 | correlation_id=8ce194d7-b51e-482e-bd46-cdcc9b5c8a10 | user_id=2fc0872b-c9a9-4197-9be8-01866d0f9b50 | method=POST | endpoint=/api/v1/drivers/ | status_code=201 | execution_time=0.054s
+2026-09-22 11:15:30,802 INFO api API Request | request_id=deb24d54-e24b-412a-9b39-c5260a1f0970 | correlation_id=deb24d54-e24b-412a-9b39-c5260a1f0970 | user_id=1283a10a-f71a-4cf3-9570-c109a6423ab8 | method=POST | endpoint=/api/v1/drivers/ | status_code=400 | execution_time=0.010s
+2026-09-22 11:15:30,816 WARNING django.request Bad Request: /api/v1/drivers/
+2026-09-22 11:15:31,548 INFO api API Request | request_id=0bb2a4c4-7dac-4c71-9b2e-787ace14f6b7 | correlation_id=0bb2a4c4-7dac-4c71-9b2e-787ace14f6b7 | user_id=0c9eceb6-8138-45fc-b988-575e042a3deb | method=DELETE | endpoint=/api/v1/drivers/62d1bc93-da5b-466d-8ae8-ff53701fa03a/ | status_code=204 | execution_time=0.030s
+2026-09-22 11:15:32,298 INFO api API Request | request_id=e0f6845a-9179-41ea-83d5-030f3ce01a7e | correlation_id=e0f6845a-9179-41ea-83d5-030f3ce01a7e | user_id=a2305cd7-8a65-4da0-9927-d3903399fd4d | method=GET | endpoint=/api/v1/drivers/ | status_code=200 | execution_time=0.014s
+2026-09-22 11:15:33,038 INFO api API Request | request_id=f0668dd2-3a7b-4e40-a2b3-15ddd5d74c0d | correlation_id=f0668dd2-3a7b-4e40-a2b3-15ddd5d74c0d | user_id=879720c6-69e7-40e5-9c2f-e022eeb70999 | method=GET | endpoint=/api/v1/drivers/8bbb6865-d865-4d38-af5d-a81109cdac47/ | status_code=200 | execution_time=0.011s
+2026-09-22 11:15:33,861 INFO api API Request | request_id=6a827a71-5059-47ce-b763-35f697252a6c | correlation_id=6a827a71-5059-47ce-b763-35f697252a6c | user_id=c358678e-8fe2-4388-96d1-c6caacd68c73 | method=PATCH | endpoint=/api/v1/drivers/1e22332b-888e-4c78-b72b-2e9051a3ce7b/ | status_code=200 | execution_time=0.015s
+2026-09-22 11:15:34,661 INFO api API Request | request_id=5a768880-b42b-4f7f-9e34-3378e244e691 | correlation_id=5a768880-b42b-4f7f-9e34-3378e244e691 | user_id=55442d8a-83a2-40c8-b5ba-4309381a37f7 | method=GET | endpoint=/api/v1/rides/dcd8f795-31f3-4159-8a0f-612dfeb05fec/fare/ | status_code=200 | execution_time=0.027s
+2026-09-22 11:15:35,413 INFO api API Request | request_id=2fa60717-aae5-4361-a165-18561bb2f688 | correlation_id=2fa60717-aae5-4361-a165-18561bb2f688 | user_id=906c6909-d83f-4d3e-bd58-7912c2767bea | method=GET | endpoint=/api/v1/rides/00000000-0000-0000-0000-000000000000/fare/ | status_code=404 | execution_time=0.010s
+2026-09-22 11:15:35,423 WARNING django.request Not Found: /api/v1/rides/00000000-0000-0000-0000-000000000000/fare/
+2026-09-22 11:15:36,145 INFO api API Request | request_id=69c12fe4-423f-40da-a122-2dbc494d5023 | correlation_id=69c12fe4-423f-40da-a122-2dbc494d5023 | user_id=anonymous | method=GET | endpoint=/api/v1/rides/ae74f03e-1fcf-4a84-941d-de1552467022/fare/ | status_code=401 | execution_time=0.001s
+2026-09-22 11:15:36,152 WARNING django.request Unauthorized: /api/v1/rides/ae74f03e-1fcf-4a84-941d-de1552467022/fare/
+2026-09-22 11:15:37,009 INFO celery.monitor Celery task started | task=accounts.tasks.retry_test_job | task_id=42cf9907-da5a-4390-aa3b-0f172f53f2c1
+2026-09-22 11:15:37,049 WARNING celery.monitor Celery task retry | task=accounts.tasks.retry_test_job | task_id=42cf9907-da5a-4390-aa3b-0f172f53f2c1 | retry_count=0 | reason=Retry in 2s: Exception('Attempt 1 failed')
+2026-09-22 11:15:37,049 INFO celery.app.trace Task accounts.tasks.retry_test_job[42cf9907-da5a-4390-aa3b-0f172f53f2c1] retry: Retry in 2s: Exception('Attempt 1 failed')
+2026-09-22 11:15:37,050 INFO celery.monitor Celery task completed | task=accounts.tasks.retry_test_job | task_id=42cf9907-da5a-4390-aa3b-0f172f53f2c1 | state=RETRY | execution_time=0.0402s
+2026-09-22 11:15:37,050 INFO celery.monitor Celery task started | task=accounts.tasks.retry_test_job | task_id=42cf9907-da5a-4390-aa3b-0f172f53f2c1
+2026-09-22 11:15:37,052 WARNING celery.monitor Celery task retry | task=accounts.tasks.retry_test_job | task_id=42cf9907-da5a-4390-aa3b-0f172f53f2c1 | retry_count=1 | reason=Retry in 2s: Exception('Attempt 2 failed')
+2026-09-22 11:15:37,052 INFO celery.app.trace Task accounts.tasks.retry_test_job[42cf9907-da5a-4390-aa3b-0f172f53f2c1] retry: Retry in 2s: Exception('Attempt 2 failed')
+2026-09-22 11:15:37,052 INFO celery.monitor Celery task completed | task=accounts.tasks.retry_test_job | task_id=42cf9907-da5a-4390-aa3b-0f172f53f2c1 | state=RETRY | execution_time=0.0022s
+2026-09-22 11:15:37,053 INFO celery.monitor Celery task started | task=accounts.tasks.retry_test_job | task_id=42cf9907-da5a-4390-aa3b-0f172f53f2c1
+2026-09-22 11:15:37,099 INFO celery.app.trace Task accounts.tasks.retry_test_job[42cf9907-da5a-4390-aa3b-0f172f53f2c1] succeeded in 0.046356299999388284s: {'success': True, 'attempt': 3, 'message': 'Job completed successfully on attempt 3'}
+2026-09-22 11:15:37,099 INFO celery.monitor Celery task completed | task=accounts.tasks.retry_test_job | task_id=42cf9907-da5a-4390-aa3b-0f172f53f2c1 | state=SUCCESS | execution_time=0.0465s
+2026-09-22 11:15:42,365 INFO api API Request | request_id=2c526071-6ae9-4675-9405-9123b119b6d9 | correlation_id=2c526071-6ae9-4675-9405-9123b119b6d9 | user_id=f0552241-7b70-4a94-bdc6-f6725037b9a8 | method=GET | endpoint=/api/v1/drivers/ | status_code=200 | execution_time=0.024s
+2026-09-22 11:15:43,798 INFO api API Request | request_id=575e65e5-e64e-4245-8ce6-118a51ce1411 | correlation_id=575e65e5-e64e-4245-8ce6-118a51ce1411 | user_id=050fe13a-e5fc-49f6-863b-9052ff5f21cb | method=GET | endpoint=/api/v1/drivers/ | status_code=200 | execution_time=0.014s
+2026-09-22 11:15:45,249 INFO api API Request | request_id=216b0c1b-ae4d-4eec-8669-a20fbca4584b | correlation_id=216b0c1b-ae4d-4eec-8669-a20fbca4584b | user_id=anonymous | method=POST | endpoint=/api/v1/drivers/location/ | status_code=401 | execution_time=0.001s
+2026-09-22 11:15:45,256 WARNING django.request Unauthorized: /api/v1/drivers/location/
+2026-09-22 11:15:46,035 INFO api API Request | request_id=7ba347ba-9a3e-47bf-bcc5-0960a8a1983d | correlation_id=7ba347ba-9a3e-47bf-bcc5-0960a8a1983d | user_id=eeeaab4b-bdae-4535-a8da-04d8544641cb | method=GET | endpoint=/api/rides/aggregations/ | status_code=200 | execution_time=0.019s
+2026-09-22 11:15:46,781 INFO api API Request | request_id=06e37d0f-526d-4e57-81f8-f315c170b38c | correlation_id=06e37d0f-526d-4e57-81f8-f315c170b38c | user_id=anonymous | method=GET | endpoint=/api/rides/aggregations/ | status_code=401 | execution_time=0.000s
+2026-09-22 11:15:46,788 WARNING django.request Unauthorized: /api/rides/aggregations/
+2026-09-22 11:15:49,000 WARNING rides.services.ride_service Ride acceptance failed: ride is not in requested status | ride_id=39e8e06b-0c68-42dc-a1f6-eb45ba7be306
+2026-09-22 11:15:49,001 INFO api API Request | request_id=665312a9-88aa-4191-9b63-8ed8696b8bba | correlation_id=665312a9-88aa-4191-9b63-8ed8696b8bba | user_id=e0dedb15-658c-4d0b-98b7-9996df430870 | method=POST | endpoint=/api/rides/39e8e06b-0c68-42dc-a1f6-eb45ba7be306/accept/ | status_code=400 | execution_time=0.046s
+2026-09-22 11:15:49,035 WARNING django.request Bad Request: /api/rides/39e8e06b-0c68-42dc-a1f6-eb45ba7be306/accept/
+2026-09-22 11:15:51,168 WARNING rides.services.ride_service Ride completion failed: invalid current status | ride_id=18a4948e-91ec-4678-9d5f-a437f86209a3
+2026-09-22 11:15:51,168 INFO api API Request | request_id=e3a01376-48cd-46e0-94cc-fbf8f5578572 | correlation_id=e3a01376-48cd-46e0-94cc-fbf8f5578572 | user_id=3052fad3-f926-4ce7-9ecb-ea2a1a204ddd | method=POST | endpoint=/api/rides/18a4948e-91ec-4678-9d5f-a437f86209a3/complete/ | status_code=400 | execution_time=0.016s
+2026-09-22 11:15:51,191 WARNING django.request Bad Request: /api/rides/18a4948e-91ec-4678-9d5f-a437f86209a3/complete/
+2026-09-22 11:15:53,308 WARNING rides.services.ride_service Ride cancellation failed: invalid current status | ride_id=8609f736-85fa-4b62-aa5b-8568a6c27ec8 status=COMPLETED
+2026-09-22 11:15:53,308 INFO api API Request | request_id=670efeae-f970-4939-b58e-739b2ca6d31a | correlation_id=670efeae-f970-4939-b58e-739b2ca6d31a | user_id=2004503c-6470-4427-b287-fba3bbb5d58d | method=POST | endpoint=/api/rides/8609f736-85fa-4b62-aa5b-8568a6c27ec8/cancel/ | status_code=400 | execution_time=0.013s
+2026-09-22 11:15:53,325 WARNING django.request Bad Request: /api/rides/8609f736-85fa-4b62-aa5b-8568a6c27ec8/cancel/
+2026-09-22 11:15:59,797 INFO api API Request | request_id=1624cd1f-fadf-4f30-8192-6d42d8586612 | correlation_id=1624cd1f-fadf-4f30-8192-6d42d8586612 | user_id=5d236e3a-85e9-4683-81a4-c6245fdddf30 | method=POST | endpoint=/api/rides/1343f21a-d861-43ea-a620-f195ad52f2c4/accept/ | status_code=200 | execution_time=0.078s
+2026-09-22 11:16:01,963 INFO rides.services.ride_service Ride cancelled successfully | ride_id=b6556c6d-e2a8-4217-8ef2-b2458e46f994
+2026-09-22 11:16:01,965 INFO api API Request | request_id=4760841a-6eec-4e97-95de-632eed203724 | correlation_id=4760841a-6eec-4e97-95de-632eed203724 | user_id=55e3a97f-d2fb-4cd5-94fb-40069458fa06 | method=POST | endpoint=/api/rides/b6556c6d-e2a8-4217-8ef2-b2458e46f994/cancel/ | status_code=200 | execution_time=0.018s
+2026-09-22 11:16:04,106 INFO rides.services.ride_service Ride completed successfully | ride_id=46536ecf-d85d-432f-8244-5ff943eacdef
+2026-09-22 11:16:04,117 INFO api API Request | request_id=5581a53e-2f7e-4b7c-8da8-3c5bbdce0e71 | correlation_id=5581a53e-2f7e-4b7c-8da8-3c5bbdce0e71 | user_id=f54218e8-c8f9-4410-97e3-afbcfa9cafd7 | method=POST | endpoint=/api/rides/46536ecf-d85d-432f-8244-5ff943eacdef/complete/ | status_code=200 | execution_time=0.031s
+2026-09-22 11:16:08,364 INFO rides.services.ride_service Ride started successfully | ride_id=e27f731d-52da-4db2-a752-e092469259b6
+2026-09-22 11:16:08,368 INFO api API Request | request_id=057c0c4d-2c09-48f2-b7e7-bec8fb9fb67c | correlation_id=057c0c4d-2c09-48f2-b7e7-bec8fb9fb67c | user_id=e03a09b6-db79-4c93-a4c3-226cc900d049 | method=POST | endpoint=/api/rides/e27f731d-52da-4db2-a752-e092469259b6/start/ | status_code=200 | execution_time=0.020s
+2026-09-22 11:16:10,526 INFO api API Request | request_id=ef257175-ec14-4943-bc92-88483dcc9144 | correlation_id=ef257175-ec14-4943-bc92-88483dcc9144 | user_id=02a0f5d2-793c-4d18-ab3b-bd288432b2a5 | method=POST | endpoint=/api/rides/13da2828-b6f2-4e41-9ec1-7e7a8bfb80d7/accept/ | status_code=200 | execution_time=0.039s
+2026-09-22 11:16:10,587 WARNING rides.services.ride_service Ride acceptance failed: ride is not in requested status | ride_id=13da2828-b6f2-4e41-9ec1-7e7a8bfb80d7
+2026-09-22 11:16:10,588 INFO api API Request | request_id=3b9e7080-1c3c-409b-9574-82b0820c5f06 | correlation_id=3b9e7080-1c3c-409b-9574-82b0820c5f06 | user_id=4aafbc65-c712-4eeb-9a6d-23de25c85e94 | method=POST | endpoint=/api/rides/13da2828-b6f2-4e41-9ec1-7e7a8bfb80d7/accept/ | status_code=400 | execution_time=0.022s
+2026-09-22 11:16:10,611 WARNING django.request Bad Request: /api/rides/13da2828-b6f2-4e41-9ec1-7e7a8bfb80d7/accept/
+2026-09-22 11:16:12,758 WARNING rides.services.ride_service Ride acceptance failed: driver is not available | ride_id=b80c321e-75f2-4af8-86fd-80e4165582f5, driver_id=4a50b680-32ec-4475-95f9-cca7c34f228b
+2026-09-22 11:16:12,759 INFO api API Request | request_id=7895408a-04e0-438d-bb59-c9d32bcf38b6 | correlation_id=7895408a-04e0-438d-bb59-c9d32bcf38b6 | user_id=8739a8f3-e2cd-490e-a267-101a9fd0f1a2 | method=POST | endpoint=/api/rides/b80c321e-75f2-4af8-86fd-80e4165582f5/accept/ | status_code=400 | execution_time=0.014s
+2026-09-22 11:16:12,776 WARNING django.request Bad Request: /api/rides/b80c321e-75f2-4af8-86fd-80e4165582f5/accept/
+2026-09-22 11:16:14,968 INFO api API Request | request_id=db113025-b30e-419f-99f4-32c2b63fcc95 | correlation_id=db113025-b30e-419f-99f4-32c2b63fcc95 | user_id=bc593c79-7f7f-4cb6-a8a9-751a8006d915 | method=GET | endpoint=/api/rides/history/ | status_code=200 | execution_time=0.029s
+2026-09-22 11:16:17,124 INFO api API Request | request_id=8fdba8ba-f8ab-46e4-b0d8-6d13ff971887 | correlation_id=8fdba8ba-f8ab-46e4-b0d8-6d13ff971887 | user_id=3e075956-710c-42b1-91ca-471b338047a9 | method=GET | endpoint=/api/rides/history/ | status_code=200 | execution_time=0.011s
+2026-09-22 11:16:19,240 INFO api API Request | request_id=09a03b90-f8e1-463c-9054-6b5ea252c3a7 | correlation_id=09a03b90-f8e1-463c-9054-6b5ea252c3a7 | user_id=3d4191c1-8f2f-4b4c-bc7c-9eb4459d6b1c | method=GET | endpoint=/api/rides/history/ | status_code=200 | execution_time=0.011s
+2026-09-22 11:16:21,363 INFO api API Request | request_id=e15ef133-29a6-465e-b43c-1d7f993fe573 | correlation_id=e15ef133-29a6-465e-b43c-1d7f993fe573 | user_id=5e17b718-bbc2-4762-94d1-899b3fd892ae | method=GET | endpoint=/api/rides/history/ | status_code=200 | execution_time=0.011s
+2026-09-22 11:16:23,527 INFO api API Request | request_id=7833700b-ef46-46ce-bc86-0223fc8796be | correlation_id=7833700b-ef46-46ce-bc86-0223fc8796be | user_id=686ce3ce-9b09-4df6-9650-ce45241bcc1b | method=GET | endpoint=/api/rides/history/ | status_code=200 | execution_time=0.011s
+2026-09-22 11:16:25,765 INFO api API Request | request_id=bf647a1b-9cdf-47b7-940c-bd29d1398df4 | correlation_id=bf647a1b-9cdf-47b7-940c-bd29d1398df4 | user_id=anonymous | method=GET | endpoint=/api/rides/history/ | status_code=401 | execution_time=0.000s
+2026-09-22 11:16:25,772 WARNING django.request Unauthorized: /api/rides/history/
+2026-09-22 11:16:27,885 INFO api API Request | request_id=0c3cdb0d-7234-436b-9db8-b8bf54a97086 | correlation_id=0c3cdb0d-7234-436b-9db8-b8bf54a97086 | user_id=b7e6b125-0ace-40b9-a5a2-71224cdfeb5b | method=GET | endpoint=/api/rides/history/ | status_code=200 | execution_time=0.011s
+2026-09-22 11:16:30,004 INFO api API Request | request_id=9c89d988-95b7-44fa-adc4-f9e17caa83a7 | correlation_id=9c89d988-95b7-44fa-adc4-f9e17caa83a7 | user_id=e3e5aaaa-bf6e-462c-acd5-9a0a3b87237b | method=GET | endpoint=/api/rides/history/ | status_code=200 | execution_time=0.012s
+2026-09-22 11:16:31,480 INFO api API Request | request_id=ae8eab45-d650-4a19-96c0-b6392be9416c | correlation_id=ae8eab45-d650-4a19-96c0-b6392be9416c | user_id=89786431-8246-4ae0-8e78-7aa0edb8edf4 | method=GET | endpoint=/api/drivers/7d578720-0db6-429a-b61b-a7464695b457/ | status_code=403 | execution_time=0.013s
+2026-09-22 11:16:31,501 WARNING django.request Forbidden: /api/drivers/7d578720-0db6-429a-b61b-a7464695b457/
+2026-09-22 11:16:32,209 INFO api API Request | request_id=dcf66082-d1fe-44af-9d16-b2539e9caf57 | correlation_id=dcf66082-d1fe-44af-9d16-b2539e9caf57 | user_id=826d7e39-e56e-4ead-bdc8-187562e3ad8a | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-22 11:16:32,228 INFO api API Request | request_id=215cf07f-4ae3-48e5-b62f-a7bf154d377d | correlation_id=215cf07f-4ae3-48e5-b62f-a7bf154d377d | user_id=826d7e39-e56e-4ead-bdc8-187562e3ad8a | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-22 11:16:32,247 INFO api API Request | request_id=3961e012-4dcd-4c89-a444-a39d4a14a3fd | correlation_id=3961e012-4dcd-4c89-a444-a39d4a14a3fd | user_id=826d7e39-e56e-4ead-bdc8-187562e3ad8a | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-22 11:16:32,265 INFO api API Request | request_id=95146fa0-e961-40ed-97ec-25633da011de | correlation_id=95146fa0-e961-40ed-97ec-25633da011de | user_id=826d7e39-e56e-4ead-bdc8-187562e3ad8a | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-22 11:16:32,284 INFO api API Request | request_id=eef187f5-176b-4a26-bd59-1d8c0c124c36 | correlation_id=eef187f5-176b-4a26-bd59-1d8c0c124c36 | user_id=826d7e39-e56e-4ead-bdc8-187562e3ad8a | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-22 11:16:32,302 INFO api API Request | request_id=b9b22412-23f6-438f-8a49-5f05cd947471 | correlation_id=b9b22412-23f6-438f-8a49-5f05cd947471 | user_id=826d7e39-e56e-4ead-bdc8-187562e3ad8a | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-22 11:16:32,322 INFO api API Request | request_id=16409d41-0a96-4144-b3f9-b47c70fc37a5 | correlation_id=16409d41-0a96-4144-b3f9-b47c70fc37a5 | user_id=826d7e39-e56e-4ead-bdc8-187562e3ad8a | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-22 11:16:32,340 INFO api API Request | request_id=bfb5666b-8d90-4594-96d0-fff9741acef3 | correlation_id=bfb5666b-8d90-4594-96d0-fff9741acef3 | user_id=826d7e39-e56e-4ead-bdc8-187562e3ad8a | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-22 11:16:32,357 INFO api API Request | request_id=8a7a3a6e-571e-4f10-91e0-7adc5c5b1092 | correlation_id=8a7a3a6e-571e-4f10-91e0-7adc5c5b1092 | user_id=826d7e39-e56e-4ead-bdc8-187562e3ad8a | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-22 11:16:32,375 INFO api API Request | request_id=3d076730-bf0e-48f3-8f5b-2261b627e48a | correlation_id=3d076730-bf0e-48f3-8f5b-2261b627e48a | user_id=826d7e39-e56e-4ead-bdc8-187562e3ad8a | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-22 11:16:32,399 INFO api API Request | request_id=168b4923-aa5e-407b-86f7-fd14cd44801c | correlation_id=168b4923-aa5e-407b-86f7-fd14cd44801c | user_id=826d7e39-e56e-4ead-bdc8-187562e3ad8a | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.009s
+2026-09-22 11:16:32,417 INFO api API Request | request_id=3e15a887-a9df-4549-8d9a-6a26dde6c77b | correlation_id=3e15a887-a9df-4549-8d9a-6a26dde6c77b | user_id=826d7e39-e56e-4ead-bdc8-187562e3ad8a | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-22 11:16:32,435 INFO api API Request | request_id=032ffac1-d90f-4d89-b55d-b476298824c1 | correlation_id=032ffac1-d90f-4d89-b55d-b476298824c1 | user_id=826d7e39-e56e-4ead-bdc8-187562e3ad8a | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-22 11:16:32,453 INFO api API Request | request_id=e3751ec9-6b2c-4cea-a7a3-3d97ad87064e | correlation_id=e3751ec9-6b2c-4cea-a7a3-3d97ad87064e | user_id=826d7e39-e56e-4ead-bdc8-187562e3ad8a | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-22 11:16:32,473 INFO api API Request | request_id=35da162e-792b-497d-820b-8d4c64da21b9 | correlation_id=35da162e-792b-497d-820b-8d4c64da21b9 | user_id=826d7e39-e56e-4ead-bdc8-187562e3ad8a | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-22 11:16:32,491 INFO api API Request | request_id=d0588492-d26f-47b8-9653-ad074684a9cf | correlation_id=d0588492-d26f-47b8-9653-ad074684a9cf | user_id=826d7e39-e56e-4ead-bdc8-187562e3ad8a | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-22 11:16:32,509 INFO api API Request | request_id=2e3af0d9-c597-44ce-aae8-16cbd88ab329 | correlation_id=2e3af0d9-c597-44ce-aae8-16cbd88ab329 | user_id=826d7e39-e56e-4ead-bdc8-187562e3ad8a | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-22 11:16:32,527 INFO api API Request | request_id=b7ab89c2-762f-4a3c-861f-b0bef11132d9 | correlation_id=b7ab89c2-762f-4a3c-861f-b0bef11132d9 | user_id=826d7e39-e56e-4ead-bdc8-187562e3ad8a | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-22 11:16:32,545 INFO api API Request | request_id=d4557b79-0636-45d4-a7a9-ce3f5576f7d3 | correlation_id=d4557b79-0636-45d4-a7a9-ce3f5576f7d3 | user_id=826d7e39-e56e-4ead-bdc8-187562e3ad8a | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-22 11:16:32,563 INFO api API Request | request_id=accd7d4e-fd16-49ea-8ee0-49fe93d7ff9c | correlation_id=accd7d4e-fd16-49ea-8ee0-49fe93d7ff9c | user_id=826d7e39-e56e-4ead-bdc8-187562e3ad8a | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-22 11:16:32,581 INFO api API Request | request_id=61451dc0-a57a-4c03-a29b-1015072ca996 | correlation_id=61451dc0-a57a-4c03-a29b-1015072ca996 | user_id=826d7e39-e56e-4ead-bdc8-187562e3ad8a | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-22 11:16:32,600 INFO api API Request | request_id=c170f823-ae2f-4db3-b8ae-f8f7c4e99007 | correlation_id=c170f823-ae2f-4db3-b8ae-f8f7c4e99007 | user_id=826d7e39-e56e-4ead-bdc8-187562e3ad8a | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-22 11:16:32,618 INFO api API Request | request_id=70eb07c2-3604-4621-98ab-bbefae1215f2 | correlation_id=70eb07c2-3604-4621-98ab-bbefae1215f2 | user_id=826d7e39-e56e-4ead-bdc8-187562e3ad8a | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-22 11:16:32,639 INFO api API Request | request_id=dcfc3eed-7520-4211-afcd-851fe767150c | correlation_id=dcfc3eed-7520-4211-afcd-851fe767150c | user_id=826d7e39-e56e-4ead-bdc8-187562e3ad8a | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-22 11:16:32,659 INFO api API Request | request_id=d2c46c1b-d779-4ad9-be76-0b4abc79e61a | correlation_id=d2c46c1b-d779-4ad9-be76-0b4abc79e61a | user_id=826d7e39-e56e-4ead-bdc8-187562e3ad8a | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.007s
+2026-09-22 11:16:32,677 INFO api API Request | request_id=d49fc8a9-e479-415c-91da-5a5f06c5c8d5 | correlation_id=d49fc8a9-e479-415c-91da-5a5f06c5c8d5 | user_id=826d7e39-e56e-4ead-bdc8-187562e3ad8a | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-22 11:16:32,695 INFO api API Request | request_id=a5f446bc-2d3f-46e1-9d97-83d2ab7651b6 | correlation_id=a5f446bc-2d3f-46e1-9d97-83d2ab7651b6 | user_id=826d7e39-e56e-4ead-bdc8-187562e3ad8a | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-22 11:16:32,714 INFO api API Request | request_id=1b1cd7c1-ef7b-4696-a4dc-8435b6f16362 | correlation_id=1b1cd7c1-ef7b-4696-a4dc-8435b6f16362 | user_id=826d7e39-e56e-4ead-bdc8-187562e3ad8a | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-22 11:16:32,731 INFO api API Request | request_id=4cae7cd1-f7cd-498e-a3ae-fecfb85ca858 | correlation_id=4cae7cd1-f7cd-498e-a3ae-fecfb85ca858 | user_id=826d7e39-e56e-4ead-bdc8-187562e3ad8a | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-22 11:16:32,750 INFO api API Request | request_id=77ca63e7-8e92-46c9-8e65-eb2e2d6d8e24 | correlation_id=77ca63e7-8e92-46c9-8e65-eb2e2d6d8e24 | user_id=826d7e39-e56e-4ead-bdc8-187562e3ad8a | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-22 11:16:32,764 INFO api API Request | request_id=cbf521d7-79e8-4abe-b593-2ca98ce0818b | correlation_id=cbf521d7-79e8-4abe-b593-2ca98ce0818b | user_id=826d7e39-e56e-4ead-bdc8-187562e3ad8a | method=GET | endpoint=/api/drivers/ | status_code=429 | execution_time=0.001s
+2026-09-22 11:16:32,771 WARNING django.request Too Many Requests: /api/drivers/
+2026-09-22 11:16:32,774 INFO api API Request | request_id=6304d8ba-79d9-48b1-a7ab-cecbc38468bb | correlation_id=6304d8ba-79d9-48b1-a7ab-cecbc38468bb | user_id=826d7e39-e56e-4ead-bdc8-187562e3ad8a | method=GET | endpoint=/api/drivers/ | status_code=429 | execution_time=0.001s
+2026-09-22 11:16:32,781 WARNING django.request Too Many Requests: /api/drivers/
+2026-09-22 11:16:32,784 INFO api API Request | request_id=2595d2cf-ab08-4330-a776-31d22a5a2108 | correlation_id=2595d2cf-ab08-4330-a776-31d22a5a2108 | user_id=826d7e39-e56e-4ead-bdc8-187562e3ad8a | method=GET | endpoint=/api/drivers/ | status_code=429 | execution_time=0.001s
+2026-09-22 11:16:32,791 WARNING django.request Too Many Requests: /api/drivers/
+2026-09-22 11:16:32,794 INFO api API Request | request_id=82b12cda-fb01-4c0a-841d-02a1da61bac7 | correlation_id=82b12cda-fb01-4c0a-841d-02a1da61bac7 | user_id=826d7e39-e56e-4ead-bdc8-187562e3ad8a | method=GET | endpoint=/api/drivers/ | status_code=429 | execution_time=0.001s
+2026-09-22 11:16:32,804 WARNING django.request Too Many Requests: /api/drivers/
+2026-09-22 11:16:32,807 INFO api API Request | request_id=b6b9b2f7-5c5a-4a6b-86be-8d739e1bf903 | correlation_id=b6b9b2f7-5c5a-4a6b-86be-8d739e1bf903 | user_id=826d7e39-e56e-4ead-bdc8-187562e3ad8a | method=GET | endpoint=/api/drivers/ | status_code=429 | execution_time=0.001s
+2026-09-22 11:16:32,814 WARNING django.request Too Many Requests: /api/drivers/
+2026-09-22 11:16:32,820 INFO api API Request | request_id=216037dc-e1e9-4d4a-acd6-b112fbd7bf1a | correlation_id=216037dc-e1e9-4d4a-acd6-b112fbd7bf1a | user_id=anonymous | method=GET | endpoint=/api/drivers/ | status_code=401 | execution_time=0.001s
+2026-09-22 11:16:32,829 WARNING django.request Unauthorized: /api/drivers/
+2026-09-22 11:16:33,543 INFO api API Request | request_id=432134ec-e42f-4552-a528-4143cc77426c | correlation_id=432134ec-e42f-4552-a528-4143cc77426c | user_id=1b4b9ce0-df66-456b-b83b-b52bca76b08e | method=POST | endpoint=/api/rides/ | status_code=400 | execution_time=0.006s
+2026-09-22 11:16:33,554 WARNING django.request Bad Request: /api/rides/
+2026-09-22 11:16:33,563 INFO api API Request | request_id=63226ea9-1c9a-40f5-8d79-8ff45a4ab993 | correlation_id=63226ea9-1c9a-40f5-8d79-8ff45a4ab993 | user_id=anonymous | method=GET | endpoint=/api/rides/ | status_code=401 | execution_time=0.000s
+2026-09-22 11:16:33,573 WARNING django.request Unauthorized: /api/rides/
+2026-09-22 11:16:33,578 INFO api API Request | request_id=59ccb2de-f518-468c-8a02-102f085ca39c | correlation_id=59ccb2de-f518-468c-8a02-102f085ca39c | user_id=anonymous | method=GET | endpoint=/api/drivers/ | status_code=401 | execution_time=0.000s
+2026-09-22 11:16:33,588 WARNING django.request Unauthorized: /api/drivers/
+2026-09-22 11:16:35,025 INFO api API Request | request_id=aa76667d-30fa-4f1f-b075-8e1979976993 | correlation_id=aa76667d-30fa-4f1f-b075-8e1979976993 | user_id=4b2fa1b3-53e9-4de8-a560-057d8b8ed14e | method=GET | endpoint=/api/rides/fe70d3c8-a698-43b8-bb4d-d23a997e7204/ | status_code=403 | execution_time=0.019s
+2026-09-22 11:16:35,038 WARNING django.request Forbidden: /api/rides/fe70d3c8-a698-43b8-bb4d-d23a997e7204/
+2026-09-22 11:16:36,547 INFO api API Request | request_id=ecc52257-905d-4506-8094-303168847fbb | correlation_id=ecc52257-905d-4506-8094-303168847fbb | user_id=a757107c-39ec-4107-b5c0-798ac1bc5b83 | method=POST | endpoint=/api/vehicles/ | status_code=201 | execution_time=0.042s
+2026-09-22 11:16:38,019 INFO api API Request | request_id=bee1cc9c-f5d3-4d36-8312-dd6ad3fa2df4 | correlation_id=bee1cc9c-f5d3-4d36-8312-dd6ad3fa2df4 | user_id=anonymous | method=POST | endpoint=/api/vehicles/ | status_code=401 | execution_time=0.000s
+2026-09-22 11:16:38,027 WARNING django.request Unauthorized: /api/vehicles/
+2026-09-22 11:16:39,435 INFO api API Request | request_id=06d6c2cb-2666-49ac-a4cf-c7aec3658d62 | correlation_id=06d6c2cb-2666-49ac-a4cf-c7aec3658d62 | user_id=244b6fbe-c118-4e17-987b-fc3b9cd61edd | method=PUT | endpoint=/api/vehicles/9fdabf11-d1b0-42d9-9e25-d2afa5491ba0/ | status_code=403 | execution_time=0.011s
+2026-09-22 11:16:39,449 WARNING django.request Forbidden: /api/vehicles/9fdabf11-d1b0-42d9-9e25-d2afa5491ba0/
+2026-09-22 11:16:40,872 INFO api API Request | request_id=f75bc5e2-9eef-41e8-9109-4f5ab2102c93 | correlation_id=f75bc5e2-9eef-41e8-9109-4f5ab2102c93 | user_id=bfc96fc7-7f03-4465-bd11-4727d5ccb226 | method=POST | endpoint=/api/vehicles/ | status_code=400 | execution_time=0.024s
+2026-09-22 11:16:40,896 WARNING django.request Bad Request: /api/vehicles/
+2026-09-22 11:16:45,832 INFO api API Request | request_id=1b7b12de-4aec-4a6d-b94f-4e3a1ad9c2a0 | correlation_id=1b7b12de-4aec-4a6d-b94f-4e3a1ad9c2a0 | user_id=2b8a0a31-86e6-44cd-85d9-d2b2fbe4b9b7 | method=PATCH | endpoint=/api/rides/62ca8302-be3e-46f4-80ed-ab785e17b105/location/ | status_code=201 | execution_time=0.032s
+2026-09-22 11:37:31,054 INFO api API Request | request_id=3364ed2c-3c49-489e-b9be-d3686110a939 | correlation_id=3364ed2c-3c49-489e-b9be-d3686110a939 | user_id=anonymous | method=GET | endpoint=/api/v1/accounts/profile/ | status_code=401 | execution_time=0.007s
+2026-09-22 11:37:31,085 WARNING django.request Unauthorized: /api/v1/accounts/profile/
+2026-09-22 11:37:33,283 INFO accounts.views User login successful
+2026-09-22 11:37:33,283 INFO api API Request | request_id=eb149112-c14f-41a0-b2fc-6e17cd1f7ef2 | correlation_id=eb149112-c14f-41a0-b2fc-6e17cd1f7ef2 | user_id=anonymous | method=POST | endpoint=/api/v1/accounts/login/ | status_code=200 | execution_time=0.778s
+2026-09-22 11:37:35,517 WARNING accounts.views User login failed: invalid credentials
+2026-09-22 11:37:35,517 INFO api API Request | request_id=820fa632-7b2b-4a6d-a2f8-860d2817c49a | correlation_id=820fa632-7b2b-4a6d-a2f8-860d2817c49a | user_id=anonymous | method=POST | endpoint=/api/v1/accounts/login/ | status_code=400 | execution_time=0.821s
+2026-09-22 11:37:35,529 WARNING django.request Bad Request: /api/v1/accounts/login/
+2026-09-22 11:37:36,615 INFO api API Request | request_id=cfacd6f1-8aa1-4a03-bd33-7cf8fa7e6e6d | correlation_id=cfacd6f1-8aa1-4a03-bd33-7cf8fa7e6e6d | user_id=2776bcb4-2a1f-47b3-ad2f-02f447816fc8 | method=POST | endpoint=/api/v1/accounts/logout/ | status_code=200 | execution_time=0.028s
+2026-09-22 11:37:36,650 INFO api API Request | request_id=cffa40f8-9712-4568-99e5-6f39af7cf0be | correlation_id=cffa40f8-9712-4568-99e5-6f39af7cf0be | user_id=2776bcb4-2a1f-47b3-ad2f-02f447816fc8 | method=POST | endpoint=/api/v1/accounts/token/refresh/ | status_code=401 | execution_time=0.011s
+2026-09-22 11:37:36,662 WARNING django.request Unauthorized: /api/v1/accounts/token/refresh/
+2026-09-22 11:37:38,997 INFO api API Request | request_id=e7e88525-62a2-4882-a305-9f3c38df4fa8 | correlation_id=e7e88525-62a2-4882-a305-9f3c38df4fa8 | user_id=cc3479bb-6526-45e2-b481-ba0cf87d3ccd | method=POST | endpoint=/api/v1/accounts/change-password/ | status_code=200 | execution_time=1.431s
+2026-09-22 11:37:38,997 WARNING api Slow API | request_id=e7e88525-62a2-4882-a305-9f3c38df4fa8 | correlation_id=e7e88525-62a2-4882-a305-9f3c38df4fa8 | user_id=cc3479bb-6526-45e2-b481-ba0cf87d3ccd | method=POST | endpoint=/api/v1/accounts/change-password/ | status_code=200 | execution_time=1.431s
+2026-09-22 11:37:40,422 INFO api API Request | request_id=3349501d-274c-4383-aceb-b1d863996d5c | correlation_id=3349501d-274c-4383-aceb-b1d863996d5c | user_id=anonymous | method=POST | endpoint=/api/v1/accounts/token/refresh/ | status_code=200 | execution_time=0.011s
+2026-09-22 11:37:41,866 WARNING accounts.views User registration failed
+2026-09-22 11:37:41,867 INFO api API Request | request_id=661e0780-d367-4c39-b766-9545297b189c | correlation_id=661e0780-d367-4c39-b766-9545297b189c | user_id=anonymous | method=POST | endpoint=/api/v1/accounts/register/ | status_code=400 | execution_time=0.013s
+2026-09-22 11:37:41,881 WARNING django.request Bad Request: /api/v1/accounts/register/
+2026-09-22 11:37:42,595 WARNING accounts.views User registration failed
+2026-09-22 11:37:42,595 INFO api API Request | request_id=0525f0dd-0964-44ba-8500-1612df83e4b6 | correlation_id=0525f0dd-0964-44ba-8500-1612df83e4b6 | user_id=anonymous | method=POST | endpoint=/api/v1/accounts/register/ | status_code=400 | execution_time=0.007s
+2026-09-22 11:37:42,611 WARNING django.request Bad Request: /api/v1/accounts/register/
+2026-09-22 11:37:44,034 INFO accounts.views User registration successful
+2026-09-22 11:37:44,034 INFO api API Request | request_id=e09a4ee2-5e89-43f2-9476-011bede2040b | correlation_id=e09a4ee2-5e89-43f2-9476-011bede2040b | user_id=anonymous | method=POST | endpoint=/api/v1/accounts/register/ | status_code=201 | execution_time=0.713s
+2026-09-22 11:37:46,506 INFO api API Request | request_id=c8d672b0-8245-4665-a6a9-cf933fa22372 | correlation_id=c8d672b0-8245-4665-a6a9-cf933fa22372 | user_id=633f37c9-10e3-4dca-a658-aa318f6f0608 | method=GET | endpoint=/api/v1/accounts/profiles/ | status_code=200 | execution_time=0.023s
+2026-09-22 11:37:49,121 INFO api API Request | request_id=7cd98d85-871a-48e0-857a-3096bd34905a | correlation_id=7cd98d85-871a-48e0-857a-3096bd34905a | user_id=anonymous | method=GET | endpoint=/api/v1/accounts/profiles/ | status_code=401 | execution_time=0.001s
+2026-09-22 11:37:49,129 WARNING django.request Unauthorized: /api/v1/accounts/profiles/
+2026-09-22 11:37:51,830 INFO api API Request | request_id=ac2f10c5-2912-4f47-9043-acd69b03d1c1 | correlation_id=ac2f10c5-2912-4f47-9043-acd69b03d1c1 | user_id=076521c0-7a52-4d98-aacc-455a479ce9f8 | method=GET | endpoint=/api/v1/accounts/profiles/ | status_code=403 | execution_time=0.005s
+2026-09-22 11:37:51,841 WARNING django.request Forbidden: /api/v1/accounts/profiles/
+2026-09-22 11:37:53,947 INFO api API Request | request_id=1df0d85f-b23c-4e76-a558-df89289c5c75 | correlation_id=1df0d85f-b23c-4e76-a558-df89289c5c75 | user_id=d12825b0-54b4-4af0-bf0d-df9c9f9fcf58 | method=GET | endpoint=/api/v1/accounts/profiles/ | status_code=403 | execution_time=0.005s
+2026-09-22 11:37:53,958 WARNING django.request Forbidden: /api/v1/accounts/profiles/
+2026-09-22 11:37:54,760 INFO api API Request | request_id=9eec8813-5378-4b83-b5cc-4a822a868589 | correlation_id=9eec8813-5378-4b83-b5cc-4a822a868589 | user_id=7d2613fc-a410-489c-805a-4d5a1e02150c | method=POST | endpoint=/api/v1/accounts/profile-crud/ | status_code=201 | execution_time=0.031s
+2026-09-22 11:37:55,493 INFO api API Request | request_id=33c420a4-dd25-479a-ba92-502574e4e82d | correlation_id=33c420a4-dd25-479a-ba92-502574e4e82d | user_id=f78bf984-d881-4b80-9d09-792519165a84 | method=POST | endpoint=/api/v1/accounts/profile-crud/ | status_code=400 | execution_time=0.003s
+2026-09-22 11:37:55,502 WARNING django.request Bad Request: /api/v1/accounts/profile-crud/
+2026-09-22 11:37:56,254 INFO api API Request | request_id=9e8cbe8e-e0c6-4300-9efb-03889489b5c1 | correlation_id=9e8cbe8e-e0c6-4300-9efb-03889489b5c1 | user_id=ecd260c2-29ba-4b3b-81fc-402bca67abfc | method=DELETE | endpoint=/api/v1/accounts/profile-crud/ | status_code=204 | execution_time=0.011s
+2026-09-22 11:37:56,984 INFO api API Request | request_id=1fecfea3-de02-4399-86f8-2f1ab25e190d | correlation_id=1fecfea3-de02-4399-86f8-2f1ab25e190d | user_id=1227d84a-1e7a-4aaf-866e-62497d4466df | method=GET | endpoint=/api/v1/accounts/profile-crud/ | status_code=200 | execution_time=0.008s
+2026-09-22 11:37:57,722 INFO api API Request | request_id=ccccbec5-21d1-4f57-b998-073fa273fa0d | correlation_id=ccccbec5-21d1-4f57-b998-073fa273fa0d | user_id=anonymous | method=GET | endpoint=/api/v1/accounts/profile-crud/ | status_code=401 | execution_time=0.001s
+2026-09-22 11:37:57,729 WARNING django.request Unauthorized: /api/v1/accounts/profile-crud/
+2026-09-22 11:37:58,445 INFO api API Request | request_id=5879fb2e-9512-4e6f-ae22-f99f1c245e4c | correlation_id=5879fb2e-9512-4e6f-ae22-f99f1c245e4c | user_id=e553242e-b462-4351-bae2-b853c3acb6ae | method=PUT | endpoint=/api/v1/accounts/profile-crud/ | status_code=200 | execution_time=0.013s
+2026-09-22 11:38:10,867 INFO api API Request | request_id=581e49f2-048b-4a38-9218-0de0fc92e68c | correlation_id=581e49f2-048b-4a38-9218-0de0fc92e68c | user_id=d4300aa5-b8ff-48c4-a0ae-3d644b813e75 | method=POST | endpoint=/api/v1/drivers/location/ | status_code=201 | execution_time=0.020s
+2026-09-22 11:38:11,625 INFO api API Request | request_id=e5daddb6-e400-4aab-aba7-8739e7477063 | correlation_id=e5daddb6-e400-4aab-aba7-8739e7477063 | user_id=anonymous | method=POST | endpoint=/api/v1/drivers/location/ | status_code=401 | execution_time=0.001s
+2026-09-22 11:38:11,633 WARNING django.request Unauthorized: /api/v1/drivers/location/
+2026-09-22 11:38:12,341 INFO api API Request | request_id=d5e4a40c-a5e0-47d7-a52d-66e25c464576 | correlation_id=d5e4a40c-a5e0-47d7-a52d-66e25c464576 | user_id=2e01c3c2-affb-4f8a-af66-7cd23234bf3f | method=GET | endpoint=/api/drivers/nearby/ | status_code=200 | execution_time=0.006s
+2026-09-22 11:38:13,075 INFO api API Request | request_id=b1d0107f-0b6d-4e6f-9bce-45161863ec50 | correlation_id=b1d0107f-0b6d-4e6f-9bce-45161863ec50 | user_id=fe489b38-6689-4089-a339-056cdb7d3cb9 | method=GET | endpoint=/api/drivers/nearby/ | status_code=200 | execution_time=0.005s
+2026-09-22 11:38:13,896 INFO api API Request | request_id=4a382238-4fdf-4df8-8d73-f372e2237203 | correlation_id=4a382238-4fdf-4df8-8d73-f372e2237203 | user_id=3d8ae5e3-7abd-410f-b12d-7f6161ec55cd | method=POST | endpoint=/api/v1/drivers/location/ | status_code=200 | execution_time=0.018s
+2026-09-22 11:38:14,901 INFO api API Request | request_id=4b241a1c-5a1a-41c5-afa2-f1ae6b2bff68 | correlation_id=4b241a1c-5a1a-41c5-afa2-f1ae6b2bff68 | user_id=73cade4c-2832-4a9e-a650-c061e67dca97 | method=POST | endpoint=/api/v1/drivers/ | status_code=201 | execution_time=0.034s
+2026-09-22 11:38:15,867 INFO api API Request | request_id=5b1ae199-5d48-44b1-a752-7aebfe07da86 | correlation_id=5b1ae199-5d48-44b1-a752-7aebfe07da86 | user_id=0ef32bd9-faaa-4c54-8926-c15c68b12689 | method=POST | endpoint=/api/v1/drivers/ | status_code=400 | execution_time=0.010s
+2026-09-22 11:38:15,886 WARNING django.request Bad Request: /api/v1/drivers/
+2026-09-22 11:38:16,625 INFO api API Request | request_id=460e3183-82c5-4a8e-a190-5d21ba8ff189 | correlation_id=460e3183-82c5-4a8e-a190-5d21ba8ff189 | user_id=62454a4f-c18b-424b-b26b-6bf4b69a58d4 | method=DELETE | endpoint=/api/v1/drivers/2c7148fa-8264-4abf-8045-f4da51da273a/ | status_code=204 | execution_time=0.030s
+2026-09-22 11:38:17,374 INFO api API Request | request_id=19175b6d-387a-4bec-bb02-ab0f1c9c7f9f | correlation_id=19175b6d-387a-4bec-bb02-ab0f1c9c7f9f | user_id=9b627504-91b8-4653-9650-19579ed26467 | method=GET | endpoint=/api/v1/drivers/ | status_code=200 | execution_time=0.015s
+2026-09-22 11:38:18,106 INFO api API Request | request_id=a77637de-d4a9-4e09-b9b0-6c774e48024e | correlation_id=a77637de-d4a9-4e09-b9b0-6c774e48024e | user_id=4c5b7999-dd40-4db9-9acf-b2e48a26ed91 | method=GET | endpoint=/api/v1/drivers/4fc2a818-60cd-43f1-a17a-521f70161cd8/ | status_code=200 | execution_time=0.010s
+2026-09-22 11:38:18,838 INFO api API Request | request_id=740980af-56d2-468e-9fc9-b208aaefbcd2 | correlation_id=740980af-56d2-468e-9fc9-b208aaefbcd2 | user_id=d47e086a-05a4-423c-8144-c2d7db5e6043 | method=PATCH | endpoint=/api/v1/drivers/884ac7eb-3071-4968-97d5-040b08b2269d/ | status_code=200 | execution_time=0.015s
+2026-09-22 11:38:19,653 INFO api API Request | request_id=357ef607-0207-450c-a3f5-ce35eb6156da | correlation_id=357ef607-0207-450c-a3f5-ce35eb6156da | user_id=50e467b2-dd52-4f06-a96d-25327faaf08e | method=GET | endpoint=/api/v1/rides/f84c24b6-e71d-402a-a2da-b7d00f2082eb/fare/ | status_code=200 | execution_time=0.027s
+2026-09-22 11:38:20,391 INFO api API Request | request_id=b5bbcae7-22a6-4dbb-b1f4-080b0189073a | correlation_id=b5bbcae7-22a6-4dbb-b1f4-080b0189073a | user_id=ef26529a-b12c-4638-b3b2-d88405bab4ff | method=GET | endpoint=/api/v1/rides/00000000-0000-0000-0000-000000000000/fare/ | status_code=404 | execution_time=0.009s
+2026-09-22 11:38:20,402 WARNING django.request Not Found: /api/v1/rides/00000000-0000-0000-0000-000000000000/fare/
+2026-09-22 11:38:21,121 INFO api API Request | request_id=06547b2c-9495-43fa-8c80-67db7497ce86 | correlation_id=06547b2c-9495-43fa-8c80-67db7497ce86 | user_id=anonymous | method=GET | endpoint=/api/v1/rides/0d298d85-f098-4323-bcb7-85131d8e22c0/fare/ | status_code=401 | execution_time=0.001s
+2026-09-22 11:38:21,129 WARNING django.request Unauthorized: /api/v1/rides/0d298d85-f098-4323-bcb7-85131d8e22c0/fare/
+2026-09-22 11:38:21,882 INFO celery.monitor Celery task started | task=accounts.tasks.retry_test_job | task_id=42d6c54d-ad22-468a-b134-e8c5108f9147
+2026-09-22 11:38:21,892 WARNING celery.monitor Celery task retry | task=accounts.tasks.retry_test_job | task_id=42d6c54d-ad22-468a-b134-e8c5108f9147 | retry_count=0 | reason=Retry in 2s: Exception('Attempt 1 failed')
+2026-09-22 11:38:21,893 INFO celery.app.trace Task accounts.tasks.retry_test_job[42d6c54d-ad22-468a-b134-e8c5108f9147] retry: Retry in 2s: Exception('Attempt 1 failed')
+2026-09-22 11:38:21,893 INFO celery.monitor Celery task completed | task=accounts.tasks.retry_test_job | task_id=42d6c54d-ad22-468a-b134-e8c5108f9147 | state=RETRY | execution_time=0.0106s
+2026-09-22 11:38:21,893 INFO celery.monitor Celery task started | task=accounts.tasks.retry_test_job | task_id=42d6c54d-ad22-468a-b134-e8c5108f9147
+2026-09-22 11:38:21,896 WARNING celery.monitor Celery task retry | task=accounts.tasks.retry_test_job | task_id=42d6c54d-ad22-468a-b134-e8c5108f9147 | retry_count=1 | reason=Retry in 2s: Exception('Attempt 2 failed')
+2026-09-22 11:38:21,896 INFO celery.app.trace Task accounts.tasks.retry_test_job[42d6c54d-ad22-468a-b134-e8c5108f9147] retry: Retry in 2s: Exception('Attempt 2 failed')
+2026-09-22 11:38:21,896 INFO celery.monitor Celery task completed | task=accounts.tasks.retry_test_job | task_id=42d6c54d-ad22-468a-b134-e8c5108f9147 | state=RETRY | execution_time=0.0032s
+2026-09-22 11:38:21,897 INFO celery.monitor Celery task started | task=accounts.tasks.retry_test_job | task_id=42d6c54d-ad22-468a-b134-e8c5108f9147
+2026-09-22 11:38:21,944 INFO celery.app.trace Task accounts.tasks.retry_test_job[42d6c54d-ad22-468a-b134-e8c5108f9147] succeeded in 0.04737620000014431s: {'success': True, 'attempt': 3, 'message': 'Job completed successfully on attempt 3'}
+2026-09-22 11:38:21,944 INFO celery.monitor Celery task completed | task=accounts.tasks.retry_test_job | task_id=42d6c54d-ad22-468a-b134-e8c5108f9147 | state=SUCCESS | execution_time=0.0476s
+2026-09-22 11:38:27,106 INFO api API Request | request_id=8a57d9ff-5c67-45c3-a10d-7b0aeb573059 | correlation_id=8a57d9ff-5c67-45c3-a10d-7b0aeb573059 | user_id=bdb60e64-72b1-4e1b-b994-4c9505271640 | method=GET | endpoint=/api/v1/drivers/ | status_code=200 | execution_time=0.025s
+2026-09-22 11:38:28,552 INFO api API Request | request_id=f9cb566c-f863-401f-9230-305383cbf502 | correlation_id=f9cb566c-f863-401f-9230-305383cbf502 | user_id=4f62c82c-95c8-4916-b35f-2d003bd9b766 | method=GET | endpoint=/api/v1/drivers/ | status_code=200 | execution_time=0.014s
+2026-09-22 11:38:29,987 INFO api API Request | request_id=b04f9019-5892-4f58-882c-3bab28521998 | correlation_id=b04f9019-5892-4f58-882c-3bab28521998 | user_id=anonymous | method=POST | endpoint=/api/v1/drivers/location/ | status_code=401 | execution_time=0.001s
+2026-09-22 11:38:29,995 WARNING django.request Unauthorized: /api/v1/drivers/location/
+2026-09-22 11:38:30,769 INFO api API Request | request_id=f9bc956d-81c9-4173-a8d6-e17cb0a4a2da | correlation_id=f9bc956d-81c9-4173-a8d6-e17cb0a4a2da | user_id=321340f7-d0cc-49c5-9fe4-b105fdc4b4cf | method=GET | endpoint=/api/rides/aggregations/ | status_code=200 | execution_time=0.018s
+2026-09-22 11:38:31,522 INFO api API Request | request_id=275dedff-84ca-4a41-9023-b74a1d0b34ea | correlation_id=275dedff-84ca-4a41-9023-b74a1d0b34ea | user_id=anonymous | method=GET | endpoint=/api/rides/aggregations/ | status_code=401 | execution_time=0.000s
+2026-09-22 11:38:31,532 WARNING django.request Unauthorized: /api/rides/aggregations/
+2026-09-22 11:38:33,731 WARNING rides.services.ride_service Ride acceptance failed: ride is not in requested status | ride_id=50542390-5090-406d-8c14-fb52241b890c
+2026-09-22 11:38:33,731 INFO api API Request | request_id=1ab5fa4c-b545-4bfd-acd4-6c50f05b1bd3 | correlation_id=1ab5fa4c-b545-4bfd-acd4-6c50f05b1bd3 | user_id=b0216cd0-fd56-42df-aee6-6a9281cda26b | method=POST | endpoint=/api/rides/50542390-5090-406d-8c14-fb52241b890c/accept/ | status_code=400 | execution_time=0.033s
+2026-09-22 11:38:33,768 WARNING django.request Bad Request: /api/rides/50542390-5090-406d-8c14-fb52241b890c/accept/
+2026-09-22 11:38:35,914 WARNING rides.services.ride_service Ride completion failed: invalid current status | ride_id=ba7860d5-2c10-4019-881f-8d6aa1f89b98
+2026-09-22 11:38:35,915 INFO api API Request | request_id=ce3e1dc7-fc61-47f6-8f77-7be0a202ac92 | correlation_id=ce3e1dc7-fc61-47f6-8f77-7be0a202ac92 | user_id=e63468dc-661a-4f7d-bd96-f58d7b89cc01 | method=POST | endpoint=/api/rides/ba7860d5-2c10-4019-881f-8d6aa1f89b98/complete/ | status_code=400 | execution_time=0.017s
+2026-09-22 11:38:35,935 WARNING django.request Bad Request: /api/rides/ba7860d5-2c10-4019-881f-8d6aa1f89b98/complete/
+2026-09-22 11:38:38,064 WARNING rides.services.ride_service Ride cancellation failed: invalid current status | ride_id=931fda12-6ce6-4e97-b01d-596844e174eb status=COMPLETED
+2026-09-22 11:38:38,065 INFO api API Request | request_id=cc1d51f5-fe8b-4285-9271-207b1d50b8a5 | correlation_id=cc1d51f5-fe8b-4285-9271-207b1d50b8a5 | user_id=10b2eb18-4ce8-4cca-9a3d-17b41e85a59f | method=POST | endpoint=/api/rides/931fda12-6ce6-4e97-b01d-596844e174eb/cancel/ | status_code=400 | execution_time=0.013s
+2026-09-22 11:38:38,084 WARNING django.request Bad Request: /api/rides/931fda12-6ce6-4e97-b01d-596844e174eb/cancel/
+2026-09-22 11:38:44,496 INFO api API Request | request_id=6ee5f148-081c-43bd-a44f-4ed79d883cb2 | correlation_id=6ee5f148-081c-43bd-a44f-4ed79d883cb2 | user_id=b25a49ec-7144-4639-9adc-d14a111ba1f6 | method=POST | endpoint=/api/rides/09de21ce-d761-4c8c-95cd-c4b1124a48e6/accept/ | status_code=200 | execution_time=0.072s
+2026-09-22 11:38:46,648 INFO rides.services.ride_service Ride cancelled successfully | ride_id=09d73b43-7475-4d3e-b62a-5e0c4bd48afb
+2026-09-22 11:38:46,649 INFO api API Request | request_id=8ee73ad1-5cd3-4599-9065-c3ae4a319332 | correlation_id=8ee73ad1-5cd3-4599-9065-c3ae4a319332 | user_id=96ec7f7a-35d2-4ee8-a3ad-84254cb4d616 | method=POST | endpoint=/api/rides/09d73b43-7475-4d3e-b62a-5e0c4bd48afb/cancel/ | status_code=200 | execution_time=0.018s
+2026-09-22 11:38:48,785 INFO rides.services.ride_service Ride completed successfully | ride_id=0a84943b-b204-4b96-8af6-e993d617e6bd
+2026-09-22 11:38:48,797 INFO api API Request | request_id=17a31b77-4964-46f5-a4a1-42dbc1caa086 | correlation_id=17a31b77-4964-46f5-a4a1-42dbc1caa086 | user_id=4105a85c-1d05-4b7e-b2b4-629259cf3eeb | method=POST | endpoint=/api/rides/0a84943b-b204-4b96-8af6-e993d617e6bd/complete/ | status_code=200 | execution_time=0.031s
+2026-09-22 11:38:53,044 INFO rides.services.ride_service Ride started successfully | ride_id=eafba757-1eb8-4cf5-91bc-64adde319af7
+2026-09-22 11:38:53,049 INFO api API Request | request_id=32ab2ca5-98a4-4fb1-ad8e-6faca635495b | correlation_id=32ab2ca5-98a4-4fb1-ad8e-6faca635495b | user_id=069a4dbb-f8fc-4f1e-92df-cd20a23a0dc6 | method=POST | endpoint=/api/rides/eafba757-1eb8-4cf5-91bc-64adde319af7/start/ | status_code=200 | execution_time=0.022s
+2026-09-22 11:38:55,212 INFO api API Request | request_id=e8cfe1e1-b9df-4fc2-b07b-c001a284a171 | correlation_id=e8cfe1e1-b9df-4fc2-b07b-c001a284a171 | user_id=06902094-8b54-446a-8dc4-9a9932d6a7d8 | method=POST | endpoint=/api/rides/38460453-fb97-4adb-9e26-991ce480d8cc/accept/ | status_code=200 | execution_time=0.039s
+2026-09-22 11:38:55,271 WARNING rides.services.ride_service Ride acceptance failed: ride is not in requested status | ride_id=38460453-fb97-4adb-9e26-991ce480d8cc
+2026-09-22 11:38:55,272 INFO api API Request | request_id=ead3d135-cc6d-4ddb-9651-e010b2043051 | correlation_id=ead3d135-cc6d-4ddb-9651-e010b2043051 | user_id=59226f5b-0bc1-4866-b14c-173e75a79afe | method=POST | endpoint=/api/rides/38460453-fb97-4adb-9e26-991ce480d8cc/accept/ | status_code=400 | execution_time=0.021s
+2026-09-22 11:38:55,297 WARNING django.request Bad Request: /api/rides/38460453-fb97-4adb-9e26-991ce480d8cc/accept/
+2026-09-22 11:38:57,454 WARNING rides.services.ride_service Ride acceptance failed: driver is not available | ride_id=0b6c5c59-21c5-4a6f-b208-f1d729cc0259, driver_id=8c8d304e-3ba3-465e-89f5-c32ea7b435b2
+2026-09-22 11:38:57,455 INFO api API Request | request_id=47c8f3ce-3578-4c46-a644-cbf42dad5af9 | correlation_id=47c8f3ce-3578-4c46-a644-cbf42dad5af9 | user_id=a650ea80-e90f-4cfc-ba07-90222fb903cf | method=POST | endpoint=/api/rides/0b6c5c59-21c5-4a6f-b208-f1d729cc0259/accept/ | status_code=400 | execution_time=0.013s
+2026-09-22 11:38:57,477 WARNING django.request Bad Request: /api/rides/0b6c5c59-21c5-4a6f-b208-f1d729cc0259/accept/
+2026-09-22 11:38:59,665 INFO api API Request | request_id=f9c4755d-cc8a-44c6-b504-464c302e707f | correlation_id=f9c4755d-cc8a-44c6-b504-464c302e707f | user_id=d4dd0aae-63d3-4d0a-9b88-d13807abd61e | method=GET | endpoint=/api/rides/history/ | status_code=200 | execution_time=0.030s
+2026-09-22 11:39:01,790 INFO api API Request | request_id=0951c6c2-fa9d-426a-8f45-adc7074f2803 | correlation_id=0951c6c2-fa9d-426a-8f45-adc7074f2803 | user_id=08a215f2-3e26-4e44-9cb5-46799058f826 | method=GET | endpoint=/api/rides/history/ | status_code=200 | execution_time=0.011s
+2026-09-22 11:39:03,908 INFO api API Request | request_id=37b868b7-7317-4c59-a088-599abb287ab5 | correlation_id=37b868b7-7317-4c59-a088-599abb287ab5 | user_id=72a72ddf-03be-420c-87bc-a08004e8ce74 | method=GET | endpoint=/api/rides/history/ | status_code=200 | execution_time=0.011s
+2026-09-22 11:39:06,136 INFO api API Request | request_id=0fd5675e-0030-4966-9fed-5c4215440c00 | correlation_id=0fd5675e-0030-4966-9fed-5c4215440c00 | user_id=64d9ea5f-ff14-4f40-ada2-91a25c6da35d | method=GET | endpoint=/api/rides/history/ | status_code=200 | execution_time=0.011s
+2026-09-22 11:39:08,259 INFO api API Request | request_id=ac60145d-2b30-4d72-9279-93ea0dd14013 | correlation_id=ac60145d-2b30-4d72-9279-93ea0dd14013 | user_id=74207602-035d-401c-ba86-0d324e392c57 | method=GET | endpoint=/api/rides/history/ | status_code=200 | execution_time=0.011s
+2026-09-22 11:39:10,379 INFO api API Request | request_id=aad028d0-c13d-4bde-9ae6-93e939224f7f | correlation_id=aad028d0-c13d-4bde-9ae6-93e939224f7f | user_id=anonymous | method=GET | endpoint=/api/rides/history/ | status_code=401 | execution_time=0.000s
+2026-09-22 11:39:10,387 WARNING django.request Unauthorized: /api/rides/history/
+2026-09-22 11:39:12,503 INFO api API Request | request_id=5f378b81-0cd3-4326-91d7-46db31e1e2c3 | correlation_id=5f378b81-0cd3-4326-91d7-46db31e1e2c3 | user_id=f07a8cd0-c388-4643-a2c5-8e40dc82143f | method=GET | endpoint=/api/rides/history/ | status_code=200 | execution_time=0.010s
+2026-09-22 11:39:14,615 INFO api API Request | request_id=68be63c8-6009-4729-a239-bcc24cc60139 | correlation_id=68be63c8-6009-4729-a239-bcc24cc60139 | user_id=4a3d6254-c131-4ec9-a48e-00eea77cb11f | method=GET | endpoint=/api/rides/history/ | status_code=200 | execution_time=0.011s
+2026-09-22 11:39:16,100 INFO api API Request | request_id=07a49df2-c0d4-4d22-92c8-306204720b11 | correlation_id=07a49df2-c0d4-4d22-92c8-306204720b11 | user_id=bfb844a5-63ab-41de-aef2-d07c715a5eb0 | method=GET | endpoint=/api/drivers/343f867b-149b-4295-94cb-7c5ecbb245d5/ | status_code=403 | execution_time=0.012s
+2026-09-22 11:39:16,134 WARNING django.request Forbidden: /api/drivers/343f867b-149b-4295-94cb-7c5ecbb245d5/
+2026-09-22 11:39:16,851 INFO api API Request | request_id=8447fcab-f99c-4a94-beab-0f9eae585858 | correlation_id=8447fcab-f99c-4a94-beab-0f9eae585858 | user_id=adc28de9-0497-4b2d-a785-ffcccd0809eb | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-22 11:39:16,869 INFO api API Request | request_id=4b32d3c0-0688-4a7d-a9c4-1eabfdd4bea9 | correlation_id=4b32d3c0-0688-4a7d-a9c4-1eabfdd4bea9 | user_id=adc28de9-0497-4b2d-a785-ffcccd0809eb | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-22 11:39:16,888 INFO api API Request | request_id=47fc7d0f-2773-4b26-9449-1c3f39ec30c6 | correlation_id=47fc7d0f-2773-4b26-9449-1c3f39ec30c6 | user_id=adc28de9-0497-4b2d-a785-ffcccd0809eb | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-22 11:39:16,906 INFO api API Request | request_id=2244f445-f0f7-4a88-9baf-112c873fa80d | correlation_id=2244f445-f0f7-4a88-9baf-112c873fa80d | user_id=adc28de9-0497-4b2d-a785-ffcccd0809eb | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-22 11:39:16,926 INFO api API Request | request_id=e7b897e9-d860-478e-9f15-92827ae6a223 | correlation_id=e7b897e9-d860-478e-9f15-92827ae6a223 | user_id=adc28de9-0497-4b2d-a785-ffcccd0809eb | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-22 11:39:16,944 INFO api API Request | request_id=c2f71280-4b8e-4e5e-b994-c6c6dc337c9a | correlation_id=c2f71280-4b8e-4e5e-b994-c6c6dc337c9a | user_id=adc28de9-0497-4b2d-a785-ffcccd0809eb | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-22 11:39:16,964 INFO api API Request | request_id=fb08f760-a685-4adc-9039-75da1793d128 | correlation_id=fb08f760-a685-4adc-9039-75da1793d128 | user_id=adc28de9-0497-4b2d-a785-ffcccd0809eb | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-22 11:39:16,983 INFO api API Request | request_id=49a8761b-b744-4bd4-b9ed-16cc038bf096 | correlation_id=49a8761b-b744-4bd4-b9ed-16cc038bf096 | user_id=adc28de9-0497-4b2d-a785-ffcccd0809eb | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-22 11:39:17,003 INFO api API Request | request_id=908501a1-6e69-4c34-847e-cd447720ec7d | correlation_id=908501a1-6e69-4c34-847e-cd447720ec7d | user_id=adc28de9-0497-4b2d-a785-ffcccd0809eb | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-22 11:39:17,022 INFO api API Request | request_id=b8f58b9e-e298-48d5-b612-3b3e9c72bdbc | correlation_id=b8f58b9e-e298-48d5-b612-3b3e9c72bdbc | user_id=adc28de9-0497-4b2d-a785-ffcccd0809eb | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-22 11:39:17,044 INFO api API Request | request_id=93e8362c-d992-4756-ba13-64473552dee8 | correlation_id=93e8362c-d992-4756-ba13-64473552dee8 | user_id=adc28de9-0497-4b2d-a785-ffcccd0809eb | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.010s
+2026-09-22 11:39:17,062 INFO api API Request | request_id=232239eb-af33-48cd-b618-8e721d8c8077 | correlation_id=232239eb-af33-48cd-b618-8e721d8c8077 | user_id=adc28de9-0497-4b2d-a785-ffcccd0809eb | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-22 11:39:17,080 INFO api API Request | request_id=2953fd9e-3de8-4119-9dd7-7909f46a5dfb | correlation_id=2953fd9e-3de8-4119-9dd7-7909f46a5dfb | user_id=adc28de9-0497-4b2d-a785-ffcccd0809eb | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-22 11:39:17,098 INFO api API Request | request_id=29bdd658-a2d9-4397-8030-d805e5a632fc | correlation_id=29bdd658-a2d9-4397-8030-d805e5a632fc | user_id=adc28de9-0497-4b2d-a785-ffcccd0809eb | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-22 11:39:17,116 INFO api API Request | request_id=4636dddc-9ebf-4d75-8efa-c54cf13fe37e | correlation_id=4636dddc-9ebf-4d75-8efa-c54cf13fe37e | user_id=adc28de9-0497-4b2d-a785-ffcccd0809eb | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-22 11:39:17,133 INFO api API Request | request_id=d6bd61b4-a27c-4d80-b806-3ef2cf89b773 | correlation_id=d6bd61b4-a27c-4d80-b806-3ef2cf89b773 | user_id=adc28de9-0497-4b2d-a785-ffcccd0809eb | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-22 11:39:17,151 INFO api API Request | request_id=20509eb9-c9e0-4f52-99b1-c86c468c560d | correlation_id=20509eb9-c9e0-4f52-99b1-c86c468c560d | user_id=adc28de9-0497-4b2d-a785-ffcccd0809eb | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-22 11:39:17,171 INFO api API Request | request_id=88bed998-ca8b-4781-8672-4fe96dcf6f34 | correlation_id=88bed998-ca8b-4781-8672-4fe96dcf6f34 | user_id=adc28de9-0497-4b2d-a785-ffcccd0809eb | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-22 11:39:17,189 INFO api API Request | request_id=046844a6-fcfe-4d9b-bc76-c13862810604 | correlation_id=046844a6-fcfe-4d9b-bc76-c13862810604 | user_id=adc28de9-0497-4b2d-a785-ffcccd0809eb | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-22 11:39:17,207 INFO api API Request | request_id=14284aa9-9a9d-4670-955a-0550bcd9ea7d | correlation_id=14284aa9-9a9d-4670-955a-0550bcd9ea7d | user_id=adc28de9-0497-4b2d-a785-ffcccd0809eb | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-22 11:39:17,225 INFO api API Request | request_id=1e4d1bde-299f-4b1f-bc63-5db1250474f6 | correlation_id=1e4d1bde-299f-4b1f-bc63-5db1250474f6 | user_id=adc28de9-0497-4b2d-a785-ffcccd0809eb | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-22 11:39:17,245 INFO api API Request | request_id=0ce1ad93-f061-48ce-998a-790c7a1e8b4a | correlation_id=0ce1ad93-f061-48ce-998a-790c7a1e8b4a | user_id=adc28de9-0497-4b2d-a785-ffcccd0809eb | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-22 11:39:17,263 INFO api API Request | request_id=a11a7b7a-feae-46c9-9095-8215615bb42f | correlation_id=a11a7b7a-feae-46c9-9095-8215615bb42f | user_id=adc28de9-0497-4b2d-a785-ffcccd0809eb | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-22 11:39:17,281 INFO api API Request | request_id=a6cd5402-c931-484b-b2b9-1d8e717c0650 | correlation_id=a6cd5402-c931-484b-b2b9-1d8e717c0650 | user_id=adc28de9-0497-4b2d-a785-ffcccd0809eb | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-22 11:39:17,302 INFO api API Request | request_id=3d934bd5-53d7-46de-bb50-9be4e14eadd4 | correlation_id=3d934bd5-53d7-46de-bb50-9be4e14eadd4 | user_id=adc28de9-0497-4b2d-a785-ffcccd0809eb | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-22 11:39:17,320 INFO api API Request | request_id=2f81bbf1-9c79-47a4-83f4-909d960f08fb | correlation_id=2f81bbf1-9c79-47a4-83f4-909d960f08fb | user_id=adc28de9-0497-4b2d-a785-ffcccd0809eb | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-22 11:39:17,337 INFO api API Request | request_id=749ea90b-6990-4c87-b648-7c9ae1636f89 | correlation_id=749ea90b-6990-4c87-b648-7c9ae1636f89 | user_id=adc28de9-0497-4b2d-a785-ffcccd0809eb | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-22 11:39:17,355 INFO api API Request | request_id=4c953cc6-8dbf-4cd4-a9a1-61c96d15b9f5 | correlation_id=4c953cc6-8dbf-4cd4-a9a1-61c96d15b9f5 | user_id=adc28de9-0497-4b2d-a785-ffcccd0809eb | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-22 11:39:17,373 INFO api API Request | request_id=d35407ec-8652-481d-a336-dec582c479d7 | correlation_id=d35407ec-8652-481d-a336-dec582c479d7 | user_id=adc28de9-0497-4b2d-a785-ffcccd0809eb | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-22 11:39:17,391 INFO api API Request | request_id=113386a5-88f6-462b-9e56-ab03aee92201 | correlation_id=113386a5-88f6-462b-9e56-ab03aee92201 | user_id=adc28de9-0497-4b2d-a785-ffcccd0809eb | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-22 11:39:17,404 INFO api API Request | request_id=bc92a260-9634-49e8-9d89-6da693e2f018 | correlation_id=bc92a260-9634-49e8-9d89-6da693e2f018 | user_id=adc28de9-0497-4b2d-a785-ffcccd0809eb | method=GET | endpoint=/api/drivers/ | status_code=429 | execution_time=0.001s
+2026-09-22 11:39:17,413 WARNING django.request Too Many Requests: /api/drivers/
+2026-09-22 11:39:17,416 INFO api API Request | request_id=76eab3cb-226f-44f2-9771-a1ba47fe5884 | correlation_id=76eab3cb-226f-44f2-9771-a1ba47fe5884 | user_id=adc28de9-0497-4b2d-a785-ffcccd0809eb | method=GET | endpoint=/api/drivers/ | status_code=429 | execution_time=0.001s
+2026-09-22 11:39:17,423 WARNING django.request Too Many Requests: /api/drivers/
+2026-09-22 11:39:17,425 INFO api API Request | request_id=2fcc3620-d73c-42d7-b4a7-1d962589e168 | correlation_id=2fcc3620-d73c-42d7-b4a7-1d962589e168 | user_id=adc28de9-0497-4b2d-a785-ffcccd0809eb | method=GET | endpoint=/api/drivers/ | status_code=429 | execution_time=0.001s
+2026-09-22 11:39:17,432 WARNING django.request Too Many Requests: /api/drivers/
+2026-09-22 11:39:17,435 INFO api API Request | request_id=1163a352-7ed7-40cf-9ef6-486a9eb9b2e4 | correlation_id=1163a352-7ed7-40cf-9ef6-486a9eb9b2e4 | user_id=adc28de9-0497-4b2d-a785-ffcccd0809eb | method=GET | endpoint=/api/drivers/ | status_code=429 | execution_time=0.001s
+2026-09-22 11:39:17,442 WARNING django.request Too Many Requests: /api/drivers/
+2026-09-22 11:39:17,444 INFO api API Request | request_id=99502d8e-dbf9-4402-821c-2fe8fca55109 | correlation_id=99502d8e-dbf9-4402-821c-2fe8fca55109 | user_id=adc28de9-0497-4b2d-a785-ffcccd0809eb | method=GET | endpoint=/api/drivers/ | status_code=429 | execution_time=0.001s
+2026-09-22 11:39:17,451 WARNING django.request Too Many Requests: /api/drivers/
+2026-09-22 11:39:17,456 INFO api API Request | request_id=c371ef80-23d9-43e7-b23c-8417d69b0c29 | correlation_id=c371ef80-23d9-43e7-b23c-8417d69b0c29 | user_id=anonymous | method=GET | endpoint=/api/drivers/ | status_code=401 | execution_time=0.001s
+2026-09-22 11:39:17,464 WARNING django.request Unauthorized: /api/drivers/
+2026-09-22 11:39:18,180 INFO api API Request | request_id=beb89bb1-3b86-4bf3-aba7-2532d97336c2 | correlation_id=beb89bb1-3b86-4bf3-aba7-2532d97336c2 | user_id=6d9c7517-2531-48e6-bcda-57382b594cbb | method=POST | endpoint=/api/rides/ | status_code=400 | execution_time=0.007s
+2026-09-22 11:39:18,191 WARNING django.request Bad Request: /api/rides/
+2026-09-22 11:39:18,203 INFO api API Request | request_id=5c3b5c7d-b23e-4928-b885-e9d7e82410a3 | correlation_id=5c3b5c7d-b23e-4928-b885-e9d7e82410a3 | user_id=anonymous | method=GET | endpoint=/api/rides/ | status_code=401 | execution_time=0.001s
+2026-09-22 11:39:18,215 WARNING django.request Unauthorized: /api/rides/
+2026-09-22 11:39:18,221 INFO api API Request | request_id=11f587e9-e741-4789-8a21-2f3ebd6707ff | correlation_id=11f587e9-e741-4789-8a21-2f3ebd6707ff | user_id=anonymous | method=GET | endpoint=/api/drivers/ | status_code=401 | execution_time=0.000s
+2026-09-22 11:39:18,228 WARNING django.request Unauthorized: /api/drivers/
+2026-09-22 11:39:19,664 INFO api API Request | request_id=b13528bb-4136-44d6-b420-a5710150f17f | correlation_id=b13528bb-4136-44d6-b420-a5710150f17f | user_id=238f7af1-094d-4712-97dc-6b2746d21647 | method=GET | endpoint=/api/rides/f34aaa1d-b808-4901-b082-917094a9096f/ | status_code=403 | execution_time=0.021s
+2026-09-22 11:39:19,675 WARNING django.request Forbidden: /api/rides/f34aaa1d-b808-4901-b082-917094a9096f/
+2026-09-22 11:39:21,177 INFO api API Request | request_id=e78839ca-10b6-435f-b5dd-edf1627df830 | correlation_id=e78839ca-10b6-435f-b5dd-edf1627df830 | user_id=95607ca9-1695-42d3-b247-210d96d85304 | method=POST | endpoint=/api/vehicles/ | status_code=201 | execution_time=0.042s
+2026-09-22 11:39:22,631 INFO api API Request | request_id=f285c369-c75d-4682-b742-83e54f16237a | correlation_id=f285c369-c75d-4682-b742-83e54f16237a | user_id=anonymous | method=POST | endpoint=/api/vehicles/ | status_code=401 | execution_time=0.000s
+2026-09-22 11:39:22,641 WARNING django.request Unauthorized: /api/vehicles/
+2026-09-22 11:39:24,052 INFO api API Request | request_id=7bf4ce81-aeec-43ea-a2a1-03924663d254 | correlation_id=7bf4ce81-aeec-43ea-a2a1-03924663d254 | user_id=02c7aa63-8611-451e-849c-47983d354cfe | method=PUT | endpoint=/api/vehicles/24f17a92-25f4-482c-b946-47480ec0559d/ | status_code=403 | execution_time=0.012s
+2026-09-22 11:39:24,066 WARNING django.request Forbidden: /api/vehicles/24f17a92-25f4-482c-b946-47480ec0559d/
+2026-09-22 11:39:25,630 INFO api API Request | request_id=01f224a3-0983-4222-bade-16ca87715e1f | correlation_id=01f224a3-0983-4222-bade-16ca87715e1f | user_id=c4b82c24-9b0d-4d5f-8759-6e11948d18d0 | method=POST | endpoint=/api/vehicles/ | status_code=400 | execution_time=0.020s
+2026-09-22 11:39:25,656 WARNING django.request Bad Request: /api/vehicles/
+2026-09-22 11:39:30,490 INFO api API Request | request_id=3a15f3dc-ef69-4d13-86ab-73b018b6a00d | correlation_id=3a15f3dc-ef69-4d13-86ab-73b018b6a00d | user_id=e490a0a5-286f-4625-95e0-ac0ffaf9d833 | method=PATCH | endpoint=/api/rides/ab8f4ad4-6973-4590-9074-af24a7d8b816/location/ | status_code=201 | execution_time=0.029s
+2026-09-22 11:47:34,147 INFO django.utils.autoreload Watching for file changes with StatReloader
+2026-09-22 11:56:08,688 INFO django.utils.autoreload Watching for file changes with StatReloader
+2026-09-22 11:58:04,615 WARNING accounts.views User login failed: invalid credentials
+2026-09-22 11:58:04,618 INFO api API Request | request_id=898788b7-e3d5-414a-9dfe-e6d510a67b86 | correlation_id=898788b7-e3d5-414a-9dfe-e6d510a67b86 | user_id=anonymous | method=POST | endpoint=/accounts/login/ | status_code=400 | execution_time=1.306s
+2026-09-22 11:58:04,618 WARNING api Slow API | request_id=898788b7-e3d5-414a-9dfe-e6d510a67b86 | correlation_id=898788b7-e3d5-414a-9dfe-e6d510a67b86 | user_id=anonymous | method=POST | endpoint=/accounts/login/ | status_code=400 | execution_time=1.306s
+2026-09-22 11:58:04,699 WARNING django.request Bad Request: /accounts/login/
+2026-09-22 11:58:04,700 WARNING django.channels.server [31;1mHTTP POST /accounts/login/ 400 [1.56, 127.0.0.1:52187][0m
+2026-09-22 11:59:02,912 WARNING accounts.views User login failed: invalid credentials
+2026-09-22 11:59:02,913 INFO api API Request | request_id=2b12f0de-2991-48ee-8f82-a205b315a791 | correlation_id=2b12f0de-2991-48ee-8f82-a205b315a791 | user_id=anonymous | method=POST | endpoint=/accounts/login/ | status_code=400 | execution_time=0.959s
+2026-09-22 11:59:02,941 WARNING django.request Bad Request: /accounts/login/
+2026-09-22 11:59:02,942 WARNING django.channels.server [31;1mHTTP POST /accounts/login/ 400 [1.27, 127.0.0.1:52187][0m
+2026-09-22 11:59:40,398 WARNING accounts.views User login failed: invalid credentials
+2026-09-22 11:59:40,399 INFO api API Request | request_id=d04d6cd3-7590-4bf1-a4b0-686bc33095e7 | correlation_id=d04d6cd3-7590-4bf1-a4b0-686bc33095e7 | user_id=anonymous | method=POST | endpoint=/accounts/login/ | status_code=400 | execution_time=0.924s
+2026-09-22 11:59:40,421 WARNING django.request Bad Request: /accounts/login/
+2026-09-22 11:59:40,422 WARNING django.channels.server [31;1mHTTP POST /accounts/login/ 400 [1.18, 127.0.0.1:52187][0m
+2026-09-22 11:59:57,935 WARNING accounts.views User login failed: invalid credentials
+2026-09-22 11:59:57,936 INFO api API Request | request_id=75f8da66-f079-4d9d-813a-769a8e722271 | correlation_id=75f8da66-f079-4d9d-813a-769a8e722271 | user_id=anonymous | method=POST | endpoint=/accounts/login/ | status_code=400 | execution_time=0.855s
+2026-09-22 11:59:57,955 WARNING django.request Bad Request: /accounts/login/
+2026-09-22 11:59:57,956 WARNING django.channels.server [31;1mHTTP POST /accounts/login/ 400 [0.97, 127.0.0.1:52187][0m
+2026-09-22 12:06:21,836 INFO django.utils.autoreload Watching for file changes with StatReloader
+2026-09-22 12:08:00,398 INFO accounts.views User registration successful
+2026-09-22 12:08:00,400 INFO api API Request | request_id=f54d3ddd-50b2-47de-9043-bcb04518f4dc | correlation_id=f54d3ddd-50b2-47de-9043-bcb04518f4dc | user_id=anonymous | method=POST | endpoint=/accounts/register/ | status_code=201 | execution_time=1.209s
+2026-09-22 12:08:00,400 WARNING api Slow API | request_id=f54d3ddd-50b2-47de-9043-bcb04518f4dc | correlation_id=f54d3ddd-50b2-47de-9043-bcb04518f4dc | user_id=anonymous | method=POST | endpoint=/accounts/register/ | status_code=201 | execution_time=1.209s
+2026-09-22 12:08:00,457 INFO django.channels.server [mHTTP POST /accounts/register/ 201 [1.37, 127.0.0.1:52396][0m
+2026-09-22 12:08:11,611 INFO accounts.views User login successful
+2026-09-22 12:08:11,613 INFO api API Request | request_id=7130bcae-1012-4cee-a491-5ce029551461 | correlation_id=7130bcae-1012-4cee-a491-5ce029551461 | user_id=anonymous | method=POST | endpoint=/accounts/login/ | status_code=200 | execution_time=0.991s
+2026-09-22 12:08:11,646 INFO django.channels.server [mHTTP POST /accounts/login/ 200 [1.30, 127.0.0.1:52396][0m
+2026-09-22 12:10:55,664 INFO accounts.views User registration successful
+2026-09-22 12:10:55,667 INFO api API Request | request_id=5347900c-a2a3-4997-b538-10ae8ce0c26e | correlation_id=5347900c-a2a3-4997-b538-10ae8ce0c26e | user_id=anonymous | method=POST | endpoint=/accounts/register/ | status_code=201 | execution_time=0.855s
+2026-09-22 12:10:55,715 INFO django.channels.server [mHTTP POST /accounts/register/ 201 [0.97, 127.0.0.1:52528][0m
+2026-09-22 12:11:25,799 INFO accounts.views User login successful
+2026-09-22 12:11:25,802 INFO api API Request | request_id=51667f59-27a2-4168-8118-ade7052a1e04 | correlation_id=51667f59-27a2-4168-8118-ade7052a1e04 | user_id=anonymous | method=POST | endpoint=/accounts/login/ | status_code=200 | execution_time=0.891s
+2026-09-22 12:11:25,829 INFO django.channels.server [mHTTP POST /accounts/login/ 200 [1.00, 127.0.0.1:52528][0m
+2026-09-22 12:11:34,760 INFO accounts.views User login successful
+2026-09-22 12:11:34,762 INFO api API Request | request_id=ee0087c6-1704-494a-89ad-0b2aceb0832e | correlation_id=ee0087c6-1704-494a-89ad-0b2aceb0832e | user_id=anonymous | method=POST | endpoint=/accounts/login/ | status_code=200 | execution_time=0.818s
+2026-09-22 12:11:34,784 INFO django.channels.server [mHTTP POST /accounts/login/ 200 [0.91, 127.0.0.1:52528][0m
+2026-09-22 12:11:56,401 INFO api API Request | request_id=01dd92ed-1c2d-479a-91b0-78376b4e76c8 | correlation_id=01dd92ed-1c2d-479a-91b0-78376b4e76c8 | user_id=95908ba4-67b4-479c-acd2-ca48ec708db7 | method=GET | endpoint=/api/v1/rides/ | status_code=200 | execution_time=0.207s
+2026-09-22 12:11:56,529 INFO django.channels.server [mHTTP GET /api/v1/rides/ 200 [0.40, 127.0.0.1:52528][0m
+2026-09-22 12:16:27,310 INFO django.utils.autoreload Watching for file changes with StatReloader
+2026-09-22 12:16:39,891 INFO accounts.views User login successful
+2026-09-22 12:16:39,894 INFO api API Request | request_id=f9e92149-537c-4b26-acb0-2ac46e9e95e9 | correlation_id=f9e92149-537c-4b26-acb0-2ac46e9e95e9 | user_id=anonymous | method=POST | endpoint=/accounts/login/ | status_code=200 | execution_time=1.169s
+2026-09-22 12:16:39,894 WARNING api Slow API | request_id=f9e92149-537c-4b26-acb0-2ac46e9e95e9 | correlation_id=f9e92149-537c-4b26-acb0-2ac46e9e95e9 | user_id=anonymous | method=POST | endpoint=/accounts/login/ | status_code=200 | execution_time=1.169s
+2026-09-22 12:16:39,930 INFO django.channels.server [mHTTP POST /accounts/login/ 200 [1.33, 127.0.0.1:52627][0m
+2026-09-22 12:16:56,984 ERROR api API Error | request_id=08a971fc-5b69-4893-b2a9-4e5bcbcc027d | correlation_id=08a971fc-5b69-4893-b2a9-4e5bcbcc027d | user_id=95908ba4-67b4-479c-acd2-ca48ec708db7 | method=POST | endpoint=/api/rides/ | execution_time=0.056s | error=RideStatus matching query does not exist.
+Traceback (most recent call last):
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\asgiref\sync.py", line 577, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\core\handlers\base.py", line 254, in _get_response_async
+    response = await wrapped_callback(
+               ^^^^^^^^^^^^^^^^^^^^^^^
+        request, *callback_args, **callback_kwargs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\asgiref\sync.py", line 526, in __call__
+    ret = await asyncio.shield(exec_coro)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\asgiref\current_thread_executor.py", line 35, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\asgiref\sync.py", line 581, in thread_handler
+    return func(*args, **kwargs)
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\asgiref\sync.py", line 508, in func
+    return context.run(run_child)
+           ~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\asgiref\sync.py", line 506, in run_child
+    return child()
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\rides\views.py", line 120, in perform_create
+    ride = create_ride_service(
+        user=self.request.user,
+        validated_data=serializer.validated_data,
+    )
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\rides\services\ride_service.py", line 119, in create_ride
+    requested_status = get_status("REQUESTED")
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\rides\services\ride_service.py", line 13, in get_status
+    return RideStatus.objects.get(name=status_name)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\models\query.py", line 639, in get
+    raise self.model.DoesNotExist(
+        "%s matching query does not exist." % self.model._meta.object_name
+    )
+rides.models.RideStatus.DoesNotExist: RideStatus matching query does not exist.
+2026-09-22 12:16:57,454 ERROR django.request Internal Server Error: /api/rides/
+Traceback (most recent call last):
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\asgiref\sync.py", line 577, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\core\handlers\exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\asgiref\sync.py", line 577, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\core\handlers\base.py", line 254, in _get_response_async
+    response = await wrapped_callback(
+               ^^^^^^^^^^^^^^^^^^^^^^^
+        request, *callback_args, **callback_kwargs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\asgiref\sync.py", line 526, in __call__
+    ret = await asyncio.shield(exec_coro)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\asgiref\current_thread_executor.py", line 35, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\asgiref\sync.py", line 581, in thread_handler
+    return func(*args, **kwargs)
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\asgiref\sync.py", line 508, in func
+    return context.run(run_child)
+           ~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\asgiref\sync.py", line 506, in run_child
+    return child()
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\rest_framework\mixins.py", line 19, in create
+    self.perform_create(serializer)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\rides\views.py", line 120, in perform_create
+    ride = create_ride_service(
+        user=self.request.user,
+        validated_data=serializer.validated_data,
+    )
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\rides\services\ride_service.py", line 119, in create_ride
+    requested_status = get_status("REQUESTED")
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\rides\services\ride_service.py", line 13, in get_status
+    return RideStatus.objects.get(name=status_name)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\models\query.py", line 639, in get
+    raise self.model.DoesNotExist(
+        "%s matching query does not exist." % self.model._meta.object_name
+    )
+rides.models.RideStatus.DoesNotExist: RideStatus matching query does not exist.
+2026-09-22 12:16:57,460 INFO api API Request | request_id=08a971fc-5b69-4893-b2a9-4e5bcbcc027d | correlation_id=08a971fc-5b69-4893-b2a9-4e5bcbcc027d | user_id=95908ba4-67b4-479c-acd2-ca48ec708db7 | method=POST | endpoint=/api/rides/ | status_code=500 | execution_time=0.532s
+2026-09-22 12:16:57,520 ERROR django.channels.server [35;1mHTTP POST /api/rides/ 500 [0.65, 127.0.0.1:52627][0m
+2026-09-22 12:27:54,027 INFO django.utils.autoreload Watching for file changes with StatReloader
+2026-09-22 12:28:18,529 INFO api API Request | request_id=657aa435-e205-4b42-a292-e744b8a2c31f | correlation_id=657aa435-e205-4b42-a292-e744b8a2c31f | user_id=95908ba4-67b4-479c-acd2-ca48ec708db7 | method=POST | endpoint=/api/rides/ | status_code=201 | execution_time=0.351s
+2026-09-22 12:28:18,615 INFO django.channels.server [mHTTP POST /api/rides/ 201 [0.79, 127.0.0.1:52858][0m
+2026-09-22 12:31:21,868 INFO accounts.views User login successful
+2026-09-22 12:31:21,870 INFO api API Request | request_id=1da56465-3d11-4ffc-b768-b589b422e7ad | correlation_id=1da56465-3d11-4ffc-b768-b589b422e7ad | user_id=anonymous | method=POST | endpoint=/accounts/login/ | status_code=200 | execution_time=0.871s
+2026-09-22 12:31:21,896 INFO django.channels.server [mHTTP POST /accounts/login/ 200 [0.99, 127.0.0.1:52975][0m
+2026-09-22 12:31:28,798 INFO accounts.views User login successful
+2026-09-22 12:31:28,799 INFO api API Request | request_id=44fc4d44-0959-48e0-91f9-d8ad551f09e9 | correlation_id=44fc4d44-0959-48e0-91f9-d8ad551f09e9 | user_id=anonymous | method=POST | endpoint=/accounts/login/ | status_code=200 | execution_time=0.875s
+2026-09-22 12:31:28,825 INFO django.channels.server [mHTTP POST /accounts/login/ 200 [0.97, 127.0.0.1:52975][0m
+2026-09-22 12:31:41,916 INFO api API Request | request_id=0441cbee-4d35-40ee-8df0-d6d484d74b9b | correlation_id=0441cbee-4d35-40ee-8df0-d6d484d74b9b | user_id=95908ba4-67b4-479c-acd2-ca48ec708db7 | method=GET | endpoint=/api/rides/72055556-876f-4302-882c-9e00b1485292/ | status_code=200 | execution_time=0.045s
+2026-09-22 12:31:41,949 INFO django.channels.server [mHTTP GET /api/rides/72055556-876f-4302-882c-9e00b1485292/ 200 [0.15, 127.0.0.1:52975][0m
+2026-09-22 12:32:31,054 INFO api API Request | request_id=81422d98-7fe1-4c31-8d8c-d2ea443638f8 | correlation_id=81422d98-7fe1-4c31-8d8c-d2ea443638f8 | user_id=95908ba4-67b4-479c-acd2-ca48ec708db7 | method=GET | endpoint=/api/rides/active/ | status_code=200 | execution_time=0.026s
+2026-09-22 12:32:31,080 INFO django.channels.server [mHTTP GET /api/rides/active/ 200 [0.11, 127.0.0.1:52975][0m
+2026-09-22 12:33:05,275 INFO api API Request | request_id=9c38b0ab-c67a-4694-9ab8-eb042250832f | correlation_id=9c38b0ab-c67a-4694-9ab8-eb042250832f | user_id=95908ba4-67b4-479c-acd2-ca48ec708db7 | method=POST | endpoint=/api/rides/cancel/ | status_code=405 | execution_time=0.014s
+2026-09-22 12:33:05,300 WARNING django.request Method Not Allowed: /api/rides/cancel/
+2026-09-22 12:33:05,301 WARNING django.channels.server [31;1mHTTP POST /api/rides/cancel/ 405 [0.10, 127.0.0.1:52975][0m
+2026-09-22 12:33:38,783 INFO rides.services.ride_service Ride cancelled successfully | ride_id=72055556-876f-4302-882c-9e00b1485292
+2026-09-22 12:33:38,786 INFO api API Request | request_id=c8cdc933-8204-4ee3-8f65-b97edf6ff100 | correlation_id=c8cdc933-8204-4ee3-8f65-b97edf6ff100 | user_id=95908ba4-67b4-479c-acd2-ca48ec708db7 | method=POST | endpoint=/api/rides/72055556-876f-4302-882c-9e00b1485292/cancel/ | status_code=200 | execution_time=0.045s
+2026-09-22 12:33:38,819 INFO django.channels.server [mHTTP POST /api/rides/72055556-876f-4302-882c-9e00b1485292/cancel/ 200 [0.14, 127.0.0.1:52975][0m
+2026-09-22 12:46:09,974 INFO django.utils.autoreload Watching for file changes with StatReloader
+2026-09-22 13:11:04,843 INFO django.utils.autoreload Watching for file changes with StatReloader
+2026-09-22 13:11:41,343 INFO accounts.views User login successful
+2026-09-22 13:11:41,346 INFO api API Request | request_id=9a0c628d-d984-41d1-8a11-d8c51e7e6910 | correlation_id=9a0c628d-d984-41d1-8a11-d8c51e7e6910 | user_id=anonymous | method=POST | endpoint=/accounts/login/ | status_code=200 | execution_time=1.221s
+2026-09-22 13:11:41,346 WARNING api Slow API | request_id=9a0c628d-d984-41d1-8a11-d8c51e7e6910 | correlation_id=9a0c628d-d984-41d1-8a11-d8c51e7e6910 | user_id=anonymous | method=POST | endpoint=/accounts/login/ | status_code=200 | execution_time=1.221s
+2026-09-22 13:11:41,422 INFO django.channels.server [mHTTP POST /accounts/login/ 200 [1.44, 127.0.0.1:53969][0m
+2026-09-22 13:12:06,453 INFO api API Request | request_id=3c0adf04-81fe-42f5-83f1-9a3febd37875 | correlation_id=3c0adf04-81fe-42f5-83f1-9a3febd37875 | user_id=95908ba4-67b4-479c-acd2-ca48ec708db7 | method=GET | endpoint=/api/v1/services/services/ | status_code=404 | execution_time=0.019s
+2026-09-22 13:12:06,478 WARNING django.request Not Found: /api/v1/services/services/
+2026-09-22 13:12:06,479 WARNING django.channels.server [33mHTTP GET /api/v1/services/services/ 404 [0.12, 127.0.0.1:53969][0m
+2026-09-22 13:13:52,461 INFO api API Request | request_id=d9141d12-4830-4afd-ad72-a63ea7e477d6 | correlation_id=d9141d12-4830-4afd-ad72-a63ea7e477d6 | user_id=95908ba4-67b4-479c-acd2-ca48ec708db7 | method=GET | endpoint=/api/v1/services/ | status_code=200 | execution_time=0.132s
+2026-09-22 13:13:52,508 INFO django.channels.server [mHTTP GET /api/v1/services/ 200 [0.27, 127.0.0.1:54051][0m
+2026-09-22 13:15:46,126 INFO api API Request | request_id=e58de962-18ff-4840-88a7-02ac789888e9 | correlation_id=e58de962-18ff-4840-88a7-02ac789888e9 | user_id=95908ba4-67b4-479c-acd2-ca48ec708db7 | method=GET | endpoint=/api/v1/services/ | status_code=200 | execution_time=0.049s
+2026-09-22 13:15:46,172 INFO django.channels.server [mHTTP GET /api/v1/services/?name=Bike 200 [0.16, 127.0.0.1:54144][0m
+2026-09-22 13:18:19,167 INFO accounts.views User login successful
+2026-09-22 13:18:19,169 INFO api API Request | request_id=f5311b4a-560b-4192-9802-db35ad57ec72 | correlation_id=f5311b4a-560b-4192-9802-db35ad57ec72 | user_id=anonymous | method=POST | endpoint=/accounts/login/ | status_code=200 | execution_time=0.873s
+2026-09-22 13:18:19,191 INFO django.channels.server [mHTTP POST /accounts/login/ 200 [0.97, 127.0.0.1:54233][0m
+2026-09-22 13:18:34,530 INFO api API Request | request_id=9e56d7e9-1044-4a4a-a685-11244c90c44d | correlation_id=9e56d7e9-1044-4a4a-a685-11244c90c44d | user_id=95908ba4-67b4-479c-acd2-ca48ec708db7 | method=GET | endpoint=/api/v1/services/ | status_code=200 | execution_time=0.036s
+2026-09-22 13:18:34,571 INFO django.channels.server [mHTTP GET /api/v1/services/?category=Bike 200 [0.14, 127.0.0.1:54233][0m
+2026-09-22 13:25:19,983 INFO django.utils.autoreload C:\Users\Admin\Documents\DJANGORESTPROJECT\services\views.py changed, reloading.
+2026-09-22 13:25:22,652 INFO django.utils.autoreload Watching for file changes with StatReloader
+2026-09-22 13:26:13,685 INFO django.utils.autoreload Watching for file changes with StatReloader
+2026-09-22 14:39:39,041 INFO django.utils.autoreload C:\Users\Admin\Documents\DJANGORESTPROJECT\services\views.py changed, reloading.
+2026-09-22 14:39:43,524 INFO django.utils.autoreload Watching for file changes with StatReloader
+2026-09-22 14:39:56,442 INFO django.utils.autoreload C:\Users\Admin\Documents\DJANGORESTPROJECT\services\views.py changed, reloading.
+2026-09-22 14:39:59,148 INFO django.utils.autoreload Watching for file changes with StatReloader
+2026-09-22 14:40:55,213 INFO django.utils.autoreload C:\Users\Admin\Documents\DJANGORESTPROJECT\services\views.py changed, reloading.
+2026-09-22 14:40:57,643 INFO django.utils.autoreload Watching for file changes with StatReloader
+2026-09-22 14:41:35,299 INFO django.utils.autoreload Watching for file changes with StatReloader
+2026-09-22 14:47:27,395 INFO django.utils.autoreload C:\Users\Admin\Documents\DJANGORESTPROJECT\services\models.py changed, reloading.
+2026-09-22 14:47:30,588 INFO django.utils.autoreload Watching for file changes with StatReloader
+2026-09-22 14:57:30,902 INFO django.utils.autoreload Watching for file changes with StatReloader
+2026-09-22 15:03:56,197 INFO django.utils.autoreload C:\Users\Admin\Documents\DJANGORESTPROJECT\services\views.py changed, reloading.
+2026-09-22 15:03:58,901 INFO django.utils.autoreload Watching for file changes with StatReloader
+2026-09-22 15:04:50,717 INFO django.utils.autoreload C:\Users\Admin\Documents\DJANGORESTPROJECT\services\views.py changed, reloading.
+2026-09-22 15:04:53,566 INFO django.utils.autoreload Watching for file changes with StatReloader

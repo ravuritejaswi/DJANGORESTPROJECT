@@ -105,6 +105,10 @@ urlpatterns = [
     ),
     path("redoc/", schema_view.with_ui("redoc", cache_timeout=0), name="schema-redoc"),
     path("silk/", include("silk.urls", namespace="silk")),
+    path(
+    "api/v1/",
+    include("services.urls")
+    ),
 ]
 
 if settings.DEBUG:
