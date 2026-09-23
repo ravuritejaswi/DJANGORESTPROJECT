@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Booking
+from .models import Booking, Payment
 from .models import Category, Provider, Service
 
 
@@ -103,3 +103,29 @@ class BookingSerializer(serializers.ModelSerializer):
             "created_at",
             "updated_at",
         ]
+
+class PaymentInitiationSerializer(serializers.Serializer):
+    booking = serializers.UUIDField()
+    amount = serializers.DecimalField(
+        max_digits=10,
+        decimal_places=2
+    )
+    payment_method = serializers.ChoiceField(
+        choices=Payment.Method.choices
+    )
+
+class PaymentWebhookSerializer(serializers.Serializer):
+    payment_id = serializers.UUIDField()
+    transaction_id = serializers.CharField(
+        max_length=255
+    )
+    status = serializers.ChoiceField(
+        choices=[
+            Payment.Status.SUCCESS,
+            Payment.Status.FAILED,
+        ]
+    )
+    amount = serializers.DecimalField(
+        max_digits=10,
+        decimal_places=2
+    )

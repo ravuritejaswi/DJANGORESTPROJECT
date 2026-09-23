@@ -1,4 +1,5 @@
 from decimal import Decimal, InvalidOperation
+from unicodedata import decimal
 from uuid import UUID
 from rest_framework.decorators import action
 from rest_framework.filters import OrderingFilter
@@ -10,8 +11,18 @@ from .permissions import IsAdminOrProviderOwner
 from .serializers import ServiceSerializer
 from django.db.models import Q
 from .models import Booking, Service
-from .serializers import BookingSerializer, ServiceSerializer
+from .serializers import BookingSerializer, ServiceSerializer, PaymentInitiationSerializer
+from .models import Booking, Payment
+from .payment_gateway import MockPaymentGateway
 
+from django.db import transaction
+from django.shortcuts import get_object_or_404
+
+from rest_framework.views import APIView
+from rest_framework.response import Response
+
+from rest_framework.permissions import AllowAny
+from .serializers import PaymentWebhookSerializer
 
 class ServiceViewSet(viewsets.ModelViewSet):
     """
@@ -280,5 +291,352 @@ class BookingViewSet(viewsets.ModelViewSet):
 
         return Response(
             BookingSerializer(booking).data,
+            status=status.HTTP_200_OK
+        )
+
+class PaymentInitiationAPIView(APIView):
+    """
+    API for initiating a payment for a booking.
+    """
+
+    permission_classes = [
+        IsAuthenticated,
+    ]
+
+    def post(self, request):
+        serializer = PaymentInitiationSerializer(
+            data=request.data
+        )
+
+        serializer.is_valid(raise_exception=True)
+
+        booking_id = serializer.validated_data["booking"]
+        requested_amount = serializer.validated_data["amount"]
+        payment_method = serializer.validated_data["payment_method"]
+
+        # 1. Check whether the booking exists.
+        booking = get_object_or_404(
+            Booking,
+            id=booking_id
+        )
+
+        # 2. Check whether the booking belongs to the user.
+        if booking.customer_id != request.user.id:
+            return Response(
+                {
+                    "detail": (
+                        "You can initiate payment only "
+                        "for your own booking."
+                    )
+                },
+                status=status.HTTP_403_FORBIDDEN
+            )
+
+        # 3. Check whether the requested amount is correct.
+        if requested_amount != booking.amount:
+            return Response(
+                {
+                    "detail": (
+                        "The payment amount does not "
+                        "match the booking amount."
+                    ),
+                    "booking_amount": str(booking.amount),
+                },
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        # 4. Check whether the booking is payable.
+        payable_statuses = [
+            Booking.Status.PENDING,
+            Booking.Status.CONFIRMED,
+        ]
+
+        if booking.status not in payable_statuses:
+            return Response(
+                {
+                    "detail": (
+                        "This booking is not payable "
+                        "in its current status."
+                    )
+                },
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        # 5. Prevent duplicate payments.
+        if Payment.objects.filter(
+            booking=booking
+        ).exists():
+            return Response(
+                {
+                    "detail": (
+                        "A payment already exists "
+                        "for this booking."
+                    )
+                },
+                status=status.HTTP_409_CONFLICT
+            )
+
+        # 6. Create the payment.
+        with transaction.atomic():
+            payment = Payment.objects.create(
+                booking=booking,
+                amount=booking.amount,
+                payment_method=payment_method,
+                payment_status=Payment.Status.PENDING,
+            )
+
+        return Response(
+            {
+                "message": "Payment initiated successfully.",
+                "payment_id": str(payment.id),
+                "booking_id": str(payment.booking_id),
+                "amount": str(payment.amount),
+                "payment_status": payment.payment_status,
+                "payment_method": payment.payment_method,
+                "created_at": payment.created_at,
+            },
+            status=status.HTTP_201_CREATED
+        )
+
+class MockPaymentProcessAPIView(APIView):
+    """
+    Simulates payment processing using a mock gateway.
+    """
+
+    permission_classes = [
+        IsAuthenticated,
+    ]
+
+    def post(self, request, payment_id):
+        try:
+            payment = Payment.objects.select_related(
+                "booking"
+            ).get(
+                id=payment_id
+            )
+        except Payment.DoesNotExist:
+            return Response(
+                {
+                    "detail": "Payment not found."
+                },
+                status=status.HTTP_404_NOT_FOUND
+            )
+
+        # Verify that the payment belongs
+        # to the logged-in customer.
+        if payment.booking.customer_id != request.user.id:
+            return Response(
+                {
+                    "detail": (
+                        "You do not have permission "
+                        "to process this payment."
+                    )
+                },
+                status=status.HTTP_403_FORBIDDEN
+            )
+
+        # Prevent processing the same payment twice.
+        if payment.payment_status != Payment.Status.PENDING:
+            return Response(
+                {
+                    "detail": (
+                        "Only pending payments "
+                        "can be processed."
+                    )
+                },
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        mock_result = request.data.get(
+            "result",
+            "SUCCESS"
+        )
+
+        mock_result = str(mock_result).upper()
+
+        if mock_result not in [
+            "SUCCESS",
+            "FAILED",
+        ]:
+            return Response(
+                {
+                    "detail": (
+                        "Result must be SUCCESS "
+                        "or FAILED."
+                    )
+                },
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        if mock_result == "SUCCESS":
+            gateway_result = (
+                MockPaymentGateway.process_payment()
+            )
+
+            new_status = Payment.Status.SUCCESS
+
+            transaction_id = (
+                gateway_result["transaction_id"]
+            )
+
+        else:
+            new_status = Payment.Status.FAILED
+
+            transaction_id = (
+                f"MOCK-FAILED-{payment.id.hex[:12].upper()}"
+            )
+
+        with transaction.atomic():
+            payment.payment_status = new_status
+            payment.transaction_id = transaction_id
+
+            payment.save(
+                update_fields=[
+                    "payment_status",
+                    "transaction_id",
+                ]
+            )
+
+        return Response(
+            {
+                "message": "Payment processing completed.",
+                "payment_id": str(payment.id),
+                "booking_id": str(payment.booking_id),
+                "amount": str(payment.amount),
+                "payment_status": payment.payment_status,
+                "transaction_id": payment.transaction_id,
+            },
+            status=status.HTTP_200_OK
+        )
+
+class PaymentWebhookAPIView(APIView):
+    """
+    Handles payment confirmation events from
+    the mock payment gateway.
+    """
+
+    permission_classes = [
+        AllowAny,
+    ]
+
+    def post(self, request):
+        serializer = PaymentWebhookSerializer(
+            data=request.data
+        )
+
+        serializer.is_valid(raise_exception=True)
+
+        payment_id = serializer.validated_data[
+            "payment_id"
+        ]
+
+        transaction_id = serializer.validated_data[
+            "transaction_id"
+        ]
+
+        event_status = serializer.validated_data[
+            "status"
+        ]
+
+        event_amount = serializer.validated_data[
+            "amount"
+        ]
+
+        try:
+            payment = Payment.objects.select_related(
+                "booking"
+            ).get(
+                id=payment_id
+            )
+        except Payment.DoesNotExist:
+            return Response(
+                {
+                    "detail": "Payment not found."
+                },
+                status=status.HTTP_404_NOT_FOUND
+            )
+
+        # Validate the payment amount.
+        if event_amount != payment.amount:
+            return Response(
+                {
+                    "detail": (
+                        "The webhook amount does not "
+                        "match the payment amount."
+                    )
+                },
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        # Validate the transaction ID when
+        # an existing transaction ID is present.
+        if (
+            payment.transaction_id
+            and payment.transaction_id != transaction_id
+        ):
+            return Response(
+                {
+                    "detail": (
+                        "The transaction ID does not "
+                        "match the payment."
+                    )
+                },
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        # Handle repeated webhook events safely.
+        if payment.payment_status == event_status:
+            if payment.transaction_id == transaction_id:
+                return Response(
+                    {
+                        "message": (
+                            "This payment event was "
+                            "already processed."
+                        ),
+                        "payment_status": (
+                            payment.payment_status
+                        ),
+                    },
+                    status=status.HTTP_200_OK
+                )
+
+        # Do not change a completed payment
+        # to a different status.
+        if payment.payment_status in [
+            Payment.Status.SUCCESS,
+            Payment.Status.FAILED,
+        ]:
+            return Response(
+                {
+                    "detail": (
+                        "This payment has already "
+                        "been processed."
+                    )
+                },
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        booking = payment.booking
+
+        with transaction.atomic():
+            payment.payment_status = event_status
+            payment.transaction_id = transaction_id
+            payment.save()
+
+            if event_status == Payment.Status.SUCCESS:
+                booking.status = Booking.Status.CONFIRMED
+                booking.save()
+
+        return Response(
+            {
+                "message": (
+                    "Payment webhook processed successfully."
+                ),
+                "payment_id": str(payment.id),
+                "booking_id": str(booking.id),
+                "payment_status": payment.payment_status,
+                "booking_status": booking.status,
+                "transaction_id": payment.transaction_id,
+            },
             status=status.HTTP_200_OK
         )

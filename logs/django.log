@@ -20897,3 +20897,68 @@ rides.models.RideStatus.DoesNotExist: RideStatus matching query does not exist.
 2026-09-22 15:03:58,901 INFO django.utils.autoreload Watching for file changes with StatReloader
 2026-09-22 15:04:50,717 INFO django.utils.autoreload C:\Users\Admin\Documents\DJANGORESTPROJECT\services\views.py changed, reloading.
 2026-09-22 15:04:53,566 INFO django.utils.autoreload Watching for file changes with StatReloader
+2026-09-22 22:42:45,064 INFO django.utils.autoreload Watching for file changes with StatReloader
+2026-09-22 22:43:52,005 INFO accounts.views User login successful
+2026-09-22 22:43:52,008 INFO api API Request | request_id=1dc601d0-6755-4db2-968b-eedc22fab8ed | correlation_id=1dc601d0-6755-4db2-968b-eedc22fab8ed | user_id=anonymous | method=POST | endpoint=/accounts/login/ | status_code=200 | execution_time=1.664s
+2026-09-22 22:43:52,008 WARNING api Slow API | request_id=1dc601d0-6755-4db2-968b-eedc22fab8ed | correlation_id=1dc601d0-6755-4db2-968b-eedc22fab8ed | user_id=anonymous | method=POST | endpoint=/accounts/login/ | status_code=200 | execution_time=1.664s
+2026-09-22 22:43:52,149 INFO django.channels.server [mHTTP POST /accounts/login/ 200 [2.16, 127.0.0.1:50495][0m
+2026-09-22 22:44:54,552 INFO api API Request | request_id=6b7ba733-5dfe-4447-ac4d-bfadde49f4f4 | correlation_id=6b7ba733-5dfe-4447-ac4d-bfadde49f4f4 | user_id=anonymous | method=POST | endpoint=/api/v1/payments/initiate/ | status_code=404 | execution_time=0.114s
+2026-09-22 22:44:54,627 WARNING django.request Not Found: /api/v1/payments/initiate/
+2026-09-22 22:44:54,628 WARNING django.channels.server [33mHTTP POST /api/v1/payments/initiate/ 404 [0.31, 127.0.0.1:50521][0m
+2026-09-22 22:46:41,462 INFO django.utils.autoreload C:\Users\Admin\Documents\DJANGORESTPROJECT\services\urls.py changed, reloading.
+2026-09-22 22:46:44,739 INFO django.utils.autoreload Watching for file changes with StatReloader
+2026-09-22 22:47:34,149 INFO django.utils.autoreload C:\Users\Admin\Documents\DJANGORESTPROJECT\config\urls.py changed, reloading.
+2026-09-22 22:47:36,497 INFO django.utils.autoreload Watching for file changes with StatReloader
+2026-09-22 22:48:08,276 INFO django.utils.autoreload Watching for file changes with StatReloader
+2026-09-22 22:48:33,588 INFO api API Request | request_id=655157ea-49fb-4680-99dc-9e0b478413eb | correlation_id=655157ea-49fb-4680-99dc-9e0b478413eb | user_id=95908ba4-67b4-479c-acd2-ca48ec708db7 | method=POST | endpoint=/api/v1/payments/initiate/ | status_code=400 | execution_time=0.236s
+2026-09-22 22:48:33,671 WARNING django.request Bad Request: /api/v1/payments/initiate/
+2026-09-22 22:48:33,672 WARNING django.channels.server [31;1mHTTP POST /api/v1/payments/initiate/ 400 [0.43, 127.0.0.1:50610][0m
+2026-09-22 22:48:51,385 INFO api API Request | request_id=f2c6b0eb-7d4e-47eb-88f1-128c3f8445e7 | correlation_id=f2c6b0eb-7d4e-47eb-88f1-128c3f8445e7 | user_id=95908ba4-67b4-479c-acd2-ca48ec708db7 | method=POST | endpoint=/api/v1/payments/initiate/ | status_code=400 | execution_time=0.014s
+2026-09-22 22:48:51,419 WARNING django.request Bad Request: /api/v1/payments/initiate/
+2026-09-22 22:48:51,419 WARNING django.channels.server [31;1mHTTP POST /api/v1/payments/initiate/ 400 [0.11, 127.0.0.1:50610][0m
+2026-09-23 09:24:15,366 INFO django.utils.autoreload Watching for file changes with StatReloader
+2026-09-23 09:24:39,311 INFO accounts.views User login successful
+2026-09-23 09:24:39,313 INFO api API Request | request_id=59db7a90-c8b9-4265-b031-dd28e246054b | correlation_id=59db7a90-c8b9-4265-b031-dd28e246054b | user_id=anonymous | method=POST | endpoint=/accounts/login/ | status_code=200 | execution_time=1.571s
+2026-09-23 09:24:39,313 WARNING api Slow API | request_id=59db7a90-c8b9-4265-b031-dd28e246054b | correlation_id=59db7a90-c8b9-4265-b031-dd28e246054b | user_id=anonymous | method=POST | endpoint=/accounts/login/ | status_code=200 | execution_time=1.571s
+2026-09-23 09:24:39,451 INFO django.channels.server [mHTTP POST /accounts/login/ 200 [2.03, 127.0.0.1:50498][0m
+2026-09-23 09:26:19,492 INFO api API Request | request_id=ea06e10d-80cb-4691-bbe2-7a5a75e169a6 | correlation_id=ea06e10d-80cb-4691-bbe2-7a5a75e169a6 | user_id=95908ba4-67b4-479c-acd2-ca48ec708db7 | method=POST | endpoint=/api/v1/payments/initiate/ | status_code=400 | execution_time=0.048s
+2026-09-23 09:26:19,520 WARNING django.request Bad Request: /api/v1/payments/initiate/
+2026-09-23 09:26:19,520 WARNING django.channels.server [31;1mHTTP POST /api/v1/payments/initiate/ 400 [0.31, 127.0.0.1:50565][0m
+2026-09-23 09:30:24,470 INFO api API Request | request_id=e9cf3e1b-598e-43ad-bf62-fd074e412475 | correlation_id=e9cf3e1b-598e-43ad-bf62-fd074e412475 | user_id=95908ba4-67b4-479c-acd2-ca48ec708db7 | method=GET | endpoint=/api/v1/bookings/ | status_code=200 | execution_time=0.157s
+2026-09-23 09:30:24,536 INFO django.channels.server [mHTTP GET /api/v1/bookings/ 200 [0.43, 127.0.0.1:50617][0m
+2026-09-23 09:36:03,873 INFO accounts.views User login successful
+2026-09-23 09:36:03,875 INFO api API Request | request_id=8c59edc8-e734-4426-a4a7-0a0dc98da8ed | correlation_id=8c59edc8-e734-4426-a4a7-0a0dc98da8ed | user_id=anonymous | method=POST | endpoint=/accounts/login/ | status_code=200 | execution_time=0.948s
+2026-09-23 09:36:03,907 INFO django.channels.server [mHTTP POST /accounts/login/ 200 [1.05, 127.0.0.1:50763][0m
+2026-09-23 09:36:47,277 INFO api API Request | request_id=421a296a-5c25-47c6-877d-d321b23b51a3 | correlation_id=421a296a-5c25-47c6-877d-d321b23b51a3 | user_id=95908ba4-67b4-479c-acd2-ca48ec708db7 | method=GET | endpoint=/api/v1/bookings/ | status_code=200 | execution_time=0.049s
+2026-09-23 09:36:47,334 INFO django.channels.server [mHTTP GET /api/v1/bookings/ 200 [0.32, 127.0.0.1:50763][0m
+2026-09-23 09:37:13,352 INFO api API Request | request_id=460091c0-cf05-42e0-8298-4c6928202274 | correlation_id=460091c0-cf05-42e0-8298-4c6928202274 | user_id=95908ba4-67b4-479c-acd2-ca48ec708db7 | method=POST | endpoint=/api/v1/bookings/ | status_code=201 | execution_time=0.076s
+2026-09-23 09:37:13,382 INFO django.channels.server [mHTTP POST /api/v1/bookings/ 201 [0.17, 127.0.0.1:50763][0m
+2026-09-23 09:38:12,165 INFO api API Request | request_id=8918a71d-4e9d-4c5a-bf9d-2ae86f9343fc | correlation_id=8918a71d-4e9d-4c5a-bf9d-2ae86f9343fc | user_id=95908ba4-67b4-479c-acd2-ca48ec708db7 | method=GET | endpoint=/api/v1/bookings/ | status_code=200 | execution_time=0.088s
+2026-09-23 09:38:12,209 INFO django.channels.server [mHTTP GET /api/v1/bookings/ 200 [0.37, 127.0.0.1:50763][0m
+2026-09-23 09:41:06,025 INFO accounts.views User login successful
+2026-09-23 09:41:06,026 INFO api API Request | request_id=a52f4aaa-44b0-4b94-8a65-51b9f63dcc07 | correlation_id=a52f4aaa-44b0-4b94-8a65-51b9f63dcc07 | user_id=anonymous | method=POST | endpoint=/accounts/login/ | status_code=200 | execution_time=0.904s
+2026-09-23 09:41:06,056 INFO django.channels.server [mHTTP POST /accounts/login/ 200 [1.02, 127.0.0.1:50918][0m
+2026-09-23 09:46:26,616 INFO accounts.views User login successful
+2026-09-23 09:46:26,618 INFO api API Request | request_id=369a9ded-4ae4-4311-9eaa-b2d006d3cf7f | correlation_id=369a9ded-4ae4-4311-9eaa-b2d006d3cf7f | user_id=anonymous | method=POST | endpoint=/accounts/login/ | status_code=200 | execution_time=0.879s
+2026-09-23 09:46:26,654 INFO django.channels.server [mHTTP POST /accounts/login/ 200 [0.99, 127.0.0.1:51113][0m
+2026-09-23 09:46:52,494 INFO api API Request | request_id=91d2e816-9ab4-44a8-8bf1-0a0aaa9739a0 | correlation_id=91d2e816-9ab4-44a8-8bf1-0a0aaa9739a0 | user_id=95908ba4-67b4-479c-acd2-ca48ec708db7 | method=POST | endpoint=/api/v1/payments/initiate/ | status_code=201 | execution_time=0.060s
+2026-09-23 09:46:52,528 INFO django.channels.server [mHTTP POST /api/v1/payments/initiate/ 201 [0.16, 127.0.0.1:51113][0m
+2026-09-23 10:22:05,834 INFO django.utils.autoreload C:\Users\Admin\Documents\DJANGORESTPROJECT\services\serializers.py changed, reloading.
+2026-09-23 10:22:09,289 INFO django.utils.autoreload Watching for file changes with StatReloader
+2026-09-23 10:24:19,953 INFO django.utils.autoreload C:\Users\Admin\Documents\DJANGORESTPROJECT\services\views.py changed, reloading.
+2026-09-23 10:24:22,898 INFO django.utils.autoreload Watching for file changes with StatReloader
+2026-09-23 10:24:44,400 INFO django.utils.autoreload C:\Users\Admin\Documents\DJANGORESTPROJECT\services\views.py changed, reloading.
+2026-09-23 10:24:47,080 INFO django.utils.autoreload Watching for file changes with StatReloader
+2026-09-23 10:25:21,805 INFO django.utils.autoreload C:\Users\Admin\Documents\DJANGORESTPROJECT\services\urls.py changed, reloading.
+2026-09-23 10:25:25,711 INFO django.utils.autoreload Watching for file changes with StatReloader
+2026-09-23 10:25:55,563 INFO django.utils.autoreload C:\Users\Admin\Documents\DJANGORESTPROJECT\services\urls.py changed, reloading.
+2026-09-23 10:25:57,973 INFO django.utils.autoreload Watching for file changes with StatReloader
+2026-09-23 10:31:29,562 INFO django.utils.autoreload Watching for file changes with StatReloader
+2026-09-23 10:31:40,834 INFO api API Request | request_id=5906ee06-4c27-4f1c-bf4d-fe4c056dd8b2 | correlation_id=5906ee06-4c27-4f1c-bf4d-fe4c056dd8b2 | user_id=anonymous | method=POST | endpoint=/api/v1/payments/initiate/ | status_code=401 | execution_time=0.085s
+2026-09-23 10:31:40,899 WARNING django.request Unauthorized: /api/v1/payments/initiate/
+2026-09-23 10:31:40,900 WARNING django.channels.server [31;1mHTTP POST /api/v1/payments/initiate/ 401 [0.63, 127.0.0.1:51737][0m
+2026-09-23 10:31:51,918 INFO api API Request | request_id=1761daea-f4ca-4724-90ce-2f8f84d07184 | correlation_id=1761daea-f4ca-4724-90ce-2f8f84d07184 | user_id=anonymous | method=GET | endpoint=/api/v1/bookings/ | status_code=401 | execution_time=0.003s
+2026-09-23 10:31:51,937 WARNING django.request Unauthorized: /api/v1/bookings/
+2026-09-23 10:31:51,937 WARNING django.channels.server [31;1mHTTP GET /api/v1/bookings/ 401 [0.09, 127.0.0.1:51737][0m
+2026-09-23 10:49:45,640 INFO django.utils.autoreload C:\Users\Admin\Documents\DJANGORESTPROJECT\services\models.py changed, reloading.
+2026-09-23 10:49:48,325 INFO django.utils.autoreload Watching for file changes with StatReloader
