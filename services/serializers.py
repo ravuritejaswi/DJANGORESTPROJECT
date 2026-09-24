@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import Booking, Payment
-from .models import Category, Provider, Service
+from .models import Category, Provider, Service, ServiceImage
 
 
 class ServiceSerializer(serializers.ModelSerializer):
@@ -129,3 +129,18 @@ class PaymentWebhookSerializer(serializers.Serializer):
         max_digits=10,
         decimal_places=2
     )
+
+class ServiceImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ServiceImage
+        fields = [
+            "id",
+            "service",
+            "image",
+            "uploaded_at",
+        ]
+        read_only_fields = [
+            "id",
+            "service",
+            "uploaded_at",
+        ]

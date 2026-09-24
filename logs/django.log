@@ -20962,3 +20962,702 @@ rides.models.RideStatus.DoesNotExist: RideStatus matching query does not exist.
 2026-09-23 10:31:51,937 WARNING django.channels.server [31;1mHTTP GET /api/v1/bookings/ 401 [0.09, 127.0.0.1:51737][0m
 2026-09-23 10:49:45,640 INFO django.utils.autoreload C:\Users\Admin\Documents\DJANGORESTPROJECT\services\models.py changed, reloading.
 2026-09-23 10:49:48,325 INFO django.utils.autoreload Watching for file changes with StatReloader
+2026-09-24 12:15:38,701 INFO django.utils.autoreload Watching for file changes with StatReloader
+2026-09-24 12:15:46,761 INFO accounts.views User login successful
+2026-09-24 12:15:46,763 INFO api API Request | request_id=24ff57ed-f631-4bd6-adb2-9cbee135ad8d | correlation_id=24ff57ed-f631-4bd6-adb2-9cbee135ad8d | user_id=anonymous | method=POST | endpoint=/accounts/login/ | status_code=200 | execution_time=1.661s
+2026-09-24 12:15:46,763 WARNING api Slow API | request_id=24ff57ed-f631-4bd6-adb2-9cbee135ad8d | correlation_id=24ff57ed-f631-4bd6-adb2-9cbee135ad8d | user_id=anonymous | method=POST | endpoint=/accounts/login/ | status_code=200 | execution_time=1.661s
+2026-09-24 12:15:46,857 INFO django.channels.server [mHTTP POST /accounts/login/ 200 [1.98, 127.0.0.1:50615][0m
+2026-09-24 12:16:29,704 INFO api API Request | request_id=d9517c4e-3f86-44d3-b577-70fcf0d9203e | correlation_id=d9517c4e-3f86-44d3-b577-70fcf0d9203e | user_id=95908ba4-67b4-479c-acd2-ca48ec708db7 | method=GET | endpoint=/api/v1/accounts/profile-crud/ | status_code=404 | execution_time=0.031s
+2026-09-24 12:16:29,747 WARNING django.request Not Found: /api/v1/accounts/profile-crud/
+2026-09-24 12:16:29,748 WARNING django.channels.server [33mHTTP GET /api/v1/accounts/profile-crud/ 404 [0.14, 127.0.0.1:50615][0m
+2026-09-24 12:27:20,196 INFO api API Request | request_id=a4009e1a-3b38-41e0-9156-6b083fefd8eb | correlation_id=a4009e1a-3b38-41e0-9156-6b083fefd8eb | user_id=95908ba4-67b4-479c-acd2-ca48ec708db7 | method=POST | endpoint=/api/v1/accounts/profile-crud/ | status_code=201 | execution_time=0.088s
+2026-09-24 12:27:20,251 INFO django.channels.server [mHTTP POST /api/v1/accounts/profile-crud/ 201 [0.24, 127.0.0.1:50807][0m
+2026-09-24 12:32:30,814 ERROR api API Error | request_id=196fe52d-de90-4c01-a079-2afe393b64a8 | correlation_id=196fe52d-de90-4c01-a079-2afe393b64a8 | user_id=95908ba4-67b4-479c-acd2-ca48ec708db7 | method=POST | endpoint=/api/v1/accounts/profile-crud/ | execution_time=0.361s | error=duplicate key value violates unique constraint "accounts_profile_user_id_key"
+DETAIL:  Key (user_id)=(95908ba4-67b4-479c-acd2-ca48ec708db7) already exists.
+Traceback (most recent call last):
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "accounts_profile_user_id_key"
+DETAIL:  Key (user_id)=(95908ba4-67b4-479c-acd2-ca48ec708db7) already exists.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\asgiref\sync.py", line 577, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\core\handlers\base.py", line 254, in _get_response_async
+    response = await wrapped_callback(
+               ^^^^^^^^^^^^^^^^^^^^^^^
+        request, *callback_args, **callback_kwargs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\asgiref\sync.py", line 526, in __call__
+    ret = await asyncio.shield(exec_coro)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\asgiref\current_thread_executor.py", line 35, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\asgiref\sync.py", line 581, in thread_handler
+    return func(*args, **kwargs)
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\asgiref\sync.py", line 508, in func
+    return context.run(run_child)
+           ~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\asgiref\sync.py", line 506, in run_child
+    return child()
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\views\generic\base.py", line 106, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\accounts\views.py", line 205, in post
+    serializer.save(user=request.user, created_by=request.user, updated_by=request.user)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\rest_framework\serializers.py", line 210, in save
+    self.instance = self.create(validated_data)
+                    ~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\rest_framework\serializers.py", line 1011, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\models\query.py", line 669, in create
+    obj.save(force_insert=True, using=self.db)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\models\base.py", line 874, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\models\base.py", line 966, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\models\base.py", line 1169, in _save_table
+    results = self._do_insert(
+        cls._base_manager, using, insert_fields, returning_fields, raw
+    )
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\models\base.py", line 1220, in _do_insert
+    return manager._insert(
+           ~~~~~~~~~~~~~~~^
+        [self],
+        ^^^^^^^
+    ...<3 lines>...
+        raw=raw,
+        ^^^^^^^^
+    )
+    ^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\models\query.py", line 1918, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1925, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\utils.py", line 94, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+django.db.utils.IntegrityError: duplicate key value violates unique constraint "accounts_profile_user_id_key"
+DETAIL:  Key (user_id)=(95908ba4-67b4-479c-acd2-ca48ec708db7) already exists.
+
+2026-09-24 12:32:31,219 ERROR django.request Internal Server Error: /api/v1/accounts/profile-crud/
+Traceback (most recent call last):
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "accounts_profile_user_id_key"
+DETAIL:  Key (user_id)=(95908ba4-67b4-479c-acd2-ca48ec708db7) already exists.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\asgiref\sync.py", line 577, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\core\handlers\exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\asgiref\sync.py", line 577, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\core\handlers\base.py", line 254, in _get_response_async
+    response = await wrapped_callback(
+               ^^^^^^^^^^^^^^^^^^^^^^^
+        request, *callback_args, **callback_kwargs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\asgiref\sync.py", line 526, in __call__
+    ret = await asyncio.shield(exec_coro)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\asgiref\current_thread_executor.py", line 35, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\asgiref\sync.py", line 581, in thread_handler
+    return func(*args, **kwargs)
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\asgiref\sync.py", line 508, in func
+    return context.run(run_child)
+           ~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\asgiref\sync.py", line 506, in run_child
+    return child()
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\views\generic\base.py", line 106, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\accounts\views.py", line 205, in post
+    serializer.save(user=request.user, created_by=request.user, updated_by=request.user)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\rest_framework\serializers.py", line 210, in save
+    self.instance = self.create(validated_data)
+                    ~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\rest_framework\serializers.py", line 1011, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\models\query.py", line 669, in create
+    obj.save(force_insert=True, using=self.db)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\models\base.py", line 874, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\models\base.py", line 966, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\models\base.py", line 1169, in _save_table
+    results = self._do_insert(
+        cls._base_manager, using, insert_fields, returning_fields, raw
+    )
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\models\base.py", line 1220, in _do_insert
+    return manager._insert(
+           ~~~~~~~~~~~~~~~^
+        [self],
+        ^^^^^^^
+    ...<3 lines>...
+        raw=raw,
+        ^^^^^^^^
+    )
+    ^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\models\query.py", line 1918, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1925, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\utils.py", line 94, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+django.db.utils.IntegrityError: duplicate key value violates unique constraint "accounts_profile_user_id_key"
+DETAIL:  Key (user_id)=(95908ba4-67b4-479c-acd2-ca48ec708db7) already exists.
+
+2026-09-24 12:32:31,230 INFO api API Request | request_id=196fe52d-de90-4c01-a079-2afe393b64a8 | correlation_id=196fe52d-de90-4c01-a079-2afe393b64a8 | user_id=95908ba4-67b4-479c-acd2-ca48ec708db7 | method=POST | endpoint=/api/v1/accounts/profile-crud/ | status_code=500 | execution_time=0.777s
+2026-09-24 12:32:31,274 ERROR django.channels.server [35;1mHTTP POST /api/v1/accounts/profile-crud/ 500 [0.90, 127.0.0.1:50926][0m
+2026-09-24 12:32:55,452 INFO api API Request | request_id=9842883d-799d-4660-9ae4-2f3cb332e547 | correlation_id=9842883d-799d-4660-9ae4-2f3cb332e547 | user_id=95908ba4-67b4-479c-acd2-ca48ec708db7 | method=PATCH | endpoint=/api/v1/accounts/profile-crud/ | status_code=405 | execution_time=0.017s
+2026-09-24 12:32:55,508 WARNING django.request Method Not Allowed: /api/v1/accounts/profile-crud/
+2026-09-24 12:32:55,509 WARNING django.channels.server [31;1mHTTP PATCH /api/v1/accounts/profile-crud/ 405 [0.20, 127.0.0.1:50926][0m
+2026-09-24 12:33:14,457 ERROR api API Error | request_id=a62588f8-2dcd-4856-b6f2-c661b16f768b | correlation_id=a62588f8-2dcd-4856-b6f2-c661b16f768b | user_id=95908ba4-67b4-479c-acd2-ca48ec708db7 | method=POST | endpoint=/api/v1/accounts/profile-crud/ | execution_time=0.032s | error=duplicate key value violates unique constraint "accounts_profile_user_id_key"
+DETAIL:  Key (user_id)=(95908ba4-67b4-479c-acd2-ca48ec708db7) already exists.
+Traceback (most recent call last):
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "accounts_profile_user_id_key"
+DETAIL:  Key (user_id)=(95908ba4-67b4-479c-acd2-ca48ec708db7) already exists.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\asgiref\sync.py", line 577, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\core\handlers\base.py", line 254, in _get_response_async
+    response = await wrapped_callback(
+               ^^^^^^^^^^^^^^^^^^^^^^^
+        request, *callback_args, **callback_kwargs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\asgiref\sync.py", line 526, in __call__
+    ret = await asyncio.shield(exec_coro)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\asgiref\current_thread_executor.py", line 35, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\asgiref\sync.py", line 581, in thread_handler
+    return func(*args, **kwargs)
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\asgiref\sync.py", line 508, in func
+    return context.run(run_child)
+           ~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\asgiref\sync.py", line 506, in run_child
+    return child()
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\views\generic\base.py", line 106, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\accounts\views.py", line 205, in post
+    serializer.save(user=request.user, created_by=request.user, updated_by=request.user)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\rest_framework\serializers.py", line 210, in save
+    self.instance = self.create(validated_data)
+                    ~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\rest_framework\serializers.py", line 1011, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\models\query.py", line 669, in create
+    obj.save(force_insert=True, using=self.db)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\models\base.py", line 874, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\models\base.py", line 966, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\models\base.py", line 1169, in _save_table
+    results = self._do_insert(
+        cls._base_manager, using, insert_fields, returning_fields, raw
+    )
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\models\base.py", line 1220, in _do_insert
+    return manager._insert(
+           ~~~~~~~~~~~~~~~^
+        [self],
+        ^^^^^^^
+    ...<3 lines>...
+        raw=raw,
+        ^^^^^^^^
+    )
+    ^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\models\query.py", line 1918, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1925, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\utils.py", line 94, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+django.db.utils.IntegrityError: duplicate key value violates unique constraint "accounts_profile_user_id_key"
+DETAIL:  Key (user_id)=(95908ba4-67b4-479c-acd2-ca48ec708db7) already exists.
+
+2026-09-24 12:33:14,685 ERROR django.request Internal Server Error: /api/v1/accounts/profile-crud/
+Traceback (most recent call last):
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "accounts_profile_user_id_key"
+DETAIL:  Key (user_id)=(95908ba4-67b4-479c-acd2-ca48ec708db7) already exists.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\asgiref\sync.py", line 577, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\core\handlers\exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\asgiref\sync.py", line 577, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\core\handlers\base.py", line 254, in _get_response_async
+    response = await wrapped_callback(
+               ^^^^^^^^^^^^^^^^^^^^^^^
+        request, *callback_args, **callback_kwargs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\asgiref\sync.py", line 526, in __call__
+    ret = await asyncio.shield(exec_coro)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\asgiref\current_thread_executor.py", line 35, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\asgiref\sync.py", line 581, in thread_handler
+    return func(*args, **kwargs)
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\asgiref\sync.py", line 508, in func
+    return context.run(run_child)
+           ~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\asgiref\sync.py", line 506, in run_child
+    return child()
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\views\generic\base.py", line 106, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\accounts\views.py", line 205, in post
+    serializer.save(user=request.user, created_by=request.user, updated_by=request.user)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\rest_framework\serializers.py", line 210, in save
+    self.instance = self.create(validated_data)
+                    ~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\rest_framework\serializers.py", line 1011, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\models\query.py", line 669, in create
+    obj.save(force_insert=True, using=self.db)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\models\base.py", line 874, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\models\base.py", line 966, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\models\base.py", line 1169, in _save_table
+    results = self._do_insert(
+        cls._base_manager, using, insert_fields, returning_fields, raw
+    )
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\models\base.py", line 1220, in _do_insert
+    return manager._insert(
+           ~~~~~~~~~~~~~~~^
+        [self],
+        ^^^^^^^
+    ...<3 lines>...
+        raw=raw,
+        ^^^^^^^^
+    )
+    ^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\models\query.py", line 1918, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1925, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\utils.py", line 94, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Admin\Documents\DJANGORESTPROJECT\venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+django.db.utils.IntegrityError: duplicate key value violates unique constraint "accounts_profile_user_id_key"
+DETAIL:  Key (user_id)=(95908ba4-67b4-479c-acd2-ca48ec708db7) already exists.
+
+2026-09-24 12:33:14,731 INFO api API Request | request_id=a62588f8-2dcd-4856-b6f2-c661b16f768b | correlation_id=a62588f8-2dcd-4856-b6f2-c661b16f768b | user_id=95908ba4-67b4-479c-acd2-ca48ec708db7 | method=POST | endpoint=/api/v1/accounts/profile-crud/ | status_code=500 | execution_time=0.306s
+2026-09-24 12:33:14,838 ERROR django.channels.server [35;1mHTTP POST /api/v1/accounts/profile-crud/ 500 [0.50, 127.0.0.1:50926][0m
+2026-09-24 12:34:10,663 INFO accounts.views User login successful
+2026-09-24 12:34:10,664 INFO api API Request | request_id=b019d103-b53b-4686-99b6-fe9d748ebf85 | correlation_id=b019d103-b53b-4686-99b6-fe9d748ebf85 | user_id=anonymous | method=POST | endpoint=/accounts/login/ | status_code=200 | execution_time=0.866s
+2026-09-24 12:34:10,689 INFO django.channels.server [mHTTP POST /accounts/login/ 200 [0.95, 127.0.0.1:50926][0m
+2026-09-24 12:34:42,607 INFO api API Request | request_id=9d2a471c-0fe4-4921-9075-3b5389a96169 | correlation_id=9d2a471c-0fe4-4921-9075-3b5389a96169 | user_id=18d0080f-0390-4bc2-bdb8-74be4d133fb8 | method=POST | endpoint=/api/v1/accounts/profile-crud/ | status_code=201 | execution_time=0.021s
+2026-09-24 12:34:42,638 INFO django.channels.server [mHTTP POST /api/v1/accounts/profile-crud/ 201 [0.21, 127.0.0.1:50926][0m
+2026-09-24 13:21:56,676 INFO django.utils.autoreload Watching for file changes with StatReloader
+2026-09-24 13:23:20,281 INFO accounts.views User login successful
+2026-09-24 13:23:20,284 INFO api API Request | request_id=07fd58cb-977a-4466-9193-16b76e004ece | correlation_id=07fd58cb-977a-4466-9193-16b76e004ece | user_id=anonymous | method=POST | endpoint=/accounts/login/ | status_code=200 | execution_time=1.372s
+2026-09-24 13:23:20,284 WARNING api Slow API | request_id=07fd58cb-977a-4466-9193-16b76e004ece | correlation_id=07fd58cb-977a-4466-9193-16b76e004ece | user_id=anonymous | method=POST | endpoint=/accounts/login/ | status_code=200 | execution_time=1.372s
+2026-09-24 13:23:20,348 INFO django.channels.server [mHTTP POST /accounts/login/ 200 [1.57, 127.0.0.1:51563][0m
+2026-09-24 13:25:23,378 INFO api API Request | request_id=4477a7da-a72f-453f-9b6f-c26a6f78c497 | correlation_id=4477a7da-a72f-453f-9b6f-c26a6f78c497 | user_id=anonymous | method=POST | endpoint=/api/v1/services/SERVICE_ID/images/ | status_code=404 | execution_time=0.318s
+2026-09-24 13:25:23,414 WARNING django.request Not Found: /api/v1/services/SERVICE_ID/images/
+2026-09-24 13:25:23,415 WARNING django.channels.server [33mHTTP POST /api/v1/services/SERVICE_ID/images/ 404 [0.41, 127.0.0.1:51623][0m
+2026-09-24 14:43:53,682 INFO django.utils.autoreload Watching for file changes with StatReloader
+2026-09-24 15:08:01,672 INFO api API Request | request_id=ed16d663-8110-44ea-bcad-732a9f3f9f5c | correlation_id=ed16d663-8110-44ea-bcad-732a9f3f9f5c | user_id=anonymous | method=GET | endpoint=/api/v1/accounts/profile/ | status_code=401 | execution_time=0.009s
+2026-09-24 15:08:01,907 WARNING django.request Unauthorized: /api/v1/accounts/profile/
+2026-09-24 15:08:04,346 INFO accounts.views User login successful
+2026-09-24 15:08:04,346 INFO api API Request | request_id=000255d0-570a-4564-9ced-1855f14a741b | correlation_id=000255d0-570a-4564-9ced-1855f14a741b | user_id=anonymous | method=POST | endpoint=/api/v1/accounts/login/ | status_code=200 | execution_time=0.795s
+2026-09-24 15:08:06,482 WARNING accounts.views User login failed: invalid credentials
+2026-09-24 15:08:06,482 INFO api API Request | request_id=e47f96c3-91b3-4a9e-9296-e34c834e7308 | correlation_id=e47f96c3-91b3-4a9e-9296-e34c834e7308 | user_id=anonymous | method=POST | endpoint=/api/v1/accounts/login/ | status_code=400 | execution_time=0.700s
+2026-09-24 15:08:06,493 WARNING django.request Bad Request: /api/v1/accounts/login/
+2026-09-24 15:08:07,226 INFO api API Request | request_id=9168b222-d5e0-4dd8-9872-b32bb6bfcd37 | correlation_id=9168b222-d5e0-4dd8-9872-b32bb6bfcd37 | user_id=2fedc81a-76f9-4c1f-954e-e28fad8e1143 | method=POST | endpoint=/api/v1/accounts/logout/ | status_code=200 | execution_time=0.024s
+2026-09-24 15:08:07,264 INFO api API Request | request_id=a4c909f6-4dc0-44c8-b3ef-2824b1593f27 | correlation_id=a4c909f6-4dc0-44c8-b3ef-2824b1593f27 | user_id=2fedc81a-76f9-4c1f-954e-e28fad8e1143 | method=POST | endpoint=/api/v1/accounts/token/refresh/ | status_code=401 | execution_time=0.011s
+2026-09-24 15:08:07,276 WARNING django.request Unauthorized: /api/v1/accounts/token/refresh/
+2026-09-24 15:08:09,405 INFO api API Request | request_id=21d6c0e9-1727-4885-af16-71fa99312564 | correlation_id=21d6c0e9-1727-4885-af16-71fa99312564 | user_id=7a731d02-705b-4899-ba3e-9a7b945d94e6 | method=POST | endpoint=/api/v1/accounts/change-password/ | status_code=200 | execution_time=1.422s
+2026-09-24 15:08:09,405 WARNING api Slow API | request_id=21d6c0e9-1727-4885-af16-71fa99312564 | correlation_id=21d6c0e9-1727-4885-af16-71fa99312564 | user_id=7a731d02-705b-4899-ba3e-9a7b945d94e6 | method=POST | endpoint=/api/v1/accounts/change-password/ | status_code=200 | execution_time=1.422s
+2026-09-24 15:08:10,825 INFO api API Request | request_id=28f5404e-ea30-41d6-ab8a-ea6abe264c3b | correlation_id=28f5404e-ea30-41d6-ab8a-ea6abe264c3b | user_id=anonymous | method=POST | endpoint=/api/v1/accounts/token/refresh/ | status_code=200 | execution_time=0.011s
+2026-09-24 15:08:12,252 WARNING accounts.views User registration failed
+2026-09-24 15:08:12,252 INFO api API Request | request_id=c9f2fef2-debc-449b-9c5a-17241715928c | correlation_id=c9f2fef2-debc-449b-9c5a-17241715928c | user_id=anonymous | method=POST | endpoint=/api/v1/accounts/register/ | status_code=400 | execution_time=0.014s
+2026-09-24 15:08:12,266 WARNING django.request Bad Request: /api/v1/accounts/register/
+2026-09-24 15:08:13,008 WARNING accounts.views User registration failed
+2026-09-24 15:08:13,009 INFO api API Request | request_id=01919a51-8613-44d7-83bc-8f7f792c9456 | correlation_id=01919a51-8613-44d7-83bc-8f7f792c9456 | user_id=anonymous | method=POST | endpoint=/api/v1/accounts/register/ | status_code=400 | execution_time=0.006s
+2026-09-24 15:08:13,022 WARNING django.request Bad Request: /api/v1/accounts/register/
+2026-09-24 15:08:14,448 INFO accounts.views User registration successful
+2026-09-24 15:08:14,448 INFO api API Request | request_id=875aaf14-5522-45dc-aa0b-6742df478419 | correlation_id=875aaf14-5522-45dc-aa0b-6742df478419 | user_id=anonymous | method=POST | endpoint=/api/v1/accounts/register/ | status_code=201 | execution_time=0.713s
+2026-09-24 15:08:16,671 INFO api API Request | request_id=98df62c4-c473-40e4-a854-c4911a6c17ce | correlation_id=98df62c4-c473-40e4-a854-c4911a6c17ce | user_id=3a05f2fe-de12-4171-9763-e474d27e1bcd | method=GET | endpoint=/api/v1/accounts/profiles/ | status_code=200 | execution_time=0.020s
+2026-09-24 15:08:18,831 INFO api API Request | request_id=1c1198ec-bfff-47f8-b991-1ab9338a3e59 | correlation_id=1c1198ec-bfff-47f8-b991-1ab9338a3e59 | user_id=anonymous | method=GET | endpoint=/api/v1/accounts/profiles/ | status_code=401 | execution_time=0.001s
+2026-09-24 15:08:18,838 WARNING django.request Unauthorized: /api/v1/accounts/profiles/
+2026-09-24 15:08:21,116 INFO api API Request | request_id=6dec4517-3bd6-4455-8a67-767a0ada8f35 | correlation_id=6dec4517-3bd6-4455-8a67-767a0ada8f35 | user_id=0999cd95-6713-49a0-be22-1607bf94b3d4 | method=GET | endpoint=/api/v1/accounts/profiles/ | status_code=403 | execution_time=0.005s
+2026-09-24 15:08:21,127 WARNING django.request Forbidden: /api/v1/accounts/profiles/
+2026-09-24 15:08:23,233 INFO api API Request | request_id=9622769a-ca00-4803-9e48-d94ecd2838f5 | correlation_id=9622769a-ca00-4803-9e48-d94ecd2838f5 | user_id=740211f0-8e94-48d8-9673-92f17986981f | method=GET | endpoint=/api/v1/accounts/profiles/ | status_code=403 | execution_time=0.005s
+2026-09-24 15:08:23,244 WARNING django.request Forbidden: /api/v1/accounts/profiles/
+2026-09-24 15:08:24,032 INFO api API Request | request_id=0c5e0fb3-f5fa-4f16-b878-b52a01a043bb | correlation_id=0c5e0fb3-f5fa-4f16-b878-b52a01a043bb | user_id=2fa9edbc-d99c-4170-9ab5-e37958bc1e24 | method=POST | endpoint=/api/v1/accounts/profile-crud/ | status_code=201 | execution_time=0.027s
+2026-09-24 15:08:24,766 INFO api API Request | request_id=0a6765ed-6dd7-4861-9fd2-ae8b91bea05f | correlation_id=0a6765ed-6dd7-4861-9fd2-ae8b91bea05f | user_id=17998a89-0e5c-4b4d-8f7b-c3caf96ee108 | method=POST | endpoint=/api/v1/accounts/profile-crud/ | status_code=400 | execution_time=0.003s
+2026-09-24 15:08:24,776 WARNING django.request Bad Request: /api/v1/accounts/profile-crud/
+2026-09-24 15:08:25,525 INFO api API Request | request_id=3a1a8591-6ba0-46bb-9e82-726fc3496a02 | correlation_id=3a1a8591-6ba0-46bb-9e82-726fc3496a02 | user_id=2b770b53-0215-4880-9de8-6955eb02dab3 | method=DELETE | endpoint=/api/v1/accounts/profile-crud/ | status_code=204 | execution_time=0.012s
+2026-09-24 15:08:26,258 INFO api API Request | request_id=15f62828-6cf0-47e6-b82c-79fb07db50c1 | correlation_id=15f62828-6cf0-47e6-b82c-79fb07db50c1 | user_id=424df7e4-43f1-4c82-bfe4-294916252df8 | method=GET | endpoint=/api/v1/accounts/profile-crud/ | status_code=200 | execution_time=0.008s
+2026-09-24 15:08:26,994 INFO api API Request | request_id=84d19dc6-4e9a-4d36-bc67-b8401cf4000a | correlation_id=84d19dc6-4e9a-4d36-bc67-b8401cf4000a | user_id=anonymous | method=GET | endpoint=/api/v1/accounts/profile-crud/ | status_code=401 | execution_time=0.001s
+2026-09-24 15:08:27,001 WARNING django.request Unauthorized: /api/v1/accounts/profile-crud/
+2026-09-24 15:08:27,729 INFO api API Request | request_id=a979196d-5905-4f76-b8c7-a7ced70746c1 | correlation_id=a979196d-5905-4f76-b8c7-a7ced70746c1 | user_id=58b50742-bf82-43b8-aad3-dbddda62915a | method=PUT | endpoint=/api/v1/accounts/profile-crud/ | status_code=200 | execution_time=0.013s
+2026-09-24 15:08:40,086 INFO api API Request | request_id=68e13fb2-0552-41f9-86d9-0eefb4ddfc42 | correlation_id=68e13fb2-0552-41f9-86d9-0eefb4ddfc42 | user_id=5fbca8d7-f446-4c5f-bd80-b776311ae6e6 | method=POST | endpoint=/api/v1/drivers/location/ | status_code=201 | execution_time=0.019s
+2026-09-24 15:08:40,839 INFO api API Request | request_id=667d979c-faa4-4fc7-82bd-27ee460020cd | correlation_id=667d979c-faa4-4fc7-82bd-27ee460020cd | user_id=anonymous | method=POST | endpoint=/api/v1/drivers/location/ | status_code=401 | execution_time=0.001s
+2026-09-24 15:08:40,846 WARNING django.request Unauthorized: /api/v1/drivers/location/
+2026-09-24 15:08:41,556 INFO api API Request | request_id=df251848-068f-4c58-acca-6c8fce3990fc | correlation_id=df251848-068f-4c58-acca-6c8fce3990fc | user_id=3aa49e0c-9b95-4c8d-a623-545468f1fc51 | method=GET | endpoint=/api/drivers/nearby/ | status_code=200 | execution_time=0.006s
+2026-09-24 15:08:42,276 INFO api API Request | request_id=c794758b-377a-4ff6-b47f-327a1e88783a | correlation_id=c794758b-377a-4ff6-b47f-327a1e88783a | user_id=245fa46c-aa18-41b3-9faa-0e20c16cfa9f | method=GET | endpoint=/api/drivers/nearby/ | status_code=200 | execution_time=0.005s
+2026-09-24 15:08:43,010 INFO api API Request | request_id=928fe0aa-52e3-4724-8a36-e44964aa3811 | correlation_id=928fe0aa-52e3-4724-8a36-e44964aa3811 | user_id=13218c40-b418-4713-ad84-2bead6a5247c | method=POST | endpoint=/api/v1/drivers/location/ | status_code=200 | execution_time=0.014s
+2026-09-24 15:08:43,836 INFO api API Request | request_id=9df12134-c925-4ddb-879a-0be19247cf45 | correlation_id=9df12134-c925-4ddb-879a-0be19247cf45 | user_id=f654d8bd-1403-41a3-bfd3-43bae3b7c85e | method=POST | endpoint=/api/v1/drivers/ | status_code=201 | execution_time=0.031s
+2026-09-24 15:08:44,596 INFO api API Request | request_id=03f4ea22-2620-48af-a387-5286a65ede3b | correlation_id=03f4ea22-2620-48af-a387-5286a65ede3b | user_id=0af6e173-9e6e-4eb1-960e-73e9f075bdda | method=POST | endpoint=/api/v1/drivers/ | status_code=400 | execution_time=0.010s
+2026-09-24 15:08:44,611 WARNING django.request Bad Request: /api/v1/drivers/
+2026-09-24 15:08:45,463 INFO api API Request | request_id=b7bceadf-848f-4a32-8abc-c19c452717e6 | correlation_id=b7bceadf-848f-4a32-8abc-c19c452717e6 | user_id=c7a4ad75-a71e-4c53-9780-6b62363e9321 | method=DELETE | endpoint=/api/v1/drivers/b22b7ee1-829d-4905-8f6a-8fd3d1c2723b/ | status_code=204 | execution_time=0.030s
+2026-09-24 15:08:46,211 INFO api API Request | request_id=61e352d4-e9ee-40e6-a215-c2e7dc386572 | correlation_id=61e352d4-e9ee-40e6-a215-c2e7dc386572 | user_id=d0f06374-3f63-4a8f-a27c-7d81ac2ecaf8 | method=GET | endpoint=/api/v1/drivers/ | status_code=200 | execution_time=0.015s
+2026-09-24 15:08:46,964 INFO api API Request | request_id=7103f265-4e7f-4821-a46d-606692f60c8a | correlation_id=7103f265-4e7f-4821-a46d-606692f60c8a | user_id=8f8c52ab-248b-461b-a6b0-6c62f98a5240 | method=GET | endpoint=/api/v1/drivers/f60385d4-95d9-47e3-99bb-9fb2784048ec/ | status_code=200 | execution_time=0.011s
+2026-09-24 15:08:47,717 INFO api API Request | request_id=0abe40f0-f68e-4b21-b3a6-d99497e89264 | correlation_id=0abe40f0-f68e-4b21-b3a6-d99497e89264 | user_id=f449b3ce-8049-4947-b0a9-ab87a7aa2aeb | method=PATCH | endpoint=/api/v1/drivers/ed40efcb-2c77-4e07-a454-1435bcae6f9e/ | status_code=200 | execution_time=0.016s
+2026-09-24 15:08:48,526 INFO api API Request | request_id=2c68ee18-954a-4741-845c-615809af49da | correlation_id=2c68ee18-954a-4741-845c-615809af49da | user_id=d513ecdd-7df7-4066-8923-7c5cecf79178 | method=GET | endpoint=/api/v1/rides/ff0ba9c4-ce27-4fc6-9cde-092635bbe351/fare/ | status_code=200 | execution_time=0.027s
+2026-09-24 15:08:49,262 INFO api API Request | request_id=b47c4d9a-293d-4d5f-85bc-a2d30eb1e509 | correlation_id=b47c4d9a-293d-4d5f-85bc-a2d30eb1e509 | user_id=5650a6d3-43a2-4e32-afc5-0cea9ab12836 | method=GET | endpoint=/api/v1/rides/00000000-0000-0000-0000-000000000000/fare/ | status_code=404 | execution_time=0.010s
+2026-09-24 15:08:49,273 WARNING django.request Not Found: /api/v1/rides/00000000-0000-0000-0000-000000000000/fare/
+2026-09-24 15:08:50,006 INFO api API Request | request_id=9bdf0c03-b24d-4f53-a992-3c3b5d760f3d | correlation_id=9bdf0c03-b24d-4f53-a992-3c3b5d760f3d | user_id=anonymous | method=GET | endpoint=/api/v1/rides/9ef5ffe6-cc38-4376-8df5-557b3eed4078/fare/ | status_code=401 | execution_time=0.001s
+2026-09-24 15:08:50,013 WARNING django.request Unauthorized: /api/v1/rides/9ef5ffe6-cc38-4376-8df5-557b3eed4078/fare/
+2026-09-24 15:08:50,782 INFO celery.monitor Celery task started | task=accounts.tasks.retry_test_job | task_id=517345de-de88-4ad3-8c5a-ea15e4a3c854
+2026-09-24 15:08:50,794 WARNING celery.monitor Celery task retry | task=accounts.tasks.retry_test_job | task_id=517345de-de88-4ad3-8c5a-ea15e4a3c854 | retry_count=0 | reason=Retry in 2s: Exception('Attempt 1 failed')
+2026-09-24 15:08:50,794 INFO celery.app.trace Task accounts.tasks.retry_test_job[517345de-de88-4ad3-8c5a-ea15e4a3c854] retry: Retry in 2s: Exception('Attempt 1 failed')
+2026-09-24 15:08:50,794 INFO celery.monitor Celery task completed | task=accounts.tasks.retry_test_job | task_id=517345de-de88-4ad3-8c5a-ea15e4a3c854 | state=RETRY | execution_time=0.0122s
+2026-09-24 15:08:50,794 INFO celery.monitor Celery task started | task=accounts.tasks.retry_test_job | task_id=517345de-de88-4ad3-8c5a-ea15e4a3c854
+2026-09-24 15:08:50,797 WARNING celery.monitor Celery task retry | task=accounts.tasks.retry_test_job | task_id=517345de-de88-4ad3-8c5a-ea15e4a3c854 | retry_count=1 | reason=Retry in 2s: Exception('Attempt 2 failed')
+2026-09-24 15:08:50,797 INFO celery.app.trace Task accounts.tasks.retry_test_job[517345de-de88-4ad3-8c5a-ea15e4a3c854] retry: Retry in 2s: Exception('Attempt 2 failed')
+2026-09-24 15:08:50,797 INFO celery.monitor Celery task completed | task=accounts.tasks.retry_test_job | task_id=517345de-de88-4ad3-8c5a-ea15e4a3c854 | state=RETRY | execution_time=0.0029s
+2026-09-24 15:08:50,798 INFO celery.monitor Celery task started | task=accounts.tasks.retry_test_job | task_id=517345de-de88-4ad3-8c5a-ea15e4a3c854
+2026-09-24 15:08:50,844 INFO celery.app.trace Task accounts.tasks.retry_test_job[517345de-de88-4ad3-8c5a-ea15e4a3c854] succeeded in 0.04597009999997681s: {'success': True, 'attempt': 3, 'message': 'Job completed successfully on attempt 3'}
+2026-09-24 15:08:50,844 INFO celery.monitor Celery task completed | task=accounts.tasks.retry_test_job | task_id=517345de-de88-4ad3-8c5a-ea15e4a3c854 | state=SUCCESS | execution_time=0.0461s
+2026-09-24 15:08:55,886 INFO api API Request | request_id=4216964c-e14e-4af6-a1cc-3c8de1328085 | correlation_id=4216964c-e14e-4af6-a1cc-3c8de1328085 | user_id=9d9cc53d-6330-4fc7-b750-c8ec81b35e00 | method=GET | endpoint=/api/v1/drivers/ | status_code=200 | execution_time=0.026s
+2026-09-24 15:08:57,334 INFO api API Request | request_id=00e3c927-25c0-481b-a4ed-658d477521ba | correlation_id=00e3c927-25c0-481b-a4ed-658d477521ba | user_id=eb5995fd-ab7e-445c-a3e6-d3583d75c277 | method=GET | endpoint=/api/v1/drivers/ | status_code=200 | execution_time=0.014s
+2026-09-24 15:08:58,768 INFO api API Request | request_id=72b53847-21be-4a4c-b006-05614348cba0 | correlation_id=72b53847-21be-4a4c-b006-05614348cba0 | user_id=anonymous | method=POST | endpoint=/api/v1/drivers/location/ | status_code=401 | execution_time=0.001s
+2026-09-24 15:08:58,775 WARNING django.request Unauthorized: /api/v1/drivers/location/
+2026-09-24 15:08:59,564 INFO api API Request | request_id=bbee9252-bc49-42e8-af4f-8b07f9123e72 | correlation_id=bbee9252-bc49-42e8-af4f-8b07f9123e72 | user_id=08e09f72-6d41-4bce-84e2-360cc63facf9 | method=GET | endpoint=/api/rides/aggregations/ | status_code=200 | execution_time=0.016s
+2026-09-24 15:09:00,326 INFO api API Request | request_id=22624a3f-6c5a-4bd8-be82-594e459e5ecb | correlation_id=22624a3f-6c5a-4bd8-be82-594e459e5ecb | user_id=anonymous | method=GET | endpoint=/api/rides/aggregations/ | status_code=401 | execution_time=0.001s
+2026-09-24 15:09:00,333 WARNING django.request Unauthorized: /api/rides/aggregations/
+2026-09-24 15:09:02,565 WARNING rides.services.ride_service Ride acceptance failed: ride is not in requested status | ride_id=fea5abd8-e476-4589-871d-585431406b98
+2026-09-24 15:09:02,566 INFO api API Request | request_id=b0ddd069-8444-46ab-a396-0d886f26f416 | correlation_id=b0ddd069-8444-46ab-a396-0d886f26f416 | user_id=1a4df83c-cb7f-4603-8140-4ca41e4f06f8 | method=POST | endpoint=/api/rides/fea5abd8-e476-4589-871d-585431406b98/accept/ | status_code=400 | execution_time=0.064s
+2026-09-24 15:09:02,599 WARNING django.request Bad Request: /api/rides/fea5abd8-e476-4589-871d-585431406b98/accept/
+2026-09-24 15:09:04,836 WARNING rides.services.ride_service Ride completion failed: invalid current status | ride_id=606d7e70-a5dd-4e1c-9e3c-c55d32bc137c
+2026-09-24 15:09:04,837 INFO api API Request | request_id=dc2b6a6b-40c1-4d1f-b70c-1c718b1c4e06 | correlation_id=dc2b6a6b-40c1-4d1f-b70c-1c718b1c4e06 | user_id=b34f2e92-1dc3-44be-bd13-7e1b37143a3b | method=POST | endpoint=/api/rides/606d7e70-a5dd-4e1c-9e3c-c55d32bc137c/complete/ | status_code=400 | execution_time=0.016s
+2026-09-24 15:09:04,857 WARNING django.request Bad Request: /api/rides/606d7e70-a5dd-4e1c-9e3c-c55d32bc137c/complete/
+2026-09-24 15:09:06,991 WARNING rides.services.ride_service Ride cancellation failed: invalid current status | ride_id=752a9bbd-98a3-4a08-b7ae-a9ede497ce72 status=COMPLETED
+2026-09-24 15:09:06,991 INFO api API Request | request_id=34d04ef3-4a9e-4613-8f50-34d3f2985432 | correlation_id=34d04ef3-4a9e-4613-8f50-34d3f2985432 | user_id=06427c99-80c6-4174-a46e-e050f23cdc76 | method=POST | endpoint=/api/rides/752a9bbd-98a3-4a08-b7ae-a9ede497ce72/cancel/ | status_code=400 | execution_time=0.013s
+2026-09-24 15:09:07,011 WARNING django.request Bad Request: /api/rides/752a9bbd-98a3-4a08-b7ae-a9ede497ce72/cancel/
+2026-09-24 15:09:13,426 INFO api API Request | request_id=435581e1-9a44-4e24-9cb1-f9a32fc5747f | correlation_id=435581e1-9a44-4e24-9cb1-f9a32fc5747f | user_id=17d37124-aaa8-4d6a-9d0c-6b6a0a9bc0eb | method=POST | endpoint=/api/rides/dcf45dfe-ea68-4267-9200-035d93c15cd3/accept/ | status_code=200 | execution_time=0.074s
+2026-09-24 15:09:15,613 INFO rides.services.ride_service Ride cancelled successfully | ride_id=42f1aa48-7777-4f5f-b70b-2c78bb7b1e40
+2026-09-24 15:09:15,615 INFO api API Request | request_id=86cb531b-b86c-4b30-ad64-c7563920d08b | correlation_id=86cb531b-b86c-4b30-ad64-c7563920d08b | user_id=de3823e3-43d6-417f-b424-74fc4a521b1f | method=POST | endpoint=/api/rides/42f1aa48-7777-4f5f-b70b-2c78bb7b1e40/cancel/ | status_code=200 | execution_time=0.018s
+2026-09-24 15:09:17,765 INFO rides.services.ride_service Ride completed successfully | ride_id=8b137cc5-602a-460c-845a-051f9bedb36a
+2026-09-24 15:09:17,774 INFO api API Request | request_id=f5beef9d-4cde-4a37-bf23-a00f2236bc79 | correlation_id=f5beef9d-4cde-4a37-bf23-a00f2236bc79 | user_id=6986eb2d-2f16-4166-9085-3d18f5df9582 | method=POST | endpoint=/api/rides/8b137cc5-602a-460c-845a-051f9bedb36a/complete/ | status_code=200 | execution_time=0.029s
+2026-09-24 15:09:22,021 INFO rides.services.ride_service Ride started successfully | ride_id=69ac2084-d47a-446f-83d7-b1261a9b6d7a
+2026-09-24 15:09:22,024 INFO api API Request | request_id=23e0f856-b0f3-4375-9432-8a1f2ea3709a | correlation_id=23e0f856-b0f3-4375-9432-8a1f2ea3709a | user_id=2f7bb7fa-8887-4a83-8540-eb9937614aae | method=POST | endpoint=/api/rides/69ac2084-d47a-446f-83d7-b1261a9b6d7a/start/ | status_code=200 | execution_time=0.020s
+2026-09-24 15:09:24,191 INFO api API Request | request_id=dccb23a6-d374-4a3d-9424-b3040e3d3ed4 | correlation_id=dccb23a6-d374-4a3d-9424-b3040e3d3ed4 | user_id=58fce5ea-ff10-44a3-b738-be2201b45154 | method=POST | endpoint=/api/rides/17693ca6-e532-49dc-8474-6a9f6c5b917f/accept/ | status_code=200 | execution_time=0.039s
+2026-09-24 15:09:24,251 WARNING rides.services.ride_service Ride acceptance failed: ride is not in requested status | ride_id=17693ca6-e532-49dc-8474-6a9f6c5b917f
+2026-09-24 15:09:24,252 INFO api API Request | request_id=d9fb6245-0635-4fa4-b276-f2731a87f376 | correlation_id=d9fb6245-0635-4fa4-b276-f2731a87f376 | user_id=5980704e-5c2d-4bfc-800e-dedaabce3a6d | method=POST | endpoint=/api/rides/17693ca6-e532-49dc-8474-6a9f6c5b917f/accept/ | status_code=400 | execution_time=0.021s
+2026-09-24 15:09:24,277 WARNING django.request Bad Request: /api/rides/17693ca6-e532-49dc-8474-6a9f6c5b917f/accept/
+2026-09-24 15:09:26,424 WARNING rides.services.ride_service Ride acceptance failed: driver is not available | ride_id=7770daa9-86dd-4f21-9a93-6504dccd5eba, driver_id=857ea639-c049-4c61-b2f2-262b4a9898d0
+2026-09-24 15:09:26,425 INFO api API Request | request_id=44068822-fdac-4672-9d27-84225a49438e | correlation_id=44068822-fdac-4672-9d27-84225a49438e | user_id=f535c118-e6ed-4e6b-b2cf-0e7748e494aa | method=POST | endpoint=/api/rides/7770daa9-86dd-4f21-9a93-6504dccd5eba/accept/ | status_code=400 | execution_time=0.014s
+2026-09-24 15:09:26,449 WARNING django.request Bad Request: /api/rides/7770daa9-86dd-4f21-9a93-6504dccd5eba/accept/
+2026-09-24 15:09:28,650 INFO api API Request | request_id=ceb18f3d-5764-491f-bae5-ef8dc5ae42e6 | correlation_id=ceb18f3d-5764-491f-bae5-ef8dc5ae42e6 | user_id=9f52f1c2-5c18-4888-9a8a-57bbf44da891 | method=GET | endpoint=/api/rides/history/ | status_code=200 | execution_time=0.029s
+2026-09-24 15:09:30,787 INFO api API Request | request_id=2db57527-ee02-41c1-a22e-6da37bd70bfe | correlation_id=2db57527-ee02-41c1-a22e-6da37bd70bfe | user_id=116b3d8f-6b29-48e3-a0fc-cc5c6cc8bd94 | method=GET | endpoint=/api/rides/history/ | status_code=200 | execution_time=0.011s
+2026-09-24 15:09:32,915 INFO api API Request | request_id=a8a84605-0dab-4b16-bbd1-d471c7f73cb7 | correlation_id=a8a84605-0dab-4b16-bbd1-d471c7f73cb7 | user_id=253e3bb4-c31f-4544-a9dd-2e13758af34b | method=GET | endpoint=/api/rides/history/ | status_code=200 | execution_time=0.011s
+2026-09-24 15:09:35,035 INFO api API Request | request_id=11bb3f07-f62e-4075-8c53-9b9ee6b1eca4 | correlation_id=11bb3f07-f62e-4075-8c53-9b9ee6b1eca4 | user_id=813b146f-aeb4-4608-b2ff-4b754fc6859a | method=GET | endpoint=/api/rides/history/ | status_code=200 | execution_time=0.011s
+2026-09-24 15:09:37,155 INFO api API Request | request_id=9a56807e-1c99-48fc-bdf5-c4dea3877f17 | correlation_id=9a56807e-1c99-48fc-bdf5-c4dea3877f17 | user_id=be931dff-d181-4c2f-b07f-60f7e8d443e9 | method=GET | endpoint=/api/rides/history/ | status_code=200 | execution_time=0.011s
+2026-09-24 15:09:39,285 INFO api API Request | request_id=eafd56e1-3003-46a9-a333-9531b4a87549 | correlation_id=eafd56e1-3003-46a9-a333-9531b4a87549 | user_id=anonymous | method=GET | endpoint=/api/rides/history/ | status_code=401 | execution_time=0.000s
+2026-09-24 15:09:39,292 WARNING django.request Unauthorized: /api/rides/history/
+2026-09-24 15:09:41,398 INFO api API Request | request_id=5aa0e201-a270-433c-8e7d-090259acba7b | correlation_id=5aa0e201-a270-433c-8e7d-090259acba7b | user_id=d05edde3-5cd7-46ac-991c-b3e6652bf9b9 | method=GET | endpoint=/api/rides/history/ | status_code=200 | execution_time=0.011s
+2026-09-24 15:09:43,529 INFO api API Request | request_id=237ae5e0-8651-4fb4-b462-920a8a8bf2b3 | correlation_id=237ae5e0-8651-4fb4-b462-920a8a8bf2b3 | user_id=a59efd6c-b159-48ee-a867-8357c848228a | method=GET | endpoint=/api/rides/history/ | status_code=200 | execution_time=0.011s
+2026-09-24 15:09:45,111 INFO api API Request | request_id=01ef1e55-d740-441d-8376-e1715ff1b896 | correlation_id=01ef1e55-d740-441d-8376-e1715ff1b896 | user_id=d308b037-7dba-4ae7-8f13-38109dd5bc0f | method=GET | endpoint=/api/drivers/bc7d669b-a9db-4c6e-b062-6845d5964861/ | status_code=403 | execution_time=0.012s
+2026-09-24 15:09:45,146 WARNING django.request Forbidden: /api/drivers/bc7d669b-a9db-4c6e-b062-6845d5964861/
+2026-09-24 15:09:45,871 INFO api API Request | request_id=7c0cf187-8231-4a57-ba88-47c785a11cad | correlation_id=7c0cf187-8231-4a57-ba88-47c785a11cad | user_id=f99e2e9e-9618-44ac-9c77-c56d4a43ef62 | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-24 15:09:45,893 INFO api API Request | request_id=7f097387-e83d-45a2-a4db-624f1f1c0bda | correlation_id=7f097387-e83d-45a2-a4db-624f1f1c0bda | user_id=f99e2e9e-9618-44ac-9c77-c56d4a43ef62 | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-24 15:09:45,912 INFO api API Request | request_id=94fa90dd-d409-4394-8480-4db5c087caeb | correlation_id=94fa90dd-d409-4394-8480-4db5c087caeb | user_id=f99e2e9e-9618-44ac-9c77-c56d4a43ef62 | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-24 15:09:45,930 INFO api API Request | request_id=e3a41009-7a37-452d-99a0-ff62f30abd5e | correlation_id=e3a41009-7a37-452d-99a0-ff62f30abd5e | user_id=f99e2e9e-9618-44ac-9c77-c56d4a43ef62 | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-24 15:09:45,948 INFO api API Request | request_id=13b3f09c-c277-4e1c-83ee-846f12a0d0ef | correlation_id=13b3f09c-c277-4e1c-83ee-846f12a0d0ef | user_id=f99e2e9e-9618-44ac-9c77-c56d4a43ef62 | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-24 15:09:45,970 INFO api API Request | request_id=5c0e0aaf-673a-4021-8eec-d8a3549a8ee8 | correlation_id=5c0e0aaf-673a-4021-8eec-d8a3549a8ee8 | user_id=f99e2e9e-9618-44ac-9c77-c56d4a43ef62 | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-24 15:09:45,988 INFO api API Request | request_id=f919aa33-cedf-4cd0-ac9a-233dcc8e01dd | correlation_id=f919aa33-cedf-4cd0-ac9a-233dcc8e01dd | user_id=f99e2e9e-9618-44ac-9c77-c56d4a43ef62 | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-24 15:09:46,007 INFO api API Request | request_id=351ce167-7c3c-43fd-9f3c-d34bc9cfcf8a | correlation_id=351ce167-7c3c-43fd-9f3c-d34bc9cfcf8a | user_id=f99e2e9e-9618-44ac-9c77-c56d4a43ef62 | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-24 15:09:46,027 INFO api API Request | request_id=b10e75e1-8765-457e-b3d6-b347dd5695c4 | correlation_id=b10e75e1-8765-457e-b3d6-b347dd5695c4 | user_id=f99e2e9e-9618-44ac-9c77-c56d4a43ef62 | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.007s
+2026-09-24 15:09:46,048 INFO api API Request | request_id=459f0233-e95c-4483-9583-308bdfe62a9f | correlation_id=459f0233-e95c-4483-9583-308bdfe62a9f | user_id=f99e2e9e-9618-44ac-9c77-c56d4a43ef62 | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-24 15:09:46,068 INFO api API Request | request_id=2e065d15-9e0d-4a0a-bc8b-24609903cfa5 | correlation_id=2e065d15-9e0d-4a0a-bc8b-24609903cfa5 | user_id=f99e2e9e-9618-44ac-9c77-c56d4a43ef62 | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.007s
+2026-09-24 15:09:46,087 INFO api API Request | request_id=77090e18-4748-48c5-a540-1675a1dd2b15 | correlation_id=77090e18-4748-48c5-a540-1675a1dd2b15 | user_id=f99e2e9e-9618-44ac-9c77-c56d4a43ef62 | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-24 15:09:46,107 INFO api API Request | request_id=efb571c7-4c65-4920-b852-e7b04c9edc0d | correlation_id=efb571c7-4c65-4920-b852-e7b04c9edc0d | user_id=f99e2e9e-9618-44ac-9c77-c56d4a43ef62 | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-24 15:09:46,125 INFO api API Request | request_id=6ad03479-7b4e-45cd-991e-799239166aab | correlation_id=6ad03479-7b4e-45cd-991e-799239166aab | user_id=f99e2e9e-9618-44ac-9c77-c56d4a43ef62 | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-24 15:09:46,143 INFO api API Request | request_id=4ba011b9-8dc4-45b3-8382-c22dfc933680 | correlation_id=4ba011b9-8dc4-45b3-8382-c22dfc933680 | user_id=f99e2e9e-9618-44ac-9c77-c56d4a43ef62 | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-24 15:09:46,163 INFO api API Request | request_id=a7b5f58c-f555-4075-b3ca-d92b7bed4c42 | correlation_id=a7b5f58c-f555-4075-b3ca-d92b7bed4c42 | user_id=f99e2e9e-9618-44ac-9c77-c56d4a43ef62 | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-24 15:09:46,181 INFO api API Request | request_id=5301b7f4-61e4-4625-ada6-e08b8483a0f3 | correlation_id=5301b7f4-61e4-4625-ada6-e08b8483a0f3 | user_id=f99e2e9e-9618-44ac-9c77-c56d4a43ef62 | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-24 15:09:46,199 INFO api API Request | request_id=a0a4bcec-805f-467a-abfc-fbf41bec49a3 | correlation_id=a0a4bcec-805f-467a-abfc-fbf41bec49a3 | user_id=f99e2e9e-9618-44ac-9c77-c56d4a43ef62 | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-24 15:09:46,217 INFO api API Request | request_id=7fe0b52c-3217-4a25-a5b8-930579c51c59 | correlation_id=7fe0b52c-3217-4a25-a5b8-930579c51c59 | user_id=f99e2e9e-9618-44ac-9c77-c56d4a43ef62 | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-24 15:09:46,235 INFO api API Request | request_id=ef550187-b28c-4586-95c7-a8468cffad5c | correlation_id=ef550187-b28c-4586-95c7-a8468cffad5c | user_id=f99e2e9e-9618-44ac-9c77-c56d4a43ef62 | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-24 15:09:46,253 INFO api API Request | request_id=d97afc00-2b32-4d57-a3a7-6b12fb7caca5 | correlation_id=d97afc00-2b32-4d57-a3a7-6b12fb7caca5 | user_id=f99e2e9e-9618-44ac-9c77-c56d4a43ef62 | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-24 15:09:46,270 INFO api API Request | request_id=be331b43-c1b3-49f3-881b-69bfa84d1dd8 | correlation_id=be331b43-c1b3-49f3-881b-69bfa84d1dd8 | user_id=f99e2e9e-9618-44ac-9c77-c56d4a43ef62 | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-24 15:09:46,288 INFO api API Request | request_id=82bbf2e1-1cec-40df-b232-0351a4a5d1ce | correlation_id=82bbf2e1-1cec-40df-b232-0351a4a5d1ce | user_id=f99e2e9e-9618-44ac-9c77-c56d4a43ef62 | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-24 15:09:46,306 INFO api API Request | request_id=f07f4930-f736-40d4-9ac8-f2feaa9bbea2 | correlation_id=f07f4930-f736-40d4-9ac8-f2feaa9bbea2 | user_id=f99e2e9e-9618-44ac-9c77-c56d4a43ef62 | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-24 15:09:46,325 INFO api API Request | request_id=a50ea155-bec7-493b-bae4-65962392cf39 | correlation_id=a50ea155-bec7-493b-bae4-65962392cf39 | user_id=f99e2e9e-9618-44ac-9c77-c56d4a43ef62 | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-24 15:09:46,344 INFO api API Request | request_id=c2660097-8795-48eb-b0ea-56789dacc9a6 | correlation_id=c2660097-8795-48eb-b0ea-56789dacc9a6 | user_id=f99e2e9e-9618-44ac-9c77-c56d4a43ef62 | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-24 15:09:46,363 INFO api API Request | request_id=7a0af0da-8ef4-46cd-8d98-f3b066231301 | correlation_id=7a0af0da-8ef4-46cd-8d98-f3b066231301 | user_id=f99e2e9e-9618-44ac-9c77-c56d4a43ef62 | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-24 15:09:46,380 INFO api API Request | request_id=b526e6e5-1630-4500-82ff-cac52a049c09 | correlation_id=b526e6e5-1630-4500-82ff-cac52a049c09 | user_id=f99e2e9e-9618-44ac-9c77-c56d4a43ef62 | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-24 15:09:46,400 INFO api API Request | request_id=35ec5f92-d37a-42d7-85fe-c2d384a52e28 | correlation_id=35ec5f92-d37a-42d7-85fe-c2d384a52e28 | user_id=f99e2e9e-9618-44ac-9c77-c56d4a43ef62 | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-24 15:09:46,418 INFO api API Request | request_id=914a28ba-466d-4b7b-9e5e-228e9bb08bf2 | correlation_id=914a28ba-466d-4b7b-9e5e-228e9bb08bf2 | user_id=f99e2e9e-9618-44ac-9c77-c56d4a43ef62 | method=GET | endpoint=/api/drivers/ | status_code=200 | execution_time=0.006s
+2026-09-24 15:09:46,434 INFO api API Request | request_id=dc912543-ce91-46f4-aa4c-93bff93ac4cc | correlation_id=dc912543-ce91-46f4-aa4c-93bff93ac4cc | user_id=f99e2e9e-9618-44ac-9c77-c56d4a43ef62 | method=GET | endpoint=/api/drivers/ | status_code=429 | execution_time=0.001s
+2026-09-24 15:09:46,441 WARNING django.request Too Many Requests: /api/drivers/
+2026-09-24 15:09:46,444 INFO api API Request | request_id=eb9ab04a-c5e2-4fa4-b8fa-07e7b51f554b | correlation_id=eb9ab04a-c5e2-4fa4-b8fa-07e7b51f554b | user_id=f99e2e9e-9618-44ac-9c77-c56d4a43ef62 | method=GET | endpoint=/api/drivers/ | status_code=429 | execution_time=0.001s
+2026-09-24 15:09:46,451 WARNING django.request Too Many Requests: /api/drivers/
+2026-09-24 15:09:46,453 INFO api API Request | request_id=4df487de-3df9-4ec3-945d-c688adcaa448 | correlation_id=4df487de-3df9-4ec3-945d-c688adcaa448 | user_id=f99e2e9e-9618-44ac-9c77-c56d4a43ef62 | method=GET | endpoint=/api/drivers/ | status_code=429 | execution_time=0.001s
+2026-09-24 15:09:46,460 WARNING django.request Too Many Requests: /api/drivers/
+2026-09-24 15:09:46,464 INFO api API Request | request_id=997a5996-de1d-455d-97b4-2a5445aff3c6 | correlation_id=997a5996-de1d-455d-97b4-2a5445aff3c6 | user_id=f99e2e9e-9618-44ac-9c77-c56d4a43ef62 | method=GET | endpoint=/api/drivers/ | status_code=429 | execution_time=0.001s
+2026-09-24 15:09:46,470 WARNING django.request Too Many Requests: /api/drivers/
+2026-09-24 15:09:46,473 INFO api API Request | request_id=6cc67282-999e-4957-bb7b-478b13d91977 | correlation_id=6cc67282-999e-4957-bb7b-478b13d91977 | user_id=f99e2e9e-9618-44ac-9c77-c56d4a43ef62 | method=GET | endpoint=/api/drivers/ | status_code=429 | execution_time=0.001s
+2026-09-24 15:09:46,480 WARNING django.request Too Many Requests: /api/drivers/
+2026-09-24 15:09:46,486 INFO api API Request | request_id=b2911e06-2ece-416c-bb7c-6343ceee90e2 | correlation_id=b2911e06-2ece-416c-bb7c-6343ceee90e2 | user_id=anonymous | method=GET | endpoint=/api/drivers/ | status_code=401 | execution_time=0.001s
+2026-09-24 15:09:46,494 WARNING django.request Unauthorized: /api/drivers/
+2026-09-24 15:09:47,212 INFO api API Request | request_id=71ea27c6-d752-4973-b23c-15c811737c71 | correlation_id=71ea27c6-d752-4973-b23c-15c811737c71 | user_id=dfa86527-f449-4d65-97a6-79d475b52b2a | method=POST | endpoint=/api/rides/ | status_code=400 | execution_time=0.006s
+2026-09-24 15:09:47,225 WARNING django.request Bad Request: /api/rides/
+2026-09-24 15:09:47,236 INFO api API Request | request_id=cfc68d3d-8686-4a3b-a3ff-3e13b62a1cbb | correlation_id=cfc68d3d-8686-4a3b-a3ff-3e13b62a1cbb | user_id=anonymous | method=GET | endpoint=/api/rides/ | status_code=401 | execution_time=0.001s
+2026-09-24 15:09:47,246 WARNING django.request Unauthorized: /api/rides/
+2026-09-24 15:09:47,250 INFO api API Request | request_id=58b746cc-7044-4eab-9a20-baa32ce5b260 | correlation_id=58b746cc-7044-4eab-9a20-baa32ce5b260 | user_id=anonymous | method=GET | endpoint=/api/drivers/ | status_code=401 | execution_time=0.000s
+2026-09-24 15:09:47,258 WARNING django.request Unauthorized: /api/drivers/
+2026-09-24 15:09:48,711 INFO api API Request | request_id=770a4364-5c94-4094-af7a-ac65654f2a24 | correlation_id=770a4364-5c94-4094-af7a-ac65654f2a24 | user_id=ae5af5ea-30a0-46c9-b94d-e070fe7ceb41 | method=GET | endpoint=/api/rides/d93d1eea-7f7b-4a05-8c62-d74dfc0d2b01/ | status_code=403 | execution_time=0.021s
+2026-09-24 15:09:48,722 WARNING django.request Forbidden: /api/rides/d93d1eea-7f7b-4a05-8c62-d74dfc0d2b01/
+2026-09-24 15:09:50,284 INFO api API Request | request_id=5f2bc114-6951-4c4d-89da-810cd8c6c929 | correlation_id=5f2bc114-6951-4c4d-89da-810cd8c6c929 | user_id=d78730a1-2e46-4504-a008-75b82b6192d0 | method=POST | endpoint=/api/vehicles/ | status_code=201 | execution_time=0.058s
+2026-09-24 15:09:51,759 INFO api API Request | request_id=4949972c-3124-415a-9379-256398d4842d | correlation_id=4949972c-3124-415a-9379-256398d4842d | user_id=anonymous | method=POST | endpoint=/api/vehicles/ | status_code=401 | execution_time=0.000s
+2026-09-24 15:09:51,766 WARNING django.request Unauthorized: /api/vehicles/
+2026-09-24 15:09:53,179 INFO api API Request | request_id=2e75e2a3-ddac-4902-8652-6a9ee01008d2 | correlation_id=2e75e2a3-ddac-4902-8652-6a9ee01008d2 | user_id=b490a2be-5b22-4677-b7d1-15e8498e83a2 | method=PUT | endpoint=/api/vehicles/79be107a-52f7-4650-8a65-3fe8c686599b/ | status_code=403 | execution_time=0.011s
+2026-09-24 15:09:53,196 WARNING django.request Forbidden: /api/vehicles/79be107a-52f7-4650-8a65-3fe8c686599b/
+2026-09-24 15:09:54,645 INFO api API Request | request_id=2c2b1ac6-16bb-4c6c-b85d-9ad193014941 | correlation_id=2c2b1ac6-16bb-4c6c-b85d-9ad193014941 | user_id=3e0e1164-2bab-4603-8b68-01f6b9c85f81 | method=POST | endpoint=/api/vehicles/ | status_code=400 | execution_time=0.020s
+2026-09-24 15:09:54,669 WARNING django.request Bad Request: /api/vehicles/
+2026-09-24 15:09:59,578 INFO api API Request | request_id=cb51878e-ff32-4aef-9e51-c0f08c4710c7 | correlation_id=cb51878e-ff32-4aef-9e51-c0f08c4710c7 | user_id=d1863b4a-3a64-4643-b46f-3ee66d5b8d83 | method=PATCH | endpoint=/api/rides/d6e2da54-5cc9-4a83-8d7b-d850af49a9b2/location/ | status_code=201 | execution_time=0.030s

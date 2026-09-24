@@ -15,6 +15,9 @@ from .serializers import BookingSerializer, ServiceSerializer, PaymentInitiation
 from .models import Booking, Payment
 from .payment_gateway import MockPaymentGateway
 
+from rest_framework.parsers import MultiPartParser, FormParser
+from .models import ServiceImage
+from .serializers import ServiceImageSerializer
 from django.db import transaction
 from django.shortcuts import get_object_or_404
 
@@ -637,6 +640,61 @@ class PaymentWebhookAPIView(APIView):
                 "payment_status": payment.payment_status,
                 "booking_status": booking.status,
                 "transaction_id": payment.transaction_id,
+            },
+            status=status.HTTP_200_OK
+        )
+
+class ServiceImageAPIView(APIView):
+    parser_classes = [MultiPartParser, FormParser]
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, service_id):
+        images = ServiceImage.objects.filter(
+            service_id=service_id
+        )
+
+        serializer = ServiceImageSerializer(
+            images,
+            many=True,
+            context={"request": request}
+        )
+
+        return Response(
+            serializer.data,
+            status=status.HTTP_200_OK
+        )
+
+    def post(self, request, service_id):
+        service = get_object_or_404(
+            Service,
+            id=service_id
+        )
+
+        serializer = ServiceImageSerializer(
+            data=request.data,
+            context={"request": request}
+        )
+
+        serializer.is_valid(raise_exception=True)
+
+        serializer.save(service=service)
+
+        return Response(
+            serializer.data,
+            status=status.HTTP_201_CREATED
+        )
+    def delete(self, request, service_id, image_id):
+        image = get_object_or_404(
+            ServiceImage,
+            id=image_id,
+            service_id=service_id
+        )
+
+        image.delete()
+
+        return Response(
+            {
+                "message": "Service image deleted successfully."
             },
             status=status.HTTP_200_OK
         )

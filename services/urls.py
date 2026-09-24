@@ -7,6 +7,7 @@ from .views import (
     MockPaymentProcessAPIView,
     PaymentWebhookAPIView,
     ServiceViewSet,
+    ServiceImageAPIView,
 )
 
 
@@ -26,6 +27,16 @@ router.register(
 
 
 urlpatterns = router.urls + [
+    path(
+        "services/<uuid:service_id>/images/",
+        ServiceImageAPIView.as_view(),
+        name="service-images",
+    ),
+    path(
+        "services/<uuid:service_id>/images/<uuid:image_id>/",
+        ServiceImageAPIView.as_view(),
+        name="service-image-detail",
+    ),
     path(
         "payments/initiate/",
         PaymentInitiationAPIView.as_view(),
